@@ -1,0 +1,172 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Frame --}}
+        <div class="devastra-result-window">
+
+            <div class="typeofthrow" style="display: none;">{{typeofthrow}}</div>
+            <div class="numberofdice" style="display: none;">{{numberofdice}}</div>
+            <div class="skill" style="display: none;">{{skill}}</div>
+            <div class="bonus" style="display: none;">{{bonus}}</div>
+            <div class="rolldifficulty" style="display: none;">{{rolldifficulty}}</div>
+
+            <div class="youwin" style="display: none;">{{youwin}}</div>
+            <div class="egality" style="display: none;">{{egality}}</div>
+            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
+            <div class="youractorid" style="display: none;">{{youractorid}}</div>
+            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
+            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
+            <div class="youropponent" style="display: none;">{{youropponent}}</div>
+            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
+            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
+            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
+            
+            {{#if (eq mymodifier 999)}}
+            <div style="text-align: center;" title="{{ localize 'DEVASTRA.Evident' }}">{{ localize "DEVASTRA.ReussiteAutomatique" }}</div>
+            {{else}}
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <td>
+                        <span>{{ title }}</span>
+                    </td>
+                </tr>
+            </table>
+
+            <details>
+                <summary><small>{{ localize "DEVASTRA.BonusMalusDetail" }}</small></summary>
+                <small>
+                <table>
+                    <tr>
+                        <th>
+                            {{ titleNbrDice }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataNbrDice }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleDomain }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataDomain }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleSpeciality }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataSpeciality }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleAnomaly }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataAnomaly }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleAspect }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataAspect }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleAttribute }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataSpeciality }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleBonus }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataBonus }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleMalus }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataMalus }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleArmor }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataArmor }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleWounds }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataWounds }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleDestiny }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataDestiny }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ titleSpleen }}
+                        </th>
+                        <td style="text-align: center;">
+                            {{ dataSpleen }}
+                        </td>
+                    </tr>
+                </table>
+                </small>
+            </details>
+            {{/if}}
+            <br>
+            <div class="green-buttons">
+                {{#if (eq mymodifier 999)}}
+                {{else}}
+                <p><span class="smart-green-button reroll-click" >{{ localize "DEVASTRA.RerollDice" }}</span></p><br/>
+                {{/if}}
+                <p><span class="smart-green-button moon-click" data-libel-id="moon-die-randomize">{{ localize "DEVASTRA.DeDeLaLune" }}</span></p><br/>
+                {{#if (eq youropponentid '0')}}
+                <span>
+                    {{#if (eq numSpeciality 6)}}
+                    <span class="tooltip" style="text-align: center"><i class="fas fa-cancel"></i>&nbsp;{{ localize "DEVASTRA.LOpposantEstManquant" }}</span>
+                    {{/if}}
+                </span>
+                {{else}}
+                    <span>
+                        {{#if egality}}
+                        {{else}}
+                        <span>
+                            {{#if (eq numSpeciality 6)}}
+                            <p><span class="smart-green-button wounds-calculate-click">{{ localize "DEVASTRA.CalculateWounds" }}</span></p><br/>
+                            {{/if}}
+                        </span>
+                        {{/if}}
+                    </span>
+                {{/if}}
+            </div>
+        </div>	
+    </section>
+</form>

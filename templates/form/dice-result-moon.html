@@ -1,0 +1,124 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Frame --}}
+        <div class="devastra-result-window">
+
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <td style="height: 10px;">
+
+                    </td>
+                </tr>
+            </table>
+
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <td style="text-align: center;">
+                        <b>{{ moonname }}</b>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <td>
+                        {{#if (eq theresult 1)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/1_NOUVELLE_LUNE.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 2)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/2_PREMIER_CROISSANT.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 3)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/3_PREMIER_QUARTIER.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 4)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/4_LUNE_GIBBEUSE.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 5)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/5_LUNE_VOUTEE.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 6)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/6_DERNIER_CROISSANT.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 7)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/7_DERNIER_QUARTIER.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if (eq theresult 8)}}
+                        <div class="devastra-moon">
+                            <img
+                            class="devastra-moon"
+                            src="systems/devastra/images/ui/8_PLEINE_LUNE.png"
+                            alt="Moon"
+                            >
+                        </div>
+                        {{/if}}
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </section>
+</form>

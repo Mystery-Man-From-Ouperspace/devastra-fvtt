@@ -1,0 +1,62 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <div class="name">
+            <label><b>{{ localize "DEVASTRA.SkillPromptName" }}</b></label>
+        </div>
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body" style="background-image: url('/systems/devastra/images/ui/wheel_transp.png')";
+    >
+
+        {{!-- Frame --}}
+        <div class="frame">
+            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
+                <img
+                style="border: 0; margin-left: 3px; width: 25px"
+                src="systems/devastra/images/ui/wheel.webp"
+                alt="Moon"        
+                >
+            </div>
+            <div style="height: 5px;">
+
+            </div>
+
+            <div>
+                <b>{{ localize "DEVASTRA.MoonDiceAs" }}</b>&nbsp;
+                <select name="moon">
+                {{#select moon }}
+                    <option value="0">{{ localize "DEVASTRA.StandardMoonDice" }}</option>
+                    <option value="1">{{ localize "DEVASTRA.LuckDiceElementofFiction" }}</option>
+                    <option value="2">{{ localize "DEVASTRA.LuckDiceInfluenceNarration" }}</option>
+                    <option value="3">{{ localize "DEVASTRA.LuckDiceDetermineQuantity" }}</option>
+                {{/select}}
+                </select>
+            </div>
+
+            <div style="border-bottom: solid 1px grey; height: 5px; width:100%;"></div>
+            <div style="height: 5px;">
+
+            </div>
+
+            <div>
+                <b>{{ localize "DEVASTRA.TypeOfThrow4ThisTime" }}</b>&nbsp;
+                <select name="choice">
+                {{#select choice }}
+                    <option value="0">{{ localize "DEVASTRA.Everybody" }}</option>
+                    <option value="1">{{ localize "DEVASTRA.JustDMAndMe" }}</option>
+                    <option value="2">{{ localize "DEVASTRA.DMOnly" }}</option>
+                    <option value="3">{{ localize "DEVASTRA.MeOnly" }}</option>
+                {{/select}}
+                </select>
+            </div>
+            <div style="height: 5px;">
+
+            </div>
+            <div>
+            <i class="click-prefs fas fa-gear"></i>&nbsp;<i>{{ localize "DEVASTRA.NextTimeGoToTheSettings" }}</i>
+            <br>&nbsp;
+            </div>
+		</div>	
+    </section>
+</form>

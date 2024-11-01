@@ -1,0 +1,105 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+  {{log 'actor-sheet' this}} 
+  {{!-- Sheet Header --}}
+  <div class="sheet-display">
+    {{!-- Side Sheet --}}
+    <div class="side-sheet">
+      <div class="sheet-logo">
+      <img src="systems/devastra/images/ui/logo_jeu.png">
+      </div>
+      <img class="logo-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+      <table>
+        <tr>
+          <td style="width: 1%">
+            <h1>
+              <i class="click-prefs fas fa-gear"></i>
+            </h1>
+          </td>
+          <td>
+            <h1 class="charname">
+              <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DEVASTRA.PCName' }}" />
+            </h1>
+          </td>
+        </tr>
+      </table>
+      <table class="concept">
+        <tr>
+          <td>
+            <label><b>{{ localize "DEVASTRA.Caste" }}</b></label>
+            <input type="text" name="system.caste" value="{{systemData.caste}}" placeholder="{{ localize 'DEVASTRA.Caste' }}" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label><b>{{ localize "DEVASTRA.Nation" }}</b></label>
+            <input type="text" name="system.nation" value="{{systemData.nation}}" placeholder="{{ localize 'DEVASTRA.Nation' }}" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label><b>{{ localize "DEVASTRA.Genre" }}</b></label>
+            <input type="text" name="system.genre" value="{{systemData.genre}}" placeholder="{{ localize 'DEVASTRA.Genre' }}" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label><b>{{ localize "DEVASTRA.Initiative_totale" }}</b></label>
+          </td>
+        </tr>
+        <tr>
+          <td class="initiative">
+            -&nbsp;{{systemData.initiative_totale}}&nbsp;-
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    {{!-- Body Sheet --}}
+    <div class="body-sheet">
+      {{!-- Sheet Tab Navigation --}}
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{ localize "DEVASTRA.Description" }}</a>
+        <a class="item" data-tab="statistiques">{{ localize "DEVASTRA.Skills" }}</a>
+        <a class="item" data-tab="mandalas">{{ localize "DEVASTRA.Mandalas" }}</a>
+        <a class="item" data-tab="chakras">{{ localize "DEVASTRA.Chakra" }}</a>
+        <a class="item" data-tab="devastras">{{ localize "DEVASTRA.Devastra" }}</a>
+        <a class="item" data-tab="magies">{{ localize "DEVASTRA.Magies" }}</a>
+        <a class="item" data-tab="dharmas">{{ localize "DEVASTRA.Dharma" }}</a>
+        <a class="item" data-tab="karmas">{{ localize "DEVASTRA.Karma" }}</a>
+        <a class="item" data-tab="items">{{ localize "DEVASTRA.Items" }}</a>
+      </nav>
+
+      {{!-- Sheet Body --}}
+      <section class="sheet-body">
+        {{!-- Biography Tab --}}
+        <div class="tab description description_wrap" data-group="primary" data-tab="description">
+          {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+        {{!-- Skill Tab --}}
+        <div class="tab statistiques" data-group="primary" data-tab="statistiques">{{> "systems/devastra/templates/actor/parts/character-statistiques.html"}}</div>
+
+        {{!-- Mandala Tab --}}
+        <div class="tab mandalas" data-group="primary" data-tab="mandalas">{{> "systems/devastra/templates/actor/parts/character-mandalas.html"}}</div>
+
+        {{!-- Chakra Tab --}}
+        <div class="tab chakras" data-group="primary" data-tab="chakras">{{> "systems/devastra/templates/actor/parts/character-chakras.html"}}</div>
+
+        {{!-- Owned Devastra Tab --}}
+        <div class="tab devastras" data-group="primary" data-tab="devastras">{{> "systems/devastra/templates/actor/parts/character-devastras.html"}}</div>
+
+        {{!-- Owned Magie Tab --}}
+        <div class="tab magies" data-group="primary" data-tab="magies">{{> "systems/devastra/templates/actor/parts/character-magies.html"}}</div>
+
+        {{!-- Owned Dharma Tab --}}
+        <div class="tab dharmas" data-group="primary" data-tab="dharmas">{{> "systems/devastra/templates/actor/parts/character-dharmas.html"}}</div>
+
+        {{!-- Owned Karma Tab --}}
+        <div class="tab karmas" data-group="primary" data-tab="karmas">{{> "systems/devastra/templates/actor/parts/character-karmas.html"}}</div>
+
+        {{!-- Owned Item Tab --}}
+        <div class="tab items" data-group="primary" data-tab="items">{{> "systems/devastra/templates/actor/parts/character-items.html"}}</div>
+      </section>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,155 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+  {{log 'monster-sheet' this}} 
+  {{!-- Sheet Header --}}
+  <div class="sheet-display">
+    {{!-- Side Sheet --}}
+    <div class="side-sheet">
+      <div>
+      <img style="border: 0;" src="systems/devastra/images/ui/logo_jeu.png">
+      </div>
+      <div style="position: relative;">
+        <div class="logo-img npctype-parent">
+          <div class="npctype-child1">
+          <img class="logo-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+          </div>
+          <div class="npctype-child2" class="npctype-parent">
+            <div style="width: 70px;">
+              {{ log npctype }}
+              {{#if (eq npctype '0')}}
+              <img src="systems/devastra/images/ui/icons/Typeclassique01.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '1')}}
+              <img src="systems/devastra/images/ui/icons/Typeclassique02.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '2')}}
+              <img src="systems/devastra/images/ui/icons/Typeclassique03.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '3')}}
+              <img src="systems/devastra/images/ui/icons/Typedangereux01.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '4')}}
+              <img src="systems/devastra/images/ui/icons/Typedangereux02.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '5')}}
+              <img src="systems/devastra/images/ui/icons/Typedangereux03.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '6')}}
+              <img src="systems/devastra/images/ui/icons/Typeelite01.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '7')}}
+              <img src="systems/devastra/images/ui/icons/Typeelite02.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '8')}}
+              <img src="systems/devastra/images/ui/icons/Typeelite03.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '9')}}
+              <img src="systems/devastra/images/ui/icons/Typeelitedangereux01.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '10')}}
+              <img src="systems/devastra/images/ui/icons/Typeelitedangereux02.png">
+              {{else}}
+              {{/if}}
+              {{#if (eq npctype '11')}}
+              <img src="systems/devastra/images/ui/icons/Typeelitedangereux03.png">
+              {{else}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 300px;">
+        <table>
+          <tr>
+            <td style="width: 1%">
+              <h1>
+                <i class="click-prefs fas fa-gear"></i>
+              </h1>
+            </td>
+            <td>
+              <h1 class="charname">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DEVASTRA.PCName' }}" />
+              </h1>
+            </td>
+          </tr>
+        </table>
+        <table class="concept">
+          <tr>
+            <td>
+              <label><b>{{ localize "DEVASTRA.Caste" }}</b></label>
+              <input type="text" name="system.caste" value="{{systemData.caste}}" placeholder="{{ localize 'DEVASTRA.Caste' }}" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>{{ localize "DEVASTRA.Nation" }}</b></label>
+              <input type="text" name="system.nation" value="{{systemData.nation}}" placeholder="{{ localize 'DEVASTRA.Nation' }}" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>{{ localize "DEVASTRA.Genre" }}</b></label>
+              <input type="text" name="system.genre" value="{{systemData.genre}}" placeholder="{{ localize 'DEVASTRA.Genre' }}" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>{{ localize "DEVASTRA.Initiative_totale" }}</b></label>
+            </td>
+          </tr>
+          <tr>
+            <td class="initiative">
+              -&nbsp;{{systemData.initiative_totale}}&nbsp;-
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="sheet-nav-container">
+        <details>
+            <summary><i class="fas fa-list-dropdown"></i></summary>
+            <select id="npcTypeSelect" name="system.npcType" data-type="String">
+                {{#select systemData.npcType}}
+                    {{#each systemData.npcTypes as |npcTypes key|}}
+                    {{ log npcTypes key }}
+                    <option value="{{key}}">{{ localize (concat 'DEVASTRA.' npcTypes) }}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </details>
+      </div>
+    </div>
+
+    {{!-- Body Sheet --}}
+    <div class="body-sheet">
+      {{!-- Sheet Tab Navigation --}}
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{ localize "DEVASTRA.DescriptionInExtenso" }}</a>
+        <a class="item" data-tab="statistiques">{{ localize "DEVASTRA.Skills" }}</a>
+        <a class="item" data-tab="magiesenseignementsnotes">{{ localize "DEVASTRA.Magies, Enseignements & Notes" }}</a>
+      </nav>
+
+      {{!-- Sheet Body --}}
+      <section class="sheet-body">
+        {{!-- Biography Tab --}}
+        <div class="tab description description_wrap" data-group="primary" data-tab="description">
+          {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+        {{!-- Skill Tab --}}
+        <div class="tab statistiques" data-group="primary" data-tab="statistiques">{{> "systems/devastra/templates/actor/parts/npc-statistiques.html"}}</div>
+
+        {{!-- Magics Tab --}}
+        <div class="tab magiesenseignementsnotes" data-group="primary" data-tab="magiesenseignementsnotes">{{> "systems/devastra/templates/actor/parts/npc-magiesenseignementsnotes.html"}}</div>
+      </section>
+    </div>
+  </div>
+</form>

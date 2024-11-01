@@ -1,0 +1,41 @@
+IMAGES:
+- Exceptées les jetons, les peties icônes de d6 et celles de game-icon.org,
+les images des fichiers du dossier images utilisées dans ce logiciel sont :
+Copyright © 2024-2025 Antre Monde Éditions ;
+elles sont leurs propriétés (et celles de leurs auteurs respectifs)
+et elles ne peuvent ni être reproduites ni réutilisées en dehors de
+ce logiciel, sans leur autorisation.
+- Les jetons de Mandala ont été réalisés par 'Pretre Matrae-Création' ; leurs
+icônes sont © 2024-2025 'Pretre', qui nous les a gracieusement confiées.
+- Certaines icônes sont issues du site https://game-icons.org et elles
+sont sous licence https://creativecommons.org/licenses/by/3.0/
+Vous pouvez retrouver le nom de leurs auteurs respectifs sur ce site.
+
+CODE / CODING:
+- David R.D. 'Mystery Man From Outerspace' Bercovici
+- Christophe 'Kristov / Qaw' Laudon (il m'a un petit peu aidé !)
+
+COMPENDIUMS:
+Basés sur / based on:
+Antre Monde Éditions' 'Devâstra' RPG books by:
+- Laurent Devernay Satvagraha
+- Romain 'Rom1' d'Huissier
+- Cédric 'JTR the Hobbit' Lameire
+
+Saisis par / Entered by:
+David R.D. 'Mystery Man From Outerspace' Bercovici
+
+
+MODULES: MODULES À TÉLÉCHARGER À PART
+Les Compendiums seront téléchargeables depuis cette source :
+- À venir
+
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.

@@ -1,0 +1,446 @@
+{
+  "Actor": {
+    "types": ["character", "npc", "monster"],
+    "htmlFields": ["description", "notes"],
+
+    "character": {
+      "locked": true,
+      "caste": "",
+      "nation": "",
+      "genre": "",
+      "domains": {
+        "dph": {
+          "icon": "systems/devastra/images/ui/icons/DPh.png",
+          "libel": "dph",
+          "label": "DEVASTRA.Physical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dma": {
+          "icon": "systems/devastra/images/ui/icons/DMa.png",
+          "libel": "dma",
+          "label": "DEVASTRA.Martial",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "din": {
+          "icon": "systems/devastra/images/ui/icons/DIn.png",
+          "libel": "din",
+          "label": "DEVASTRA.Intellect",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dso": {
+          "icon": "systems/devastra/images/ui/icons/DSo.png",
+          "libel": "dso",
+          "label": "DEVASTRA.Social",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dmy": {
+          "icon": "systems/devastra/images/ui/icons/DMy.png",
+          "libel": "dmy",
+          "label": "DEVASTRA.Mystical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        }
+      },
+      "prana": {
+        "max": 0,
+        "value": 0,
+        "transcendant": 0,
+        "vaillant": 0,
+        "tenace": 0,
+        "affaibli": 0,
+        "vulnerable": 0
+      },
+      "conviction": {
+        "value": 0,
+        "piledejetons": 0
+      },
+      "initiative": {
+        "value": 0,
+        "concentration": 0,
+        "actionsmax": 0,
+        "nbrjetonbonus": 0,
+        "typejetonbonus": 0
+      },
+      "mandala": {
+        "sept": {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "six":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "cinq":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "quatre":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "trois":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "deux":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        },
+        "un":  {
+          "nbrjetonbonus": 0,
+          "typejetonbonus": 0
+        }
+      },
+      "atman": {
+        "max": 0,
+        "value": 0,
+        "bonus": 0
+      },
+      "shakti": {
+        "piledejetons": 0,
+        "typejetonbonus": 0,
+        "max": 0
+      },
+      "action": {
+        "piledejetons": 0,
+        "typejetonbonus": 0,
+        "max": 1
+      },
+      "chakra": {
+        "value": 3,
+        "niveaux": {
+          "sept": false,
+          "six": false,
+          "cinq": false,
+          "quatre": false,
+          "trois": true,
+          "deux": true,
+          "un": true
+        },
+        "totalevolution": 0,
+        "perestant": 0,
+        "initiative_totale": 0
+      },
+      "srcJeton": "" 
+    },
+
+    "npc": {
+      "locked": true,
+      "npcType": 0,
+      "npcTypes": ["typeclassique01", "typeclassique02", "typeclassique03", "typeclassiquedangereux01", "typeclassiquedangereux02", "typeclassiquedangereux03", "typeelite01", "typeelite02", "typeelite03", "typeelitedangereux01", "typeelitedangereux02", "typeelitedangereux03"],
+      "concept": "",
+      "caste": "",
+      "nation": "",
+      "genre": "",
+      "domains": {
+        "dph": {
+          "icon": "systems/devastra/images/ui/icons/DPh.png",
+          "libel": "dph",
+          "label": "DEVASTRA.npcPhysical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dma": {
+          "icon": "systems/devastra/images/ui/icons/DMa.png",
+          "libel": "dma",
+          "label": "DEVASTRA.npcMartial",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "din": {
+          "icon": "systems/devastra/images/ui/icons/DIn.png",
+          "libel": "din",
+          "label": "DEVASTRA.npcIntellect",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dso": {
+          "icon": "systems/devastra/images/ui/icons/DSo.png",
+          "libel": "dso",
+          "label": "DEVASTRA.npcSocial",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dmy": {
+          "icon": "systems/devastra/images/ui/icons/DMy.png",
+          "libel": "dmy",
+          "label": "DEVASTRA.npcMystical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        }
+      },
+      "prana": {
+        "max": 0,
+        "value": 0,
+        "transcendant": 0,
+        "vaillant": 0,
+        "tenace": 0,
+        "affaibli": 0,
+        "vulnerable": 0
+      },
+      "initiative": {
+        "value": 0
+      },
+      "mandala": {
+        "sept": {
+          "selected": false
+        },
+        "six":  {
+          "selected": false
+        },
+        "cinq":  {
+          "selected": false
+        },
+        "quatre":  {
+          "selected": false
+        },
+        "trois":  {
+          "selected": false
+        },
+        "deux":  {
+          "selected": false
+        },
+        "un":  {
+          "selected": false
+        }
+      },
+      "atman": {
+        "value": 0
+      },
+      "shakti_initiale": {
+        "value": 0,
+        "notes": ""
+      },
+      "chakra": {
+        "value": 0
+      }
+    },
+    "monster": {
+      "locked": true,
+      "monsterType": 0,
+      "monsterTypes": ["typeclassique01", "typeclassique02", "typeclassique03", "typeclassiquedangereux01", "typeclassiquedangereux02", "typeclassiquedangereux03", "typeelite01", "typeelite02", "typeelite03", "typeelitedangereux01", "typeelitedangereux02", "typeelitedangereux03"],
+      "concept": "",
+      "caste": "",
+      "nation": "",
+      "genre": "",
+      "domains": {
+        "dph": {
+          "icon": "systems/devastra/images/ui/icons/DPh.png",
+          "libel": "dph",
+          "label": "DEVASTRA.npcPhysical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dma": {
+          "icon": "systems/devastra/images/ui/icons/DMa.png",
+          "libel": "dma",
+          "label": "DEVASTRA.npcMartial",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "din": {
+          "icon": "systems/devastra/images/ui/icons/DIn.png",
+          "libel": "din",
+          "label": "DEVASTRA.npcIntellect",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dso": {
+          "icon": "systems/devastra/images/ui/icons/DSo.png",
+          "libel": "dso",
+          "label": "DEVASTRA.npcSocial",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        },
+        "dmy": {
+          "icon": "systems/devastra/images/ui/icons/DMy.png",
+          "libel": "dmy",
+          "label": "DEVASTRA.npcMystical",
+          "specialities": "",
+          "value": 0,
+          "bonusdice": 0
+        }
+      },
+      "prana": {
+        "max": 0,
+        "value": 0,
+        "transcendant": 0,
+        "vaillant": 0,
+        "tenace": 0,
+        "affaibli": 0,
+        "vulnerable": 0
+      },
+      "initiative": {
+        "value": 0
+      },
+      "mandala": {
+        "sept": {
+          "selected": false
+        },
+        "six":  {
+          "selected": false
+        },
+        "cinq":  {
+          "selected": false
+        },
+        "quatre":  {
+          "selected": false
+        },
+        "trois":  {
+          "selected": false
+        },
+        "deux":  {
+          "selected": false
+        },
+        "un":  {
+          "selected": false
+        }
+      },
+      "atman": {
+        "value": 0
+      },
+      "shakti_initiale": {
+        "value": 0,
+        "notes": ""
+      },
+      "chakra": {
+        "value": 0
+      }
+    }
+  },
+
+  "Item": {
+    "types": ["item", "enseignement", "devastra", "pouvoir", "magie", "dharma", "karma", "note"],
+    "htmlFields": ["technique", "narrative", "notes", "gainconviction", "capacite", "implication"],
+    "item": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "quantity": 1,
+      "weight": 0,
+      "protection": "",
+      "attack": "",
+      "damage": "",
+      "range": "",
+      "speed": "",
+      "crew": "",
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "enseignement": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "devastra": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "weight": 0,
+      "protection": "",
+      "attack": "",
+      "damage": "",
+      "range": "",
+      "deva": "",
+      "nature": "",
+      "bonusreserveatman": 0,
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "pouvoir": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "weight": 0,
+      "protection": "",
+      "attack": "",
+      "damage": "",
+      "range": "",
+      "level": 0,
+      "active": false,
+      "costatman": 0,
+      "activation": "",
+      "duration": "",
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "dharma": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "gainconviction": "",
+      "capacite": "",
+      "implication": "",
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "karma": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "magie": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "weight": 0,
+      "protection": "",
+      "attack": "",
+      "damage": "",
+      "range": "",
+      "level": 0,
+      "active": false,
+      "costatman": 0,
+      "activation": "",
+      "duration": "",
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "note": {
+      "value": 0,
+      "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    }
+
+  }
+}

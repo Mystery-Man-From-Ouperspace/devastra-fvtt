@@ -1,0 +1,83 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    {{log 'karma-sheet' this}}
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+        <div class="header-fields">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
+            </h1>
+            {{#if (or playersEditItems isGM)}}
+                <div class="reference">
+                    <label><b>{{localize "DEVASTRA.Reference"}}</b></label>
+                    <input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Reference' }}" name="system.reference" value="{{systemData.reference}}" />
+                </div>
+            {{else}}
+                <div class="value">
+                    <label><b>{{ localize "DEVASTRA.AspectValue" }}</b></label>
+                    {{systemData.value }}
+                </div>
+                <div class="resource">
+                    <label><b>{{localize "DEVASTRA.Reference"}}</b></label>
+                    {{systemData.reference}}
+                </div>
+            {{/if}}
+
+        </div>
+    </header>
+	
+	{{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description-technique">{{localize "DEVASTRA.Technique"}}</a>
+        <a class="item" data-tab="description-narratif">{{localize "DEVASTRA.Narrative"}}</a>
+        <a class="item" data-tab="data">{{localize "DEVASTRA.Data"}}</a>
+        <a class="item" data-tab="notes">{{localize "DEVASTRA.Notes"}}</a>
+    </nav>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{#if (or playersEditItems isGM)}}
+        {{!-- Technique Tab --}}
+        <div class="tab" data-group="primary" data-tab="description-technique">
+            {{editor techniqueHTML target="system.technique" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+
+		{{!-- Narratif  Tab --}}
+        <div class="tab" data-group="primary" data-tab="description-narratif">
+            {{editor narratifHTML target="system.narratif" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+
+        {{!-- Data Tab --}}
+        <div class="tab data" data-group="primary" data-tab="data">
+            <div class="equipped">
+                <td class="check"><input type="checkbox" name="system.equipped" {{checked systemData.equipped}} /><label><b>{{localize "DEVASTRA.Equipped"}}</b></label></td>
+            </div>
+        </div>
+        {{else}}
+        {{!-- Technique Tab --}}
+            <div class="tab" data-group="primary" data-tab="description-technique">
+                {{{systemData.technique}}}
+            </div>
+
+
+            {{!-- Narratif  Tab --}}
+            <div class="tab" data-group="primary" data-tab="description-narratif">
+                {{{systemData.narratif}}}
+            </div>
+
+
+            {{!-- Data Tab --}}
+            <div class="tab data" data-group="primary" data-tab="data">
+                <div class="equipped">
+                    <td class="check"><input type="checkbox" name="system.equipped" {{checked systemData.equipped}} /><label><b>{{localize "DEVASTRA.Equipped"}}</b></label></td>
+                </div>
+            </div>
+		{{/if}}
+		{{!-- Notes Tab --}}
+        <div class="tab" data-group="primary" data-tab="notes">
+            {{editor notesHTML target="system.notes" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+    </section>
+</form>

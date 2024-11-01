@@ -1,0 +1,422 @@
+{
+  "DEVASTRA.Autoriser les joueuses à modifer les items": "Les Joueuses modifent les items",
+  "DEVASTRA.Cocher cette option autorisera les joueuses": 
+  "Cocher cette option autorisera les Joueuses à modifier les données (zones de descriptifs et paramètres) de leurs items tels que : Anomalies, Aspects et Attributs.",
+
+  "DEVASTRA.Sonoriser l'interface du Mandala": "Sonoriser l′interface du Mandala",
+  "DEVASTRA.Décocher cette option rendra l'interface silencieuse": "Décocher cette option rendra l′interface silencieuse",
+
+  "DEVASTRA.Tenir automatiquement le décompte des blessures": "Décompte auto. des Blessures",
+  "DEVASTRA.Cocher cette option auto":
+  "Cocher cette option autorisera le décompte automatisé des blessures infligées aux PNJ par les Joueuses. Le MJ pourra ainsi se consacrer entièrement à la narration.",
+
+  "DEVASTRA.AutoPrompt": "Utiliser les prompts d’automatisation côté Joueuses",
+  "DEVASTRA.TakeCareIfAutoPromptUnchecked":
+  "Attention ! Si vous décochez cette option, seuil, modificateur, arme, Anomalie, Aspects et Attributs ainsi que bonus et malus supplémentaires, armure et jauges ne pourront plus être pris en compte automatiquement. Seuls les malus de blessures seront décomptés.",
+
+  "DEVASTRA.(Enfantin)": "- Enfantin",
+  "DEVASTRA.(Facile)": "- Facile",
+  "DEVASTRA.(Moyen)": "- Moyen",
+  "DEVASTRA.(Difficile)": "- Difficile",
+  "DEVASTRA.(Très difficile)": "- Très difficile",
+  "DEVASTRA.(Impossible)": "- Impossible",
+
+
+  "DEVASTRA.Domains": "Domaines",
+  "DEVASTRA.Domain": "Domaine",
+  "DEVASTRA.Physical": "Physique ● DPh",
+  "DEVASTRA.Martial": "Martial ● DMa",
+  "DEVASTRA.Intellect": "Intellectuel ● DIn",
+  "DEVASTRA.Social": "Social ● DSo",
+  "DEVASTRA.Mystical": "Mystique ● DMy",
+  "DEVASTRA.Specialities": "Spécialités",
+
+  "DEVASTRA.npcPhysical": "Domaine physique",
+  "DEVASTRA.npcMartial": "Domaine martial",
+  "DEVASTRA.npcIntellect": "Domaine intellectuel",
+  "DEVASTRA.npcSocial": "Domaine social",
+  "DEVASTRA.npcMystical": "Domaine mystique",
+
+
+  "DEVASTRA.Caste": "Caste",
+  "DEVASTRA.Nation": "Nation",
+  "DEVASTRA.Genre": "Genre",
+
+  "DEVASTRA.Icon": "Icône du Domaine ",
+
+  "DEVASTRA.Valeur": "Valeur",
+  "DEVASTRA.Dé bonus": "Dé bonus",
+  "DEVASTRA.DieSP": "Cliquez ici pour jeter les dés pour une spécialité de ce Domaine",
+
+ "DEVASTRA.Description": "Descript.",
+ "DEVASTRA.DescriptionInExtenso": "Description",
+ "DEVASTRA.Skills": "Statistiques",
+ 
+ "DEVASTRA.Magies, Enseignements & Notes": "Magies, Enseignements & Notes",
+ 
+  "DEVASTRA.Mandalas": "Mandala",
+  "DEVASTRA.Shakti": "Shakti",
+  "DEVASTRA.Shakti initiale": "Shakti initiale",
+  "DEVASTRA.Prana": "Prana",
+  "DEVASTRA.Atman": "Âtman",
+  "DEVASTRA.Conviction": "Conviction",
+
+  
+  "DEVASTRA.Transcendant": "Transcendant",
+  "DEVASTRA.Vaillant": "Vaillant",
+  "DEVASTRA.Tenace": "Tenace",
+  "DEVASTRA.Affaibli": "Affaibli",
+  "DEVASTRA.Vulnérable": "Vulnérable",
+
+  "DEVASTRA.ConvictionScore": "Score – Chakra × 2",
+  "DEVASTRA.PranaScore": "Score – Chakra × 10 + somme des 5 Domaines",
+  "DEVASTRA.AtmanScore": "Score – Chakra × 5 + DMy + bonus de Devâstra",
+  "DEVASTRA.Bonus de Devâstra": "Bonus à la réserve d′Âtman octroyé par la Devâstra",
+  "DEVASTRA.Bonus Devâstra": "Bonus Devâstra",
+  "DEVASTRA.InitiativeScore": "Score – Chakra",
+  "DEVASTRA.TranscendantScore": "Transcendant (> 100%)",
+  "DEVASTRA.ActionsMaxDIn": "Actions Max – DPh",
+  "DEVASTRA.ActionsMax": "Actions Max",
+  "DEVASTRA.Max": "Max",
+  "DEVASTRA.ShaktiMax": "Max – (Chakra + plus grand Domaine) × 2",
+
+  "DEVASTRA.Restants": "Restants",
+  "DEVASTRA.Restantes": "Restantes",
+
+  "DEVASTRA.Utilisations de la Shakti :": "Utilisations de la Shakti :",
+  "DEVASTRA.[●]": "[●]",
+  "DEVASTRA.+ 1 score d’Initiative": "+ 1 score d’Initiative",
+  "DEVASTRA.+ 1 action": "+ 1 action",
+  "DEVASTRA.+ 2D d’attaque sur un jet": "+ 2D d’attaque sur un jet",
+  "DEVASTRA.défensif - 1 Succès": "défensif - 1 Succès",
+
+  "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
+  "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Chakti initiale",
+  "DEVASTRA.Clic de jeton d’action": "Cliquez ici (en début de tour) pour obtenir 1 Jeton d’Action",
+
+  "DEVASTRA.TokenPile": "Pile de Jetons",
+  "DEVASTRA.TokenBonusInitiativePile": "Pile de Jetons de bonus d′initiative",
+  "DEVASTRA.TokenConvictionPile": "Pile de Jetons de conviction",
+
+  "DEVASTRA.TokenPileShakti": "Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3",
+
+  "DEVASTRA.Effet": "Effet :",
+
+  "DEVASTRA.Actuel": "Actuel",
+
+  "DEVASTRA.Concentration actuelle": "Concentration actuelle",
+
+  "DEVASTRA.TokenPileAction": "Action – un unique Jeton au début de chaque tour",
+  "DEVASTRA.Action": "Action",
+  "DEVASTRA.ObtenirJetonAction": "Obtenir 1 Jeton Action",
+
+  "DEVASTRA.[L]": "[L]",
+  "DEVASTRA.[G]": "[G]",
+  "DEVASTRA.[A]": "[A]",
+  "DEVASTRA.Utilisations (max Chakra) :": "Utilisations (max Chakra) :",
+  "DEVASTRA.+ 1 Succès automatique (si vaillant)": "+ 1 Succès automatique (si vaillant)", 
+  "DEVASTRA.Ignorer un malus": "Ignorer un malus",
+  "DEVASTRA.Obtenir DMa Shakti": "Obtenir DMa Shakti",
+  "DEVASTRA.Récupérer (DMy + Chakra) Âtman": "Récupérer (DMy + Chakra) Âtman",
+  "DEVASTRA.Récupérer (DPh + Chakra) Prana (si vulnérable)": "Récupérer (DPh + Chakra) Prana (si vulnér.)",
+
+  "DEVASTRA.TypeOfMagic": "Type de Magie :",
+  "DEVASTRA.Mantra": "Mantra",
+  "DEVASTRA.Mandala": "Mandala",
+  
+
+  "DEVASTRA.Items": "Équipements",
+
+  "DEVASTRA.ItemCreate": "Créer un Équipement",
+  "DEVASTRA.ItemRead": "Consulter l′Équipement",
+  "DEVASTRA.ItemEdit": "Modifier l′Équipement",
+  "DEVASTRA.ItemDelete": "Supprimer l′Équipement",
+  "DEVASTRA.ItemNew": "Nouvel Équipement",
+
+  "DEVASTRA.Enseignements": "Enseignements",
+
+  "DEVASTRA.EnseignementCreate": "Créer un Enseignement",
+  "DEVASTRA.EnseignementRead": "Consulter l′Enseignement",
+  "DEVASTRA.EnseignementEdit": "Modifier l′Enseignement",
+  "DEVASTRA.EnseignementDelete": "Supprimer l′Enseignement",
+  "DEVASTRA.EnseignementNew": "Nouvel Enseignement",
+
+  "DEVASTRA.Devastra ou Asurastra": "Devâstra ou Asurâstra",
+  "DEVASTRA.Armes ou Protections": "Armes ou Protecions",
+
+  "DEVASTRA.Devastra": "Devâstra",
+
+  "DEVASTRA.DevastraCreate": "Créer une Devâstra",
+  "DEVASTRA.DevastraRead": "Consulter la Devâstra",
+  "DEVASTRA.DevastraEdit": "Modifier la Devâstra",
+  "DEVASTRA.DevastraDelete": "Supprimer la Devâstra",
+  "DEVASTRA.DevastraNew": "Nouvelle Devâstra",
+
+  "DEVASTRA.Pouvoirs": "Pouvoirs",
+
+  "DEVASTRA.PouvoirCreate": "Créer un Pouvoir",
+  "DEVASTRA.PouvoirRead": "Consulter le Pouvoir",
+  "DEVASTRA.PouvoirEdit": "Modifier le Pouvoir",
+  "DEVASTRA.PouvoirDelete": "Supprimer le Pouvoir",
+  "DEVASTRA.PouvoirNew": "Nouveau Pouvoir",
+
+  "DEVASTRA.Magies": "Magies",
+
+  "DEVASTRA.MagieCreate": "Créer une Magie",
+  "DEVASTRA.MagieRead": "Consulter la Magie",
+  "DEVASTRA.MagieEdit": "Modifier la Magie",
+  "DEVASTRA.MagieDelete": "Supprimer la Magie",
+  "DEVASTRA.MagieNew": "Nouvelle Magie",
+
+  "DEVASTRA.Dharma": "Dharma",
+
+  "DEVASTRA.DharmaCreate": "Créer un Dharma",
+  "DEVASTRA.DharmaRead": "Consulter le Dharma",
+  "DEVASTRA.DharmaEdit": "Modifier le Dharma",
+  "DEVASTRA.DharmaDelete": "Supprimer le Dharma",
+  "DEVASTRA.DharmaNew": "Nouveau Dharma",
+
+  "DEVASTRA.Karma": "Karma",
+
+  "DEVASTRA.KarmaCreate": "Créer un Karma",
+  "DEVASTRA.KarmaRead": "Consulter le Karma",
+  "DEVASTRA.KarmaEdit": "Modifier le Karma",
+  "DEVASTRA.KarmaDelete": "Supprimer le Karma",
+  "DEVASTRA.KarmaNew": "Nouveau Karma",
+
+  "DEVASTRA.NoteCreate": "Créer une Note",
+  "DEVASTRA.NoteRead": "Consulter la Note",
+  "DEVASTRA.NoteEdit": "Modifier la Note",
+  "DEVASTRA.NoteDelete": "Supprimer la Note",
+  "DEVASTRA.NoteNew": "Nouvelle Note",
+
+  "DEVASTRA.Chakra": "Chakra",
+
+  "DEVASTRA.TypeOfItem": "Type d′Équipement :",
+  "DEVASTRA.Weapon": "Arme standard",
+  "DEVASTRA.Asurâstra": "Asurâstra",
+  "DEVASTRA.Âryâstra": "Âryâstra",
+  "DEVASTRA.Armor": "Protection",
+  "DEVASTRA.Vehicle": "Véhicule",
+  "DEVASTRA.Other": "Autre",
+
+  "DEVASTRA.armorencumbrance": "Armure (encombr.)",
+
+  "DEVASTRA.ResourceMin": "Min",
+  "DEVASTRA.ResourceValue": "Valeur",
+  "DEVASTRA.ResourceMax": "Max",
+
+  "DEVASTRA.DefineTemplate": "Définir comme Modèle",
+  "DEVASTRA.UnsetTemplate": "Désactiver le Modèle",
+  "DEVASTRA.NoTemplate": "Aucun Modèle",
+
+  "DEVASTRA.Quantity": "Quantité",
+  "DEVASTRA.Weight": "Poids",
+  "DEVASTRA.Damage": "Dégâts",
+  "DEVASTRA.Protection": "Protection",
+  "DEVASTRA.Range": "Portée",
+  "DEVASTRA.Speed": "Vitesse",
+  "DEVASTRA.Crew": "Équipage",
+
+  "DEVASTRA.Create": "Créer",
+  "DEVASTRA.New": "Nouveau",
+
+  "DEVASTRA.Name": "Nom",
+  "DEVASTRA.PCName": "Nom du Personnage",
+
+  "DEVASTRA.NPCName": "Nom du PNJ",
+
+  "DEVASTRA.Item": "Équipement",
+
+  "DEVASTRA.Level": "Niveau",
+
+  
+  "DEVASTRA.NPC": "PNJ",
+  "DEVASTRA.N.P.C.": "PNJ",
+
+
+  "DEVASTRA.numberofdice": "Nombre de Dés",
+
+  "DEVASTRA.Data": "Paramètres",
+
+
+  "DEVASTRA.Initiative": "Initiative",
+  "DEVASTRA.Initiative_totale": "Total d′Initiative",
+
+
+  "DEVASTRA.Validate": "Valider",
+  "DEVASTRA.Cancel": "Annuler",
+
+  "DEVASTRA.Notes": "Vos notes",
+
+  "DEVASTRA.Reference": "Référence",
+
+  "DEVASTRA.Technique": "Technique",
+  "DEVASTRA.Narrative": "Narratif",
+
+  "DEVASTRA.Preferences": "Préférences pour cet acteur",
+  "DEVASTRA.activatedarmor": "Armure activée",
+
+
+  "DEVASTRA.NextTimeGoToTheSettings": "Cela est réglable dans les Préférences",
+
+  "DEVASTRA.VerifySheet": "Vérifier la cohérence de la fiche (fonction en bêta)",
+
+  "DEVASTRA.Info1": "Je commence à vérifier votre fiche…",
+  "DEVASTRA.Info2": "Tout me paraît normal",
+  "DEVASTRA.Info3": "J’ai fini de vérifier votre fiche !",
+
+  "DEVASTRA.Error0": "J’ai trouvé au moins ^0 erreur(s) !",
+  "DEVASTRA.Souci2": "J’ai trouvé ^0 souci(s) !",
+
+
+  "DEVASTRA.Error999": "Opération avortée : un item sélectionné dans le prompt a été supprimé dans l’entre-temps !",
+
+  "DEVASTRA.TakeCareIfUnchecked": "Attention ! Si vous décochez cette case, seuil, modificateur, arme, Anomalie, Aspects et Attributs ainsi que bonus et malus supplémentaires, armure et jauges ne pourront plus être pris en compte automatiquement. Seuls les malus de blessures seront décomptés.",
+
+  "DEVASTRA.LOpposantEstManquant": "Pas d’Opposant sélectionné",
+
+  "DEVASTRA.woundscomputing": "Calcul des Blessures",
+
+  "DEVASTRA.YouWin": "Vous l’emportez sur votre opposant !",
+  "DEVASTRA.YouLoose": "Votre opposant l’emporte !",
+
+  "DEVASTRA.NPCWounded": "Le PJ touche le PNJ ; blessures infligées",
+  "DEVASTRA.PCWounded":  "Le PNJ touche le PJ ; blessures infligées",
+
+  "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
+  "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire de la fiche",
+
+  "DEVASTRA.ButYouOnly": "Malheureusement, vous avez rendu cet affichage invisible au MJ",
+
+
+
+  "DEVASTRA.Nbre de dés du domaine": "Score du Domaine :",
+  "DEVASTRA.Bonus de dés du domaine": "Bonus du Domaine :",
+  "DEVASTRA.Bonus de dés de la spécialité": "Bonus de Spécialité :",
+  "DEVASTRA.Bonus à appliquer": "Dés bonus supplémentaires à appliquer :",
+  "DEVASTRA.DEBRIDE_Malus à appliquer": "Total des dés malus à appliquer (si non-comptabilisés ci-dessus) :",
+  "DEVASTRA.Malus à appliquer": "Total des dés malus à appliquer :",
+  "DEVASTRA.DEBRIDE_Succès automatiques": "Total des succès automatiques :",
+  "DEVASTRA.Succès automatiques": "Succès automatiques :",
+  "DEVASTRA.DEBRIDE_+1 succès automatique": "Jetons à retirer à la pile Conviction (sera mise à jour selon contenu) :",
+  "DEVASTRA.+1 succès automatique": "+1 Succès automatique depuis pile Conviction (sera mise à jour) :",
+  "DEVASTRA.DEBRIDE_+2 dé d'attaque": "Jetons à retirer à la pile Shakti (sera mise à jour selon contenu) :",
+  "DEVASTRA.+2 dé d'attaque": "+2D d′attaque depuis pile Shakti (sera mise à jour si attaque) :",
+  "DEVASTRA.Ignorer un malus (pile maj)": "Ignorer un malus depuis pile Conviction (dur. : 1 tour, sera màj) :",
+  "DEVASTRA.Malus ignorés": "⌞ Dés malus à ignorer pour ce jet",
+ 
+  "DEVASTRA.OneDie": "dé",
+  "DEVASTRA.ManyDice": "dés",
+  "DEVASTRA.Jeton": "jeton",
+  "DEVASTRA.Jetons": "jetons",
+  "DEVASTRA.D": "D",
+  "DEVASTRA.6 Explosifs": "Les 6 sont explosifs :",
+  "DEVASTRA.DEBRIDE_5 Explosifs": "⌞ Les 5 sont explosifs (ne cocher que si les 6 le sont déjà) :",
+  "DEVASTRA.5 Explosifs": "⌞ Les 5 sont explosifs :",
+  "DEVASTRA.DEBRIDE_Dés non-explosifs": "(À vous de décocher les dés non-explosifs, s′il y a lieu)",
+  "DEVASTRA.Dés non-explosifs": "Dés non-explosifs :",
+
+  "DEVASTRA.Exceller": "Exceller",
+  "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner", 
+  "DEVASTRA.Garder le rythme": "Garder le rythme", 
+  "DEVASTRA.Recentrer ses Chakras": "Recentrer ses Chakras",
+  "DEVASTRA.Reprendre son souffle": "Reprendre son souffle",
+
+  "DEVASTRA.Conviction pour Succès": "Peut utiliser de la Conviction pour obtenir des Succès aux jets",
+  "DEVASTRA.Dispose Bonus explosif": "Dispose du bonus 6 explosif",
+  "DEVASTRA.Reçoit blessure": "Reçoit une Blessure (ou un Statut) à chaque perte de Prana",
+
+  "DEVASTRA.Jet d′attaque": "Jet d′attaque",
+  "DEVASTRA.Jet de défense": "Jet de défense",
+  "DEVASTRA.Jet standard": "Jet standard",
+  "DEVASTRA.ND": "ND",
+  "DEVASTRA.vs ND": "/ ND :",
+
+  "DEVASTRA.N-A": "s.o.",
+
+  "DEVASTRA.Jet de dés": "Jet de dés (paramétrez les options)",
+
+  "DEVASTRA.FonctDeverrouillée": "La fonction vient d′être déverrouillée",
+  "DEVASTRA.FonctVerrouillée": "La fonction vient d′être verrouillée",
+  "DEVASTRA.Verrouiller Entrée manuelle": "Verrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
+  "DEVASTRA.Déverrouiller Entrée manuelle": "Déverrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
+  "DEVASTRA.Cohérence Mandala": "Vérifier la cohérence du Mandala des 7 rangs d′action (fonction en cours de développement)",
+
+  "DEVASTRA.trash": "Déposez un jeton ici pour le défausser",
+  "DEVASTRA.Alltrash": "Cliquez ici pour défausser tous les jetons présents sur le Mandala des 7 rangs d′action et sur la pile bonus d′initiative",
+
+  "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en faisant glisser-déposer un Jeton",
+  "DEVASTRA.PlutôtPrompt": "Cette opération s′effectue plutôt en renseignant un prompt de Jet de dés",
+
+  "DEVASTRA.Version débloquée": "Tout recommencer mais en utilisant plutôt la version non-bridée du prompt",
+  "DEVASTRA.Attention Version débridée": "<< ATTENTION ! VERSION DÉBRIDÉE : PROCÉDEZ AVEC PRUDENCE >>",
+
+  "DEVASTRA.Total d′évolution": "Total d′évolution",
+  "DEVASTRA.PE restants": "P. E. restants",
+
+  "DEVASTRA.PremierChakra": "Premier niveau de Chakra",
+  "DEVASTRA.SecondChakra": "Second niveau de Chakra",
+  "DEVASTRA.TroisièmeChakra": "Troisième niveau de Chakra",
+  "DEVASTRA.QuatrièmeChakra": "Quatrième niveau de Chakra",
+  "DEVASTRA.CinquièmeChakra": "Cinquième niveau de Chakra",
+  "DEVASTRA.SixièmeChakra": "Sixième niveau de Chakra",
+  "DEVASTRA.SeptièmeChakra": "Septième niveau de Chakra",
+
+  "DEVASTRA.Jet": "Jet",
+  "DEVASTRA.Standard": "Standard",
+  "DEVASTRA.Attaque": "Attaque",
+  "DEVASTRA.Défense": "Défense",
+
+  "DEVASTRA.Equipped": "Équipé",
+  "DEVASTRA.Attack": "Attaque",
+  "DEVASTRA.Active": "Active",
+  "DEVASTRA.Niveau": "Niveau",
+  "DEVASTRA.Activation": "Activation",
+  "DEVASTRA.Duree": "Durée",
+  "DEVASTRA.Deva": "Deva",
+  "DEVASTRA.Nature": "Nature",
+  "DEVASTRA.Bonus Reserve Atman": "Bonus à la Réserve d′Âtman",
+  "DEVASTRA.Cout en Atman": "Coût en Âtman",
+
+
+  "DEVASTRA.Error2": "Jet annulé",
+  "DEVASTRA.Error1": "Aucun dé à lancer",
+
+
+
+
+  "DEVASTRA.typeclassique01": "Type : classique 1",
+  "DEVASTRA.typeclassique02": "Type : classique 2",
+  "DEVASTRA.typeclassique03": "Type : classique 3",
+  "DEVASTRA.typeclassiquedangereux01": "Type : classique dangereux 1",
+  "DEVASTRA.typeclassiquedangereux02": "Type : classique dangereux 2",
+  "DEVASTRA.typeclassiquedangereux03": "Type : classique dangereux 3",
+  "DEVASTRA.typeelite01": "Type : élite 1",
+  "DEVASTRA.typeelite02": "Type : élite 2",
+  "DEVASTRA.typeelite03": "Type : élite 3",
+  "DEVASTRA.typeelitedangereux01": "Type : élite dangereux 1",
+  "DEVASTRA.typeelitedangereux02": "Type : élite dangereux 2",
+  "DEVASTRA.typeelitedangereux03": "Type : élite dangereux 3",
+
+
+
+
+  "TYPES": {
+    "Actor": {
+      "character": "Avatar",
+      "monster": "Monstre",
+      "npc": "PNJ"
+    },
+    "Item": {
+      "item": "Équipement",
+      "devastra": "Devâstra",
+      "dharma": "Dharma",
+      "enseignement": "Enseignement",
+      "karma": "Karma",
+      "magie": "Magie",
+      "note": "Note",
+      "pouvoir": "Pouvoir"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "devastra",
+  "version": "0.0.3alpha",
+  "title": "Devâstra (Unofficial)",
+  "url": "https://serveurdavid.fr/",
+  "description": "Unofficial game system for Célestopol 1922.",
+  "license": "LICENSE.txt",
+  "authors": [
+    {
+      "name": "David Bercovici",
+      "discord": "Mystery Man From Outerspace",
+      "url": "https://serveurdavid.fr/"
+    },
+    {
+      "name": "with help from Kristov from La Fonderie"
+    }
+  ],
+  "esmodules": ["module/devastra.js"],
+  "styles": ["css/devastra.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+	  {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    }
+  ],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "initiative": "@initiative_totale",
+  "background": "/systems/devastra/images/background/fond_devastra.png",
+  "grid": {
+    "distance": 5,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "prana",
+  "secondaryTokenAttribute": "atman",
+  "manifest": "http://serveurdavid.fr/download/foundry/devastra/system.json",
+  "download": "http://serveurdavid.fr/download/foundry/devastra/release-003.zip"
+}

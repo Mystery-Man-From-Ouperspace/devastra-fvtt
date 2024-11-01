@@ -1,0 +1,756 @@
+/* ------------------------------------------- 
+        Fonts
+ ---------------------------------------------*/
+
+ @font-face {
+  font-family: "Copasetic-Bold";
+  src: url(/systems/devastra/fonts/Modesto%20Poster%20W05%20Regular.ttf);
+}
+@font-face {
+  font-family: "Copasetic";
+  src: url(/systems/devastra/fonts/Modesto%20Poster%20W05%20Regular.ttf);
+}
+
+.devastra .window-content {
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+}
+.devastra form {
+  height: 100%;
+}
+.devastra .sheet-header {
+  flex: 0 0 160px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+
+  height: 100%;
+  overflow-y: clip;
+  
+}
+
+.devastra .sheet-display {
+  display: flex;
+  column-gap: 10px;
+  overflow-y: auto;
+}
+
+.devastra .side-sheet {
+  width: 190px;
+}
+
+.devastra .side-sheet .logo-img {
+  max-height: 100%;
+  width: auto;
+}
+
+.devastra .side-sheet .click-prefs {
+  font-size: 20px;
+}
+
+.devastra .side-sheet h1.charname {
+  height: 50px;
+  padding: 5px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+
+.devastra .side-sheet h1.charname input {
+  width: 100%;
+  height: 28px;
+  font-size: 22px;
+  margin: 0;
+}
+
+.devastra .concept {
+  text-align: center;
+}
+
+.devastra .concept input {
+  height: 28px;
+  text-align: center;
+}
+.devastra .concept select {
+  text-align: center;
+}
+
+.devastra .body-sheet {
+  width: 710px;
+}
+
+.devastra.sheet.actor.character .sheet-body {
+  overflow-y: auto;
+}
+
+.devastra .tabs {
+  flex: 0 0 40px;
+  border-top: 1px solid #AAA;
+  border-bottom: 1px solid #AAA;
+  overflow-y: clip;
+}
+
+.devastra .tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+}
+.devastra .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+
+.devastra .sheet-body .tab {
+  height: 100%;
+  height: 870px;
+  padding: 2px;
+  /* overflow-y: auto; */
+}
+
+.devastra .side-sheet .NPCtype {
+  text-align: center;
+  font-family: Copasetic-Bold;
+}
+
+.devastra .side-sheet .sheet-logo {
+  background-color: rgb(12, 76, 12);
+  border-radius: 10px 10px 0px 0px;
+}
+.devastra .side-sheet .sheet-logo img {
+  border: 0;
+}
+
+.devastra .side-sheet .initiative {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.devastra .side-sheet .check-sheet-click {
+  text-align: center;
+  width: 27px;
+  height: 27px;
+  background-color: rgb(12, 76, 12);
+  border-color: orange;
+  border-radius: 4px;
+  font-size: 22px;
+  color: orange;
+}
+.devastra .side-sheet .check-sheet-click:hover {
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 6px #af010a);
+}
+
+
+
+.devastra .sheet-body .click:hover,
+.devastra .sheet-body .moon-click:hover {
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 6px #af010a);
+}
+
+
+.devastra .sheet-body img {
+border: 0;
+}
+
+
+/* concerne les compétences */
+.devastra .sheet-body .tab.skills th {
+  color: orange;
+  background-color: rgb(12, 76, 12);
+  border-bottom: orange;
+}
+
+.devastra .sheet-body .tab.skills td {
+  text-align: center;
+}
+
+.devastra .sheet-body .tab.skills th.blessures,
+.devastra .sheet-body .tab.skills th.destin,
+.devastra .sheet-body .tab.skills th.spleen {
+  color: orange;
+  background-color: rgb(12, 76, 12);
+  border-bottom: orange;
+}
+
+
+.devastra .sheet-body .tab.skills th input {
+  color: orange;
+}
+
+.devastra .sheet-body .tab.skills  {
+  font-weight: bold;
+}
+
+
+.devastra .sheet-body .tab.skills input {
+  font-weight: none;
+  width: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.devastra .sheet-body .tab.skills select[name="system.ame"],
+.devastra .sheet-body .tab.skills select[name="system.corps"],
+.devastra .sheet-body .tab.skills select[name="system.coeur"],
+.devastra .sheet-body .tab.skills select[name="system.esprit"] {
+  width: none;
+}
+
+.devastra .sheet-body .tab.skills .tab-titre {
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.devastra .sheet-body .skills image img {
+border: 0;
+z-index: 4;
+width: 100%;
+}
+.devastra .sheet-body .skills image div.stick {
+margin-top: -52px;
+z-index: 2;
+width: 3%;
+text-align: center;
+}
+
+
+.devastra .sheet-body .skills table tr.clickondie {
+  background: linear-gradient(to right, blue, pink);
+  border-radius: 10px;
+}
+
+
+.devastra .sheet-body .skills table tr td.domainicon {
+  width: 35px;
+}
+
+
+.devastra .sheet-body .skills table tr td.click {
+width: 27px;
+}
+.devastra .sheet-body .skills table tr td.noclick {
+width: 27px;
+} 
+.devastra .sheet-body .skills table tr td table tr td.icon-d {
+width: 27px;
+}
+.devastra .sheet-body .skills table tr td.bonus {
+width: 35px;
+}
+.devastra .sheet-body .skills table tr td.label {
+width: 25%;
+}
+.devastra .sheet-body .skills table tr td.check {
+width: 5%;
+}
+.devastra .sheet-body .skills table tr td.image {
+width: 5%;
+text-align: center;
+}
+.devastra .sheet-body .skills table tr td.image img {
+z-index: 4;
+width: 100%;
+}
+.devastra .sheet-body .skills table tr td.image div.stick {
+margin-top: -52px;
+z-index: 2;
+width: 3%;
+text-align: center;
+}
+.devastra .sheet-body .skills table tr td.image input.input {
+border: 0;
+width: 30px;
+text-align: center;
+}
+.devastra .sheet-body .skills table tr td.specialities input.input {
+width: 100%;
+text-align: left;
+}
+
+
+/* concerne les items */
+
+.devastra .editor,
+.devastra .editor-content {
+  height: 100%;
+}
+
+.devastra .attributes .quantity,
+.devastra .attributes .weight {
+  width: 60px;
+  text-align: center;
+}
+
+.devastra .item-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.devastra .item-list .item {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #BBB;
+  align-items: stretch;
+}
+.devastra .item-list .item img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+.devastra .item-list .item-name {
+  margin: 0;
+  color: rgb(12, 76, 12);
+  font-weight: bold;
+}
+.devastra .item-list .item-controls {
+  flex: 0 0 36px;
+  color: rgb(12, 76, 12);
+}
+.devastra .item-list .item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  flex: 2;
+  justify-content: flex-start;
+}
+.devastra .item-list .item-button {
+  line-height: 1;
+  font-size: 11px;
+  flex: none;
+  width: auto;
+}
+.devastra .attributes {
+  position: relative;
+}
+.devastra .attributes .attribute-control,
+.devastra .attributes .group-control {
+  flex: 0 0 20px;
+  text-align: center;
+  line-height: 28px;
+  border: none;
+}
+.devastra .attributes .attribute-roll {
+  flex: 0 0 20px;
+  text-align: center;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.devastra .attributes .group-prefix {
+  height: 31px;
+  margin-right: 10px;
+}
+.devastra .attributes .button {
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px groove #f0f0e0;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 28px;
+  display: block;
+}
+.devastra .attributes .attribute-key {
+  background: transparent;
+  border: none;
+}
+.devastra .attributes-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding: 0 5px;
+  margin: 5px 0;
+  background: #cfcdc2;
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: left;
+  font-weight: bold;
+}
+.devastra .attributes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.devastra .attributes-list li > * {
+  margin: 0 3px;
+  height: 28px;
+  line-height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #AAA;
+}
+.devastra .attributes-list .attribute-col label {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1;
+}
+.devastra .attributes-list .attribute-col input {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1;
+  height: 50%;
+}
+.devastra .attribute input[type="text"]::placeholder,
+.devastra .group-header input[type="text"]::placeholder {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+.devastra .attribute input[type="text"]:focus::placeholder,
+.devastra .group-header input[type="text"]:focus::placeholder {
+  opacity: 1;
+}
+.devastra .group-controls {
+  margin: 5px;
+}
+.devastra .groups-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.devastra .group {
+  margin: 5px 0 0;
+  padding: 0;
+}
+.devastra .group-header {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
+.devastra .group-key,
+.devastra .group-label {
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  background: transparent;
+  border-radius: 0;
+  margin-right: 6px;
+}
+.devastra .group-key {
+  opacity: 0.75;
+}
+.devastra .group-label {
+  flex: 2;
+}
+.devastra .group-dtype {
+  height: 24px;
+  flex: 0 0 116px;
+  margin: 0 5px;
+}
+
+
+.devastra .data tr td.bonus,
+.devastra .data tr td.malus {
+  text-align: center;
+}
+
+
+
+
+
+
+.devastra.sheet.character {
+  min-width: 920px; /* 560px; */
+  max-width: 920px;
+  min-height: 350px;
+  max-height: 900px;
+}
+
+.devastra.sheet.item,
+.devastra.sheet.anomaly,
+.devastra.sheet.aspect {
+  min-width: 460px;
+  min-height: 400px;
+}
+
+.devastra.sheet.item .sheet-body,
+.devastra.sheet.anomaly .sheet-body,
+.devastra.sheet.aspect .sheet-body {
+  overflow-y: auto;
+}
+
+
+/* concerne la fiche npc-sheet */
+
+
+.devastra.sheet.actor.npc {
+  min-width: 920px; /* 560px; */
+  max-width: 920px;
+  min-height: 420px;
+  max-height: 750px;
+}
+
+
+/* concerne les items aspect et anomaly */
+
+.devastra .sheet-body .attributes .libel-skills {
+  width: 75%;
+}
+.devastra .sheet-body .attributes .bonus,
+.devastra .sheet-body .attributes .malus {
+  text-align: center;
+}
+
+
+/* Concerne les prompts */
+
+.devastra .sheet-body .frame {
+  background-image: url("/systems/devastra/images/ui/cde_fond_transp.png");
+}
+
+.devastra .sheet-body .frame .input {
+  text-align: center;
+}
+
+.devastra .sheet-body .frame table tr {
+  border: 0;
+}
+
+
+.devastra .sheet-body table tr td input {
+  margin-top: -30;
+}
+
+
+.devastra .sheet-body .frame table tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.devastra .sheet-body .frame table tr:nth-child(even) {
+  background-color: transparent;
+}
+
+/* SMART GREEN BUTTON dans le tchat */
+
+.devastra-result-window .green-buttons {
+  text-align: center;
+}
+
+.devastra-result-window .smart-green-button:hover {
+cursor: pointer;
+}
+
+.devastra-result-window .smart-green-button {
+  background-color:rgb(75,216,37);
+	font-family: 'Open Sans', sans-serif;
+	font-size:12px;
+	text-decoration:none;
+	/* color:orange; */
+  color:black;
+	position:relative;
+	padding:10px 20px;
+	padding-right:50px;
+	background-image: linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(52,172,20)),
+	color-stop(1, rgb(61,196,25)),
+	);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
+	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
+	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
+	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
+}
+
+.devastra-result-window .smart-green-button:active {
+	top:3px;
+	background-image: linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(61,196,25)),
+	color-stop(1, rgb(52,172,20))
+	);
+	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
+	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
+	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
+	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
+}
+
+.devastra-result-window .smart-green-button::before {
+	background-color:rgb(49,157,20);
+	background-image:url(/systems/devastra/images/ui/right_arrow.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+	content:"";
+	width:20px;
+	height:20px;
+	position:absolute;
+	right:15px;
+	top:50%;
+	margin-top:-9px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
+	-moz-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
+	-o-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
+	box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
+}
+
+.devastra-result-window .smart-green-button:active::before {
+	top:50%;
+	margin-top:-12px;
+	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
+	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
+	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
+	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
+}
+
+/* concerne le tchat */
+
+.devastra-result-window table.devastra-no-rich {
+  border: 0px;
+  background-color: transparent;
+}
+
+.devastra-result-window tr.devastra-no-rich {
+background-color: transparent;
+}
+
+.devastra-result-window div.devastra-moon {
+  border-width: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.devastra-result-window img.devastra-moon {
+  width: 75px;
+  border-width: 0px;
+  filter: drop-shadow(0px 0px 20px rgb(12, 76, 12));
+}
+
+.devastra-result-window div.devastra-die {
+  border-width: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.devastra-result-window img.devastra-die {
+  width: 40px;
+  border-width: 0px;
+  filter: drop-shadow(0px 0px 15px rgb(12, 76, 12));
+}
+
+/*  */
+
+.devastra .side-sheet h1.charname {
+  font-family: "Copasetic-Bold";
+  font-size: 20px;
+}
+.devastra .side-sheet .concept input[type="text"] {
+  font-family: "Copasetic";
+  font-size: 20px;
+}
+.devastra .side-sheet .concept select[name="system.anomaly"] {
+  font-family: "Copasetic";
+  font-size: 16px;
+}
+.devastra .side-sheet .concept input[type="number"] {
+  font-family: "Copasetic-Bold";
+  font-size: 16px;
+  width: 20px;
+}
+.devastra .side-sheet .concept select[name="system.anomalymax"] {
+  font-family: "Copasetic";
+  font-size: 16px;
+}
+
+.devastra .side-sheet .concept .initiative {
+  font-family: "Copasetic";
+  font-size: 16px;
+}
+
+/* concerne l'interface de Foundry */
+
+h1, h2, h3, h4, h5, h6 {
+  border-bottom-color: rgb(12, 76, 12);
+  color: orange;
+  font-family: "Copasetic";
+  text-transform: uppercase;
+}
+
+
+#logo {
+  content: url("/systems/devastra/images/ui/logo_jeu.png");
+  width: 110px;
+  height: 55px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#pause > img {
+  content: url("/systems/devastra/images/ui/wheel.webp");
+  height: 192px;
+  width: 192px;
+  top: -45px;
+  left: calc(50% - 96px);
+}
+
+
+/* concerne les préférences */
+
+.devastra .side-sheet .click-prefs:hover {
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 6px #af010a);
+}
+
+
+/* concerne les pages de journaux */
+
+.journal-header input {
+  font-family: "Copasetic";
+  text-transform: uppercase;
+}
+
+.journal-entry-page h1,
+.journal-entry-page h2,
+.journal-entry-page h3,
+.journal-entry-page h4,
+.journal-entry-page h5,
+.journal-entry-page h6 {
+  font-family: "Copasetic";
+  text-transform: uppercase;
+  color:rgb(12, 76, 12);
+}
+
+
+.devastra .editor-content h1,
+.devastra .editor-content h2,
+.devastra .editor-content h3,
+.devastra .editor-content h4,
+.devastra .editor-content h5,
+.devastra .editor-content h6 {
+  font-family: "Copasetic";
+  text-transform: uppercase;
+  color:rgb(12, 76, 12);
+}

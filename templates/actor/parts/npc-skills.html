@@ -1,0 +1,215 @@
+<table>
+  <tr>
+    <th>
+      <img
+      style="width: 27px"
+      class="moon-click"
+      data-libel-id="moon-die-randomize"
+      src="systems/devastra/images/ui/wheel.webp"
+      title="{{ localize 'DEVASTRA.MoonDieThrow' }}"
+      alt="Die"
+      >
+    </th>
+     <th class="AME">
+      {{ localize "DEVASTRA.AME" }}
+      {{ localize "DEVASTRA.RES" }}
+      <input type="number" name="system.skill.ame.res" value="{{systemData.skill.ame.res}}" placeholder="0" />
+    </th>
+    <th class="CORPS">
+      {{ localize "DEVASTRA.CORPS" }}
+      {{ localize "DEVASTRA.RES" }}
+      <input type="number" name="system.skill.corps.res" value="{{systemData.skill.corps.res}}" placeholder="0" />
+    </th>
+    <th class="COEUR">
+      {{ localize "DEVASTRA.COEUR" }}
+      {{ localize "DEVASTRA.RES" }}
+      <input type="number" name="system.skill.coeur.res" value="{{systemData.skill.coeur.res}}" placeholder="0" />
+    </th>
+    <th class="ESPRIT">
+      {{ localize "DEVASTRA.ESPRIT" }}
+      {{ localize "DEVASTRA.RES" }}
+      <input type="number" name="system.skill.esprit.res" value="{{systemData.skill.esprit.res}}" placeholder="0" />
+    </th>
+  </tr>
+  <tr>
+    <th>
+    </th>
+     <th class="AME">
+      {{ localize "DEVASTRA.Now" }}&nbsp;&#91;&nbsp;{{ systemData.skill.ame.actuel }}&nbsp;&#93;
+    </th>
+    <th class="CORPS">
+      {{ localize "DEVASTRA.Now" }}&nbsp;&#91;&nbsp;{{ systemData.skill.corps.actuel }}&nbsp;&#93;
+    </th>
+    <th class="COEUR">
+      {{ localize "DEVASTRA.Now" }}&nbsp;&#91;&nbsp;{{ systemData.skill.coeur.actuel }}&nbsp;&#93;
+    </th>
+    <th class="ESPRIT">
+      {{ localize "DEVASTRA.Now" }}&nbsp;&#91;&nbsp;{{ systemData.skill.esprit.actuel }}&nbsp;&#93;
+    </th>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th class="blessures">
+      <p>{{ localize "DEVASTRA.jaugewounds" }}</p>
+    </th>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>
+      {{ localize "DEVASTRA.Anodin" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Derisoire" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Negligeable" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Superficiel" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Leger" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Modere" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Grave" }}
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Dramatique" }}
+    </td>
+  <tr>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-1"
+      name="system.blessures.blessure_1.check"
+      {{
+      checked
+      systemData.blessures.blessure_1.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.1 minute' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-2"
+      name="system.blessures.blessure_2.check"
+      {{
+      checked
+      systemData.blessures.blessure_2.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.1 minute' }}"/>
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-3"
+      name="system.blessures.blessure_3.check"
+      {{
+      checked
+      systemData.blessures.blessure_3.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.10 minutes' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-4"
+      name="system.blessures.blessure_4.check"
+      {{
+      checked
+      systemData.blessures.blessure_4.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.10 minutes' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-5"
+      name="system.blessures.blessure_5.check"
+      {{
+      checked
+      systemData.blessures.blessure_5.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.30 minutes' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-6"
+      name="system.blessures.blessure_6.check"
+      {{
+      checked
+      systemData.blessures.blessure_6.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.30 minutes' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-7"
+      name="system.blessures.blessure_7.check"
+      {{
+      checked
+      systemData.blessures.blessure_7.check
+      }}
+      title="{{ localize 'DEVASTRA.Recup' }}{{ localize 'DEVASTRA.1 day' }}"
+      />
+    </td>
+    <td class="check">
+      <input
+      type="checkbox"
+      class="jauge-check"
+      data-libel-id="blessure-8"
+      name="system.blessures.blessure_8.check"
+      {{
+      checked
+      systemData.blessures.blessure_8.check
+      }}
+      title="{{ localize 'DEVASTRA.Out of Fiction' }}"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      0
+    </td>
+    <td>
+      0
+    </td>
+    <td>
+      -1
+    </td>
+    <td>
+      -1
+    </td>
+    <td>
+      -2
+    </td>
+    <td>
+      -2
+    </td>
+    <td>
+      -3
+    </td>
+    <td>
+      {{ localize "DEVASTRA.Hors-fiction" }}
+    </td>
+  </tr>
+</table>

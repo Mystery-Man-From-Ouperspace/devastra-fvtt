@@ -1,0 +1,179 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <div class="name">
+            <label><b>{{ localize "DEVASTRA.SkillPromptName" }}</b></label>
+        </div>
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body" style="background-image: url('/systems/devastra/images/ui/wheel_transp.png')";
+    >
+
+        {{!-- Frame --}}
+        <div class="frame">
+            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
+                <img
+                style="border: 0; margin-left: 3px; width: 25px"
+                src="systems/devastra/images/icons/weapons/firearm.png"
+                alt="Firearm"        
+                >&nbsp;{{ localize "DEVASTRA.vous" }}
+            </div>
+            <div style="height: 5px;">
+
+            </div>
+
+            <div>
+                <table class="checkboxes" style="border: 0px; background-color: transparent;">
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <b>{{ localize "DEVASTRA.choosewhichinventory" }}</b>
+                        <td>
+                    </tr>
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <input type="radio" name="myinventory" value="isinventory" checked>{{ localize "DEVASTRA.frominventory" }}
+                            <br>
+                            <small>{{ localize "DEVASTRA.developedfrominventory" }}</small>
+
+                        </td>
+                    </tr>
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <input type="radio" name="myinventory" value="isimprovised">{{ localize "DEVASTRA.improvisedweapon" }}
+                            <br>
+                            <small>{{ localize "DEVASTRA.developedimprovisedweapon" }}</small>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="chooseinventory">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventory" }}</b>&nbsp;</span>
+                            <select name="inventory" data-type="String">
+                                {{selectOptions inventorychoices selected=selectedinventory labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                        <td name="choosedamage" style="display: none;">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosedamage" }}</b>&nbsp;</span>
+                            <select name="damage">
+                                {{#select damage}}
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border-top: solid 1px grey; height: 5px; width:100%;"></div>
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="choosearmor">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosearmor" }}</b>&nbsp;</span>
+                            <select name="armor" data-type="String">
+                                {{selectOptions armorchoices selected=selectedarmor labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
+                <img
+                style="border: 0; margin-left: 3px; width: 25px"
+                src="systems/devastra/images/icons/weapons/firearm.png"
+                alt="Firearm"        
+                >&nbsp;{{ localize "DEVASTRA.votreopposant" }}&nbsp;({{opponentname}})
+            </div>
+            <div style="height: 5px;">
+
+            </div>
+
+            {{#if testopponentactor}}
+            <div>
+                <table class="checkboxes" style="border: 0px; background-color: transparent;">
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <b>{{ localize "DEVASTRA.choosewhichinventoryopponent" }}</b>
+                        <td>
+                    </tr>
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <input type="radio" name="myinventoryopponent" value="isinventoryopponent" checked>{{ localize "DEVASTRA.frominventoryopponent" }}
+                            <br>
+                            <small>{{ localize "DEVASTRA.developedfrominventoryopponent" }}</small>
+
+                        </td>
+                    </tr>
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <input type="radio" name="myinventoryopponent" value="isimprovisedopponent">{{ localize "DEVASTRA.improvisedweaponopponent" }}
+                            <br>
+                            <small>{{ localize "DEVASTRA.developedimprovisedweaponopponent" }}</small>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="chooseinventoryopponent">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventoryopponent" }}</b>&nbsp;</span>
+                            <select name="inventoryopponent" data-type="String">
+                                {{selectOptions inventoryopponentchoices selected=selectedinventoryopponent labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                        <td name="choosedamageopponent" style="display: none;">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosedamageopponent" }}</b>&nbsp;</span>
+                            <select name="damageopponent">
+                                {{#select damageopponent}}
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border-top: solid 1px grey; height: 5px; width:100%;"></div>
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="choosearmoroppoent">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosearmoropponent" }}</b>&nbsp;</span>
+                            <select name="armoropponent" data-type="String">
+                                {{selectOptions armoropponentchoices selected=selectedarmoropponent labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {{else}}
+            <div style="height: 205px; color: rgb(154, 154, 154); font-size: 130px; text-align: center; line-height: 205px; white-space: nowrap;"><div class="tooltip"><i class="fas fa-cancel"></i></div>
+            {{/if}}
+
+    	</div>	
+    </section>
+</form>

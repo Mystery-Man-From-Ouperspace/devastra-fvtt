@@ -1,0 +1,138 @@
+<div>
+  <h1 class="tab-sous-titre">{{ localize "DEVASTRA.Chakra" }}</h1>
+</div>
+
+<div class="tab mandala chakra_wrap">
+  <div class="schema">
+    <table class="checkboxes">
+      <tr>
+        <td class="quaranteseptpc">
+          <div class="centered-element">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.chakra.totalevolution" value="{{systemData.chakra.totalevolution}}" title="{{ localize 'DEVASTRA.Total d′évolution' }}" />
+            <p class="textred">{{ localize 'DEVASTRA.Total d′évolution' }}</p>  
+          </div>
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-7" title="{{ localize 'DEVASTRA.SeptièmeChakra' }}">
+          {{#if sept}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input class="child2" type="checkbox" name="system.chakra.niveaux.sept" {{checked systemData.chakra.niveaux.sept}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+          <div class="centered-element">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.chakra.perestant" value="{{systemData.chakra.perestant}}" title="{{ localize 'DEVASTRA.PE restants' }}" />
+            <p class="textred">{{ localize 'DEVASTRA.PE restants' }}</p>  
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-6" title="{{ localize 'DEVASTRA.SixièmeChakra' }}">
+          {{#if six}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.six" {{checked systemData.chakra.niveaux.six}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-5" title="{{ localize 'DEVASTRA.CinquièmeChakra' }}">
+          {{#if cinq}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.cinq" {{checked systemData.chakra.niveaux.cinq}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-4" title="{{ localize 'DEVASTRA.QuatrièmeChakra' }}">
+          {{#if quatre}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.quatre" {{checked systemData.chakra.niveaux.quatre}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-3" title="{{ localize 'DEVASTRA.TroisièmeChakra' }}">
+          {{#if trois}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.trois" {{checked systemData.chakra.niveaux.trois}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-2" title="{{ localize 'DEVASTRA.SecondChakra' }}">
+          {{#if deux}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.deux" {{checked systemData.chakra.niveaux.deux}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+      <tr>
+        <td class="quaranteseptpc">
+  
+        </td>
+        <td class="click clickonchakra center parent" data-libel-id="chakra-1" title="{{ localize 'DEVASTRA.PremierChakra' }}">
+          {{#if un}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonShakti.png" alt="Jeton" />
+          <i class="fas fa-trillium child2"></i>
+          {{else}}
+          <img class="jeton child1" src="systems/devastra/images/ui/JetonBlanc.png" alt="Jeton" />
+          {{/if}}
+          <input type="checkbox" name="system.chakra.niveaux.un" {{checked systemData.chakra.niveaux.un}} hidden />
+        </td>
+        <td class="quaranteseptpc">
+  
+        </td>
+      </tr>
+  
+    </table>
+  
+  </div>
+  <img class="background" src="/systems/devastra/images/ui/fond_de_page_chakra.png" />
+</div>

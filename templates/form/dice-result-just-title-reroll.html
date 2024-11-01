@@ -1,0 +1,48 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Frame --}}
+        <div class="devastra-result-window">
+            
+            <div class="typeofthrow" style="display: none;">{{typeofthrow}}</div>
+            <div class="numberofdice" style="display: none;">{{numberofdice}}</div>
+            <div class="skill" style="display: none;">{{skill}}</div>
+            <div class="bonus" style="display: none;">{{bonus}}</div>
+            <div class="rolldifficulty" style="display: none;">{{rolldifficulty}}</div>
+
+            <div class="youwin" style="display: none;">{{youwin}}</div>
+            <div class="egality" style="display: none;">{{egality}}</div>
+            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
+            <div class="youractorid" style="display: none;">{{youractorid}}</div>
+            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
+            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
+            <div class="youropponent" style="display: none;">{{youropponent}}</div>
+            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
+            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
+            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
+            
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <td>
+                        <span>{{ title }}</span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+            <div class="green-buttons">
+                <p><span class="smart-green-button moon-click" data-libel-id="moon-die-randomize">{{ localize "DEVASTRA.DeDeLaLune" }}</span></p><br/>
+                {{#if (eq numSpeciality 6)}}
+                <p><span class="smart-green-button wounds-calculate-click">{{ localize "DEVASTRA.CalculateWounds" }}</span></p><br/>
+                {{/if}}
+            </div>
+
+        </div>
+
+    </section>
+</form>

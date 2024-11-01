@@ -1,0 +1,147 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    {{log 'item-sheet' this}}
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+        <div class="header-fields">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="Name" />
+            </h1>
+            <div class="resource">
+                <label><b>{{localize "DEVASTRA.TypeOfItem"}}</b></label>
+                <select name="system.subtype">
+                    {{selectOptions itemsubtypes selected=systemData.subtype labelAttr="label"}}
+                </select>
+            </div>
+            <div class="resource">
+				<label><b>{{localize "DEVASTRA.Reference"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Reference' }}" name="system.reference" value="{{systemData.reference}}" />
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description-technique">{{localize "DEVASTRA.Technique"}}</a>
+        <a class="item" data-tab="description-narratif">{{localize "DEVASTRA.Narrative"}}</a>
+        <a class="item" data-tab="data">{{localize "DEVASTRA.Data"}}</a>
+        <a class="item" data-tab="notes">{{localize "DEVASTRA.Notes"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Technique Tab --}}
+        <div class="tab" data-group="primary" data-tab="description-technique">
+            {{editor techniqueHTML target="system.technique" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+
+		{{!-- Narratif  Tab --}}
+        <div class="tab" data-group="primary" data-tab="description-narratif">
+            {{editor narratifHTML target="system.narratif" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+
+        {{!-- Data Tab --}}
+        <div class="tab data" data-group="primary" data-tab="data">
+			<div class="equipped">
+				<td class="check"><input type="checkbox" name="system.equipped" {{checked systemData.equipped}} /><label><b>{{localize "DEVASTRA.Equipped"}}</b></label></td>
+			</div>
+			<div class="quantity">
+				<label><b>{{localize "DEVASTRA.Quantity"}}</b></label>
+				<input class="input" type="number" name="system.quantity" value="{{systemData.quantity}}" />
+			</div>
+			<div class="weight">
+				<label><b>{{localize "DEVASTRA.Weight"}}</b></label>
+				<input class="input" type="number" name="system.weight" value="{{systemData.weight}}" />
+			</div>
+
+
+            {{#if isArmor}}
+			<div class="protection">
+				<label><b>{{localize "DEVASTRA.Protection"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Protection' }}" name="system.protection" value="{{systemData.protection}}" />
+			</div>
+            {{/if}}
+
+
+            {{#if isVehicle}}
+            <div class="crew">
+				<label><b>{{localize "DEVASTRA.Crew"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Crew' }}" name="system.crew" value="{{systemData.crew}}" />
+			</div>
+            <div class="speed">
+				<label><b>{{localize "DEVASTRA.Speed"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Speed' }}" name="system.speed" value="{{systemData.speed}}" />
+			</div>
+			<div class="protection">
+				<label><b>{{localize "DEVASTRA.Protection"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Protection' }}" name="system.protection" value="{{systemData.protection}}" />
+			</div>
+            <div class="damage">
+				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+			</div>
+			<div class="range">
+				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Range' }}" name="system.range" value="{{systemData.range}}" />
+			</div>
+            {{/if}}
+
+
+            {{#if isWeapon}}
+			<div class="attack">
+				<label><b>{{localize "DEVASTRA.Attack"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Attack' }}" name="system.attack" value="{{systemData.attack}}" />
+			</div>
+			<div class="damage">
+				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+			</div>
+			<div class="range">
+				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Range' }}" name="system.range" value="{{systemData.range}}" />
+			</div>
+            {{/if}}            
+
+            {{#if isAsurastra}}
+			<div class="attack">
+				<label><b>{{localize "DEVASTRA.Attack"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Attack' }}" name="system.attack" value="{{systemData.attack}}" />
+			</div>
+			<div class="damage">
+				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+			</div>
+			<div class="range">
+				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Range' }}" name="system.range" value="{{systemData.range}}" />
+			</div>
+            {{/if}}            
+  
+            {{#if isAryastra}}
+			<div class="attack">
+				<label><b>{{localize "DEVASTRA.Attack"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Attack' }}" name="system.attack" value="{{systemData.attack}}" />
+			</div>
+            <div class="damage">
+				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+			</div>
+			<div class="range">
+				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Range' }}" name="system.range" value="{{systemData.range}}" />
+			</div>
+            {{/if}}            
+
+        </div>
+
+
+        
+		{{!-- Notes Tab --}}
+        <div class="tab" data-group="primary" data-tab="notes">
+            {{editor notesHTML target="system.notes" button=true editable=editable engine="prosemirror"}}
+        </div>
+
+    </section>
+</form>

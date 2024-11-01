@@ -1,0 +1,76 @@
+{
+    "devastra": {
+      "system": "devastra",
+      "topology": "standard",
+      "quantity" : "quantity",
+      "aliases": {},
+      "sources": {
+        "Lampe torche": {
+          "name": "Lampe torche",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        },
+        "怪 Lampe torche": {
+          "name": "怪 Lampe torche",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        },
+        "Flashlight": {
+          "name": "Flashlight",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        },
+        "怪 Flashlight": {
+          "name": "怪 Flashlight",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        },
+        "Linterna eléctrica": {
+          "name": "Linterna eléctrica",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        },
+        "怪 Linterna eléctrica": {
+          "name": "怪 Linterna eléctrica",
+          "type": "item",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 30, "dim": 300, "angle": 20, "color": "#c2fffb", "alpha": 0.5, "attenuation": 0.8
+            }
+          ]    
+        }
+      }
+    }
+}

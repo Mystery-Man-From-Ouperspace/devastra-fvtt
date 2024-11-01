@@ -1,0 +1,40 @@
+<ol class="item-list">
+  <h1 class="tab-sous-titre">{{ localize "DEVASTRA.Devastra" }}</h1>
+  {{#each devastras as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+    <span class="item-name">{{item.name}}</span>
+    <div class="item-controls">
+      <a class="item-control" title="{{ localize 'DEVASTRA.DevastraEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+      <a class="item-control" title="{{ localize 'DEVASTRA.DevastraDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  <div>
+    {{{ item.system.technique }}}
+  </div>
+  {{/each}}
+</ol>
+<span>
+  <a class="item-control" title="{{ localize 'DEVASTRA.DevastraCreate' }}" data-action="create" data-type="devastra"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.DevastraCreate" }}</a>
+</span>
+<br>
+<br>
+<ol class="item-list">
+  <h3 class="tab-sous-titre">{{ localize "DEVASTRA.Pouvoirs" }}</h3>
+  {{#each pouvoirs as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+    <span class="item-name">{{item.name}}</span>
+    <div class="item-controls">
+      <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+      <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  <div>
+    {{{ item.system.technique }}}
+  </div>
+  {{/each}}
+</ol>
+<span>
+  <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirCreate' }}" data-action="create" data-type="pouvoir"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.PouvoirCreate" }}</a>
+</span>

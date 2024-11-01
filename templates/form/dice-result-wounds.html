@@ -1,0 +1,71 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Frame --}}
+        <div class="devastra-result-window">
+
+            <div class="typeofthrow" style="display: none;">{{typeofthrow}}</div>
+
+            <div class="youwin" style="display: none;">{{youwin}}</div>
+            <div class="egality" style="display: none;">{{egality}}</div>
+            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
+            <div class="youractorid" style="display: none;">{{youractorid}}</div>
+            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
+            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
+            <div class="youropponent" style="display: none;">{{youropponent}}</div>
+            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
+            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
+            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
+
+            <table class="devastra-no-rich">
+                <tr class="devastra-no-rich">
+                    <th  style="text-align: center;">
+                        {{ localize "DEVASTRA.woundscomputing" }}
+                    </th>
+                </tr>
+            </table>
+
+            <table class="devastra-no-rich">
+                {{#if youwin}}
+                <tr class="devastra-no-rich">
+                    <td title="{{ localize 'DEVASTRA.NPCWoundedDeveloped' }}">
+                        {{ localize "DEVASTRA.YouWin" }}<br>{{ localize "DEVASTRA.NPCWounded" }}
+                    </td>
+                    <th style="text-align: center; font-size: 18px; width: 10%;">{{ NPCwoundedtotal }}</th>
+                </tr>
+                {{else}}
+                <tr class="devastra-no-rich">
+                    <td title="{{ localize 'DEVASTRA.PCWoundedDeveloped' }}">
+                        {{ localize "DEVASTRA.YouLoose" }}<br>{{ localize "DEVASTRA.PCWounded" }}
+                    </td>
+                    <th style="text-align: center; font-size: 18px; width: 10%;">{{ PCwoundedtotal }}</th>
+                </tr>
+                {{/if}}
+            </table>
+            <br>
+
+            <div class="green-buttons">
+                    {{#if youwin}}
+                    <span>
+                        {{#if autoWoundsNPC}}
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanDM' }}" class="smart-green-button wounds-apply-to-NPC-click">{{ localize "DEVASTRA.ApplyWoundsNPC" }}</span></p><br/>
+                        <span>
+                            {{#if (eq typeofthrow 3)}}
+                            <span class="tooltip" style="text-align: center"><i class="fas fa-cancel"></i>&nbsp;{{ localize "DEVASTRA.ButYouOnly" }}</span>
+                            {{/if}}
+                        </span>
+                        {{/if}}
+                    </span>
+                    {{else}}
+                    <p><span  title="{{ localize 'DEVASTRA.OnlyCanOWner' }}" class="smart-green-button wounds-apply-to-PC-click">{{ localize "DEVASTRA.ApplyWoundsPC" }}</span></p><br/>
+                    {{/if}}
+            </div>
+
+        </div>	
+    </section>
+</form>

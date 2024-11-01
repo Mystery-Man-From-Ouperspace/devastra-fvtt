@@ -1,0 +1,358 @@
+<h1 class="tab-sous-titre">{{ localize "DEVASTRA.Skills" }}</h1>
+<div style="width: 100%; display: flex;">
+  <div style="display: table; width: 20%;">
+    {{#each systemData.domains as |domain key|}}
+    <div class="domain-div" style="display: flex;">
+      <table class="domain-table-npc" style="display: table; width: 35%;">
+        <tr>
+          <td class="click clickondie" data-libel-id="{{key}}-puredomain">
+            <img class="d1click" src="systems/devastra/images/ui/d6_fond_transp.png" title="{{ localize 'DEVASTRA.Die' }}{{ localize domain.label }}" alt="Die" />
+          </td>
+          <td class="domain-icon">
+            <img src="{{domain.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize domain.label }}" alt="Icon" />
+          </td>
+        </tr>
+      </table>
+      <table class="domain-table-npc" style="float: left; width: 65%;">
+        <tr style="text-align: center;">
+          <td class="label"><b>&nbsp;{{ localize domain.label }}</b></td>
+        </tr>
+        <tr>
+          <td class="valuedice imageb">
+            <input class="input" type="number" placeholder="0" min="1" max="6" step="1" name="system.domains.{{@key}}.value" value="{{domain.value}}" title="{{ localize 'DEVASTRA.Valeur' }}" />
+          </td>
+        </tr>
+        <tr>
+          <td class="specialities">
+            <input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Specialities' }}…" name="system.domains.{{@key}}.specialities" value="{{domain.specialities}}" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    {{/each}}
+  </div>
+
+  <div style="float: left; width: 9.5%;">
+    <div class="npc-parent">
+
+      <div class="npc-child2">
+        <img src="systems/devastra/images/ui/mandala-mute.png" style="padding: 3px;" title="{{ localize 'DEVASTRA.Mandala' }}" alt="Mandala" />
+      </div>
+
+      <div class="npc-child1">
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-7">
+          <input type="checkbox" name="system.mandala.sept.selected" {{checked systemData.mandalas.sept.selected}} hidden />
+          {{#if mandala7}}
+          <span class="decale rouge">7</span>
+          {{else}}
+          <span class="decale">7</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-6">
+          <input type="checkbox" name="system.mandala.six.selected" {{checked systemData.mandalas.six.selected}} hidden />
+          {{#if mandala6}}
+          <span class="decale rouge">6</span>
+          {{else}}
+          <span class="decale">6</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-5">
+          <input type="checkbox" name="system.mandala.cinq.selected" {{checked systemData.mandalas.cinq.selected}} hidden />
+          {{#if mandala5}}
+          <span class="decale rouge">5</span>
+          {{else}}
+          <span class="decale">5</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-4">
+          <input type="checkbox" name="system.mandala.quatre.selected" {{checked systemData.mandalas.quatre.selected}} hidden />
+          {{#if mandala4}}
+          <span class="decale rouge">4</span>
+          {{else}}
+          <span class="decale">4</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-3">
+          <input type="checkbox" name="system.mandala.trois.selected" {{checked systemData.mandalas.trois.selected}} hidden />
+          {{#if mandala3}}
+          <span class="decale rouge">3</span>
+          {{else}}
+          <span class="decale">3</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-2">
+          <input type="checkbox" name="system.mandala.deux.selected" {{checked systemData.mandalas.deux.selected}} hidden />
+          {{#if mandala2}}
+          <span class="decale rouge">2</span>
+          {{else}}
+          <span class="decale">2</span>
+          {{/if}}
+        </div>
+        <div style="height: 83px;" class="click clickonmandala" data-libel-id="mandala-1">
+          <input type="checkbox" name="system.mandala.un.selected" {{checked systemData.mandalas.un.selected}} hidden />
+          {{#if mandala1}}
+          <span class="decale rouge">1</span>
+          {{else}}
+          <span class="decale">1</span>
+          {{/if}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="float: left; width: 21%;">
+    <div class="domain-div">
+      <p class="right"><b>{{ localize "DEVASTRA.Prana" }}</b></p>
+      <div style="width: 100%; display: flex;">
+        <div class="pranaDiv" style="display: table; width: 20%;">
+          <div class="pranaCol logopranableu">
+            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Prana05.png" alt="Prana bleue" />
+          </div>
+        </div>
+        <div style="float: left; width: 80%;">
+          <div class="pranaCol logopranavalue center">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.prana.value" value="{{systemData.prana.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+          </div>
+
+          <div class="pranaCol tableauprana">
+            <table class="domain-table-npc">
+              <tr class="retreci">
+                <td class="logopranaetats">
+                  <img class="logotranscendant padding3px" src="systems/devastra/images/ui/icons/Prana05.png" alt="Transcendant" />
+                </td>
+                <td>
+                  {{ localize "DEVASTRA.Transcendant" }}
+                </td>
+                <td>
+                  &gt;&nbsp;100%
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logoPUConviction" title="{{ localize 'DEVASTRA.Conviction pour Succès' }}" src="systems/devastra/images/ui/icons/Bouclier01.png" alt="Conviction" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logoetoile" src="systems/devastra/images/ui/icons/Etoile01.png" alt="Etoile" />
+                </td>
+              </tr>
+
+              <tr class="retreci">
+                <td class="logopranaetats">
+                  <img class="logovaillant padding3px" src="systems/devastra/images/ui/icons/Prana04.png" alt="Vaillant" />
+                </td>
+                <td>
+                  {{ localize "DEVASTRA.Vaillant" }}
+                </td>
+                <td class="center">
+                  <input class="input" type="number" placeholder="0" min="0" step="1" name="system.prana.vaillant" value="{{systemData.prana.vaillant}}" title="{{ localize 'DEVASTRA.Vaillant' }}" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logoPUConviction" title="{{ localize 'DEVASTRA.Conviction pour Succès' }}" src="systems/devastra/images/ui/icons/Bouclier01.png" alt="Conviction" />
+                </td>
+                <td class="logopranaetats2">
+
+                </td>
+            </tr>
+
+              <tr class="retreci">
+                <td>
+                  <img class="logotenace padding3px" src="systems/devastra/images/ui/icons/Prana03.png" alt="Tenace" />
+                </td>
+                <td>
+                  {{ localize "DEVASTRA.Tenace" }}
+                </td>
+                <td class="center">
+                  <input class="input" type="number" placeholder="0" min="0" step="1" name="system.prana.tenace" value="{{systemData.prana.tenace}}" title="{{ localize 'DEVASTRA.Tenace' }}" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logobonusexplosif" title="{{ localize 'DEVASTRA.Dispose Bonus explosif' }}" src="systems/devastra/images/ui/icons/De02.png" alt="Bonus explosif" />
+                </td>
+                <td class="logopranaetats2">
+
+                </td>
+              </tr>
+
+              <tr class="retreci">
+                <td>
+                  <img class="logoaffaibli padding3px" src="systems/devastra/images/ui/icons/Prana02.png" alt="Affaibli" />
+                </td>
+                <td>
+                  {{ localize "DEVASTRA.Affaibli" }}
+                </td>
+                <td class="center">
+                  <input class="input" type="number" placeholder="0" min="0" step="1" name="system.prana.affaibli" value="{{systemData.prana.affaibli}}" title="{{ localize 'DEVASTRA.Affaibli' }}" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logobonusexplosif" title="{{ localize 'DEVASTRA.Dispose Bonus explosif' }}" src="systems/devastra/images/ui/icons/De02.png" alt="Bonus explosif" />
+                </td>
+                <td class="logopranaetats2">
+
+                </td>
+              </tr>
+
+              <tr class="retreci">
+                <td>
+                  <img class="logovulnerable padding3px" src="systems/devastra/images/ui/icons/Prana01.png" alt="Vulnérable" />
+                </td>
+                <td>
+                  {{ localize "DEVASTRA.Vulnérable" }}
+                </td>
+                <td class="center">
+                  <input class="input" type="number" placeholder="0" min="0" step="1" name="system.prana.vulnerable" value="{{systemData.prana.vulnerable}}" title="{{ localize 'DEVASTRA.Vulnérable' }}" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logobonusexplosif" title="{{ localize 'DEVASTRA.Dispose Bonus explosif' }}" src="systems/devastra/images/ui/icons/De02.png" alt="Bonus explosif" />
+                </td>
+                <td class="logopranaetats2">
+                  <img class="logobonusrecoitblessure" title="{{ localize 'DEVASTRA.Reçoit blessure' }}" src="systems/devastra/images/ui/icons/Coeur02.png" alt="Recoit Blessure" />
+                </td>
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-div">
+      <p class="right"><b>{{ localize "DEVASTRA.Chakra" }}</b></p>
+      <div style="width: 100%; display: flex;">
+        <div class="pranaDiv" style="display: table; width: 20%;">
+          <div class="pranaCol logopranableu">
+            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Chakra.png" alt="Chakra" />
+          </div>
+        </div>
+        <div style="float: left; width: 80%;">
+          <div class="pranaCol logopranavalue center">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.chakra.value" value="{{systemData.chakra.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-div">
+      <p class="right"><b>{{ localize "DEVASTRA.Initiative" }}</b></p>
+      <div style="width: 100%; display: flex;">
+        <div class="pranaDiv" style="display: table; width: 20%;">
+          <div class="pranaCol logopranableu">
+            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Initiative.png" alt="Initiative" />
+          </div>
+        </div>
+        <div style="float: left; width: 80%;">
+          <div class="pranaCol logopranavalue center">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.initiative.value" value="{{systemData.initiative.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-div">
+      <p class="right"><b>{{ localize "DEVASTRA.Atman" }}</b></p>
+      <div style="width: 100%; display: flex;">
+        <div class="pranaDiv" style="display: table; width: 20%;">
+          <div class="pranaCol logopranableu">
+            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Atman.png" alt="Atman" />
+          </div>
+        </div>
+        <div style="float: left; width: 80%;">
+          <div class="pranaCol logopranavalue center">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.atman.value" value="{{systemData.atman.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="domain-div">
+      <p class="right"><b>{{ localize "DEVASTRA.Shakti" }}</b></p>
+      <div style="width: 100%; display: flex;">
+        <div class="pranaDiv" style="display: table; width: 20%;">
+          <div class="pranaCol logopranableu">
+            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Shakti.png" alt="Chakti" />
+          </div>
+        </div>
+        <div style="float: left; width: 80%;">
+          <div class="pranaCol logopranavalue center">
+            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.shakti.value" value="{{systemData.shakti.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+          </div>
+          <div class="pranaCol logopranavalue minitext">
+            <input class="input" type="text" name="system.shakti.notes" value="{{systemData.shakti.notes}}" title="{{ localize 'DEVASTRA.Note' }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="float: left; width: 0.52%;">
+  </div>
+
+  <div class="domain-div" style="float: left; width: 25%;">
+    <ol class="item-list">
+      <p class="right"><b>{{ localize "DEVASTRA.Devastra ou Asurastra" }}</b></p>
+      <span class="right"><img style="width: 45px;" class="logoprana padding3px" src="systems/devastra/images/ui/icons/Contact.png" alt="Arme" /></span>
+      {{#each devastras as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.DevastraEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.DevastraDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.DevastraCreate' }}" data-action="create" data-type="devastra"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.DevastraCreate" }}</a>
+    </span>
+    <br>
+    <br>
+    <ol class="item-list">
+      <p class="right"><b>{{ localize "DEVASTRA.Pouvoirs" }}</b></p>
+      {{#each pouvoirs as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.PouvoirCreate' }}" data-action="create" data-type="pouvoir"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.PouvoirCreate" }}</a>
+    </span>
+  </div>
+
+  <div style="float: left; width: 0.53%;">
+  </div>
+
+  <div class="domain-div" style="float: left; width: 25%;">
+    <ol class="item-list">
+      <p class="right"><b>{{ localize "DEVASTRA.Armes ou Protections" }}</b></p>
+      <span class="right"><img style="width: 45px;" class="logoprana padding3px" src="systems/devastra/images/ui/icons/Contact.png" alt="Arme" />
+        <img style="width: 45px;" class="logoprana padding3px" src="systems/devastra/images/ui/icons/Defense.png" alt="Défense" /></span>
+      {{#each equipments as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.ItemEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.ItemDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.ItemCreate' }}" data-action="create" data-type="item"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.ItemCreate" }}</a>
+    </span>
+  </div>
+</div>

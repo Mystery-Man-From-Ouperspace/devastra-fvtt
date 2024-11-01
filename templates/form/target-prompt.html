@@ -1,0 +1,74 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <div class="name">
+            <label><b>{{ localize "DEVASTRA.SkillPromptName" }}</b></label>
+        </div>
+    </header>
+	
+    {{!-- Sheet Body --}}
+    <section class="sheet-body" style="background-image: url('/systems/devastra/images/ui/wheel_transp.png')";
+    >
+
+        {{!-- Frame --}}
+        <div class="frame">
+            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
+                <i style="margin-left: 3px;" class="fas fa-bullseye"></i>&nbsp;{{ skill }}
+            </div>
+            <div style="height: 5px;">
+
+            </div>
+
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="you" style="text-align: center;">
+                            <span class="value"><b>{{ localize "DEVASTRA.you" }}&nbsp;{{you}}</b>&nbsp;</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td name="choosetarget" style="text-align: center;">
+                            <span class="value"><b>{{ localize "DEVASTRA.chooseopponent" }}</b>&nbsp;</span>
+                            <select name="target" data-type="String">
+                                {{selectOptions targetchoices selected=selectedtarget labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="width: 100%;">
+                <table style="width: 100%; height: 170px; text-align: center; border: 0px; background-color: transparent;">
+                    <tr style="text-align: center; background-color: transparent;">
+                        <td style="text-align: center; border-radius: 8px; border-color: rgb(12, 76, 12);">
+                            <img
+                            class="imageyou"
+                            style="height: 170px;"
+                            src={{youimg}}
+                            title="{{ localize 'DEVASTRA.vous' }}"
+                            alt="your token"
+                            >
+                        </td>
+
+                        <td class="versus" style="width: 10%; text-align: center; display: none;">&nbsp;<b>Vs.</b>&nbsp;</td>
+
+                        <td class="no-token" style="text-align: center; border-radius: 8px; border-color: rgb(12, 76, 12); display: none; width: 45%;">
+                            <img
+                            class="imageopponent"
+                            style="height: 170px"
+                            src={{tokenimg}}
+                            title="{{ localize 'DEVASTRA.votreopposant' }}"
+                            alt="no token"
+                            >
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    	</div>	
+    </section>
+</form>
