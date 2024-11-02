@@ -11,7 +11,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       classes: ["devastra", "sheet", "actor", "npc"],
       template: "systems/devastra/templates/actor/npc-sheet.html",
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".description", ".statistiques"],
+      scrollY: [".description", ".statistiques", ".magiesenseignementsnotes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }

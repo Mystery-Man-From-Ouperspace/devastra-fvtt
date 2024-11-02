@@ -11,7 +11,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       classes: ["devastra", "sheet", "actor", "monster"],
       template: "systems/devastra/templates/actor/monster-sheet.html",
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".description", ".statistiques"],
+      scrollY: [".description", ".statistiques", ".magiesenseignementsnotes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
@@ -40,7 +40,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     context.mandala6 = await this.actor.system.mandala.six.selected;
     context.mandala7 = await this.actor.system.mandala.sept.selected;
 
-    context.npctype = await this.actor.system.npcType;
+    context.monstertype = await this.actor.system.monsterType;
 
     context.playersEditItems = game.settings.get("devastra", "playersEditItems");
     context.sonorizedMandalaInterface = game.settings.get("devastra", "sonorizedMandalaInterface");

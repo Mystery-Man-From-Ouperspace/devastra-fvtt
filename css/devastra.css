@@ -1144,37 +1144,41 @@ flex-wrap: wrap;
 }
 */
 
-.devastra .side-sheet .npctype-child2 img {
+.devastra .side-sheet .npctype-child2 img,
+.devastra .side-sheet .monstertype-child2 img {
   border: 0;
   padding-right: 2px;
   padding-top: 2px;
 }
-.devastra .side-sheet .npctype-parent {
+.devastra .side-sheet .npctype-parent,
+.devastra .side-sheet .monstertype-parent {
   position: relative;
 }
-.devastra .side-sheet .npctype-child2 {
+.devastra .side-sheet .npctype-child2,
+.devastra .side-sheet .monstertype-child2 {
   position: absolute;
   z-index: 3;
   right: 0;
 }
-.devastra .side-sheet .npctype-child1 {
+.devastra .side-sheet .npctype-child1,
+.devastra .side-sheet .monstertype-child1 {
   position: absolute;
 }
 
 
 .devastra.sheet.actor.npc .body-sheet .npc-parent,
-.devastra.sheet.actor.monster .body-sheet .npc-parent {
+.devastra.sheet.actor.monster .body-sheet .monster-parent {
   position: relative;
 }
 .devastra.sheet.actor.npc .body-sheet .npc-child1,
-.devastra.sheet.actor.monster .body-sheet .npc-child1 {
+.devastra.sheet.actor.monster .body-sheet .monster-child1 {
   position: absolute;
   z-index: 2;
   margin-left: 38px;
   margin-top: 25px;
 }
 .devastra.sheet.actor.npc .body-sheet .npc-child2,
-.devastra.sheet.actor.monster .body-sheet .npc-child2 {
+.devastra.sheet.actor.monster .body-sheet .monster-child2 {
   position: absolute;
 }
 

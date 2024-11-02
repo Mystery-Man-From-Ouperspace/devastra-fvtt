@@ -17,7 +17,9 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/devastra/templates/actor/parts/character-karmas.html",
 
     "systems/devastra/templates/actor/parts/npc-statistiques.html",
-    "systems/devastra/templates/actor/parts/npc-magiesenseignementsnotes.html"
+    "systems/devastra/templates/actor/parts/npc-magiesenseignementsnotes.html",
+
+    "systems/devastra/templates/actor/parts/monster-statistiques.html"
 
   ];
 
