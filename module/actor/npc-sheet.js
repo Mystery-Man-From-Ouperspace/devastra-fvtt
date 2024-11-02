@@ -1104,13 +1104,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.un.selected": false });
         } else {
           myActor.update({ "system.mandala.un.selected": true });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
-
         }
       break;
       case "2":
@@ -1118,12 +1111,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.deux.selected": false });
         } else {
           myActor.update({ "system.mandala.deux.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
         }
         break;
       case "3":
@@ -1131,13 +1118,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.trois.selected": false });
         } else {
           myActor.update({ "system.mandala.trois.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
-
         }
         break;
       case "4":
@@ -1145,12 +1125,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.quatre.selected": false });
         } else {
           myActor.update({ "system.mandala.quatre.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
         }
         break;
       case "5":
@@ -1158,13 +1132,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.cinq.selected": false });
         } else {
           myActor.update({ "system.mandala.cinq.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
-
         }
         break;
       case "6":
@@ -1172,13 +1139,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.six.selected": false });
         } else {
           myActor.update({ "system.mandala.six.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.sept.selected": false });
-
         }
         break;
       case "7":
@@ -1186,12 +1146,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           myActor.update({ "system.mandala.sept.selected": false });
         } else {
           myActor.update({ "system.mandala.sept.selected": true });
-          myActor.update({ "system.mandala.un.selected": false });
-          myActor.update({ "system.mandala.deux.selected": false });
-          myActor.update({ "system.mandala.trois.selected": false });
-          myActor.update({ "system.mandala.quatre.selected": false });
-          myActor.update({ "system.mandala.cinq.selected": false });
-          myActor.update({ "system.mandala.six.selected": false });
         }
         break;
       default:
