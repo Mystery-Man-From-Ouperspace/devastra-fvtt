@@ -231,7 +231,7 @@
     },
     "monster": {
       "locked": true,
-      "monsterType": 0,
+      "monsterType": "0",
       "monsterTypes": ["typeclassique01", "typeclassique02", "typeclassique03", "typeclassiquedangereux01", "typeclassiquedangereux02", "typeclassiquedangereux03", "typeelite01", "typeelite02", "typeelite03", "typeelitedangereux01", "typeelitedangereux02", "typeelitedangereux03"],
       "concept": "",
       "caste": "",
