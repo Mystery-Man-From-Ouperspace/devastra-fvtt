@@ -80,11 +80,11 @@ export class DEVASTRAActor extends Actor {
     }
 
     if (this.type === "npc") {
-
+      this.system.initiative_totale = this.system.initiative.value;
     }
 
     if (this.type === "monster") {
-
+      this.system.initiative_totale = this.system.initiative.value;
     }
 
 
