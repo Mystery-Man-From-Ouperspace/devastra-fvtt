@@ -213,6 +213,7 @@
   "DEVASTRA.Quantity": "Quantité",
   "DEVASTRA.Weight": "Poids",
   "DEVASTRA.Damage": "Dégâts",
+  "DEVASTRA.Damage_base": "Dégâts de base",
   "DEVASTRA.Protection": "Protection",
   "DEVASTRA.Range": "Portée",
   "DEVASTRA.Speed": "Vitesse",
@@ -370,6 +371,7 @@
 
   "DEVASTRA.Equipped": "Équipé",
   "DEVASTRA.Attack": "Attaque",
+  "DEVASTRA.Attack_base": "Attaque (bonus en D6)",
   "DEVASTRA.Active": "Active",
   "DEVASTRA.Niveau": "Niveau",
   "DEVASTRA.Activation": "Activation",
