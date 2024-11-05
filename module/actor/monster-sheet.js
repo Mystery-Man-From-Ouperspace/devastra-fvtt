@@ -40,10 +40,18 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     context.mandala6 = await this.actor.system.mandala.six.selected;
     context.mandala7 = await this.actor.system.mandala.sept.selected;
 
+    context.viseur1 = await game.settings.get("devastra", "viseur1");
+    context.viseur2 = await game.settings.get("devastra", "viseur2");
+    context.viseur3 = await game.settings.get("devastra", "viseur3");
+    context.viseur4 = await game.settings.get("devastra", "viseur4");
+    context.viseur5 = await game.settings.get("devastra", "viseur5");
+    context.viseur6 = await game.settings.get("devastra", "viseur6");
+    context.viseur7 = await game.settings.get("devastra", "viseur7");
+
     context.monstertype = await this.actor.system.monsterType;
 
-    context.playersEditItems = game.settings.get("devastra", "playersEditItems");
-    context.sonorizedMandalaInterface = game.settings.get("devastra", "sonorizedMandalaInterface");
+    context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
+    context.sonorizedMandalaInterface = await game.settings.get("devastra", "sonorizedMandalaInterface");
 
   
     /*

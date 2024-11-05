@@ -4,6 +4,8 @@ import { DEVASTRAItem } from "./item/item.js";
 import { DEVASTRACharacterSheet } from "./actor/character-sheet.js";
 import { DEVASTRAPNJSheet } from "./actor/npc-sheet.js";
 import { DEVASTRAMonsterSheet } from "./actor/monster-sheet.js";
+import { DEVASTRACmdMandalaSheet } from "./actor/cmd-mandala-sheet.js";
+
 import { DEVASTRAItemSheet } from "./item/item-sheet.js";
 import { DEVASTRAEnseignementSheet } from "./item/enseignement-sheet.js";
 import { DEVASTRADevastraSheet } from "./item/devastra-sheet.js";
@@ -44,6 +46,72 @@ Hooks.once("init", async function () {
   });
 
   */
+
+  game.settings.register("devastra", "viseur1", {
+    name: game.i18n.localize("DEVASTRA.Mandala 1 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 1"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur2", {
+    name: game.i18n.localize("DEVASTRA.Mandala 2 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 2"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur3", {
+    name: game.i18n.localize("DEVASTRA.Mandala 3 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 3"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur4", {
+    name: game.i18n.localize("DEVASTRA.Mandala 4 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 4"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur5", {
+    name: game.i18n.localize("DEVASTRA.Mandala 5 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 5"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur6", {
+    name: game.i18n.localize("DEVASTRA.Mandala 6 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 6"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+  game.settings.register("devastra", "viseur7", {
+    name: game.i18n.localize("DEVASTRA.Mandala 7 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 7"),
+    scope: "world",
+    config: false,
+    default: true,
+    type: Boolean,
+    onChange: delayedReload
+  });
+
+
 
   game.settings.register("devastra", "sonorizedMandalaInterface", {
     name: game.i18n.localize("DEVASTRA.Sonoriser l'interface du Mandala"),
@@ -90,6 +158,7 @@ Hooks.once("init", async function () {
   Actors.registerSheet("devastra", DEVASTRACharacterSheet, { types: ["character"], makeDefault: true }); // ligne modifiée selon directives de LeRatierBretonnien
   Actors.registerSheet("devastra", DEVASTRAPNJSheet, { types: ["npc"], makeDefault: true });
   Actors.registerSheet("devastra", DEVASTRAMonsterSheet, { types: ["monster"], makeDefault: true });
+  Actors.registerSheet("devastra", DEVASTRACmdMandalaSheet, { types: ["cmdmandala"], makeDefault: true });
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("devastra", DEVASTRAItemSheet, { types: ["item"], makeDefault: true });

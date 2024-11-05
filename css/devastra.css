@@ -785,6 +785,15 @@ background-color: transparent;
   margin-top: 45px;
   margin-left: 185px;
 }
+.devastra .sheet-body .mandala_wrap div.viseur_decale {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-left: 185px;
+}
+
 /*
 .devastra .sheet-body .mandalas span.valeur-mandala {
   font-size: 35px;
@@ -1229,6 +1238,66 @@ flex-wrap: wrap;
  font-size: large;
  color: rgb(0, 103, 146);
 }
+
+
+/* Concerne le Cmd Mandala */
+.devastra.sheet.actor.cmdmandala {
+  min-width: 315px; /* 560px; */
+  max-width: 315px;
+  min-height: 675px;
+  max-height: 675px;
+}
+
+.devastra.sheet.actor.cmdmandala .body-sheet .mandala-parent {
+  position: relative;
+}
+.devastra.sheet.actor.cmdmandala .body-sheet .mandala-child1 {
+  position: absolute;
+  z-index: 2;
+  margin-left: 40px;
+  margin-top: 25px;
+}
+.devastra.sheet.actor.cmdmandala .body-sheet .mandala-child2 {
+  position: absolute;
+}
+
+.devastra.sheet.actor.cmdmandala .body-sheet span.decale {
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+.devastra.sheet.actor.cmdmandala .body-sheet span.rouge {
+  color: red;
+}
+
+
+
+
+
+
+
+
+.devastra.sheet.actor.npc .body-sheet .clickonmandala,
+.devastra.sheet.actor.monster .body-sheet .clickonmandala {
+  height: 83.25px;
+  width: 83.25px;
+  position: relative;
+}
+
+.devastra.sheet.actor.npc .body-sheet span.decale,
+.devastra.sheet.actor.monster .body-sheet span.decale {
+  position: absolute;
+}
+
+.devastra.sheet.actor.npc .body-sheet img.viseur,
+.devastra.sheet.actor.monster .body-sheet img.viseur {
+  position: absolute;
+  z-index: 3;
+  margin-left: -28.5px;
+  margin-top: -15px;
+}
+
+
 
 /* SMART GREEN BUTTON dans le tchat */
 
