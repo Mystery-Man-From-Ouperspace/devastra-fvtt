@@ -385,7 +385,7 @@
   "DEVASTRA.Error2": "Jet annulé",
   "DEVASTRA.Error1": "Aucun dé à lancer",
 
-  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala. Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte. Sélectionner un nouveau rang d′action rechargera votre Monde.",
+  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala. Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte. Afin de mettre à jour les fiches des joueuses, le seul fait de sélectionner un nouveau rang d′action déclenchera le rechargement de votre Monde.",
 
 
   "DEVASTRA.typeclassique01": "Type : classique 1",
@@ -407,7 +407,7 @@
   "TYPES": {
     "Actor": {
       "character": "Avatar",
-      "cmdmandala": "Actions du Mandala",
+      "cmdmandala": "Action Mandala",
       "monster": "Monstre",
       "npc": "PNJ"
     },
