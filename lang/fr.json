@@ -37,6 +37,7 @@
   "DEVASTRA.npcSocial": "Domaine social",
   "DEVASTRA.npcMystical": "Domaine mystique",
 
+  "DEVASTRA.Die": "Cliquez ici pour jeter les dés pour ",
 
   "DEVASTRA.Caste": "Caste",
   "DEVASTRA.Nation": "Nation",
@@ -249,6 +250,7 @@
   "DEVASTRA.Cancel": "Annuler",
 
   "DEVASTRA.Notes": "Vos notes",
+  "DEVASTRA.Note" : "Notes",
 
   "DEVASTRA.Reference": "Référence",
 
@@ -403,7 +405,11 @@
   "DEVASTRA.typeelitedangereux02": "Type : élite dangereux 2",
   "DEVASTRA.typeelitedangereux03": "Type : élite dangereux 3",
 
+  "DEVASTRA.opt.none": "—",
+  "DEVASTRA.you": "Vous :",
+  "DEVASTRA.chooseopponent": "Votre opposant :",
 
+  "DEVASTRA.WhichTarget": "Quelle cible ?",
 
 
   "TYPES": {

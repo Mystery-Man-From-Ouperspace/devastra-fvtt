@@ -651,6 +651,10 @@ background-color: transparent;
   text-align: center;
 }
 
+.devastra .form-body .frame td {
+  color: rgb(0, 103, 146);
+}
+
 .devastra div.dialog-buttons {
   display: flex;
 }
@@ -658,6 +662,8 @@ background-color: transparent;
 .devastra button.dialog-button {
   height: 35px;
 }
+
+
 
 /* Concerne chakras */
 

@@ -1350,6 +1350,48 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
 
 
+    myTitle = game.i18n.localize("DEVASTRA.WhichTarget");
+
+    var opponentActor = null;
+    if (true) {
+      var myTarget = await _whichTarget (
+        myActor, template, myTitle, myDialogOptions, domainLibel
+      );
+
+      if (myTarget == null) {return};
+
+      if (game.user.targets.size != 0) {
+        for (let targetedtoken of game.user.targets) {
+          if (targetedtoken.id == myTarget.selectedtarget) {
+            opponentActor = targetedtoken.actor;
+          };
+        };
+      };
+    };
+
+
+    console.log("opponentActor = ", opponentActor);
+    
+
+    let myTest;
+    let myOpposition = 13;
+    let myModifier;
+
+    if (opponentActor && myData.mySkill == 6) {
+      myOpposition = parseInt(opponentActor.system.skill.corps.actuel);
+    };
+
+    console.log ("myOpposition = ", myOpposition);
+
+
+
+
+
+
+
+
+
+
     /***********************************************************************************
     * 
     * {N} : nombre de dés lancés
@@ -1561,6 +1603,90 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   };
 
 }
+
+async function _whichTarget (myActor, template, myTitle, myDialogOptions, domainLibel) {
+  // Render modal dialog
+  template = template || 'systems/devastra/templates/form/target-prompt.html';
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  const myDomain = domainLibel;
+
+  let myItemTarget = {};
+
+  function myObject(id, label)
+  {
+    this.id = id;
+    this.label = label;
+  };
+
+  myItemTarget["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  console.log('game.user.targets = ', game.user.targets);
+  console.log('game.user.targets.size = ', game.user.targets.size);
+  if (game.user.targets.size != 0) {
+    for (let targetedtoken of game.user.targets) {
+      myItemTarget[targetedtoken.id.toString()] = new myObject(targetedtoken.id.toString(), targetedtoken.name.toString());
+    };
+  };
+
+
+  var dialogData = {
+    domain: myDomain,
+    you: myActor.name,
+    youimg: myActor.img,
+    targetchoices: myItemTarget,
+    selectedtarget: "0",
+    tokenimg: ""
+  };
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 530,
+      height: 250
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return dialogData;
+  }
+
+  async function _computeResult(myActor, myHtml) {
+    // console.log("I'm in _computeResult(myActor, myHtml)");
+    const editedData = {
+      domain: "",
+      you: "",
+      youimg: "",
+      targetchoices: {},
+      selectedtarget: myHtml.find("select[name='target']").val(),
+      tokenimg: ""
+    };
+    return editedData;
+  }
+}
+
+
 
 async function _skillDiceRollDialog(
   myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
