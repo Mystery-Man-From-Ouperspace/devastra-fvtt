@@ -1,6 +1,6 @@
 {
   "id": "devastra",
-  "version": "0.0.5alpha",
+  "version": "0.0.6alpha",
   "title": "Devâstra (Unofficial)",
   "url": "https://serveurdavid.fr/",
   "description": "Unofficial game system for Célestopol 1922.",
@@ -50,5 +50,5 @@
   "primaryTokenAttribute": "prana",
   "secondaryTokenAttribute": "atman",
   "manifest": "http://serveurdavid.fr/download/foundry/devastra/system.json",
-  "download": "http://serveurdavid.fr/download/foundry/devastra/release-005.zip"
+  "download": "http://serveurdavid.fr/download/foundry/devastra/release-006.zip"
 }
