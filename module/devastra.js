@@ -4,7 +4,6 @@ import { DEVASTRAItem } from "./item/item.js";
 import { DEVASTRACharacterSheet } from "./actor/character-sheet.js";
 import { DEVASTRAPNJSheet } from "./actor/npc-sheet.js";
 import { DEVASTRAMonsterSheet } from "./actor/monster-sheet.js";
-import { DEVASTRACmdMandalaSheet } from "./actor/cmd-mandala-sheet.js";
 
 import { DEVASTRAItemSheet } from "./item/item-sheet.js";
 import { DEVASTRAEnseignementSheet } from "./item/enseignement-sheet.js";
@@ -189,7 +188,6 @@ Hooks.once("init", async function () {
   Actors.registerSheet("devastra", DEVASTRACharacterSheet, { types: ["character"], makeDefault: true }); // ligne modifiée selon directives de LeRatierBretonnien
   Actors.registerSheet("devastra", DEVASTRAPNJSheet, { types: ["npc"], makeDefault: true });
   Actors.registerSheet("devastra", DEVASTRAMonsterSheet, { types: ["monster"], makeDefault: true });
-  Actors.registerSheet("devastra", DEVASTRACmdMandalaSheet, { types: ["cmdmandala"], makeDefault: true });
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("devastra", DEVASTRAItemSheet, { types: ["item"], makeDefault: true });

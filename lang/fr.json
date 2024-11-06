@@ -409,7 +409,6 @@
   "TYPES": {
     "Actor": {
       "character": "Avatar",
-      "cmdmandala": "Action Mandala",
       "monster": "Monstre",
       "npc": "PNJ"
     },

@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "monster", "cmdmandala"],
+    "types": ["character", "npc", "monster"],
     "htmlFields": ["description", "notes"],
 
     "character": {
@@ -323,32 +323,6 @@
       },
       "chakra": {
         "value": 0
-      }
-    },
-    "cmdmandala": {
-      "locked": true,
-      "mandala": {
-        "sept": {
-          "selected": false
-        },
-        "six":  {
-          "selected": false
-        },
-        "cinq":  {
-          "selected": false
-        },
-        "quatre":  {
-          "selected": false
-        },
-        "trois":  {
-          "selected": false
-        },
-        "deux":  {
-          "selected": false
-        },
-        "un":  {
-          "selected": false
-        }
       }
     }
   },
