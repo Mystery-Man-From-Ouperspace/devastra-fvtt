@@ -46,6 +46,7 @@
     "distance": 5,
     "units": "m"
   },
+  "socket": true,
   "primaryTokenAttribute": "prana",
   "secondaryTokenAttribute": "atman",
   "manifest": "http://serveurdavid.fr/download/foundry/devastra/system.json",

@@ -385,7 +385,9 @@
   "DEVASTRA.Error2": "Jet annulé",
   "DEVASTRA.Error1": "Aucun dé à lancer",
 
-  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala. Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte. Afin de mettre à jour les fiches des joueuses chez les clients distants, le simple fait de sélectionner un nouveau rang d′action déclenchera le rechargement de votre Monde.",
+  "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
+  "DEVASTRA.GMManager.Title": "Afficher Mandala Rangs Action",
+  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala. Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.",
 
 
   "DEVASTRA.typeclassique01": "Type : classique 1",

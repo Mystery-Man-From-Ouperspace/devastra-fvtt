@@ -20,6 +20,12 @@ import { preloadHandlebarsTemplates } from "./templates.js";
 import { registerHandlebarsHelpers } from "./helpers.js";
 
 
+import { GMManager } from "./applications/gm/gm-manager.js";
+import { Macros } from "./macros.js";
+import { initControlButtons } from "./control-buttons.js";
+
+globalThis.SYSTEM = DEVASTRA;
+
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
@@ -30,7 +36,41 @@ import { registerHandlebarsHelpers } from "./helpers.js";
 Hooks.once("init", async function () {
   console.log(`DEVASTRA System | Initializing`);
 
+  game.system.CONST = DEVASTRA;
+  
+  game.devastra = {
+    config: DEVASTRA,
+    macros: Macros,
+  };
 
+  // Define socket
+  /*
+  game.socket.on("system.devastra", (data) => {
+    DevastraUtils.performSocketMesssage(data);
+  });
+  */
+
+
+  /*
+  // Define custom Entity classes
+  CONFIG.Actor.documentClass = documents.CtHackActor;
+  CONFIG.Actor.dataModels = {
+    character: models.CtHackCharacter,
+    opponent: models.CtHackOpponent
+  }
+
+  CONFIG.Item.documentClass = documents.CtHackItem;
+  CONFIG.Item.dataModels = {
+    ability: models.CtHackAbility,
+    archetype: models.CtHackArchetype,
+    attack: models.CtHackAttack,
+    definition: models.CtHackDefinition,
+    item: models.CtHackItem,
+    magic: models.CtHackMagic,
+    weapon: models.CtHackWeapon,
+    opponentAbility: models.CtHackOpponentAbility
+  };
+  */
 
   // Game Settings
   function delayedReload() {window.setTimeout(() => location.reload(), 500)}
@@ -54,7 +94,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur2", {
     name: game.i18n.localize("DEVASTRA.Mandala 2 sélectionné"),
@@ -63,7 +102,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur3", {
     name: game.i18n.localize("DEVASTRA.Mandala 3 sélectionné"),
@@ -72,7 +110,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur4", {
     name: game.i18n.localize("DEVASTRA.Mandala 4 sélectionné"),
@@ -81,7 +118,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur5", {
     name: game.i18n.localize("DEVASTRA.Mandala 5 sélectionné"),
@@ -90,7 +126,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur6", {
     name: game.i18n.localize("DEVASTRA.Mandala 6 sélectionné"),
@@ -99,7 +134,6 @@ Hooks.once("init", async function () {
     config: false,
     default: false,
     type: Boolean,
-    onChange: delayedReload
   });
   game.settings.register("devastra", "viseur7", {
     name: game.i18n.localize("DEVASTRA.Mandala 7 sélectionné"),
@@ -108,7 +142,6 @@ Hooks.once("init", async function () {
     config: false,
     default: true,
     type: Boolean,
-    onChange: delayedReload
   });
 
 
@@ -146,9 +179,7 @@ Hooks.once("init", async function () {
         decimals: 0
       };
 */
-
-  game.system.CONST = DEVASTRA;
-
+  
   // Define custom Document classes
   CONFIG.Actor.documentClass = DEVASTRAActor;
   CONFIG.Item.documentClass = DEVASTRAItem;
@@ -170,6 +201,23 @@ Hooks.once("init", async function () {
   Items.registerSheet("devastra", DEVASTRAKarmaSheet, { types: ["karma"], makeDefault: true });
   Items.registerSheet("note", DEVASTRANoteSheet, { types: ["note"], makeDefault: true });
 
+
+
+
+
+
+
+
+  // Init new buttons for the system
+  initControlButtons();
+  
+
+
+
+
+
+
+
   // Preload template partials
   await preloadHandlebarsTemplates();
 
@@ -180,8 +228,13 @@ Hooks.once("init", async function () {
 
   await modifyConfigurationSettings();
 
+  
+  // Game Manager
+  game.devastra.gmManager = new GMManager();
+
   console.log(`DEVASTRA System | Initialized`);
 });
+
 
 async function modifyConfigurationSettings() {
   /**

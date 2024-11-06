@@ -19,7 +19,13 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/devastra/templates/actor/parts/npc-statistiques.html",
     "systems/devastra/templates/actor/parts/npc-magiesenseignementsnotes.html",
 
-    "systems/devastra/templates/actor/parts/monster-statistiques.html"
+    "systems/devastra/templates/actor/parts/monster-statistiques.html",
+
+
+    // APP
+		"systems/devastra/templates/app/gm-manager.hbs",
+		// "systems/devastra/templates/app/gm-player.hbs"
+
 
   ];
 

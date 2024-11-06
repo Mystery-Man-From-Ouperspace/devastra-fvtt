@@ -12,6 +12,13 @@ export function registerHandlebarsHelpers() {
     return html.replace(rgx, "$& selected");    
   });
 
+	Handlebars.registerHelper('isEnabled', function(configKey) {
+		// const value = game.settings.get("devastra", configKey);
+    let value;
+		if (value === false || value === "none" || value === "") return false;
+        return true;
+
+	});
 
 
 

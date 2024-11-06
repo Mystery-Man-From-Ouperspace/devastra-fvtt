@@ -74,6 +74,27 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    // Listen to a socket event
+    // All connected clients other than the emitting client will get an event broadcast of the same name
+    // with the arguments from the emission.
+    /*
+    game.socket.on('system.devastra', (arg0) => {
+      console.log(arg0);
+      if (arg0 === 'viseurupdate') {
+        context.viseur1 = game.settings.get("devastra", "viseur1");
+        context.viseur2 = game.settings.get("devastra", "viseur2");
+        context.viseur3 = game.settings.get("devastra", "viseur3");
+        context.viseur4 = game.settings.get("devastra", "viseur4");
+        context.viseur5 = game.settings.get("devastra", "viseur5");
+        context.viseur6 = game.settings.get("devastra", "viseur6");
+        context.viseur7 = game.settings.get("devastra", "viseur7");   
+      }
+    })
+    */
+
+    Hooks.on('updateSetting', async (setting, update, options, id) => this.onUpdateSetting(setting, update, options, id));
+  
+ 
     html.find(".clickondie").click(this._onClickDieRoll.bind(this));
     html.find(".clickonlock").click(this._onClickLock.bind(this));
     html.find(".clickplutotjeton").click(this._onClickPlutotJeton.bind(this));
@@ -170,6 +191,15 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     });
     dragDropJetonDepot7.bind(html[0]);
   }
+
+
+  async onUpdateSetting(setting, update, options, id) {
+    // if (setting.key == '......') {
+      let myActor = this.actor;
+      myActor.render(false);
+    // }
+  }
+
 
 
   async _canDragStartJeton(selector) {

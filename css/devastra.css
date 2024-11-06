@@ -785,6 +785,22 @@ background-color: transparent;
   margin-top: 45px;
   margin-left: 185px;
 }
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra .sheet-body .mandala_wrap div.mandala_decale {
+    margin-top: 43px;
+    margin-left: 183px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra .sheet-body .mandala_wrap div.mandala_decale {
+    margin-top: 45px;
+    margin-left: 185px;
+  }
+}
+
+
 .devastra .sheet-body .mandala_wrap div.viseur_decale {
   position: absolute;
   z-index: 3;
@@ -793,6 +809,21 @@ background-color: transparent;
   margin-top: 50px;
   margin-left: 185px;
 }
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra .sheet-body .mandala_wrap div.viseur_decale {
+    margin-top: 48px;
+    margin-left: 183px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra .sheet-body .mandala_wrap div.viseur_decale {
+    margin-top: 50px;
+    margin-left: 185px;
+  }
+}
+
 
 /*
 .devastra .sheet-body .mandalas span.valeur-mandala {
@@ -1241,32 +1272,40 @@ flex-wrap: wrap;
 
 
 /* Concerne le Cmd Mandala */
-.devastra.sheet.actor.cmdmandala {
+.devastra.gm-manager {
   min-width: 315px; /* 560px; */
   max-width: 315px;
-  min-height: 675px;
-  max-height: 675px;
+  min-height: 655px;
+  max-height: 655px;
 }
 
-.devastra.sheet.actor.cmdmandala .body-sheet .mandala-parent {
+.devastra.gm-manager .body-sheet .mandala-parent {
   position: relative;
 }
-.devastra.sheet.actor.cmdmandala .body-sheet .mandala-child1 {
+.devastra.gm-manager .body-sheet .mandala-child1 {
   position: absolute;
   z-index: 2;
   margin-left: 40px;
   margin-top: 25px;
+  /* Chrome version 29 and above */
+  /*
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution:.001dpcm) {
+  selector{ margin-left: 20px; margin-top: 25px; }
+  }
+  */
+  
 }
-.devastra.sheet.actor.cmdmandala .body-sheet .mandala-child2 {
+.devastra.gm-manager .body-sheet .mandala-child2 {
   position: absolute;
 }
 
-.devastra.sheet.actor.cmdmandala .body-sheet span.decale {
+.devastra.gm-manager .body-sheet span.decale {
   font-size: 45px;
   font-weight: bold;
   text-align: center;
 }
-.devastra.sheet.actor.cmdmandala .body-sheet span.rouge {
+.devastra.gm-manager .body-sheet span.rouge {
   color: red;
 }
 
@@ -1295,7 +1334,64 @@ flex-wrap: wrap;
   z-index: 3;
   margin-left: -28.5px;
   margin-top: -15px;
+  /* Chrome version 29 and above */
+  /*
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution:.001dpcm) {
+  selector{ margin-left: -41.5px; margin-top: -15px; }
+  }
+  */
+
 }
+
+
+
+.devastra.sheet.actor.character .body-sheet img.viseur {
+  float: left;
+  height: 68px;
+  width: 70px;
+}
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra.sheet.actor.character .body-sheet img.viseur {
+    width: 68px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra.sheet.actor.character .body-sheet img.viseur {
+    width: 70px;
+  }
+}
+
+
+
+.devastra.sheet.actor.character .body-sheet img.viseur-invisible {
+  visibility: hidden;
+}
+
+.devastra.sheet.actor.character .body-sheet span.mandala-decale {
+  float: left;
+  font-size: 35px;
+  height: 68px;
+  width: 70px;
+}
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra.sheet.actor.character .body-sheet span.mandala-decale {
+    width: 68px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra.sheet.actor.character .body-sheet span.mandala-decale {
+    width: 70px;
+  }
+}
+
+
+
+
 
 
 
