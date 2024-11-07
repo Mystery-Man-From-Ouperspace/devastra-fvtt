@@ -1431,6 +1431,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       console.log("myDamageData = ", myDamageData);
       console.log("isInventory = ", isInventory);
     }
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(myDamageData)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+    
     
 
     let myTest;
