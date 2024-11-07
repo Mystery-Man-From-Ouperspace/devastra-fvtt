@@ -11,8 +11,8 @@ export class ModifiedDialog extends Dialog {
     html.find('input[value="isinventory"]').click(this._onInventoryClick.bind(this));
     html.find('input[value="isimprovised"]').click(this._onDamageClick.bind(this));
 
-    html.find('input[value="isinventoryopponent"]').click(this._onInventoryOpponentClick.bind(this));
-    html.find('input[value="isimprovisedopponent"]').click(this._onDamageOpponentClick.bind(this));
+    // html.find('input[value="isinventoryopponent"]').click(this._onInventoryOpponentClick.bind(this));
+    // html.find('input[value="isimprovisedopponent"]').click(this._onDamageOpponentClick.bind(this));
 
 
     html.find('input[value="knownopposition"]').click(this._onKnownOppositionClick.bind(this));
@@ -97,8 +97,8 @@ export class ModifiedDialog extends Dialog {
     // console.log("J'exécute _onInventoryClick()")
     let checkbox = this.element.find('input[value="isinventory"]');
     let othercheckbox = this.element.find('input[value="isimprovised"]');
-    let chooseinventory = this.element.find('td[name="chooseinventory"]');
-    let choosedamage = this.element.find('td[name="choosedamage"]');
+    let chooseinventory = this.element.find('td[class="chooseinventory"]');
+    let choosedamage = this.element.find('td[class="choosedamage"]');
 
     checkbox.checked = true;
     othercheckbox.checked = false;
@@ -107,12 +107,13 @@ export class ModifiedDialog extends Dialog {
     choosedamage.hide();
   }
 
+  /*
   _onInventoryOpponentClick(event) {
     // console.log("J'exécute _onInventoryOpponentClick()")
     let checkbox = this.element.find('input[value="isinventoryoOpponent"]');
     let othercheckbox = this.element.find('input[value="isimprovisedopponent"]');
-    let chooseinventory = this.element.find('td[name="chooseinventoryopponent"]');
-    let choosedamage = this.element.find('td[name="choosedamageopponent"]');
+    let chooseinventory = this.element.find('td[class="chooseinventoryopponent"]');
+    let choosedamage = this.element.find('td[class="choosedamageopponent"]');
 
     checkbox.checked = true;
     othercheckbox.checked = false;
@@ -120,13 +121,14 @@ export class ModifiedDialog extends Dialog {
     chooseinventory.show();
     choosedamage.hide();
   }
+*/
 
   _onDamageClick(event) {
     // console.log("J'exécute _onDamageClick()")
     let checkbox = this.element.find('input[value="improvised"]');
     let othercheckbox = this.element.find('input[value="inventory"]');
-    let chooseinventory = this.element.find('td[name="chooseinventory"]');
-    let choosedamage = this.element.find('td[name="choosedamage"]');
+    let chooseinventory = this.element.find('td[class="chooseinventory"]');
+    let choosedamage = this.element.find('td[class="choosedamage"]');
 
     checkbox.checked = true;
     othercheckbox.checked = false;
@@ -135,6 +137,7 @@ export class ModifiedDialog extends Dialog {
     choosedamage.show();
   }
 
+  /*
   _onDamageOpponentClick(event) {
     // console.log("J'exécute _onDamageClick()")
     let checkbox = this.element.find('input[value="improvisedopponent"]');
@@ -148,6 +151,7 @@ export class ModifiedDialog extends Dialog {
     chooseinventory.hide();
     choosedamage.show();
   }
+*/
 
   _onTargetSelect(event) {
     // console.log("Menu modifié Cible");

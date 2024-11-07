@@ -1,28 +1,77 @@
 <form class="flexcol {{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <div class="name">
-            <label><b>{{ localize "DEVASTRA.SkillPromptName" }}</b></label>
-        </div>
-    </header>
 	
     {{!-- Sheet Body --}}
-    <section class="sheet-body" style="background-image: url('/systems/devastra/images/ui/wheel_transp.png')";
-    >
+    <section class="form-body">
 
         {{!-- Frame --}}
         <div class="frame">
-            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
-                <img
-                style="border: 0; margin-left: 3px; width: 25px"
-                src="systems/devastra/images/icons/weapons/firearm.png"
-                alt="Firearm"        
-                >&nbsp;{{ localize "DEVASTRA.vous" }}
+            <div class="domain">
+                <table class="domain-table">
+                    {{#if (eq domaine "dph")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dph.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dph.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dph.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dph.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dma")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dma.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dma.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dma.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dma.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "din")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.din.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dso")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dso.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dso.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dso.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dso.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dmy")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dmy.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dmy.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dmy.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dmy.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                </table>
             </div>
-            <div style="height: 5px;">
+            <br>   
 
-            </div>
-
-            <div>
+            <div class="cadre">
                 <table class="checkboxes" style="border: 0px; background-color: transparent;">
                     <tr style="background-color: transparent;">
                         <td>
@@ -34,7 +83,6 @@
                             <input type="radio" name="myinventory" value="isinventory" checked>{{ localize "DEVASTRA.frominventory" }}
                             <br>
                             <small>{{ localize "DEVASTRA.developedfrominventory" }}</small>
-
                         </td>
                     </tr>
                     <tr style="background-color: transparent;">
@@ -46,134 +94,123 @@
                     </tr>
                 </table>
             </div>
-            <div>
+            <div class="cadre">
                 <table class="form-group" style="border: 0px; background-color: transparent;">
                     <tr class="form-fields" style="background-color: transparent;">
-                        <td name="chooseinventory">
+                        <td class="chooseinventory">
                             <span class="value"><b>{{ localize "DEVASTRA.choosefrominventory" }}</b>&nbsp;</span>
-                            <select name="inventory" data-type="String">
+                        </td>
+                        <td class="chooseinventory">
+                            <select class="inventory" data-type="String">
                                 {{selectOptions inventorychoices selected=selectedinventory labelAttr="label" localize=true}}
                             </select>
                         </td>
-                        <td name="choosedamage" style="display: none;">
-                            <span class="value"><b>{{ localize "DEVASTRA.choosedamage" }}</b>&nbsp;</span>
-                            <select name="damage">
-                                {{#select damage}}
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                {{/select}}
+                    </tr>
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td class="chooseinventory">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventorydevastra" }}</b>&nbsp;</span>
+                        </td>
+                        <td class="chooseinventory">
+                            <select class="inventorydevastra" data-type="String">
+                                {{selectOptions inventorydevastrachoices selected=selectedinventorydevastra labelAttr="label" localize=true}}
                             </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td class="chooseinventory">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventorypower" }}</b>&nbsp;</span>
+                        </td>
+                        <td class="chooseinventory">
+                            <select class="inventorypower" data-type="String">
+                                {{selectOptions inventorypowerchoices selected=selectedinventorypower labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td class="chooseinventory">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventorymagic" }}</b>&nbsp;</span>
+                        </td>
+                        <td class="chooseinventory">
+                            <select class="inventorymagic" data-type="String">
+                                {{selectOptions inventorymagicchoices selected=selectedinventorymagic labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields"  style="background-color: transparent;">
+                        <td class="choosedamage" style="display: none;">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosedamage" }}</b>&nbsp;</span>
+                        </td>
+                        <td class="choosedamage" style="display: none;">
+                            <div style="display: flex;">
+                                <select class="damage" style="display: table;">
+                                    {{#select damage}}
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    {{/select}}
+                                </select>
+                                <select class="damage" style="float: left;">
+                                    {{#select damagetype}}
+                                        <option value="1">@DPh</option>
+                                        <option value="2">@DMa</option>
+                                        <option value="3">@DIn</option>
+                                        <option value="4">@DSo</option>
+                                        <option value="5">@DMy</option>
+                                    {{/select}}
+                                </select>
+                            </div>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div style="border-top: solid 1px grey; height: 5px; width:100%;"></div>
-            <div>
+            <br>
+            <div class="cadre">
+                <table style="border: 0px; background-color: transparent;">
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <b>{{ localize "DEVASTRA.choosewhicharmor" }}</b>
+                        <td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cadre">
                 <table class="form-group" style="border: 0px; background-color: transparent;">
                     <tr class="form-fields" style="background-color: transparent;">
-                        <td name="choosearmor">
+                        <td class ="choosearmor">
                             <span class="value"><b>{{ localize "DEVASTRA.choosearmor" }}</b>&nbsp;</span>
-                            <select name="armor" data-type="String">
+                        </td>
+                        <td class ="choosearmor">
+                            <select class="armor" data-type="String">
                                 {{selectOptions armorchoices selected=selectedarmor labelAttr="label" localize=true}}
                             </select>
                         </td>
                     </tr>
-                </table>
-            </div>
-
-
-            <div style="border-radius: 5px 5px 0px 0px; display: flex; align-items: center; height: 25px; color: orange; background-color: rgb(12, 76, 12);">
-                <img
-                style="border: 0; margin-left: 3px; width: 25px"
-                src="systems/devastra/images/icons/weapons/firearm.png"
-                alt="Firearm"        
-                >&nbsp;{{ localize "DEVASTRA.votreopposant" }}&nbsp;({{opponentname}})
-            </div>
-            <div style="height: 5px;">
-
-            </div>
-
-            {{#if testopponentactor}}
-            <div>
-                <table class="checkboxes" style="border: 0px; background-color: transparent;">
-                    <tr style="background-color: transparent;">
-                        <td>
-                            <b>{{ localize "DEVASTRA.choosewhichinventoryopponent" }}</b>
-                        <td>
-                    </tr>
-                    <tr style="background-color: transparent;">
-                        <td>
-                            <input type="radio" name="myinventoryopponent" value="isinventoryopponent" checked>{{ localize "DEVASTRA.frominventoryopponent" }}
-                            <br>
-                            <small>{{ localize "DEVASTRA.developedfrominventoryopponent" }}</small>
-
-                        </td>
-                    </tr>
-                    <tr style="background-color: transparent;">
-                        <td>
-                            <input type="radio" name="myinventoryopponent" value="isimprovisedopponent">{{ localize "DEVASTRA.improvisedweaponopponent" }}
-                            <br>
-                            <small>{{ localize "DEVASTRA.developedimprovisedweaponopponent" }}</small>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <table class="form-group" style="border: 0px; background-color: transparent;">
                     <tr class="form-fields" style="background-color: transparent;">
-                        <td name="chooseinventoryopponent">
-                            <span class="value"><b>{{ localize "DEVASTRA.choosefrominventoryopponent" }}</b>&nbsp;</span>
-                            <select name="inventoryopponent" data-type="String">
-                                {{selectOptions inventoryopponentchoices selected=selectedinventoryopponent labelAttr="label" localize=true}}
+                        <td class="choosearmordevastra">
+                            <span class="value"><b>{{ localize "DEVASTRA.choosearmordevastra" }}</b>&nbsp;</span>
+                        </td>
+                        <td class="choosearmordevastra">
+                            <select class="armordevastra" data-type="String">
+                                {{selectOptions armordevastrachoices selected=selectedarmordevastra labelAttr="label" localize=true}}
                             </select>
                         </td>
-                        <td name="choosedamageopponent" style="display: none;">
-                            <span class="value"><b>{{ localize "DEVASTRA.choosedamageopponent" }}</b>&nbsp;</span>
-                            <select name="damageopponent">
-                                {{#select damageopponent}}
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                {{/select}}
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div style="border-top: solid 1px grey; height: 5px; width:100%;"></div>
-            <div>
-                <table class="form-group" style="border: 0px; background-color: transparent;">
-                    <tr class="form-fields" style="background-color: transparent;">
-                        <td name="choosearmoroppoent">
-                            <span class="value"><b>{{ localize "DEVASTRA.choosearmoropponent" }}</b>&nbsp;</span>
-                            <select name="armoropponent" data-type="String">
-                                {{selectOptions armoropponentchoices selected=selectedarmoropponent labelAttr="label" localize=true}}
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            {{else}}
-            <div style="height: 205px; color: rgb(154, 154, 154); font-size: 130px; text-align: center; line-height: 205px; white-space: nowrap;"><div class="tooltip"><i class="fas fa-cancel"></i></div>
-            {{/if}}
 
+                    </tr>
+                </table>
+            </div>
     	</div>	
     </section>
 </form>

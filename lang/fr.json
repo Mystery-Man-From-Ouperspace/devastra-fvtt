@@ -419,6 +419,25 @@
   "DEVASTRA.WhichTarget": "Quelle cible ?",
 
 
+  "DEVASTRA.choosewhichinventory": "Sélectionnez une arme, un sort dans votre inventaire, ou bien utilisez une arme improvisée",
+  "DEVASTRA.frominventory": "Inventaire",
+  "DEVASTRA.developedfrominventory": "Selection une de vos propres armes ou un de vos pouvoirs",
+  "DEVASTRA.improvisedweapon": "Arme improvisée ou trouvée",
+  "DEVASTRA.developedimprovisedweapon": "Selectionnez les dégâts que vous pourriez infliger",
+  "DEVASTRA.choosefrominventory": "Choisissez une arme dans votre inventaire",
+  "DEVASTRA.choosefrominventorydevastra": "Selectionnez votre Devâstra en tant qu′arme (le cas échéant)",
+  "DEVASTRA.choosefrominventorypower": "Selectionnez un pouvoir de votre Devâstra pour occasionner des dégâts",
+  "DEVASTRA.choosefrominventorymagic": "Selectionnez une magie pour occasionner des dégâts",
+  "DEVASTRA.choosedamage": "Demandez à votre MJ les dégâts infligeables par cette arme",
+  "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent",
+  "DEVASTRA.choosearmor": "Une armure ou un bouclier",
+  "DEVASTRA.choosearmordevastra": "Votre Devâstra (le cas échéant)",
+  "DEVASTRA.barehands": "Mains nues",
+
+
+
+
+
   "TYPES": {
     "Actor": {
       "character": "Avatar",

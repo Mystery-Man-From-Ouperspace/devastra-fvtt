@@ -1409,6 +1409,28 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
 
     console.log("opponentActor = ", opponentActor);
+
+
+    /*
+    Ici on fait choisir l'arme
+    */
+    myTitle = game.i18n.localize("DEVASTRA.WhichWeapon");
+    let isInventory;
+    let myWeaponVal;
+    let mySelectedInventory;
+    let myArmorProtection;
+
+
+    if (jetLibel == "attck") {
+      var myDamageData = await _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, domainLibel);
+      isInventory = myDamageData.isinventory;
+      myWeaponVal = parseInt(myDamageData.damage);
+      mySelectedInventory = myDamageData.selectedinventory;
+      myArmorProtection = myDamageData.selectedarmor;
+
+      console.log("myDamageData = ", myDamageData);
+      console.log("isInventory = ", isInventory);
+    }
     
 
     let myTest;
@@ -1629,6 +1651,150 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   };
 
 }
+
+
+/* -------------------------------------------- */
+/*  Dialogue de choix de type d'arme            */
+/* -------------------------------------------- */
+
+async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, domainLibel) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/type-weapon-prompt.html';
+  const title = myTitle;
+  let dialogOptions = myDialogOptions;
+  const myDomain = domainLibel;
+
+  let myItemWeapon = {};
+  let myItemDevastra = {};
+  let myItemPower = {};
+  let myItemMagic = {};
+  let myItemArmor = {};
+  let myItemArmorDevastra = {};
+
+  function myObject(id, label)
+  {
+    this.id = id;
+    this.label = label;
+  };
+
+
+  myItemWeapon["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  myItemWeapon["-1"] = new myObject("-1", game.i18n.localize("DEVASTRA.barehands"));
+  for (let item of myActor.items.filter(item => item.type === 'item')) {
+    if (item.system.subtype == "weapon") {
+    myItemWeapon[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage.toString()+"]");
+    };
+  };
+
+  myItemDevastra["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'devastra')) {
+    if (item.system.attack != "") {
+    myItemDevastra[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+" + "+item.system.damage.toString()+"]");
+    };
+  };
+
+  myItemPower["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'pouvoir')) {
+    if (item.system.attack != "") {
+    myItemPower[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+" + "+item.system.damage.toString()+"]");
+    };
+  };
+
+  myItemMagic["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'magie')) {
+    if (item.system.attack != "") {
+    myItemMagic[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+" + "+item.system.damage.toString()+"]");
+    };
+  };
+
+  myItemArmor["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'item')) {
+    if (item.system.subtype == "armor") {
+      myItemArmor[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
+    };
+  };
+
+  myItemArmorDevastra["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'devastra')) {
+    if (item.system.protection != 0) {
+      myItemArmorDevastra[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
+    };
+  };
+
+
+  var dialogData = {
+    domaine: myDomain,
+    systemData: myActorID.system,
+    isinventory: true,
+    inventorychoices: myItemWeapon,
+    inventorydevastrachoices: myItemDevastra,
+    inventorypowerchoices: myItemPower,
+    inventorymagicchoices: myItemMagic,
+    // selectedinventory: myActor.system.prefs.lastweaponusedid,
+    // damage: myActor.system.prefs.improviseddamage,
+    armorchoices: myItemArmor,
+    armordevastrachoices: myItemArmorDevastra,
+    // selectedarmor: myActor.system.prefs.lastarmorusedid,
+
+  };
+  // dialogData = null;
+
+  // console.log(dialogData);
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 630,
+      height: "auto"
+    });
+  });
+
+  return dialogData;
+
+  async function _computeResult(myActor, myHtml) {
+    // console.log("I'm in _computeResult(myActor, myHtml)");
+    const editedData = {
+      isinventory: myHtml.find("input[value='isinventory']").is(':checked'),
+      selectedinventory: myHtml.find("select[name='inventory']").val(),
+      selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),
+      selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),
+      selectedinventorymagic: myHtml.find("select[name='inventorymagic']").val(),
+      damage: parseInt(myHtml.find("select[name='damage']").val()),
+      selectedarmor: myHtml.find("select[name='armor']").val(),
+      selectedarmordevastra: myHtml.find("select[name='armordevastra']").val(),
+
+    };
+    // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
+    // console.log("myinventory = ", myinventory);
+    return editedData;
+  }
+}
+
+
+
+
+
 
 /* -------------------------------------------- */
 /*  Dialogue de choix d'opposant                */
