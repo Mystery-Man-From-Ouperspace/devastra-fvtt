@@ -1423,6 +1423,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     if (jetLibel == "attck") {
       var myDamageData = await _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, domainLibel);
+
+      //////////////////////////////////////////////////////////////////
+      if (!(myDamageData)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+
+
       isInventory = myDamageData.isinventory;
       myWeaponVal = parseInt(myDamageData.damage);
       mySelectedInventory = myDamageData.selectedinventory;
@@ -1433,12 +1442,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     }
 
 
-      //////////////////////////////////////////////////////////////////
-      if (!(myDamageData)) {
-        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-        return;
-        };
-      //////////////////////////////////////////////////////////////////
     
     
 
@@ -1779,8 +1782,13 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
     });
   });
 
+  if (prompt == null) {
+    return prompt
+  } else {
   return dialogData;
-
+  }
+  
+  
   async function _computeResult(myActor, myHtml) {
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
