@@ -304,15 +304,21 @@
   "DEVASTRA.Succès automatiques": "Succès automatiques :",
   "DEVASTRA.DEBRIDE_+1 succès automatique": "Jetons à retirer à la pile Conviction (sera mise à jour selon contenu) :",
   "DEVASTRA.+1 succès automatique": "+1 Succès automatique depuis pile Conviction (sera mise à jour) :",
+  "DEVASTRA.+1 succès automatique-npc": "+1 Succès automatique depuis Conviction (sera mise à jour) :",
   "DEVASTRA.DEBRIDE_+2 dé d'attaque": "Jetons à retirer à la pile Shakti (sera mise à jour selon contenu) :",
   "DEVASTRA.+2 dé d'attaque": "+2D d′attaque depuis pile Shakti (sera mise à jour si attaque) :",
+  "DEVASTRA.DEBRIDE_+2 dé d'attaque-npc": "Points à retirer à la Shakti (sera mise à jour selon contenu) :",
+  "DEVASTRA.+2 dé d'attaque-npc": "+2D d′attaque depuis Shakti (sera mise à jour si attaque) :",
   "DEVASTRA.Ignorer un malus (pile maj)": "Ignorer un malus depuis pile Conviction (dur. : 1 tour, sera màj) :",
+  "DEVASTRA.Ignorer un malus (pile maj)-npc": "Ignorer un malus depuis Conviction (durée : 1 tour, sera màj) :",
   "DEVASTRA.Malus ignorés": "⌞ Dés malus à ignorer pour ce jet",
  
   "DEVASTRA.OneDie": "dé",
   "DEVASTRA.ManyDice": "dés",
   "DEVASTRA.Jeton": "jeton",
   "DEVASTRA.Jetons": "jetons",
+  "DEVASTRA.Point": "point",
+  "DEVASTRA.Points": "points",
   "DEVASTRA.D": "D",
   "DEVASTRA.6 Explosifs": "Les 6 sont explosifs :",
   "DEVASTRA.DEBRIDE_5 Explosifs": "⌞ Les 5 sont explosifs (ne cocher que si les 6 le sont déjà) :",
@@ -407,8 +413,9 @@
 
   "DEVASTRA.opt.none": "—",
   "DEVASTRA.you": "Vous :",
+  "DEVASTRA.vous": "Vous",
   "DEVASTRA.chooseopponent": "Votre opposant :",
-
+  "DEVASTRA.votreopposant": "Votre opposant",
   "DEVASTRA.WhichTarget": "Quelle cible ?",
 
 

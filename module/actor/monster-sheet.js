@@ -1,5 +1,6 @@
 import { DEVASTRAActorSheet } from "./actor-sheet.js";
 import { DEVASTRA } from "../config.js";
+import { ModifiedDialog } from "../modified-dialog.js";
 /**
  * @extends {DEVASTRAActorSheet}
  */
@@ -15,6 +16,8 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
+
+
 
 
 
@@ -48,7 +51,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     context.viseur6 = await game.settings.get("devastra", "viseur6");
     context.viseur7 = await game.settings.get("devastra", "viseur7");
 
-    context.monstertype = await this.actor.system.monsterType;
+    context.npctype = await this.actor.system.npcType;
 
     context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
     context.sonorizedMandalaInterface = await game.settings.get("devastra", "sonorizedMandalaInterface");
@@ -92,104 +95,12 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     })
     */
 
-    html.find(".clickondie").click(this._onClickDieRoll.bind(this));
-    html.find(".clickonlock").click(this._onClickLock.bind(this));
-    html.find(".clickplutotjeton").click(this._onClickPlutotJeton.bind(this));
-    html.find(".clickplutotprompt").click(this._onClickPlutotPrompt.bind(this));
-    html.find(".clickonmandala").click(this._onClickMandalaCheck.bind(this));
-    html.find(".clickdownaction").click(this._onClickDownAction.bind(this));
-
     Hooks.on('updateSetting', async (setting, update, options, id) => this.onUpdateSetting(setting, update, options, id));
   
-    const dragDropJetonAction = new DragDrop({
-      dragSelector: ".actionColJeton",
-      dropSelector: ".actionColJeton",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonAction.bind(this), drop: this._onDragDropJetonAction.bind(this) }
-    });
-    dragDropJetonAction.bind(html[0]);
-
-    const dragDropJetonShakti = new DragDrop({
-      dragSelector: ".shaktiJeton",
-      dropSelector: ".shaktiJeton",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonShakti.bind(this), drop: this._onDragDropJetonShakti.bind(this) }
-    });
-    dragDropJetonShakti.bind(html[0]);
-
-    const dragDropJetonInit = new DragDrop({
-      dragSelector: ".depotInit",
-      dropSelector: ".depotInit",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonInit.bind(this), drop: this._onDragDropJetonInit.bind(this) }
-    });
-    dragDropJetonInit.bind(html[0]);
-
-    const dragDropJetonPoubelle = new DragDrop({
-      dragSelector: ".depotPoubelle",
-      dropSelector: ".depotPoubelle",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonPoubelle.bind(this), drop: this._onDragDropJetonPoubelle.bind(this) }
-    });
-    dragDropJetonPoubelle.bind(html[0]);
-
-    const dragDropJetonDepot1 = new DragDrop({
-      dragSelector: ".jetonDepot1",
-      dropSelector: ".jetonDepot1",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot1.bind(this), drop: this._onDragDropJetonDepot1.bind(this) }
-    });
-    dragDropJetonDepot1.bind(html[0]);
-
-    const dragDropJetonDepot2 = new DragDrop({
-      dragSelector: ".jetonDepot2",
-      dropSelector: ".jetonDepot2",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot2.bind(this), drop: this._onDragDropJetonDepot2.bind(this) }
-    });
-    dragDropJetonDepot2.bind(html[0]);
-
-    const dragDropJetonDepot3 = new DragDrop({
-      dragSelector: ".jetonDepot3",
-      dropSelector: ".jetonDepot3",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot3.bind(this), drop: this._onDragDropJetonDepot3.bind(this) }
-    });
-    dragDropJetonDepot3.bind(html[0]);
-
-    const dragDropJetonDepot4 = new DragDrop({
-      dragSelector: ".jetonDepot4",
-      dropSelector: ".jetonDepot4",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot4.bind(this), drop: this._onDragDropJetonDepot4.bind(this) }
-    });
-    dragDropJetonDepot4.bind(html[0]);
-
-    const dragDropJetonDepot5 = new DragDrop({
-      dragSelector: ".jetonDepot5",
-      dropSelector: ".jetonDepot5",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot5.bind(this), drop: this._onDragDropJetonDepot5.bind(this) }
-    });
-    dragDropJetonDepot5.bind(html[0]);
-
-    const dragDropJetonDepot6 = new DragDrop({
-      dragSelector: ".jetonDepot6",
-      dropSelector: ".jetonDepot6",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot6.bind(this), drop: this._onDragDropJetonDepot6.bind(this) }
-    });
-    dragDropJetonDepot6.bind(html[0]);
-
-    const dragDropJetonDepot7 = new DragDrop({
-      dragSelector: ".jetonDepot7",
-      dropSelector: ".jetonDepot7",
-      permissions: { dragstart: this._canDragStartJeton.bind(this), drop: this._canDragDropJeton.bind(this) },
-      callbacks: { dragstart: this._onDragStartJetonDepot7.bind(this,), drop: this._onDragDropJetonDepot7.bind(this) }
-    });
-    dragDropJetonDepot7.bind(html[0]);
+ 
+    html.find(".clickondie").click(this._onClickDieRoll.bind(this));
+    html.find(".clickonmandala").click(this._onClickMandalaCheck.bind(this));
   }
-
 
 
   async onUpdateSetting(setting, update, options, id) {
@@ -198,906 +109,6 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       myActor.render(false);
     // }
   }
-
-
-
-  async _canDragStartJeton(selector) {
-    return true
-  }
-
-
-  async _canDragDropJeton(selector) {
-    return true
-  }
-
-
-  async _onDragStartJetonAction(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'actionColJeton' });
-  }
-  async _onDragStartJetonShakti(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'shaktiJeton' });
-  }
-  async _onDragStartJetonInit(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'depotInit' });
-  }
-  async _onDragStartJetonPoubelle(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'depotPoubelle' });
-  }
-  async _onDragStartJetonDepot1(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot1' });
-  }
-  async _onDragStartJetonDepot2(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot2' });
-  }
-  async _onDragStartJetonDepot3(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot3' });
-  }
-  async _onDragStartJetonDepot4(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot4' });
-  }
-  async _onDragStartJetonDepot5(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot5' });
-  }
-  async _onDragStartJetonDepot6(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot6' });
-  }
-  async _onDragStartJetonDepot7(event) {
-    console.log("Je passe bien ici !");
-    let myActor = this.actor;
-    await myActor.update({ "system.srcJeton": 'jetonDepot7' });
-  }
-
-
-  async _onDragDropJetonAction(event) {
-  let myActor = this.actor;
-  let srcJeton = await myActor.system.srcJeton;
-  if (!(myActor.system.action.piledejetons)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-      // ça n'est pas censé arriver
-      break;
-      case 'shaktiJeton':
-      // ça n'est pas censé arriver
-      break;
-      case 'depotInit':
-      // ça n'est pas censé arriver
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus && myActor.system.mandala.un.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus && myActor.system.mandala.deux.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus && myActor.system.mandala.trois.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus && myActor.system.mandala.quatre.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus && myActor.system.mandala.cinq.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus && myActor.system.mandala.six.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus && myActor.system.mandala.sept.typejetonbonus == 1) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.action.piledejetons": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-  }
-
-  async _onDragDropJetonShakti(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-
-    switch (srcJeton) {
-      case 'actionColJeton':
-      // ça n'est pas censé arriver
-      break;
-      case 'shaktiJeton':
-      // ça n'est pas censé arriver
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus && myActor.system.mandala.un.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus && myActor.system.mandala.deux.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus && myActor.system.mandala.trois.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus && myActor.system.mandala.quatre.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus && myActor.system.mandala.cinq.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus && myActor.system.mandala.six.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus && myActor.system.mandala.sept.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-
-  async _onDragDropJetonInit(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-
-    switch (srcJeton) {
-      case 'actionColJeton':
-      // ça n'est pas censé arriver
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-        };
-      break;
-      case 'depotInit':
-      // ça n'est pas censé arriver
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus && myActor.system.mandala.un.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus && myActor.system.mandala.deux.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus && myActor.system.mandala.trois.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus && myActor.system.mandala.quatre.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus && myActor.system.mandala.cinq.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus && myActor.system.mandala.six.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus && myActor.system.mandala.sept.typejetonbonus == 2) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus + 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-
-  async _onDragDropJetonPoubelle(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    console.log("srcJeton", srcJeton);
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-    if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
-      var audio;
-      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
-      audio.play();
-    }
-}
- 
-
-
-  async _onDragDropJetonDepot1(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.un.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.un.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-  }
-
-  async _onDragDropJetonDepot2(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.deux.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        }
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.deux.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-  }
-  
-  async _onDragDropJetonDepot3(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.trois.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        }
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.trois.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-    }
-  }
-
-  async _onDragDropJetonDepot4(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.quatre.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.quatre.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-    }
-  }
-
-  async _onDragDropJetonDepot5(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.cinq.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot5':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.cinq.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-    }
-  }
-
-  async _onDragDropJetonDepot6(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-if (!(myActor.system.mandala.six.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-
-      break;
-      case 'jetonDepot6':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot7':
-        if (myActor.system.mandala.sept.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.six.typejetonbonus": myActor.system.mandala.sept.typejetonbonus });
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 1 });
-        };
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-  }
-
-  async _onDragDropJetonDepot7(event) {
-    let myActor = this.actor;
-    let srcJeton = await myActor.system.srcJeton;
-    if (!(myActor.system.mandala.sept.nbrjetonbonus)) {
-    switch (srcJeton) {
-      case 'actionColJeton':
-        if (myActor.system.action.piledejetons) {
-          await myActor.update({ "system.action.piledejetons": myActor.system.action.piledejetons - 1 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": 1 });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'shaktiJeton':
-        if (myActor.system.shakti.piledejetons) {
-          await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons - 1 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotInit':
-        if (myActor.system.initiative.nbrjetonbonus) {
-          await myActor.update({ "system.initiative.nbrjetonbonus": myActor.system.initiative.nbrjetonbonus - 1 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": 2 });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'depotPoubelle':
-      // ça n'est pas censé arriver
-      break;
-      case 'jetonDepot1':
-        if (myActor.system.mandala.un.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.un.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot2':
-        if (myActor.system.mandala.deux.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.deux.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot3':
-        if (myActor.system.mandala.trois.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.trois.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot4':
-        if (myActor.system.mandala.quatre.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.quatre.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot5':
-        if (myActor.system.mandala.cinq.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.cinq.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot6':
-        if (myActor.system.mandala.six.nbrjetonbonus) {
-          await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-          await myActor.update({ "system.mandala.sept.typejetonbonus": myActor.system.mandala.six.typejetonbonus });
-          await myActor.update({ "system.mandala.sept.nbrjetonbonus": 1 });
-        };
-      break;
-      case 'jetonDepot7':
-      // ça n'est pas censé arriver
-      break;
-      default:
-        console.log(`Sorry, that's an error.`);
-    }
-  }
-  }
- 
 
   /* -------------------------------------------- */
 
@@ -1120,7 +131,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   /* -------------------------------------------- */
 
   /**
-   * Listen for roll buttons on Jauge.
+   * Listen for roll buttons on Mandala.
    * @param {MouseEvent} event    The originating left click event
    */
   async _onClickMandalaCheck(event) {
@@ -1190,38 +201,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
   }
 
-    /**
-   * Listen for roll buttons on Plutot Jeton.
-   * @param {MouseEvent} event    The originating left click event
-   */
-  async _onClickPlutotJeton(event) {
-    ui.notifications.warn(game.i18n.localize("DEVASTRA.PlutôtJeton"));
-  }
-
-  /**
-  * Listen for roll buttons on Plutot Prompt.
-  * @param {MouseEvent} event    The originating left click event
-  */
-  async _onClickPlutotPrompt(event) {
-    ui.notifications.warn(game.i18n.localize("DEVASTRA.PlutôtPrompt"));
-  }
-
-  /**
-   * Listen for roll buttons on Lock.
-   * @param {MouseEvent} event    The originating left click event
-   */
-  async _onClickLock(event) {
-    let newlocked;
-    if (this.actor.system.locked) {
-      newlocked = false;
-      ui.notifications.info(game.i18n.localize("DEVASTRA.FonctDeverrouillée"));
-    } else {
-      newlocked = true;
-      ui.notifications.info(game.i18n.localize("DEVASTRA.FonctVerrouillée"));
-    };
-    await this.actor.update({ "system.locked": newlocked });
-  }
-
   /**
    * Listen for roll buttons on Clickable d6.
    * @param {MouseEvent} event    The originating left click event
@@ -1236,6 +215,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const pureDomOrSpeLibel = whatIsItTab[1];                   // Va récupérer 'puredomain' ou bien 'special'
 
     let myActor = this.actor;
+
+    /*
+    Ici on fait remplir les paramètres de lancer de dés
+    */
     let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
     let myDialogOptions = {
       classes: ["devastra", "sheet"]
@@ -1247,32 +230,42 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     //////////////////////////////////////////////////////////////////
     if (!(myResultDialog)) {
-      ui.notifications.warn(game.i18n.localize("CDE.Error0"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
       return;
       };
     //////////////////////////////////////////////////////////////////
     
+
+    let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    if (myVersionDebloqueeFlag) {
+      myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+      myResultDialog = await _skillDiceRollDialogDeblocked (
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+      );
+    }
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
 
     const myJetAutreFlag = myResultDialog.jetautreflag;
     const myJetAttaqueFlag = myResultDialog.jetattaqueflag;
     const mtJetDefenseFlag = myResultDialog.jetdefenseflag;
     const myND = myResultDialog.nd;
     const myNbrDeDomaine = myResultDialog.nbrdedomaine;
-    const myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
-    const myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
     const mySpecialiteFlag = myResultDialog.specialitecheck;
     const myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
     const myBonusApplique = myResultDialog.bonusapplique;
-    const myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque;
     const myMalusApplique = myResultDialog.malususapplique;
-    const myIgnoreMalus = myResultDialog.ignoremalus;
-    const myMalusAIgnorer = myResultDialog.malususaignorer;
     const mySuccesAuto = myResultDialog.succesauto;
-    const myPlusUnSuccesAuto = myResultDialog.plusunsuccesauto;
-    let mySixExploFlag = myResultDialog.sixexplo;
-    let myCinqExploFlag = myResultDialog.cinqexplo;
     const myDesNonExplo = myResultDialog.desnonexplo;
-    const myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    const mySixExploFlag = myResultDialog.sixexplo;
+    const myCinqExploFlag = myResultDialog.cinqexplo;
+
 
     let jetLibel;
     if (myJetAutreFlag) {
@@ -1282,6 +275,38 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     } else {
       jetLibel = "defnc";
     };
+
+
+    /*
+    Ici on fait choisir l'opposant
+    */
+    myTitle = game.i18n.localize("DEVASTRA.WhichTarget");
+
+    var opponentActor = null;
+    if (jetLibel == "attck") {
+      var myTarget = await _whichTarget (
+        myActor, template, myTitle, myDialogOptions, domainLibel
+      );
+
+      if (myTarget == null) {return};
+
+      if (game.user.targets.size != 0) {
+        for (let targetedtoken of game.user.targets) {
+          if (targetedtoken.id == myTarget.selectedtarget) {
+            opponentActor = targetedtoken.actor;
+          };
+        };
+      };
+    };
+
+
+    console.log("opponentActor = ", opponentActor);
+    
+
+    let myTest;
+    let myModifier;
+
+
 
 
 
@@ -1319,11 +344,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     let total = myNbrDeDomaine;
 
-    // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
-    if (myBonusDomaineFlag) {
-      total += myNbrDeBonusDomaine;
-      // console.log("myNbrDeBonusDomaine", "compabilisé");
-    };
 
     // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
     if (mySpecialiteFlag) {
@@ -1349,12 +369,12 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     //////////////////////////////////////////////////////////////////
     if (total <= 0) {
-      ui.notifications.warn(game.i18n.localize("CDE.Error1"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
       return;
       };
     //////////////////////////////////////////////////////////////////
 
-     if (suite.length >= 2) {
+    if (suite.length >= 2) {
       suite += "%";
       suite = suite.replace(', %', ']');
     } else {
@@ -1484,7 +504,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     }
     console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
-     
+    
     ChatMessage.create({
       user: game.user.id,
       // speaker: ChatMessage.getSpeaker({ token: this.actor }),
@@ -1497,12 +517,100 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
 }
 
+/* -------------------------------------------- */
+/*  Dialogue de choix d'opposant                */
+/* -------------------------------------------- */
+async function _whichTarget (myActor, template, myTitle, myDialogOptions, domainLibel) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/target-prompt.html';
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  const myDomain = domainLibel;
+
+  // On récupère tous les opposants potentiels (ceux ciblés)
+  let myItemTarget = {};
+  function myObject(id, label)
+  {
+    this.id = id;
+    this.label = label;
+  };
+  myItemTarget["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  console.log('game.user.targets = ', game.user.targets);
+  console.log('game.user.targets.size = ', game.user.targets.size);
+  if (game.user.targets.size != 0) {
+    for (let targetedtoken of game.user.targets) {
+      myItemTarget[targetedtoken.id.toString()] = new myObject(targetedtoken.id.toString(), targetedtoken.name.toString());
+    };
+  };
+
+  var dialogData = {
+    domaine: myDomain,
+    systemData: myActorID.system,
+    you: myActor.name,
+    youimg: myActor.img,
+    targetchoices: myItemTarget,
+    selectedtarget: "0",
+    tokenimg: ""
+  };
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 530,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return dialogData;
+  }
+
+  ////////////////////////////////////////////////
+  async function _computeResult(myActor, myHtml) {
+    // console.log("I'm in _computeResult(myActor, myHtml)");
+    const editedData = {
+      you: "",
+      youimg: "",
+      targetchoices: {},
+      selectedtarget: myHtml.find("select[name='target']").val(),
+      tokenimg: ""
+    };
+    return editedData;
+  }
+}
+
+/* -------------------------------------------- */
+/*  Dialogue de lancer de dés                   */
+/* -------------------------------------------- */
 async function _skillDiceRollDialog(
-  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
-  ) {
+myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+) {
 
   // Render modal dialog
-  template = template || 'systems/devastra/templates/form/skill-dice-prompt.html';
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-npc.html';
   const myActorID = myActor;
   const title = myTitle;
   const dialogOptions = myDialogOptions;
@@ -1516,9 +624,8 @@ async function _skillDiceRollDialog(
   const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
-  const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
-
+  // const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  // const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
 
   switch (myDomainLibel) {
     case "dph": 
@@ -1552,8 +659,10 @@ async function _skillDiceRollDialog(
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
-    shaktirestanteflag: myShaktiRestanteFlag,
-    convictionrestanteflag: myconvictionRestanteFlag,
+    // shaktirestanteflag: myShaktiRestanteFlag,
+    shaktirestanteflag: 0,
+    // convictionrestanteflag: myconvictionRestanteFlag,
+    convictionrestanteflag: 0,
     plus1succesautoflag : myPlus1SuccesAutoFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,
@@ -1583,7 +692,7 @@ async function _skillDiceRollDialog(
     dialogOptions
     ).render(true, {
       width: 500,
-      height: 745
+      height: "auto"
     });
   });
 
@@ -1593,6 +702,7 @@ async function _skillDiceRollDialog(
 
   return dialogData;
 
+  //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
       jetautreflag: myHtml.find("input[value='autre']").is(':checked'),
@@ -1605,12 +715,8 @@ async function _skillDiceRollDialog(
       nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
       bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
-      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
       malususapplique: myHtml.find("select[name='malususapplique']").val(),
-      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
-      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
       succesauto: myHtml.find("select[name='succesauto']").val(),
-      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
       sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
       cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
       desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
@@ -1618,5 +724,128 @@ async function _skillDiceRollDialog(
     };
     return editedData;
   }
-  
 }
+
+/* -------------------------------------------- */
+/*  Dialogue débridé de lancer de dés           */
+/* -------------------------------------------- */
+async function _skillDiceRollDialogDeblocked (
+  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+  ) {
+  
+    // Render modal dialog
+    template = template || 'systems/devastra/templates/form/skill-dice-prompt-debride-npc.html';
+    const myActorID = myActor;
+    const title = myTitle;
+    const dialogOptions = myDialogOptions;
+    let myDomaine = domainLibel;
+    let myNbrDeDomaine = 0;
+    let myNbrDeBonusDomaine = 0;
+    const myNbrDeBonusSpecialite = 1;
+    const myBonusDomaineCheck = true;
+    const myDomainLibel = domainLibel;
+  
+    const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
+    const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
+    const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
+    // const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+    // const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+  
+    switch (myDomainLibel) {
+      case "dph": 
+        myNbrDeDomaine = myActorID.system.domains.dph.value;
+        myNbrDeBonusDomaine = myActorID.system.domains.dph.bonusdice;
+      break;
+      case "dma": 
+        myNbrDeDomaine = myActorID.system.domains.dma.value;
+        myNbrDeBonusDomaine = myActorID.system.domains.dma.bonusdice;
+      break;
+      case "din": 
+        myNbrDeDomaine = myActorID.system.domains.din.value;
+        myNbrDeBonusDomaine = myActorID.system.domains.din.bonusdice;
+      break;
+      case "dso": 
+        myNbrDeDomaine = myActorID.system.domains.dso.value;
+        myNbrDeBonusDomaine = myActorID.system.domains.dso.bonusdice;
+      break;
+      case "dmy": 
+        myNbrDeDomaine = myActorID.system.domains.dmy.value;
+        myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
+      break;
+      default : console.log("Outch !");
+    };
+    var dialogData = {
+      domaine: myDomaine,
+      systemData: myActorID.system,
+      nbrdedomaine: myNbrDeDomaine,
+      nbrdebonusdomaine: myNbrDeBonusDomaine,
+      bonusdomainecheck: myBonusDomaineCheck,
+      nbrdebonusspecialite: myNbrDeBonusSpecialite,
+      specialitecheck: mySpecialiteCheck,
+      nd: 4,
+      // shaktirestanteflag: myShaktiRestanteFlag,
+      shaktirestanteflag: 0,
+      // convictionrestanteflag: myconvictionRestanteFlag,
+      convictionrestanteflag: 0,
+      plus1succesautoflag : myPlus1SuccesAutoFlag,
+      sixexplo: mySixExploFlag,
+      cinqexplo: false,
+      desnonexplo: 0,
+      versiondebloquee: false
+    };
+    const html = await renderTemplate(template, dialogData);
+    // Create the Dialog window
+    let prompt = await new Promise((resolve) => {
+      new Dialog(
+        {
+          title: title,
+          content: html,
+          buttons: {
+            validateBtn: {
+              icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+              callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+            },
+            cancelBtn: {
+              icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+              callback: (html) => resolve( null )
+            }
+          },
+          default: 'validateBtn',
+          close: () => resolve( null )
+      },
+      dialogOptions
+      ).render(true, {
+        width: 500,
+        height: "auto"
+      });
+    });
+  
+    if (prompt == null) {
+      dialogData = null;
+    };
+  
+    return dialogData;
+  
+    //////////////////////////////////////////////////////////////
+    async function _computeResult(myActor, myDialogData, myHtml) {
+      const editedData = {
+        jetautreflag: myHtml.find("input[value='autre']").is(':checked'),
+        jetattaqueflag: myHtml.find("input[value='jetattaque']").is(':checked'),
+        jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
+        nd: myHtml.find("select[name='nd']").val(),
+        nbrdedomaine: myDialogData.nbrdedomaine,
+        nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
+        bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+        nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
+        specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
+        bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
+        malususapplique: myHtml.find("select[name='malususapplique']").val(),
+        succesauto: myHtml.find("select[name='succesauto']").val(),
+        sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
+        cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
+        desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
+        versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+      };
+      return editedData;
+    }
+  }

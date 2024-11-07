@@ -5,6 +5,71 @@
 
         {{!-- Frame --}}
         <div class="frame">
+            <div class="domain">
+                <table class="domain-table">
+                    {{#if (eq domaine "dph")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dph.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dph.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dph.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dph.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dma")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dma.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dma.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dma.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dma.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "din")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.din.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dso")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dso.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dso.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dso.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dso.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                    {{#if (eq domaine "dmy")}}
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.dmy.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dmy.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dmy.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.dmy.specialities}}
+                        </td>
+                    </tr>
+                    {{else}}
+                    {{/if}}
+                </table>
+            </div>
+            <br>   
             <div class="cadre">
                 <div>
                     <table class="form-group">

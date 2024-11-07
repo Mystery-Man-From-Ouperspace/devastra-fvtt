@@ -21,6 +21,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
   /* -------------------------------------------- */
 
+
   /** @inheritdoc */
   async getData(options) {
     const context = await super.getData(options);
@@ -82,6 +83,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
   }
 
   /* -------------------------------------------- */
+
 
   /** @inheritdoc */
   activateListeners(html) {
@@ -203,8 +205,13 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     dragDropJetonDepot7.bind(html[0]);
   }
 
+  /* -------------------------------------------- */
 
-  
+
+  /**
+   * Listen for Settings Updates.
+   *
+   */
   async onUpdateSetting(setting, update, options, id) {
     // if (setting.key == '......') {
       let myActor = this.actor;
@@ -213,6 +220,10 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
   }
 
 
+  /**
+   * Concerns Drag'n'Drop Actions.
+   *
+   */
 
   async _canDragStartJeton(selector) {
     return true
@@ -223,6 +234,11 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     return true
   }
 
+
+  /**
+   * Listen for Drag'n'Drop Actions.
+   *
+   */
 
   async _onDragStartJetonAction(event) {
     console.log("Je passe bien ici !");
@@ -1110,12 +1126,12 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     }
   }
   }
- 
 
   /* -------------------------------------------- */
 
+
   /**
-   * Listen for roll buttons Down Action.
+   * Listen for click button Down Action.
    * @param {MouseEvent} event    The originating left click event
    */
   async _onClickDownAction(event) {
@@ -1132,8 +1148,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
   /* -------------------------------------------- */
 
+
   /**
-   * Listen for roll buttons on Jauge.
+   * Listen for click buttons on Chakra.
    * @param {MouseEvent} event    The originating left click event
    */
   async _onClickChakraJaugeCheck(event) {
@@ -1256,7 +1273,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   }
 
     /**
-   * Listen for roll buttons on Plutot Jeton.
+   * Listen for click button on Plutot Jeton.
    * @param {MouseEvent} event    The originating left click event
    */
   async _onClickPlutotJeton(event) {
@@ -1264,7 +1281,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   }
 
   /**
-  * Listen for roll buttons on Plutot Prompt.
+  * Listen for click on Plutot Prompt.
   * @param {MouseEvent} event    The originating left click event
   */
   async _onClickPlutotPrompt(event) {
@@ -1272,7 +1289,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   }
 
   /**
-   * Listen for roll buttons on Lock.
+   * Listen for click button on Lock.
    * @param {MouseEvent} event    The originating left click event
    */
   async _onClickLock(event) {
@@ -1301,6 +1318,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const pureDomOrSpeLibel = whatIsItTab[1];                   // Va récupérer 'puredomain' ou bien 'special'
 
     let myActor = this.actor;
+
+    /*
+    Ici on fait remplir les paramètres de lancer de dés
+    */
     let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
     let myDialogOptions = {
       classes: ["devastra", "sheet"]
@@ -1309,6 +1330,22 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let myResultDialog =  await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
     );
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+    
+
+    let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    if (myVersionDebloqueeFlag) {
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+      myResultDialog = await _skillDiceRollDialogDeblocked (
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+      );
+    }
 
     //////////////////////////////////////////////////////////////////
     if (!(myResultDialog)) {
@@ -1334,10 +1371,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const myMalusAIgnorer = myResultDialog.malususaignorer;
     const mySuccesAuto = myResultDialog.succesauto;
     const myPlusUnSuccesAuto = myResultDialog.plusunsuccesauto;
-    let mySixExploFlag = myResultDialog.sixexplo;
-    let myCinqExploFlag = myResultDialog.cinqexplo;
     const myDesNonExplo = myResultDialog.desnonexplo;
-    const myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    const mySixExploFlag = myResultDialog.sixexplo;
+    const myCinqExploFlag = myResultDialog.cinqexplo;
 
     let jetLibel;
     if (myJetAutreFlag) {
@@ -1349,11 +1385,13 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
 
 
-
+    /*
+    Ici on fait choisir l'opposant
+    */
     myTitle = game.i18n.localize("DEVASTRA.WhichTarget");
 
     var opponentActor = null;
-    if (true) {
+    if (jetLibel == "attck") {
       var myTarget = await _whichTarget (
         myActor, template, myTitle, myDialogOptions, domainLibel
       );
@@ -1374,19 +1412,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
 
     let myTest;
-    let myOpposition = 13;
     let myModifier;
-
-    if (opponentActor && myData.mySkill == 6) {
-      myOpposition = parseInt(opponentActor.system.skill.corps.actuel);
-    };
-
-    console.log ("myOpposition = ", myOpposition);
-
-
-
-
-
 
 
 
@@ -1604,21 +1630,24 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
 }
 
+/* -------------------------------------------- */
+/*  Dialogue de choix d'opposant                */
+/* -------------------------------------------- */
 async function _whichTarget (myActor, template, myTitle, myDialogOptions, domainLibel) {
   // Render modal dialog
+  const myActorID = myActor;
   template = template || 'systems/devastra/templates/form/target-prompt.html';
   const title = myTitle;
   const dialogOptions = myDialogOptions;
   const myDomain = domainLibel;
 
+  // On récupère tous les opposants potentiels (ceux ciblés)
   let myItemTarget = {};
-
   function myObject(id, label)
   {
     this.id = id;
     this.label = label;
   };
-
   myItemTarget["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
   console.log('game.user.targets = ', game.user.targets);
   console.log('game.user.targets.size = ', game.user.targets.size);
@@ -1628,9 +1657,9 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
     };
   };
 
-
   var dialogData = {
-    domain: myDomain,
+    domaine: myDomain,
+    systemData: myActorID.system,
     you: myActor.name,
     youimg: myActor.img,
     targetchoices: myItemTarget,
@@ -1662,7 +1691,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
       dialogOptions
     ).render(true, {
       width: 530,
-      height: 250
+      height: "auto"
     });
   });
 
@@ -1672,10 +1701,10 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
   return dialogData;
   }
 
+  ////////////////////////////////////////////////
   async function _computeResult(myActor, myHtml) {
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
-      domain: "",
       you: "",
       youimg: "",
       targetchoices: {},
@@ -1686,8 +1715,9 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
   }
 }
 
-
-
+/* -------------------------------------------- */
+/*  Dialogue de lancer de dés                   */
+/* -------------------------------------------- */
 async function _skillDiceRollDialog(
   myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
   ) {
@@ -1709,7 +1739,6 @@ async function _skillDiceRollDialog(
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
   const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
   const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
-
 
   switch (myDomainLibel) {
     case "dph": 
@@ -1774,7 +1803,7 @@ async function _skillDiceRollDialog(
     dialogOptions
     ).render(true, {
       width: 500,
-      height: 745
+      height: "auto"
     });
   });
 
@@ -1784,6 +1813,134 @@ async function _skillDiceRollDialog(
 
   return dialogData;
 
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      jetautreflag: myHtml.find("input[value='autre']").is(':checked'),
+      jetattaqueflag: myHtml.find("input[value='jetattaque']").is(':checked'),
+      jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
+      nd: myHtml.find("select[name='nd']").val(),
+      nbrdedomaine: myDialogData.nbrdedomaine,
+      nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
+      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
+      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
+      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+    };
+    return editedData;
+  }
+  
+}
+
+/* -------------------------------------------- */
+/*  Dialogue débridé de lancer de dés          */
+/* -------------------------------------------- */
+async function _skillDiceRollDialogDeblocked (
+  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+  ) {
+
+  // Render modal dialog
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-debride.html';
+  const myActorID = myActor;
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  let myDomaine = domainLibel;
+  let myNbrDeDomaine = 0;
+  let myNbrDeBonusDomaine = 0;
+  const myNbrDeBonusSpecialite = 1;
+  const myBonusDomaineCheck = true;
+  const myDomainLibel = domainLibel;
+
+  const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
+  const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
+  const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
+  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+
+  switch (myDomainLibel) {
+    case "dph": 
+      myNbrDeDomaine = myActorID.system.domains.dph.value;
+      myNbrDeBonusDomaine = myActorID.system.domains.dph.bonusdice;
+    break;
+    case "dma": 
+      myNbrDeDomaine = myActorID.system.domains.dma.value;
+      myNbrDeBonusDomaine = myActorID.system.domains.dma.bonusdice;
+    break;
+    case "din": 
+      myNbrDeDomaine = myActorID.system.domains.din.value;
+      myNbrDeBonusDomaine = myActorID.system.domains.din.bonusdice;
+    break;
+    case "dso": 
+      myNbrDeDomaine = myActorID.system.domains.dso.value;
+      myNbrDeBonusDomaine = myActorID.system.domains.dso.bonusdice;
+    break;
+    case "dmy": 
+      myNbrDeDomaine = myActorID.system.domains.dmy.value;
+      myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
+    break;
+    default : console.log("Outch !");
+  };
+  var dialogData = {
+    domaine: myDomaine,
+    systemData: myActorID.system,
+    nbrdedomaine: myNbrDeDomaine,
+    nbrdebonusdomaine: myNbrDeBonusDomaine,
+    bonusdomainecheck: myBonusDomaineCheck,
+    nbrdebonusspecialite: myNbrDeBonusSpecialite,
+    specialitecheck: mySpecialiteCheck,
+    nd: 4,
+    shaktirestanteflag: myShaktiRestanteFlag,
+    convictionrestanteflag: myconvictionRestanteFlag,
+    plus1succesautoflag : myPlus1SuccesAutoFlag,
+    sixexplo: mySixExploFlag,
+    cinqexplo: false,
+    desnonexplo: 0,
+    versiondebloquee: false
+  };
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 500,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
       jetautreflag: myHtml.find("input[value='autre']").is(':checked'),
