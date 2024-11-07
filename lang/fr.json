@@ -419,7 +419,7 @@
   "DEVASTRA.WhichTarget": "Quelle cible ?",
 
 
-  "DEVASTRA.choosewhichinventory": "Sélectionnez une arme, un sort dans votre inventaire, ou bien utilisez une arme improvisée",
+  "DEVASTRA.choosewhichinventory": "Sélectionnez une arme, un sort dans votre inventaire, ou bien utilisez une arme improvisée :",
   "DEVASTRA.frominventory": "Inventaire",
   "DEVASTRA.developedfrominventory": "Selectionnez une de vos propres armes ou un de vos pouvoirs",
   "DEVASTRA.improvisedweapon": "Arme improvisée ou trouvée",
@@ -429,7 +429,7 @@
   "DEVASTRA.choosefrominventorypower": "Un pouvoir de votre Devâstra pour occasionner des dégâts",
   "DEVASTRA.choosefrominventorymagic": "Une magie pour occasionner des dégâts",
   "DEVASTRA.choosedamage": "Demandez à votre MJ les dégâts infligeables par cette arme",
-  "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent",
+  "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent :",
   "DEVASTRA.choosearmor": "Une armure ou un bouclier",
   "DEVASTRA.choosearmordevastra": "Votre Devâstra en tant que protection (le cas échéant)",
   "DEVASTRA.barehands": "Mains nues",

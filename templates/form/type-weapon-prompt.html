@@ -80,14 +80,14 @@
                     </tr>
                     <tr style="background-color: transparent;">
                         <td>
-                            <input type="radio" name="myinventory" value="isinventory" checked>{{ localize "DEVASTRA.frominventory" }}
+                            <input type="radio" name="myinventory" value="isinventory" checked><b>{{ localize "DEVASTRA.frominventory" }}</b></input>
                             <br>
                             <small>{{ localize "DEVASTRA.developedfrominventory" }}</small>
                         </td>
                     </tr>
                     <tr style="background-color: transparent;">
                         <td>
-                            <input type="radio" name="myinventory" value="isimprovised">{{ localize "DEVASTRA.improvisedweapon" }}
+                            <input type="radio" name="myinventory" value="isimprovised"><b>{{ localize "DEVASTRA.improvisedweapon" }}</b></input>
                             <br>
                             <small>{{ localize "DEVASTRA.developedimprovisedweapon" }}</small>
                         </td>
@@ -168,11 +168,11 @@
                                 </select>
                                 <select class="damage" style="float: left;">
                                     {{#select damagetype}}
-                                        <option value="1">@DPh</option>
-                                        <option value="2">@DMa</option>
-                                        <option value="3">@DIn</option>
-                                        <option value="4">@DSo</option>
-                                        <option value="5">@DMy</option>
+                                        <option value="1">+ @DPh</option>
+                                        <option value="2">+ @DMa</option>
+                                        <option value="3">+ @DIn</option>
+                                        <option value="4">+ @DSo</option>
+                                        <option value="5">+ @DMy</option>
                                     {{/select}}
                                 </select>
                             </div>
