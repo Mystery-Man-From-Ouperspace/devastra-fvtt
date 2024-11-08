@@ -151,7 +151,7 @@
 
 
 .devastra .sheet-body .click:hover,
-.devastra .sheet-body .moon-click:hover {
+.devastra .side-sheet .click:hover {
   cursor: pointer;
   filter: drop-shadow(0px 0px 6px #af010a);
 }
@@ -1556,10 +1556,12 @@ background-color: transparent;
   font-size: 16px;
 }
 
-.devastra .side-sheet .concept .initiative {
+.devastra .side-sheet .concept .initiative,
+.devastra .side-sheet .concept .armure {
   font-family: "ModestoPoster";
   font-size: 16px;
 }
+
 
 /* concerne l'interface de Foundry */
 

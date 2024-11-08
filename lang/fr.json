@@ -256,6 +256,7 @@
 
   "DEVASTRA.Initiative": "Initiative",
   "DEVASTRA.Initiative_totale": "Total d′Initiative",
+  "DEVASTRA.Armure_total": "Total d′Armure",
 
 
   "DEVASTRA.Validate": "Valider",
@@ -451,6 +452,9 @@
   "DEVASTRA.Statut": "Statut",
   "DEVASTRA.Subtype": "Type",
 
+  "DEVASTRA.Mettre à jour total armure": "Mettre à jour le total d′armure",
+  "DEVASTRA.Calcul Protection": "Calcul du total d′armure",
+  "DEVASTRA.WhichWeapon": "Choix de l′arme",
 
 
 

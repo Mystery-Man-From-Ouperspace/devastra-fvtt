@@ -130,7 +130,9 @@
         "perestant": 0,
         "initiative_totale": 0
       },
-      "srcJeton": "" 
+      "srcJeton": "",
+      "armure_total": 0
+
     },
 
     "npc": {
@@ -228,7 +230,8 @@
       },
       "chakra": {
         "value": 0
-      }
+      },
+      "armure_total": 0
     },
     "monster": {
       "locked": true,
@@ -325,7 +328,8 @@
       },
       "chakra": {
         "value": 0
-      }
+      },
+      "armure_total": 0
     }
   },
 

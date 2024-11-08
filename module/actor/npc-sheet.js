@@ -100,6 +100,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
  
     html.find(".clickondie").click(this._onClickDieRoll.bind(this));
     html.find(".clickonmandala").click(this._onClickMandalaCheck.bind(this));
+    html.find(".clickonarmure").click(this._onClickArmor.bind(this));
+
   }
 
 
@@ -110,8 +112,34 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     // }
   }
 
+  /**
+   * Listen for roll click armure.
+   * @param {MouseEvent} event    The originating left click event
+  */
+  async _onClickArmor (event) {
+   
+    let myActor = this.actor;
+    let myTitle = game.i18n.localize("DEVASTRA.Calcul Protection");
+    let myDialogOptions = {
+    classes: ["devastra", "sheet"]
+    };
+    let template = "";
+    var myDefenceData = await _whichTypeOfDefence (
+    myActor, template, myTitle, myDialogOptions
+    );
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myDefenceData)) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+    //////////////////////////////////////////////////////////////////
+  
+  }
+
   /* -------------------------------------------- */
 
+  
   /**
    * Listen for roll buttons Down Action.
    * @param {MouseEvent} event    The originating left click event
@@ -332,23 +360,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       console.log("isInventory = ", isInventory);
     }
 
-    /*
-    Ici on fait choisir l'armure
-    */
-    if (jetLibel == "defnc") {
-      var myDefenceData = await _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions, domainLibel);
-
-      //////////////////////////////////////////////////////////////////
-      if (!(myDefenceData)) {
-        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-        return;
-      };
-      //////////////////////////////////////////////////////////////////
-
-    }
-
-
-
+    
 
     /***********************************************************************************
     * 
@@ -558,104 +570,6 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 }
 
 
-/* -------------------------------------------- */
-/*  Dialogue de choix de type d'armure          */
-/* -------------------------------------------- */
-
-async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions, domainLibel) {
-  // Render modal dialog
-  const myActorID = myActor;
-  template = template || 'systems/devastra/templates/form/type-defence-prompt.html';
-  const title = myTitle;
-  let dialogOptions = myDialogOptions;
-  const myDomain = domainLibel;
-
-  let myItemArmor = {};
-  let myItemArmorDevastra = {};
-
-  function myObject(id, label)
-  {
-    this.id = id;
-    this.label = label;
-  };
-
-
-  myItemArmor["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  for (let item of myActor.items.filter(item => item.type === 'item')) {
-    if (item.system.subtype == "armor") {
-      myItemArmor[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
-    };
-  };
-
-  myItemArmorDevastra["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  for (let item of myActor.items.filter(item => item.type === 'devastra')) {
-    if (item.system.protection != 0) {
-      myItemArmorDevastra[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
-    };
-  };
-
-
-  var dialogData = {
-    domaine: myDomain,
-    systemData: myActorID.system,
-    // selectedinventory: myActor.system.prefs.lastweaponusedid,
-    // damage: myActor.system.prefs.improviseddamage,
-    armorchoices: myItemArmor,
-    armordevastrachoices: myItemArmorDevastra,
-    // selectedarmor: myActor.system.prefs.lastarmorusedid,
-
-  };
-
-  // dialogData = null;
-
-  // console.log(dialogData);
-  const html = await renderTemplate(template, dialogData);
-
-  // Create the Dialog window
-  let prompt = await new Promise((resolve) => {
-    new ModifiedDialog(
-    // new Dialog(
-      {
-        title: title,
-        content: html,
-        buttons: {
-          validateBtn: {
-            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
-            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
-          },
-          cancelBtn: {
-            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
-            callback: (html) => resolve(null)
-          }
-        },
-        default: 'validateBtn',
-        close: () => resolve(null)
-      },
-      dialogOptions
-    ).render(true, {
-      width: 630,
-      height: "auto"
-    });
-  });
-
-  if (prompt == null) {
-    return prompt
-  } else {
-  return dialogData;
-  }
-
-  async function _computeResult(myActor, myHtml) {
-    // console.log("I'm in _computeResult(myActor, myHtml)");
-    const editedData = {
-      selectedarmor: myHtml.find("select[name='armor']").val(),
-      selectedarmordevastra: myHtml.find("select[name='armordevastra']").val(),
-
-    };
-    // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
-    // console.log("myinventory = ", myinventory);
-    return editedData;
-  }
-}
 
 /* -------------------------------------------- */
 /*  Dialogue de choix de type d'arme            */
@@ -1114,3 +1028,103 @@ async function _skillDiceRollDialogDeblocked (
       return editedData;
     }
   }
+
+
+  /* -------------------------------------------- */
+/*  Dialogue de choix de type d'armure          */
+/* -------------------------------------------- */
+
+async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions, domainLibel) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/type-defence-prompt.html';
+  const title = myTitle;
+  let dialogOptions = myDialogOptions;
+  const myDomain = domainLibel;
+
+  let myItemArmor = {};
+  let myItemArmorDevastra = {};
+
+  function myObject(id, label)
+  {
+    this.id = id;
+    this.label = label;
+  };
+
+
+  myItemArmor["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'item')) {
+    if (item.system.subtype == "armor") {
+      myItemArmor[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
+    };
+  };
+
+  myItemArmorDevastra["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+  for (let item of myActor.items.filter(item => item.type === 'devastra')) {
+    if (item.system.protection != 0) {
+      myItemArmorDevastra[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.protection.toString()+"]");
+    };
+  };
+
+
+  var dialogData = {
+    domaine: myDomain,
+    systemData: myActorID.system,
+    // selectedinventory: myActor.system.prefs.lastweaponusedid,
+    // damage: myActor.system.prefs.improviseddamage,
+    armorchoices: myItemArmor,
+    armordevastrachoices: myItemArmorDevastra,
+    // selectedarmor: myActor.system.prefs.lastarmorusedid,
+
+  };
+
+  // dialogData = null;
+
+  // console.log(dialogData);
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 630,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return dialogData;
+  }
+
+  async function _computeResult(myActor, myHtml) {
+    // console.log("I'm in _computeResult(myActor, myHtml)");
+    const editedData = {
+      selectedarmor: myHtml.find("select[name='armor']").val(),
+      selectedarmordevastra: myHtml.find("select[name='armordevastra']").val(),
+
+    };
+    // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
+    // console.log("myinventory = ", myinventory);
+    return editedData;
+  }
+}
