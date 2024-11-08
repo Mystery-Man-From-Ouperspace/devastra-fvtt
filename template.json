@@ -193,7 +193,8 @@
         "vulnerable": 0
       },
       "initiative": {
-        "value": 0
+        "value": 0,
+        "concentration": 0
       },
       "mandala": {
         "sept": {
@@ -289,7 +290,8 @@
         "vulnerable": 0
       },
       "initiative": {
-        "value": 0
+        "value": 0,
+        "concentration": 0
       },
       "mandala": {
         "sept": {
@@ -328,7 +330,7 @@
   },
 
   "Item": {
-    "types": ["item", "enseignement", "devastra", "pouvoir", "magie", "dharma", "karma", "note"],
+    "types": ["item", "enseignement", "devastra", "pouvoir", "magie", "dharma", "karma", "note", "blessureoustatut"],
     "htmlFields": ["technique", "narrative", "notes", "gainconviction", "capacite", "implication"],
     "item": {
       "value": 0,
@@ -443,6 +445,16 @@
     "note": {
       "value": 0,
       "subtype": "",
+      "reference": "",
+      "equipped": false,
+      "technique": "",
+      "narrative": "",
+      "notes": ""
+    },
+    "blessureoustatut": {
+      "value": 0,
+      "subtype": "",
+      "domain": "",
       "reference": "",
       "equipped": false,
       "technique": "",

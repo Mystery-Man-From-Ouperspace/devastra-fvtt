@@ -208,7 +208,8 @@
   font-size: 11px;
 }
 
-.devastra .sheet-body .statistiques div.enseignements {
+.devastra .sheet-body .statistiques div.enseignements,
+.devastra .sheet-body .statistiques div.blessuresoustatuts {
   outline-offset: 2px;
   background: linear-gradient(to left, white, rgb(244, 229, 195));
   border: solid;

@@ -13,6 +13,7 @@ import { DEVASTRAMagieSheet } from "./item/magie-sheet.js";
 import { DEVASTRADharmaSheet } from "./item/dharma-sheet.js";
 import { DEVASTRAKarmaSheet } from "./item/karma-sheet.js";
 import { DEVASTRANoteSheet } from "./item/note-sheet.js";
+import { DEVASTRABlessureOuStatutSheet } from "./item/blessureoustatut-sheet.js";
 
 import { DEVASTRA } from "./config.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
@@ -198,6 +199,7 @@ Hooks.once("init", async function () {
   Items.registerSheet("devastra", DEVASTRADharmaSheet, { types: ["dharma"], makeDefault: true });
   Items.registerSheet("devastra", DEVASTRAKarmaSheet, { types: ["karma"], makeDefault: true });
   Items.registerSheet("note", DEVASTRANoteSheet, { types: ["note"], makeDefault: true });
+  Items.registerSheet("blessureoustatut", DEVASTRABlessureOuStatutSheet, { types: ["blessureoustatut"], makeDefault: true });
 
 
 

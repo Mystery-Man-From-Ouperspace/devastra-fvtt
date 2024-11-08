@@ -94,6 +94,8 @@
                     </tr>
                 </table>
             </div>
+            <br>   
+
             <div class="cadre">
                 <table class="form-group" style="border: 0px; background-color: transparent;">
                     <tr class="form-fields" style="background-color: transparent;">
@@ -120,7 +122,7 @@
                     </tr>
                     <tr class="form-fields" style="background-color: transparent;">
                         <td class="chooseinventory">
-                            <input type="radio" name="myweapon" value="power">
+                            <input type="checkbox" name="power" value="power">
                             {{ localize "DEVASTRA.choosefrominventorypower" }}</input>
                         </td>
                         <td class="chooseinventory">
@@ -131,7 +133,7 @@
                     </tr>
                     <tr class="form-fields" style="background-color: transparent;">
                         <td class="chooseinventory">
-                            <input type="radio" name="myweapon" value="magic">
+                            <input type="checkbox" name="magic" value="magic">
                             {{ localize "DEVASTRA.choosefrominventorymagic" }}</input>
                         </td>
                         <td class="chooseinventory">
@@ -142,7 +144,7 @@
                     </tr>
                     <tr class="form-fields"  style="background-color: transparent;">
                         <td class="choosedamage" style="display: none;">
-                            <span class="value"><b>{{ localize "DEVASTRA.choosedamage" }}</b>&nbsp;</span>
+                            <span class="value">{{ localize "DEVASTRA.choosedamage" }}</span>
                         </td>
                         <td class="choosedamage" style="display: none;">
                             <div style="display: flex;">
@@ -168,50 +170,16 @@
                                 </select>
                                 <select class="damage" style="float: left;">
                                     {{#select damagetype}}
-                                        <option value="1">+ @DPh</option>
-                                        <option value="2">+ @DMa</option>
-                                        <option value="3">+ @DIn</option>
-                                        <option value="4">+ @DSo</option>
-                                        <option value="5">+ @DMy</option>
+                                        <option value="0">{{ localize "DEVASTRA.opt.none" }}</option>
+                                        <option value="1">+ @domains.dph</option>
+                                        <option value="2">+ @domains.dma</option>
+                                        <option value="3">+ @domains.din</option>
+                                        <option value="4">+ @domains.dso</option>
+                                        <option value="5">+ @domains.dmy</option>
                                     {{/select}}
                                 </select>
                             </div>
                         </td>
-                    </tr>
-                </table>
-            </div>
-            <br>
-            <div class="cadre">
-                <table style="border: 0px; background-color: transparent;">
-                    <tr style="background-color: transparent;">
-                        <td>
-                            <b>{{ localize "DEVASTRA.choosewhicharmor" }}</b>
-                        <td>
-                    </tr>
-                </table>
-            </div>
-            <div class="cadre">
-                <table class="form-group" style="border: 0px; background-color: transparent;">
-                    <tr class="form-fields" style="background-color: transparent;">
-                        <td class ="choosearmor">
-                            <span class="value">{{ localize "DEVASTRA.choosearmor" }}</span>
-                        </td>
-                        <td class ="choosearmor">
-                            <select class="armor" data-type="String">
-                                {{selectOptions armorchoices selected=selectedarmor labelAttr="label" localize=true}}
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="form-fields" style="background-color: transparent;">
-                        <td class="choosearmordevastra">
-                            <span class="value">{{ localize "DEVASTRA.choosearmordevastra" }}</span>
-                        </td>
-                        <td class="choosearmordevastra">
-                            <select class="armordevastra" data-type="String">
-                                {{selectOptions armordevastrachoices selected=selectedarmordevastra labelAttr="label" localize=true}}
-                            </select>
-                        </td>
-
                     </tr>
                 </table>
             </div>

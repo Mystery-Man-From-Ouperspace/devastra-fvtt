@@ -285,20 +285,32 @@
 
     <div class="domain-div">
       <p class="right"><b>{{ localize "DEVASTRA.Shakti" }}</b></p>
-      <div style="width: 100%; display: flex;">
-        <div class="pranaDiv" style="display: table; width: 20%;">
-          <div class="pranaCol logopranableu">
-            <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Shakti.png" alt="Chakti" />
+      <div>
+        <div style="width: 100%; display: flex;">
+          <div class="pranaDiv" style="display: table; width: 20%;">
+            <div class="pranaCol logopranableu">
+              <img class="logoprana padding3px" src="systems/devastra/images/ui/icons/Shakti.png" alt="Chakti" />
+            </div>
+          </div>
+          <div style="width: 30%; float: left;">
+            <div class="concentrationDiv" style="width: 100%; display: flex;">
+              <div  style="width: 35%; display: table;" class="click clickondieconcentration concentrationDie" data-libel-id="concentration-die">
+                <img class="d1click concentrationCol" src="systems/devastra/images/ui/d6_fond_transp.png" title="{{ localize 'DEVASTRA.Jet de concentration-npc' }}" alt="Die" />
+              </div>
+              <div style="width: 65%; float: left;" class="center">
+                <span title="{{ localize 'DEVASTRA.Concentration actuelle' }}">{{systemData.initiative.concentration}}</span>
+              </div>
+            </div>
+          </div>
+          <div style="float: left; width: 50%;">
+            <div class="pranaCol logopranavalue center">
+              <input class="input" type="number" placeholder="0" min="0" step="1" name="system.shakti.value" value="{{systemData.shakti.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
+            </div>
           </div>
         </div>
-        <div style="float: left; width: 80%;">
-          <div class="pranaCol logopranavalue center">
-            <input class="input" type="number" placeholder="0" min="0" step="1" name="system.shakti.value" value="{{systemData.shakti.value}}" title="{{ localize 'DEVASTRA.Actuel' }}" />
-          </div>
-          <div class="pranaCol logopranavalue minitext">
-            <input class="input" type="text" name="system.shakti.notes" value="{{systemData.shakti.notes}}" title="{{ localize 'DEVASTRA.Note' }}" />
-          </div>
-        </div>
+      </div>
+      <div style="width: 100%;" class="minitext">
+        <input class="input" type="text" name="system.shakti.notes" value="{{systemData.shakti.notes}}" title="{{ localize 'DEVASTRA.Note' }}" />
       </div>
     </div>
   </div>

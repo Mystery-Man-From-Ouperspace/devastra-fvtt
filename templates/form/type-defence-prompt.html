@@ -1,5 +1,5 @@
 <form class="flexcol {{cssClass}}" autocomplete="off">
-    
+	
     {{!-- Sheet Body --}}
     <section class="form-body">
 
@@ -70,59 +70,71 @@
                 </table>
             </div>
             <br>   
+
             <div class="cadre">
-                <div>
-                    <table class="form-group">
-                        <tr class="form-fields">
-                            <td class="center">
-                                <span class="value"><b>{{ localize "DEVASTRA.you" }}</b>&nbsp;{{you}}&nbsp;</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div>
-                    <table class="form-group">
-                        <tr class="form-fields">
-                            <td class="center">
-                                <span class="value"><b>{{ localize "DEVASTRA.chooseopponent" }}</b>&nbsp;</span>
-                                <select name="target" data-type="String">
-                                    {{selectOptions targetchoices selected=selectedtarget labelAttr="label" localize=true}}
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div style="width: 100%;">
-                    <table style="width: 100%; height: 170px;">
-                        <tr style="text-align: center; background-color: transparent;">
-                            <td style="text-align: center; border-radius: 8px;">
-                                <img
-                                class="imageyou"
-                                style="height: 170px;"
-                                src={{youimg}}
-                                title="{{ localize 'DEVASTRA.vous' }}"
-                                alt="your token"
-                                >
-                            </td>
-
-                            <td class="versus" style="width: 10%; text-align: center; display: none;">&nbsp;<b>Vs.</b>&nbsp;</td>
-
-                            <td class="no-token" style="text-align: center; display: none; width: 45%;">
-                                <img
-                                class="imageopponent"
-                                style="height: 170px"
-                                src={{tokenimg}}
-                                title="{{ localize 'DEVASTRA.votreopposant' }}"
-                                alt="no token"
-                                >
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <table style="border: 0px; background-color: transparent;">
+                    <tr style="background-color: transparent;">
+                        <td>
+                            <b>{{ localize "DEVASTRA.choosewhicharmor" }}</b>
+                        <td>
+                    </tr>
+                </table>
             </div>
+            <br>   
 
+            <div class="cadre">
+                <table class="form-group" style="border: 0px; background-color: transparent;">
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td class ="choosearmor">
+                            <span class="value">{{ localize "DEVASTRA.choosearmor" }}</span>
+                        </td>
+                        <td class ="choosearmor">
+                            <select class="armor" data-type="String">
+                                {{selectOptions armorchoices selected=selectedarmor labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields" style="background-color: transparent;">
+                        <td class="choosearmordevastra">
+                            <span class="value">{{ localize "DEVASTRA.choosearmordevastra" }}</span>
+                        </td>
+                        <td class="choosearmordevastra">
+                            <select class="armordevastra" data-type="String">
+                                {{selectOptions armordevastrachoices selected=selectedarmordevastra labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields"  style="background-color: transparent;">
+                        <td class="choosearmorchoose">
+                            <span class="value">{{ localize "DEVASTRA.choosearmorchoose" }}</span>
+                        </td>
+                        <td class="choosearmorxhoose">
+                            <div>
+                                <select class="armorchoose">
+                                    {{#select armorchoose}}
+                                        <option value="0">0</option>
+                                        <option value="1">+1</option>
+                                        <option value="2">+2</option>
+                                        <option value="3">+3</option>
+                                        <option value="4">+4</option>
+                                        <option value="5">+5</option>
+                                        <option value="6">+6</option>
+                                        <option value="7">+7</option>
+                                        <option value="8">+8</option>
+                                        <option value="9">+9</option>
+                                        <option value="10">+10</option>
+                                        <option value="11">+11</option>
+                                        <option value="12">+12</option>
+                                        <option value="13">+13</option>
+                                        <option value="14">+14</option>
+                                        <option value="15">+15</option>
+                                    {{/select}}
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
     	</div>	
     </section>
 </form>

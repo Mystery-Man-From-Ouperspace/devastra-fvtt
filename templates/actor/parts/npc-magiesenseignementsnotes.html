@@ -1,33 +1,59 @@
 <div style="width: 100%; display: flex;">
-  <div class="domain-div" style="display: table; width: 32%;">
+  <div class="domain-div" style="display: table; width: 24%;">
     <ol class="item-list">
-        <h1 class="tab-sous-titre">{{ localize "DEVASTRA.Magies" }}</h1>
-        {{#each magies as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-          <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-          <span class="item-name">{{item.name}}</span>
-          <div class="item-controls">
-            <a class="item-control" title="{{ localize 'DEVASTRA.MagieEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
-            <a class="item-control" title="{{ localize 'DEVASTRA.MagieDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
-          </div>
-        </li>
-        <div>
-          {{{ item.system.technique }}}
+      <h1>{{ localize "DEVASTRA.Blessures ou Statuts" }}</h1>
+      {{#each blessuresoustatuts as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.BlessureEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.BlessureDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
         </div>
-        {{/each}}
-      </ol>
-      <span>
-        <a class="item-control" title="{{ localize 'DEVASTRA.MagieCreate' }}" data-action="create" data-type="magie"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.MagieCreate" }}</a>
-      </span>
-  </div>
- 
-  <div style="float: left; width: 2%;">
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.BlessureCreate' }}" data-action="create" data-type="blessureoustatut"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.BlessureCreate" }}</a>
+    </span> 
   </div>
 
-  <div class="domain-div" style="float: left; width: 32%;">
+  <div style="float: left; width: 1.5%;">
+  </div>
+
+  <div class="domain-div" style="display: table; width: 24%;">
     <ol class="item-list">
-        <h1>{{ localize "DEVASTRA.Enseignements" }}</h1>
-        {{#each enseignements as |item id|}}
+      <h1>{{ localize "DEVASTRA.Magies" }}</h1>
+      {{#each magies as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.MagieEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.MagieDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.MagieCreate' }}" data-action="create" data-type="magie"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.MagieCreate" }}</a>
+    </span>
+  </div>
+ 
+  <div style="float: left; width: 1.5%;">
+  </div>
+
+  <div class="domain-div" style="float: left; width: 24%;">
+    <ol class="item-list">
+      <h1>{{ localize "DEVASTRA.Enseignements" }}</h1>
+      {{#each enseignements as |item id|}}
       <li class="item flexrow" data-item-id="{{item._id}}">
         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
         <span class="item-name">{{item.name}}</span>
@@ -44,30 +70,31 @@
     </ol>
     <span>
       <a class="item-control" title="{{ localize 'DEVASTRA.EnseignementCreate' }}" data-action="create" data-type="enseignement"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.EnseignementCreate" }}</a>
-    </span>  </div>
-
-  <div style="float: left; width: 2%;">
+    </span>
   </div>
 
-  <div class="domain-div" style="float: left; width: 32%;">
+  <div style="float: left; width: 1.5%;">
+  </div>
+
+  <div class="domain-div" style="float: left; width: 24%;">
     <ol class="item-list">
-        <h1>{{ localize "DEVASTRA.Notes" }}</h1>
-        {{#each notes as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-          <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-          <span class="item-name">{{item.name}}</span>
-          <div class="item-controls">
-            <a class="item-control" title="{{ localize 'DEVASTRA.NoteEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
-            <a class="item-control" title="{{ localize 'DEVASTRA.NoteDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
-          </div>
-        </li>
-        <div>
-          {{{ item.system.technique }}}
+      <h1>{{ localize "DEVASTRA.Notes" }}</h1>
+      {{#each notes as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <span class="item-name">{{item.name}}</span>
+        <div class="item-controls">
+          <a class="item-control" title="{{ localize 'DEVASTRA.NoteEdit' }}" data-action="edit"><i class="fas fa-edit"></i></a>
+          <a class="item-control" title="{{ localize 'DEVASTRA.NoteDelete' }}" data-action="delete"><i class="fas fa-trash"></i></a>
         </div>
-        {{/each}}
-      </ol>
-      <span>
-        <a class="item-control" title="{{ localize 'DEVASTRA.NoteCreate' }}" data-action="create" data-type="note"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.NoteCreate" }}</a>
-      </span>
+      </li>
+      <div>
+        {{{ item.system.technique }}}
+      </div>
+      {{/each}}
+    </ol>
+    <span>
+      <a class="item-control" title="{{ localize 'DEVASTRA.NoteCreate' }}" data-action="create" data-type="note"><i class="fas fa-plus"></i> {{ localize "DEVASTRA.NoteCreate" }}</a>
+    </span>
   </div>
 </div>

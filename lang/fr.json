@@ -53,7 +53,7 @@
  "DEVASTRA.DescriptionInExtenso": "Description",
  "DEVASTRA.Skills": "Statistiques",
  
- "DEVASTRA.Magies, Enseignements & Notes": "Magies, Enseignements & Notes",
+ "DEVASTRA.Magies, Enseignements & Notes": "Statuts, Magies, Enseignements & Notes",
  
   "DEVASTRA.Mandalas": "Mandala",
   "DEVASTRA.Shakti": "Shakti",
@@ -92,6 +92,7 @@
   "DEVASTRA.défensif - 1 Succès": "défensif - 1 Succès",
 
   "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
+  "DEVASTRA.Jet de concentration-npc": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires",
   "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Chakti initiale",
   "DEVASTRA.Clic de jeton d’action": "Cliquez ici (en début de tour) pour obtenir 1 Jeton d’Action",
 
@@ -190,6 +191,17 @@
   "DEVASTRA.NoteEdit": "Modifier la Note",
   "DEVASTRA.NoteDelete": "Supprimer la Note",
   "DEVASTRA.NoteNew": "Nouvelle Note",
+
+  "DEVASTRA.Blessures ou Statuts": "Blessures ou Statuts",
+
+  "DEVASTRA.BlessureCreate": "Créer un Statut",
+  "DEVASTRA.BlessureRead": "Consulter le Statut",
+  "DEVASTRA.BlessureEdit": "Modifier le Statut",
+  "DEVASTRA.BlessureDelete": "Supprimer le Statut",
+  "DEVASTRA.BlessureNew": "Nouveau Statut",
+
+
+
 
   "DEVASTRA.Chakra": "Chakra",
 
@@ -336,8 +348,8 @@
   "DEVASTRA.Dispose Bonus explosif": "Dispose du bonus 6 explosif",
   "DEVASTRA.Reçoit blessure": "Reçoit une Blessure (ou un Statut) à chaque perte de Prana",
 
-  "DEVASTRA.Jet d′attaque": "Jet d′attaque",
-  "DEVASTRA.Jet de défense": "Jet de défense",
+  "DEVASTRA.Jet d′attaque": "Jet offensif",
+  "DEVASTRA.Jet de défense": "Jet défensif",
   "DEVASTRA.Jet standard": "Jet standard",
   "DEVASTRA.ND": "ND",
   "DEVASTRA.vs ND": "/ ND :",
@@ -421,9 +433,9 @@
 
   "DEVASTRA.choosewhichinventory": "Sélectionnez une arme, un sort dans votre inventaire, ou bien utilisez une arme improvisée :",
   "DEVASTRA.frominventory": "Inventaire",
-  "DEVASTRA.developedfrominventory": "Selectionnez une de vos propres armes ou un de vos pouvoirs",
+  "DEVASTRA.developedfrominventory": "Sélectionnez une de vos propres armes ou un de vos pouvoirs",
   "DEVASTRA.improvisedweapon": "Arme improvisée ou trouvée",
-  "DEVASTRA.developedimprovisedweapon": "Selectionnez les dégâts que vous pourriez infliger",
+  "DEVASTRA.developedimprovisedweapon": "Sélectionnez les dégâts que vous pourriez infliger",
   "DEVASTRA.choosefrominventory": "Une arme dans votre inventaire",
   "DEVASTRA.choosefrominventorydevastra": "Votre Devâstra en tant qu′arme (le cas échéant)",
   "DEVASTRA.choosefrominventorypower": "Un pouvoir de votre Devâstra pour occasionner des dégâts",
@@ -432,8 +444,12 @@
   "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent :",
   "DEVASTRA.choosearmor": "Une armure ou un bouclier",
   "DEVASTRA.choosearmordevastra": "Votre Devâstra en tant que protection (le cas échéant)",
-  "DEVASTRA.barehands": "Mains nues",
+  "DEVASTRA.choosearmorchoose": "Bonus à votre protection (par exemple, une magie en cours)",
+  "DEVASTRA.barehands": "Mains nues ou affrontement verbal",
 
+  "DEVASTRA.Blessure": "Blessure",
+  "DEVASTRA.Statut": "Statut",
+  "DEVASTRA.Subtype": "Type",
 
 
 
@@ -446,6 +462,7 @@
     },
     "Item": {
       "item": "Équipement",
+      "blessureoustatut": "Blessure ou Statut",
       "devastra": "Devâstra",
       "dharma": "Dharma",
       "enseignement": "Enseignement",
