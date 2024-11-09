@@ -117,6 +117,8 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     html.find(".clickdownaction").click(this._onClickDownAction.bind(this));
     html.find(".clickonarmure").click(this._onClickArmor.bind(this));
     html.find(".clickontrash").click(this._onClickTrash.bind(this));
+    html.find(".clickondieconcentration").click(this._onClickDieConcentration.bind(this));
+    html.find(".clickondieshakti").click(this._onClickDieShakti.bind(this));
 
     Hooks.on('updateSetting', async (setting, update, options, id) => this.onUpdateSetting(setting, update, options, id));
   
@@ -224,6 +226,64 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
   }
 
 
+
+  /**
+   * Listen for click concentration.
+   * @param {MouseEvent} event    The originating left click event
+  */
+  async _onClickDieConcentration (event) {
+  
+    let myActor = this.actor;
+    let myTitle = game.i18n.localize("DEVASTRA.Alerte");
+    let myMessage = game.i18n.localize("DEVASTRA.On tire la concentration");
+    let myDialogOptions = {
+    classes: ["devastra", "sheet"]
+    };
+    let template = "";
+    var alertData = await _alertInitiativeMessage (
+    myActor, template, myTitle, myDialogOptions, myMessage
+    );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(alertData)) {
+    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+    //////////////////////////////////////////////////////////////////
+
+    // Lancer de dés
+  }
+
+/**
+   * Listen for click concentration.
+   * @param {MouseEvent} event    The originating left click event
+  */
+async _onClickDieShakti (event) {
+  
+  let myActor = this.actor;
+  let myTitle = game.i18n.localize("DEVASTRA.Alerte");
+  let myMessage = game.i18n.localize("DEVASTRA.On tire la shakti");
+  let myDialogOptions = {
+  classes: ["devastra", "sheet"]
+  };
+  let template = "";
+  var alertData = await _alertInitiativeMessage (
+  myActor, template, myTitle, myDialogOptions, myMessage
+  );
+
+
+  //////////////////////////////////////////////////////////////////
+  if (!(alertData)) {
+  // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+  return;
+  };
+  //////////////////////////////////////////////////////////////////
+
+  // Lancer de dés
+}
+
+
   /**
    * Listen for roll click poubelle.
    * @param {MouseEvent} event    The originating left click event
@@ -244,11 +304,19 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     //////////////////////////////////////////////////////////////////
     if (!(alertData)) {
-    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
     return;
     };
     //////////////////////////////////////////////////////////////////
-  
+
+    await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
+    await myActor.update({ "system.initiative.nbrjetonbonus": 0 });
   }
 
     
@@ -2334,5 +2402,68 @@ async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMes
   } else {
   return true;
   }
+
+}
+
+/* -------------------------------------------- */
+/*  Dialogue d'alerte Inititiative              */
+/* -------------------------------------------- */
+
+async function _alertInitiativeMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/type-alert-initiative-prompt.html';
+  const title = myTitle;
+  let dialogOptions = myDialogOptions;
+
+  var dialogData = {
+    systemData: myActorID.system,
+    messg: myMessage
+  };
+
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'cancelBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 350,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return dialogData;
+  }
+
+  async function _computeResult(myActor, myHtml) {
+    // console.log("I'm in _computeResult(myActor, myHtml)");
+    const editedData = {
+      initiativeSpecial: myHtml.find("select[name='initspecial']").val(),
+
+    };
+    return editedData;
+  }
+
 
 }

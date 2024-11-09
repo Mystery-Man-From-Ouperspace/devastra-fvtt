@@ -93,7 +93,7 @@
 
   "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
   "DEVASTRA.Jet de concentration-npc": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires",
-  "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Chakti initiale",
+  "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Shakti initiale",
   "DEVASTRA.Clic de jeton d’action": "Cliquez ici (en début de tour) pour obtenir 1 Jeton d’Action",
 
   "DEVASTRA.TokenPile": "Pile de Jetons",
@@ -460,7 +460,14 @@
 
   "DEVASTRA.Alerte": "J′ai besoin de votre confirmation !",
 
-  "DEVASTRA.On met à la poubelle": "Désirez-vous vraiment vous défausser de tous vos jetons présents sur le Mandala des 7 rangs d′action ainsi que de ceux sur la pile bonus d′initiative&nbsp;? Ces jetons iront directement à la corbeille…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action est irréversible (la corbeille est un puits sans fond).",
+  "DEVASTRA.On met à la poubelle": "Désirez-vous vraiment vous défausser de tous vos Jetons présents sur le Mandala des 7 rangs d′action ainsi que de ceux sur la pile bonus d′initiative&nbsp;?<br>Ces Jetons iront directement à la corbeille…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action est irréversible (la corbeille est un puits sans fond).",
+
+  "DEVASTRA.InitSpecial": "Vous possédez bien la spécialité Initiative… et vous souhaitez la mettre en œuvre dans ce lajeter de dés.",
+
+  "DEVASTRA.On tire la concentration": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti&nbsp;?<br><br><i class='fas fa-triangle-exclamation'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires.",
+
+  "DEVASTRA.On tire la shakti": "Désirez-vous vraiment déterminer votre réserve de Shakti initiale&nbsp;?<br>Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3.<br>Tous vos anciens Jetons seront défaussés…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de conflit.",
+
 
 
 
