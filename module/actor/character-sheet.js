@@ -279,6 +279,16 @@ async _onClickDieShakti (event) {
   return;
   };
   //////////////////////////////////////////////////////////////////
+  await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
+  await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
+  await myActor.update({ "system.initiative.nbrjetonbonus": 0 });
+  await myActor.update({ "system.shakti.piledejetons": 0 });
+  await myActor.update({ "system.action.piledejetons": 0 });
 
   // Lancer de dés
 }
