@@ -146,8 +146,8 @@ export class DEVASTRAActorSheet extends ActorSheet {
             }
           break;
           case "blessureoustatut":
-            for (let note of myActor.items.filter(item => item.type === 'blessureoustatut')) {
-              if (note.img == "icons/svg/item-bag.svg") blessureoustatut.update({ "img": imgPath });
+            for (let blessureoustatut of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+              if (blessureoustatut.img == "icons/svg/item-bag.svg") blessureoustatut.update({ "img": imgPath });
             }
           break;
         }
