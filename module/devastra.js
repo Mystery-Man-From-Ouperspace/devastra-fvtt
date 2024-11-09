@@ -92,7 +92,7 @@ Hooks.once("init", async function () {
     hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 0"),
     scope: "world",
     config: false,
-    default: false,
+    default: true,
     type: Boolean,
   });
   game.settings.register("devastra", "viseur1", {
@@ -148,7 +148,7 @@ Hooks.once("init", async function () {
     hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 7"),
     scope: "world",
     config: false,
-    default: true,
+    default: false,
     type: Boolean,
   });
 
