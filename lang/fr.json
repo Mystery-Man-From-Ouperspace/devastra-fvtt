@@ -408,7 +408,7 @@
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
   "DEVASTRA.GMManager.Title": "Afficher Mandala Rangs Action",
-  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte. Cliquez ensuite sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.",
+  "DEVASTRA.SpeechMandala": "Sélectionnez durant le déroulé du tour en cours, le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte. Cliquez après cela sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.",
 
 
   "DEVASTRA.typeclassique01": "Type : classique 1",
