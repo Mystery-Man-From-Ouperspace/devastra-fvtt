@@ -87,6 +87,14 @@ Hooks.once("init", async function () {
 
   */
 
+  game.settings.register("devastra", "viseur0", {
+    name: game.i18n.localize("DEVASTRA.Mandala 0 sélectionné"),
+    hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 0"),
+    scope: "world",
+    config: false,
+    default: false,
+    type: Boolean,
+  });
   game.settings.register("devastra", "viseur1", {
     name: game.i18n.localize("DEVASTRA.Mandala 1 sélectionné"),
     hint: game.i18n.localize("DEVASTRA.Cocher cette option activera le rang d'action 1"),

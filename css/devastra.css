@@ -1283,8 +1283,8 @@ flex-wrap: wrap;
 .devastra.gm-manager {
   min-width: 315px; /* 560px; */
   max-width: 315px;
-  min-height: 655px;
-  max-height: 655px;
+  height: 735px;
+  max-height: 735px;
 }
 
 .devastra.gm-manager .body-sheet .mandala-parent {

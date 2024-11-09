@@ -32,7 +32,7 @@ export class GMManager extends Application {
       title: game.i18n.localize("DEVASTRA.GMMANAGER.Title"),
       top: 100,
       left: 120,
-      width: 1200,
+      width: 315,
       height: "auto",
       resizable: false,
     });
@@ -43,6 +43,7 @@ export class GMManager extends Application {
   async getData() {
     const context = await super.getData();
 
+    context.viseur0 = await game.settings.get("devastra", "viseur0");
     context.viseur1 = await game.settings.get("devastra", "viseur1");
     context.viseur2 = await game.settings.get("devastra", "viseur2");
     context.viseur3 = await game.settings.get("devastra", "viseur3");
@@ -91,10 +92,26 @@ export class GMManager extends Application {
     let whichCheckBox ="";
     let myActor = this.actor;
     switch (mandalaNumber) {
+      case "0":
+        if (game.settings.get("devastra", "viseur0")) {
+        } else {
+          game.settings.set("devastra", "viseur0", true);
+          game.settings.set("devastra", "viseur1", false);
+          game.settings.set("devastra", "viseur2", false);
+          game.settings.set("devastra", "viseur3", false);
+          game.settings.set("devastra", "viseur4", false);
+          game.settings.set("devastra", "viseur5", false);
+          game.settings.set("devastra", "viseur6", false);
+          game.settings.set("devastra", "viseur7", false);
+          game.socket.emit('system.devastra', 'viseurupdate');
+        }
+      break;
+
       case "1":
         if (game.settings.get("devastra", "viseur1")) {
         } else {
           game.settings.set("devastra", "viseur1", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur3", false);
           game.settings.set("devastra", "viseur4", false);
@@ -108,6 +125,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur2")) {
         } else {
           game.settings.set("devastra", "viseur2", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur3", false);
           game.settings.set("devastra", "viseur4", false);
@@ -121,6 +139,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur3")) {
         } else {
           game.settings.set("devastra", "viseur3", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur4", false);
@@ -134,6 +153,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur4")) {
         } else {
           game.settings.set("devastra", "viseur4", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur3", false);
@@ -147,6 +167,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur5")) {
         } else {
           game.settings.set("devastra", "viseur5", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur3", false);
@@ -160,6 +181,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur6")) {
         } else {
           game.settings.set("devastra", "viseur6", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur3", false);
@@ -173,6 +195,7 @@ export class GMManager extends Application {
         if (game.settings.get("devastra", "viseur7")) {
         } else {
           game.settings.set("devastra", "viseur7", true);
+          game.settings.set("devastra", "viseur0", false);
           game.settings.set("devastra", "viseur1", false);
           game.settings.set("devastra", "viseur2", false);
           game.settings.set("devastra", "viseur3", false);

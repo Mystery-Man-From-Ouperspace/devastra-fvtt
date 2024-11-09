@@ -443,9 +443,10 @@
   "DEVASTRA.choosefrominventorymagic": "Une magie pour occasionner des dégâts",
   "DEVASTRA.choosedamage": "Demandez à votre MJ les dégâts infligeables par cette arme",
   "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent :",
-  "DEVASTRA.choosearmor": "Une armure ou un bouclier",
+  "DEVASTRA.choosearmor": "Une première protection — comme une armure",
+  "DEVASTRA.chooseshield": "Une seconde protection — comme un bouclier (doit être différente de la première pour être prise en compte)",
   "DEVASTRA.choosearmordevastra": "Votre Devâstra en tant que protection (le cas échéant)",
-  "DEVASTRA.choosearmorchoose": "Bonus à votre protection (par exemple, une magie en cours)",
+  "DEVASTRA.choosearmorchoose": "Bonus à votre protection — par exemple, une magie en cours",
   "DEVASTRA.barehands": "Mains nues ou affrontement verbal",
 
   "DEVASTRA.Blessure": "Blessure",

@@ -29,6 +29,16 @@
                         </td>
                     </tr>
                     <tr class="form-fields" style="background-color: transparent;">
+                        <td class ="chooseshield">
+                            <span class="value">{{ localize "DEVASTRA.chooseshield" }}</span>
+                        </td>
+                        <td class ="chooseshield">
+                            <select class="shield" data-type="String">
+                                {{selectOptions armorshieldchoices selected=selectedarmorshield labelAttr="label" localize=true}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-fields" style="background-color: transparent;">
                         <td class="choosearmordevastra">
                             <span class="value">{{ localize "DEVASTRA.choosearmordevastra" }}</span>
                         </td>

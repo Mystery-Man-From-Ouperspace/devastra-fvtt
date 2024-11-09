@@ -1073,6 +1073,7 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
     // selectedinventory: myActor.system.prefs.lastweaponusedid,
     // damage: myActor.system.prefs.improviseddamage,
     armorchoices: myItemArmor,
+    armorshieldchoices: myItemArmor,
     armordevastrachoices: myItemArmorDevastra,
     // selectedarmor: myActor.system.prefs.lastarmorusedid,
 
@@ -1120,6 +1121,7 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
       selectedarmor: myHtml.find("select[name='armor']").val(),
+      selectedarmorshield: myHtml.find("select[class='shield']").val(),
       selectedarmordevastra: myHtml.find("select[name='armordevastra']").val(),
 
     };
