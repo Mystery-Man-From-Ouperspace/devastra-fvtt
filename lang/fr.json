@@ -408,7 +408,7 @@
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
   "DEVASTRA.GMManager.Title": "Afficher Mandala rangs d′action",
-  "DEVASTRA.SpeechMandala": "Sélectionnez durant le déroulé du tour en cours, le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.<br>Cliquez après cela sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.<br>Si cette fenêtre vient à être fermée en cours de partie, vous pourrez la rouvrir en cliquant successivement sur les deux boutons arborant les symboles <i class='fas fa-trillium'></i> et <i class='fa-solid fa-users'></i>.",
+  "DEVASTRA.SpeechMandala": "Sélectionnez, durant le déroulé du tour en cours, le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.<br>Cliquez après cela sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.<br>Si cette fenêtre vient à être fermée en cours de partie, vous pourrez la rouvrir en cliquant successivement sur les deux boutons arborant les symboles <i class='fas fa-trillium'></i> et <i class='fa-solid fa-users'></i>.<br>Cette fenêtre conservera ses réglages entre deux parties.",
 
 
   "DEVASTRA.typeclassique01": "Type : classique 1",
@@ -456,6 +456,12 @@
   "DEVASTRA.Mettre à jour total armure": "Mettre à jour le total d′armure",
   "DEVASTRA.Calcul Protection": "Calcul du total d′armure",
   "DEVASTRA.WhichWeapon": "Choix de l′arme",
+
+
+  "DEVASTRA.Alerte": "J′ai besoin de votre confirmation !",
+
+  "DEVASTRA.On met à la poubelle": "Désirez-vous vraiment vous défausser de tous vos jetons présents sur le Mandala des 7 rangs d′action ainsi que de ceux sur la pile bonus d′initiative&nbsp;? Ces jetons iront directement à la corbeille…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action est irréversible (la corbeille est un puits sans fond).",
+
 
 
 

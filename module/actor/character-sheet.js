@@ -116,6 +116,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     html.find(".clickonchakra").click(this._onClickChakraJaugeCheck.bind(this));
     html.find(".clickdownaction").click(this._onClickDownAction.bind(this));
     html.find(".clickonarmure").click(this._onClickArmor.bind(this));
+    html.find(".clickontrash").click(this._onClickTrash.bind(this));
 
     Hooks.on('updateSetting', async (setting, update, options, id) => this.onUpdateSetting(setting, update, options, id));
   
@@ -221,6 +222,36 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       myActor.render(false);
     // }
   }
+
+
+  /**
+   * Listen for roll click poubelle.
+   * @param {MouseEvent} event    The originating left click event
+  */
+  async _onClickTrash (event) {
+  
+    let myActor = this.actor;
+    let myTitle = game.i18n.localize("DEVASTRA.Alerte");
+    let myMessage = game.i18n.localize("DEVASTRA.On met à la poubelle");
+    let myDialogOptions = {
+    classes: ["devastra", "sheet"]
+    };
+    let template = "";
+    var alertData = await _alertMessage (
+    myActor, template, myTitle, myDialogOptions, myMessage
+    );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(alertData)) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+    //////////////////////////////////////////////////////////////////
+  
+  }
+
+    
 
   /**
    * Listen for roll click armure.
@@ -2252,4 +2283,56 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
     // console.log("myinventory = ", myinventory);
     return editedData;
   }
+}
+
+/* -------------------------------------------- */
+/*  Dialogue générique d'alerte                 */
+/* -------------------------------------------- */
+
+async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/type-alert-prompt.html';
+  const title = myTitle;
+  let dialogOptions = myDialogOptions;
+
+  var dialogData = {
+    messg: myMessage
+  };
+
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve(true)
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'cancelBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 350,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return true;
+  }
+
 }
