@@ -68,6 +68,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     context.autoWoundsNPC = game.settings.get("devastra", "autoWoundsNPC");
     */
+    context.viseur0 = await game.settings.get("devastra", "viseur0");
     context.viseur1 = await game.settings.get("devastra", "viseur1");
     context.viseur2 = await game.settings.get("devastra", "viseur2");
     context.viseur3 = await game.settings.get("devastra", "viseur3");
