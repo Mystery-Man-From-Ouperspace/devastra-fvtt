@@ -58,8 +58,8 @@
                 <label><b>{{localize "DEVASTRA.Subtype"}}</b></label>
             </div>
             <div>
-                <select class="subtype">
-                    {{#select system.subtype}}
+                <select name="system.subtype" data-type="String">
+                    {{#select systemData.subtype selected=systemData.subtype}}
                         <option value="0">{{ localize "DEVASTRA.Blessure" }}</option>
                         <option value="1">{{ localize "DEVASTRA.Statut" }}</option>
                     {{/select}}
@@ -73,8 +73,8 @@
                 <label><b>{{localize "DEVASTRA.Domain"}}</b></label>
             </div>
             <div>
-                <select class="domain" placeholder="{{ localize 'DEVASTRA.Domain' }}">
-                    {{#select system.domain}}
+                <select name="system.domain" data-type="String">
+                    {{#select systemData.domain selected=systemData.domain}}
                         <option value="0">{{ localize "DEVASTRA.opt.none" }}</option>
                         <option value="1">@domains.dph</option>
                         <option value="2">@domains.dma</option>
@@ -108,7 +108,7 @@
             </div>
             <div>
                 <select class="subtype">
-                    {{#select system.subtype}}
+                    {{#select systemData.subtype}}
                         <option value="0">{{ localize "DEVASTRA.Blessure" }}</option>
                         <option value="1">{{ localize "DEVASTRA.Statut" }}</option>
                     {{/select}}
@@ -123,7 +123,7 @@
             </div>
             <div>
                 <select class="domain" placeholder="{{ localize 'DEVASTRA.Domain' }}">
-                    {{#select system.domain}}
+                    {{#select systemData.domain}}
                         <option value="0">{{ localize "DEVASTRA.opt.none" }}</option>
                         <option value="1">@domains.dph</option>
                         <option value="2">@domains.dma</option>
