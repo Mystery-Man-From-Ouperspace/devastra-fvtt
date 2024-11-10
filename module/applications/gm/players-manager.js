@@ -32,7 +32,7 @@ export class PlayersManager extends Application {
       title: game.i18n.localize("DEVASTRA.PLAYERSMANAGER.Title"),
       top: 50,
       left: 450,
-      width: 1000,
+      width: 725,
       height: 600,
       resizable: true,
     });
