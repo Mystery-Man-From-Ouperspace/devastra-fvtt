@@ -192,13 +192,13 @@
   "DEVASTRA.NoteDelete": "Supprimer la Note",
   "DEVASTRA.NoteNew": "Nouvelle Note",
 
-  "DEVASTRA.Blessures ou Statuts": "Blessures ou Statuts",
+  "DEVASTRA.Blessures ou Statuts": "Statuts ou Blessures",
 
   "DEVASTRA.BlessureCreate": "Créer un Statut",
   "DEVASTRA.BlessureRead": "Consulter le Statut",
   "DEVASTRA.BlessureEdit": "Modifier le Statut",
   "DEVASTRA.BlessureDelete": "Supprimer le Statut",
-  "DEVASTRA.BlessureNew": "Nouveau Statut",
+  "DEVASTRA.BlessureNew": "Nouveau Statut ou Blessure",
 
 
 
@@ -481,7 +481,7 @@
     },
     "Item": {
       "item": "Équipement",
-      "blessureoustatut": "Blessure ou Statut",
+      "blessureoustatut": "Statut ou Blessure",
       "devastra": "Devâstra",
       "dharma": "Dharma",
       "enseignement": "Enseignement",
