@@ -176,7 +176,18 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       };
     //////////////////////////////////////////////////////////////////
     
+    // Lancer de dés
 
+    let gain = 5;
+
+    let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la concentration-npc").replace("^0", gain.toString());
+    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: myMessage2Chat,
+      rollMode: myTypeOfThrow
+    });
 
   }
 
@@ -801,7 +812,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
     youimg: myActor.img,
     targetchoices: myItemTarget,
     selectedtarget: "0",
-    tokenimg: ""
+    tokenimg: "",
   };
   const html = await renderTemplate(template, dialogData);
 

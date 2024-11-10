@@ -456,7 +456,7 @@
       "notes": ""
     },
     "blessureoustatut": {
-      "value": 0,
+      "value": 1,
       "subtype": "",
       "domain": "",
       "reference": "",

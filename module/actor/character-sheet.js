@@ -286,84 +286,106 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       };
     //////////////////////////////////////////////////////////////////
     
+    // Lancer de dés
 
+    let gain = 5;
 
+    let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la concentration").replace("^0", gain.toString());
+    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: myMessage2Chat,
+      rollMode: myTypeOfThrow
+    });
   }
 
-/**
-   * Listen for click shakti.
-   * @param {MouseEvent} event    The originating left click event
-  */
-async _onClickDieShakti (event) {
-  
-  let myActor = this.actor;
-  let myTitle = game.i18n.localize("DEVASTRA.Alerte");
-  let myMessage = game.i18n.localize("DEVASTRA.On tire la shakti");
-  let myDialogOptions = {
-  classes: ["devastra", "sheet"]
-  };
-  let template = "";
-  var alertData = await _alertMessage (
-  myActor, template, myTitle, myDialogOptions, myMessage
-  );
+  /**
+     * Listen for click shakti.
+     * @param {MouseEvent} event    The originating left click event
+    */
+  async _onClickDieShakti (event) {
+    
+    let myActor = this.actor;
+    let myTitle = game.i18n.localize("DEVASTRA.Alerte");
+    let myMessage = game.i18n.localize("DEVASTRA.On tire la shakti");
+    let myDialogOptions = {
+    classes: ["devastra", "sheet"]
+    };
+    let template = "";
+    var alertData = await _alertMessage (
+    myActor, template, myTitle, myDialogOptions, myMessage
+    );
 
 
-  //////////////////////////////////////////////////////////////////
-  if (!(alertData)) {
-  ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-  return;
-  };
-  //////////////////////////////////////////////////////////////////
-
-  myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
-
-  let domainLibel = "din";
-  let pureDomOrSpeLibel;
-  let myInitThrow = true;
-
-  let myResultDialog =  await _skillDiceRollDialog(
-    myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
-  );
-
-
-  //////////////////////////////////////////////////////////////////
-  if (!(myResultDialog)) {
+    //////////////////////////////////////////////////////////////////
+    if (!(alertData)) {
     ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
     return;
     };
-  //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
 
+    myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
 
-  let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
-  if (myVersionDebloqueeFlag) {
-    let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
-    myResultDialog = await _skillDiceRollDialogDeblocked (
+    let domainLibel = "din";
+    let pureDomOrSpeLibel;
+    let myInitThrow = true;
+
+    let myResultDialog =  await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
+
+    let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    if (myVersionDebloqueeFlag) {
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+      myResultDialog = await _skillDiceRollDialogDeblocked (
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+      );
+    }
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+      
+      
+
+    await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
+    await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
+    await myActor.update({ "system.initiative.nbrjetonbonus": 0 });
+    await myActor.update({ "system.shakti.piledejetons": 0 });
+    await myActor.update({ "system.action.piledejetons": 0 });
+
+    // Lancer de dés
+
+    let remplace = 5;
+
+    let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la shakti").replace("^0", remplace.toString());
+    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: myMessage2Chat,
+      rollMode: myTypeOfThrow
+    });
+
   }
-
-  //////////////////////////////////////////////////////////////////
-  if (!(myResultDialog)) {
-    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-    return;
-    };
-  //////////////////////////////////////////////////////////////////
-    
-    
-
-  await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.quatre.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.trois.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
-  await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
-  await myActor.update({ "system.initiative.nbrjetonbonus": 0 });
-  await myActor.update({ "system.shakti.piledejetons": 0 });
-  await myActor.update({ "system.action.piledejetons": 0 });
-
-  // Lancer de dés
-}
 
 
   /**
@@ -399,6 +421,13 @@ async _onClickDieShakti (event) {
     await myActor.update({ "system.mandala.deux.nbrjetonbonus": 0 });
     await myActor.update({ "system.mandala.un.nbrjetonbonus": 0 });
     await myActor.update({ "system.initiative.nbrjetonbonus": 0 });
+
+    if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+      var audio;
+      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
+      audio.play();
+    }
+
   }
 
     
@@ -1345,13 +1374,44 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
    */
   async _onClickDownAction(event) {
     let myActor = this.actor;
+
     if (!(myActor.system.action.piledejetons)) {
+
+      let myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour Action");
+      let myMessage = game.i18n.localize("DEVASTRA.On tire un jeton Action");
+      let myDialogOptions = {
+      classes: ["devastra", "sheet"]
+      };
+      let template = "";
+      var alertData = await _alertMessage (
+      myActor, template, myTitle, myDialogOptions, myMessage
+      );
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(alertData)) {
+        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+
+    
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
         audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.action.piledejetons": 1 });
+      
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré action");
+      const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: myMessage2Chat,
+        rollMode: myTypeOfThrow
+      });
+  
     };
   };
 
@@ -2029,7 +2089,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
     youimg: myActor.img,
     targetchoices: myItemTarget,
     selectedtarget: "0",
-    tokenimg: ""
+    tokenimg: "",
   };
   const html = await renderTemplate(template, dialogData);
 

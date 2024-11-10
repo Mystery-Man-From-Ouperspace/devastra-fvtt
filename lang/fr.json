@@ -200,6 +200,9 @@
   "DEVASTRA.BlessureDelete": "Supprimer le Statut",
   "DEVASTRA.BlessureNew": "Nouveau Statut ou Blessure",
 
+  "DEVASTRA.OpponentProtection": "Tenir automatiquement compte des protections de votre opposant",
+
+
 
 
 
@@ -467,11 +470,22 @@
   "DEVASTRA.On tire la concentration": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires.",
   "DEVASTRA.On tire la concentration-npc": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires.",
 
+  
   "DEVASTRA.On tire la shakti": "Désirez-vous vraiment déterminer votre réserve de Shakti initiale&nbsp;?<br>Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3.<br>Tous vos anciens Jetons seront défaussés…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de conflit et est irréversible.",
+
+  
+  "DEVASTRA.On tire un jeton Action": "Désirez-vous vraiment tirer un Jeton Action&nbsp;?<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de tour.",
+
 
   "DEVASTRA.Tirage de jetons pour la Shakti": "Tirage de jetons pour la Shakti",
 
+  "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
 
+
+  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",
+  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Point(s) de Shakti.",
+  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) v/ 3]<br>Soit ^0 Jeton(s) de Shakti initiale.",
+  "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
 
   "TYPES": {
     "Actor": {
