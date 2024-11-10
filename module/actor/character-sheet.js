@@ -288,6 +288,22 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     
     // Lancer de dés
 
+
+
+
+
+
+
+
+
+    
+    if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+      var audio;
+      audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+      audio.play();
+    }
+
+
     let gain = 5;
 
     let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la concentration").replace("^0", gain.toString());
@@ -360,6 +376,11 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     //////////////////////////////////////////////////////////////////
       
       
+    if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+      var audio;
+      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
+      audio.play();
+    }
 
     await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
     await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
@@ -373,6 +394,20 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     await myActor.update({ "system.action.piledejetons": 0 });
 
     // Lancer de dés
+
+
+
+
+
+
+
+
+    if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+      var audio;
+      audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+      audio.play();
+    }
+
 
     let remplace = 5;
 
