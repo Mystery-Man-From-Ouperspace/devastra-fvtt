@@ -24,7 +24,7 @@ export const preloadHandlebarsTemplates = async function() {
 
     // APP
 		"systems/devastra/templates/app/gm-manager.hbs",
-		// "systems/devastra/templates/app/gm-player.hbs"
+		"systems/devastra/templates/app/players-manager.hbs"
 
 
   ];

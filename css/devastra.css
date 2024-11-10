@@ -1279,43 +1279,6 @@ flex-wrap: wrap;
 }
 
 
-/* Concerne le Cmd Mandala */
-.devastra.gm-manager {
-  min-width: 315px; /* 560px; */
-  max-width: 315px;
-  height: 735px;
-  max-height: 735px;
-}
-
-.devastra.gm-manager .body-sheet .mandala-parent {
-  position: relative;
-}
-.devastra.gm-manager .body-sheet .mandala-child1 {
-  position: absolute;
-  z-index: 2;
-  margin-left: 40px;
-  margin-top: 25px;
-  /* Chrome version 29 and above */
-  /*
-  @media screen and (-webkit-min-device-pixel-ratio:0)
-  and (min-resolution:.001dpcm) {
-  selector{ margin-left: 20px; margin-top: 25px; }
-  }
-  */
-  
-}
-.devastra.gm-manager .body-sheet .mandala-child2 {
-  position: absolute;
-}
-
-.devastra.gm-manager .body-sheet span.decale {
-  font-size: 45px;
-  font-weight: bold;
-  text-align: center;
-}
-.devastra.gm-manager .body-sheet span.rouge {
-  color: red;
-}
 
 
 
@@ -1562,6 +1525,146 @@ background-color: transparent;
   font-family: "ModestoPoster";
   font-size: 16px;
 }
+
+/* concerne les APP */
+
+/* Concerne le Cmd Mandala */
+.devastra.gm-manager {
+  min-width: 315px; /* 560px; */
+  max-width: 315px;
+  height: 735px;
+  max-height: 735px;
+}
+
+.devastra.gm-manager .body-sheet .mandala-parent {
+  position: relative;
+}
+.devastra.gm-manager .body-sheet .mandala-child1 {
+  position: absolute;
+  z-index: 2;
+  margin-left: 40px;
+  margin-top: 25px;
+  /* Chrome version 29 and above */
+  /*
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution:.001dpcm) {
+  selector{ margin-left: 20px; margin-top: 25px; }
+  }
+  */
+  
+}
+.devastra.gm-manager .body-sheet .mandala-child2 {
+  position: absolute;
+}
+
+.devastra.gm-manager .body-sheet span.decale {
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+.devastra.gm-manager .body-sheet span.rouge {
+  color: red;
+}
+
+
+.devastra.players-manager .mandala_wrap {
+  background-image: url("");
+}
+
+.devastra.players-manager .mandalas img.dropshadow {
+  -webkit-filter: drop-shadow(5px 5px 5px #666666);
+  filter: drop-shadow(5px 5px 5px #666666);
+}
+	
+.devastra.players-manager .mandala_wrap {
+  position: relative;
+  /* overflow: hidden; */
+  padding: 16px;
+  border: 0;
+  margin-top: -10px;
+}
+.devastra.players-manager .mandala_wrap .schema {
+  padding: 0px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  margin-left: 125px;
+}
+.devastra.players-manager .mandala_wrap img.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
+.devastra.players-manager .mandala_wrap div.mandala_decale {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  font-weight: bold;
+  margin-top: 36px;
+  margin-left: 175px;
+}
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra.players-manager .mandala_wrap div.mandala_decale {
+    margin-top: 36px;
+    margin-left: 175px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra.players-manager .mandala_wrap div.mandala_decale {
+    margin-top: 36px;
+    margin-left: 175px;
+  }
+}
+
+
+.devastra.players-manager .mandala_wrap div.viseur_decale {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-left: 285px;
+}
+/* Chrome version 29 and above */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra.players-manager .mandala_wrap div.viseur_decale {
+    margin-top: 50px;
+    margin-left: 285px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra.players-manager .mandala_wrap div.viseur_decale {
+    margin-top: 50px;
+    margin-left: 285px;
+  }
+}
+
+.devastra.players-manager .mandala_wrap img.viseur-invisible {
+  /* visibility: hidden; */
+}
+
+.devastra.players-manager .valeur {
+ font-size: 50px;
+ width: 77px;
+}
+
+.devastra.players-manager img {
+  border-width: 0;
+}
+
+.devastra.players-manager .jetonDepot {
+  float: left;
+  width: 77px;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 /* concerne l'interface de Foundry */

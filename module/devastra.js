@@ -21,6 +21,7 @@ import { registerHandlebarsHelpers } from "./helpers.js";
 
 
 import { GMManager } from "./applications/gm/gm-manager.js";
+import { PlayersManager } from "./applications/gm/players-manager.js";
 import { Macros } from "./macros.js";
 import { initControlButtons } from "./control-buttons.js";
 
@@ -239,6 +240,9 @@ Hooks.once("init", async function () {
   
   // Game Manager
   game.devastra.gmManager = new GMManager();
+
+  game.devastra.playersManager = new PlayersManager();
+
 
   console.log(`DEVASTRA System | Initialized`);
 });
