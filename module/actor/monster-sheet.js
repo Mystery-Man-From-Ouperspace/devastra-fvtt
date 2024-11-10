@@ -137,14 +137,14 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     //////////////////////////////////////////////////////////////////
     if (!(alertData)) {
-    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
     return;
     };
     //////////////////////////////////////////////////////////////////
 
     myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
 
-    let domainLibel;
+    let domainLibel = "din";
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 

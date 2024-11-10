@@ -247,14 +247,14 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     //////////////////////////////////////////////////////////////////
     if (!(alertData)) {
-    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
     return;
     };
     //////////////////////////////////////////////////////////////////
 
     myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
 
-    let domainLibel;
+    let domainLibel = "din";
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 
@@ -291,7 +291,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
   }
 
 /**
-   * Listen for click concentration.
+   * Listen for click shakti.
    * @param {MouseEvent} event    The originating left click event
   */
 async _onClickDieShakti (event) {
@@ -310,14 +310,14 @@ async _onClickDieShakti (event) {
 
   //////////////////////////////////////////////////////////////////
   if (!(alertData)) {
-  // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+  ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
   return;
   };
   //////////////////////////////////////////////////////////////////
 
   myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
 
-  let domainLibel;
+  let domainLibel = "din";
   let pureDomOrSpeLibel;
   let myInitThrow = true;
 
@@ -2445,12 +2445,18 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
 async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
   // Render modal dialog
   const myActorID = myActor;
+  const myNbrDeDomaine = myActorID.system.domains.din.value;
+  const myNbrDeBonusDomaine = myActorID.system.domains.din.bonusdice;
+
   template = template || 'systems/devastra/templates/form/type-alert-prompt.html';
   const title = myTitle;
   let dialogOptions = myDialogOptions;
 
   var dialogData = {
+    nbrdedomaine: myNbrDeDomaine,
+    nbrdebonusdomain: myNbrDeBonusDomaine,
     messg: myMessage
+
   };
 
   const html = await renderTemplate(template, dialogData);

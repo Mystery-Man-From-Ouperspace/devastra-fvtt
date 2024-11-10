@@ -142,7 +142,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
 
-    let domainLibel;
+    let domainLibel = "din";
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 
