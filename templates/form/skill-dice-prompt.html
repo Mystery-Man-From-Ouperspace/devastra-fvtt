@@ -6,6 +6,19 @@
         {{!-- Frame --}}
         <div class="frame">
             <div class="domain">
+                {{#if initthrow}}
+                <table class="domain-table">
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.din.specialities}}
+                        </td>
+                    </tr>
+                </table>
+                {{else}}
                 <table class="domain-table">
                     {{#if (eq domaine "dph")}}
                     <tr>
@@ -68,9 +81,25 @@
                     {{else}}
                     {{/if}}
                 </table>
+                {{/if}}
             </div>
             <br>
             <div class="dicebar">
+                {{#if initthrow}}
+                <table>
+                    <td class="center douzepc">
+                        <i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><br><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i>
+                    </td>
+                    <td style="text-align: center;">
+                        {{ localize "DEVASTRA.vs ND" }}
+                    </td>
+                    <td>
+                    </td>
+                    <td class="valeur2">
+                        3
+                    </td>
+                </table>
+                {{else}}
                 <table class="checkboxes">
                     <tr>
                         <td class="center douzepc">
@@ -100,6 +129,7 @@
                         </td>
                     </tr>
                 </table>
+                {{/if}}
             </div>
             <div class="cadre">
                 <table>
@@ -123,9 +153,15 @@
                         </td>
                     </tr>
                     <tr>
+                        {{#if initthrow}}
+                        <td>
+                            {{ localize "DEVASTRA.InitSpecial" }}
+                        </td>
+                        {{else}}
                         <td>
                             {{ localize "DEVASTRA.Bonus de dés de la spécialité" }}
                         </td>
+                        {{/if}}
                         <td class="check right"><input type="checkbox" name="specialitecheck" {{checked specialitecheck}} /></td>
                         <td class="valeur2">
                             </span>{{nbrdebonusspecialite}}{{ localize "DEVASTRA.D" }}
@@ -163,6 +199,8 @@
                             </select>
                         </td>
                     </tr>
+                    {{#if initthrow}}
+                    {{else}}
                     <tr>
                         <td>
                             {{ localize "DEVASTRA.+2 dé d'attaque" }}
@@ -201,6 +239,7 @@
                             {{/if}}
                         </td>
                     </tr>
+                    {{/if}}
                     <tr>
                         <td>
                             {{ localize "DEVASTRA.Malus à appliquer" }}

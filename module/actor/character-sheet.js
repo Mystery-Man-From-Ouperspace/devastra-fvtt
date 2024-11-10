@@ -240,7 +240,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     classes: ["devastra", "sheet"]
     };
     let template = "";
-    var alertData = await _alertInitiativeMessage (
+    var alertData = await _alertMessage (
     myActor, template, myTitle, myDialogOptions, myMessage
     );
 
@@ -252,7 +252,42 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     };
     //////////////////////////////////////////////////////////////////
 
-    // Lancer de dés
+    myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
+
+    let domainLibel;
+    let pureDomOrSpeLibel;
+    let myInitThrow = true;
+
+    let myResultDialog =  await _skillDiceRollDialog(
+      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+    );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
+
+    let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    if (myVersionDebloqueeFlag) {
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+      myResultDialog = await _skillDiceRollDialogDeblocked (
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+      );
+    }
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+    
+
+
   }
 
 /**
@@ -268,7 +303,7 @@ async _onClickDieShakti (event) {
   classes: ["devastra", "sheet"]
   };
   let template = "";
-  var alertData = await _alertInitiativeMessage (
+  var alertData = await _alertMessage (
   myActor, template, myTitle, myDialogOptions, myMessage
   );
 
@@ -279,6 +314,43 @@ async _onClickDieShakti (event) {
   return;
   };
   //////////////////////////////////////////////////////////////////
+
+  myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
+
+  let domainLibel;
+  let pureDomOrSpeLibel;
+  let myInitThrow = true;
+
+  let myResultDialog =  await _skillDiceRollDialog(
+    myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+  );
+
+
+  //////////////////////////////////////////////////////////////////
+  if (!(myResultDialog)) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+  //////////////////////////////////////////////////////////////////
+
+
+  let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+  if (myVersionDebloqueeFlag) {
+    let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+    myResultDialog = await _skillDiceRollDialogDeblocked (
+      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+    );
+  }
+
+  //////////////////////////////////////////////////////////////////
+  if (!(myResultDialog)) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+  //////////////////////////////////////////////////////////////////
+    
+    
+
   await myActor.update({ "system.mandala.sept.nbrjetonbonus": 0 });
   await myActor.update({ "system.mandala.six.nbrjetonbonus": 0 });
   await myActor.update({ "system.mandala.cinq.nbrjetonbonus": 0 });
@@ -1455,6 +1527,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const pureDomOrSpeLibel = whatIsItTab[1];                   // Va récupérer 'puredomain' ou bien 'special'
 
     let myActor = this.actor;
+    let myInitThrow = false;
 
     /*
     Ici on fait remplir les paramètres de lancer de dés
@@ -1465,7 +1538,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
     let template = "";
     let myResultDialog =  await _skillDiceRollDialog(
-      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
     //////////////////////////////////////////////////////////////////
@@ -1480,7 +1553,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     if (myVersionDebloqueeFlag) {
       let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
       myResultDialog = await _skillDiceRollDialogDeblocked (
-        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
       );
     }
 
@@ -2011,7 +2084,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
 /*  Dialogue de lancer de dés                   */
 /* -------------------------------------------- */
 async function _skillDiceRollDialog(
-  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
   ) {
 
   // Render modal dialog
@@ -2056,6 +2129,7 @@ async function _skillDiceRollDialog(
     default : console.log("Outch !");
   };
   var dialogData = {
+    initthrow: myInitThrow,
     domaine: myDomaine,
     systemData: myActorID.system,
     nbrdedomaine: myNbrDeDomaine,
@@ -2135,10 +2209,10 @@ async function _skillDiceRollDialog(
 }
 
 /* -------------------------------------------- */
-/*  Dialogue débridé de lancer de dés          */
+/*  Dialogue débridé de lancer de dés           */
 /* -------------------------------------------- */
 async function _skillDiceRollDialogDeblocked (
-  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
   ) {
 
   // Render modal dialog
@@ -2183,6 +2257,7 @@ async function _skillDiceRollDialogDeblocked (
     default : console.log("Outch !");
   };
   var dialogData = {
+    initthrow: myInitThrow,
     domaine: myDomaine,
     systemData: myActorID.system,
     nbrdedomaine: myNbrDeDomaine,
@@ -2418,7 +2493,7 @@ async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMes
 /* -------------------------------------------- */
 /*  Dialogue d'alerte Inititiative              */
 /* -------------------------------------------- */
-
+/*
 async function _alertInitiativeMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
   // Render modal dialog
   const myActorID = myActor;
@@ -2476,4 +2551,4 @@ async function _alertInitiativeMessage (myActor, template, myTitle, myDialogOpti
   }
 
 
-}
+} */

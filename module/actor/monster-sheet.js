@@ -103,6 +103,8 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     html.find(".clickondie").click(this._onClickDieRoll.bind(this));
     html.find(".clickonmandala").click(this._onClickMandalaCheck.bind(this));
     html.find(".clickonarmure").click(this._onClickArmor.bind(this));
+    html.find(".clickondieconcentration").click(this._onClickDieConcentration.bind(this));
+
 
   }
 
@@ -113,6 +115,72 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       myActor.render(false);
     // }
   }
+
+
+  /**
+   * Listen for click concentration.
+   * @param {MouseEvent} event    The originating left click event
+  */
+  async _onClickDieConcentration (event) {
+  
+    let myActor = this.actor;
+    let myTitle = game.i18n.localize("DEVASTRA.Alerte");
+    let myMessage = game.i18n.localize("DEVASTRA.On tire la concentration-npc");
+    let myDialogOptions = {
+    classes: ["devastra", "sheet"]
+    };
+    let template = "";
+    var alertData = await _alertMessage (
+    myActor, template, myTitle, myDialogOptions, myMessage
+    );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(alertData)) {
+    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+    };
+    //////////////////////////////////////////////////////////////////
+
+    myTitle = game.i18n.localize("DEVASTRA.Tirage de jetons pour la Shakti");
+
+    let domainLibel;
+    let pureDomOrSpeLibel;
+    let myInitThrow = true;
+
+    let myResultDialog =  await _skillDiceRollDialog(
+      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+    );
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
+
+    let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+    if (myVersionDebloqueeFlag) {
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+      myResultDialog = await _skillDiceRollDialogDeblocked (
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
+      );
+    }
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+    
+
+
+  }
+
+
 
   /**
    * Listen for roll click armure.
@@ -244,6 +312,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     const pureDomOrSpeLibel = whatIsItTab[1];                   // Va récupérer 'puredomain' ou bien 'special'
 
     let myActor = this.actor;
+    let myInitThrow = false;
 
     /*
     Ici on fait remplir les paramètres de lancer de dés
@@ -254,7 +323,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     };
     let template = "";
     let myResultDialog =  await _skillDiceRollDialog(
-      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+      myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
     //////////////////////////////////////////////////////////////////
@@ -269,7 +338,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     if (myVersionDebloqueeFlag) {
       myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
       myResultDialog = await _skillDiceRollDialogDeblocked (
-        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+        myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
       );
     }
 
@@ -787,7 +856,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
 /*  Dialogue de lancer de dés                   */
 /* -------------------------------------------- */
 async function _skillDiceRollDialog(
-myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
 ) {
 
   // Render modal dialog
@@ -832,6 +901,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
     default : console.log("Outch !");
   };
   var dialogData = {
+    initthrow: myInitThrow,
     domaine: myDomaine,
     systemData: myActorID.system,
     nbrdedomaine: myNbrDeDomaine,
@@ -911,7 +981,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
 /*  Dialogue débridé de lancer de dés           */
 /* -------------------------------------------- */
 async function _skillDiceRollDialogDeblocked (
-  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel
+  myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
   ) {
   
     // Render modal dialog
@@ -956,6 +1026,7 @@ async function _skillDiceRollDialogDeblocked (
       default : console.log("Outch !");
     };
     var dialogData = {
+      initthrow: myInitThrow,
       domaine: myDomaine,
       systemData: myActorID.system,
       nbrdedomaine: myNbrDeDomaine,
@@ -1032,7 +1103,7 @@ async function _skillDiceRollDialogDeblocked (
   }
 
 
-  /* -------------------------------------------- */
+/* -------------------------------------------- */
 /*  Dialogue de choix de type d'armure          */
 /* -------------------------------------------- */
 
@@ -1131,4 +1202,56 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
     // console.log("myinventory = ", myinventory);
     return editedData;
   }
+}
+
+/* -------------------------------------------- */
+/*  Dialogue générique d'alerte                 */
+/* -------------------------------------------- */
+
+async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
+  // Render modal dialog
+  const myActorID = myActor;
+  template = template || 'systems/devastra/templates/form/type-alert-prompt.html';
+  const title = myTitle;
+  let dialogOptions = myDialogOptions;
+
+  var dialogData = {
+    messg: myMessage
+  };
+
+  const html = await renderTemplate(template, dialogData);
+
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+    // new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve(true)
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve(null)
+          }
+        },
+        default: 'cancelBtn',
+        close: () => resolve(null)
+      },
+      dialogOptions
+    ).render(true, {
+      width: 350,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    return prompt
+  } else {
+  return true;
+  }
+
 }

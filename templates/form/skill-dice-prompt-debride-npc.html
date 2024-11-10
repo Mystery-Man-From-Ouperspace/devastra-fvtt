@@ -6,6 +6,19 @@
         {{!-- Frame --}}
         <div class="frame">
             <div class="domain">
+                {{#if initthrow}}
+                <table class="domain-table">
+                    <tr>
+                        <td class="domain-icon">
+                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                        </td>
+                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
+                        <td class="specialities">
+                            {{systemData.domains.din.specialities}}
+                        </td>
+                    </tr>
+                </table>
+                {{else}}
                 <table class="domain-table">
                     {{#if (eq domaine "dph")}}
                     <tr>
@@ -68,16 +81,32 @@
                     {{else}}
                     {{/if}}
                 </table>
+                {{/if}}
             </div>
             <br>
             <div class="dicebar">
+                {{#if initthrow}}
+                <table>
+                    <td class="center douzepc">
+                        <i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><br><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i>
+                    </td>
+                    <td style="text-align: center;">
+                        {{ localize "DEVASTRA.vs ND" }}
+                    </td>
+                    <td>
+                    </td>
+                    <td class="valeur2">
+                        3
+                    </td>
+                </table>
+                {{else}}
                 <table class="checkboxes">
                     <tr>
                         <td class="center douzepc">
                             <i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><br><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i>
                         </td>
                         <td>
-                            <input type="radio" name="jet" value="autre" checked />{{ localize "DEVASTRA.Standard" }}
+                            <input type="radio" name="jet" value="autre" checked />{{ localize "DEVASTRA.Jet standard" }}
                         </td>
                         <td>
                             <input type="radio" name="jet" value="jetattaque" />{{ localize "DEVASTRA.Jet d′attaque" }}
@@ -100,6 +129,7 @@
                         </td>
                     </tr>
                 </table>
+                {{/if}}
             </div>
             <div class="cadre">
                 <table>
@@ -212,38 +242,6 @@
                                     <option value="13">13</option>
                                     <option value="14">14</option>
                                     <option value="15">15</option>
-                                {{/select}}
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            {{ localize "DEVASTRA.DEBRIDE_+2 dé d'attaque-npc" }}
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td class="right">
-                            <select name="plusdeuxdesdattaque">
-                                {{#select plusdeuxdesdattaque }}
-                                    <option value="0">–</option>
-                                    <option value="1">1&nbsp;{{ localize "DEVASTRA.Point" }}</option>
-                                    <option value="2">2&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="3">3&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="4">4&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="5">5&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="6">6&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="7">7&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="8">8&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="9">9&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="10">10&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="11">11&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="12">12&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="13">13&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="14">14&nbsp;{{ localize "DEVASTRA.Points" }}</option>
-                                    <option value="15">15&nbsp;{{ localize "DEVASTRA.Points" }}</option>
                                 {{/select}}
                             </select>
                         </td>
