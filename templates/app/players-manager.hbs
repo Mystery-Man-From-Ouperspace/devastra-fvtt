@@ -5,9 +5,9 @@
 
     {{!-- Body Sheet --}}
     <div class="body-sheet">
-      <div class="menu">
-        <select name="users">
-          {{selectOptions users.choices selected=users.value}}
+      <div>
+        <select class="menu" name="users">
+          {{selectOptions users.choices selected=myUser}}
         </select>
       </div>
 
@@ -24,8 +24,8 @@
         <div class="schema">
 
           <div class="jetonDepot jetonDepot7 grab">
-            {{#if mandala7}}
-              {{#if (eq 2 mandala7type)}}
+            {{#if (eq '1' mandala7)}}
+              {{#if (eq '2' mandala7type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -35,8 +35,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot6 grab">
-            {{#if mandala6}}
-              {{#if (eq 2 mandala6type)}}
+            {{#if (eq '1' mandala6)}}
+              {{#if (eq '2' mandala6type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -46,8 +46,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot5 grab">
-            {{#if mandala5}}
-              {{#if (eq 2 mandala5type)}}
+            {{#if (eq '1' mandala5)}}
+              {{#if (eq '2' mandala5type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -57,8 +57,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot4 grab">
-            {{#if mandala4}}
-              {{#if (eq 2 mandala4type)}}
+            {{#if (eq '1' mandala4)}}
+              {{#if (eq '2' mandala4type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -68,8 +68,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot3 grab">
-            {{#if mandala3}}
-              {{#if (eq 2 mandala3type)}}
+            {{#if (eq '1' mandala3)}}
+              {{#if (eq '2' mandala3type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -79,8 +79,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot2 grab">
-            {{#if mandala2}}
-              {{#if (eq 2 mandala2type)}}
+            {{#if (eq '1' mandala2)}}
+              {{#if (eq '2' mandala2type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />
@@ -90,8 +90,8 @@
             {{/if}}
           </div>
           <div class="jetonDepot jetonDepot1 grab">
-            {{#if mandala1}}
-              {{#if (eq 2 mandala1type)}}
+            {{#if (eq '1' mandala1)}}
+              {{#if (eq '2' mandala1type)}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonShakti.webp" alt="Jeton Shakti" />
               {{else}}
                 <img class="jeton dropshadow" src="systems/devastra/images/ui/JetonAction.webp" alt="Jeton Action" />

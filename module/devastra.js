@@ -180,6 +180,129 @@ Hooks.once("init", async function () {
   });
 
 
+  game.settings.register("devastra", "myUser", {
+    name: "myUser",
+    hint: "myUser",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+
+  game.settings.register("devastra", "mandala1", {
+    name: "mandala1",
+    hint: "mandala1",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala2", {
+    name: "mandala2",
+    hint: "mandala2",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala3", {
+    name: "mandala3",
+    hint: "mandala3",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala4", {
+    name: "mandala4",
+    hint: "mandala4",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala5", {
+    name: "mandala5",
+    hint: "mandala5",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala6", {
+    name: "mandala6",
+    hint: "mandala6",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala7", {
+    name: "mandala7",
+    hint: "mandala7",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala1type", {
+    name: "mandala1type",
+    hint: "mandala1type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala2type", {
+    name: "mandala2type",
+    hint: "mandala2type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala3type", {
+    name: "mandala3type",
+    hint: "mandala3type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala4type", {
+    name: "mandala4type",
+    hint: "mandala4type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: Boolean,
+  });
+  game.settings.register("devastra", "mandala5type", {
+    name: "mandala5type",
+    hint: "mandala5type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala6type", {
+    name: "mandala6type",
+    hint: "mandala6type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+  game.settings.register("devastra", "mandala7type", {
+    name: "mandala7type",
+    hint: "mandala7type",
+    scope: "world",
+    config: false,
+    default: "0",
+    type: String,
+  });
+
+
    /**
 	 * Set an initiative formula for the system
 	 * @type {String}
@@ -234,8 +357,7 @@ Hooks.once("init", async function () {
   // Register Handlebars Helpers
   registerHandlebarsHelpers();
 
-  // Modify Runtime configuration settings / Added by MMFO  Items.registerSheet("devastra", DEVASTRAMagieSheet, { types: ["attribute"], makeDefault: true });
-
+  // Modify Runtime configuration settings / Added by MMFO
   await modifyConfigurationSettings();
 
   

@@ -8,7 +8,7 @@ export class PlayersManager extends Application {
   static PLAYERS_MANAGER_TEMPLATE = "systems/devastra/templates/app/players-manager.hbs";
 
   constructor() {
-    super({ id: PlayersManager.PLAYERS_MANAGER });  
+    super({ id: PlayersManager.playersManager_MANAGER });  
     Hooks.on("updateSetting", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
     Hooks.on("updateActor", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
     Hooks.on("renderPlayerList", async (setting, update, options, id) => this.updateManager(setting, update, options, id));

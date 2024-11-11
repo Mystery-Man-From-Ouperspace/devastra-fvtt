@@ -1648,7 +1648,7 @@ and (min-resolution:.001dpcm) {
 .devastra.players-manager .menu {
   position: absolute;
   z-index: 4;
-  margin-top: 85px;
+  margin-top: 110px;
   margin-left: 5px;
 }
 
