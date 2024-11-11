@@ -1645,6 +1645,13 @@ and (min-resolution:.001dpcm) {
   }
 }
 
+.devastra.players-manager .menu {
+  position: absolute;
+  z-index: 4;
+  margin-top: 85px;
+  margin-left: 5px;
+}
+
 .devastra.players-manager .mandala_wrap img.viseur-invisible {
   /* visibility: hidden; */
 }
@@ -1665,6 +1672,9 @@ and (min-resolution:.001dpcm) {
   justify-content: center;
 }
 
+.devastra.players-manager .sheet-display {
+  background-color: white;
+} 
 
 
 /* concerne l'interface de Foundry */

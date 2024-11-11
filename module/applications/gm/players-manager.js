@@ -1,5 +1,8 @@
 import { DEVASTRA } from "../../config.js";
 
+import { registerHandlebarsHelpers } from "../../helpers.js";
+
+
 export class PlayersManager extends Application {
   static PLAYERS_MANAGER = "players-manager";
   static PLAYERS_MANAGER_TEMPLATE = "systems/devastra/templates/app/players-manager.hbs";
@@ -7,8 +10,8 @@ export class PlayersManager extends Application {
   constructor() {
     super({ id: PlayersManager.playersManager_MANAGER });  
     Hooks.on("updateSetting", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
-    // Hooks.on("updateActor", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
-    // Hooks.on("renderPlayerList", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
+    Hooks.on("updateActor", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
+    Hooks.on("renderPlayerList", async (setting, update, options, id) => this.updateManager(setting, update, options, id));
     Hooks.once("ready", () => this.onReady());
   }
 
@@ -26,15 +29,16 @@ export class PlayersManager extends Application {
   }
 
   static get defaultOptions() {
+
     return foundry.utils.mergeObject(super.defaultOptions, {
       template: PlayersManager.PLAYERS_MANAGER_TEMPLATE,
       classes: ["devastra", "players-manager"],
       title: game.i18n.localize("DEVASTRA.PLAYERSMANAGER.Title"),
       top: 50,
       left: 450,
-      width: 725,
-      height: 600,
-      resizable: true,
+      width: 740,
+      height: 195,
+      resizable: false,
     });
     
   };
@@ -43,172 +47,88 @@ export class PlayersManager extends Application {
   async getData() {
     const context = await super.getData();
 
-    context.viseur0 = await game.settings.get("devastra", "viseur0");
-    context.viseur1 = await game.settings.get("devastra", "viseur1");
-    context.viseur2 = await game.settings.get("devastra", "viseur2");
-    context.viseur3 = await game.settings.get("devastra", "viseur3");
-    context.viseur4 = await game.settings.get("devastra", "viseur4");
-    context.viseur5 = await game.settings.get("devastra", "viseur5");
-    context.viseur6 = await game.settings.get("devastra", "viseur6");
-    context.viseur7 = await game.settings.get("devastra", "viseur7");
+/*
+    let myuserId = html.find("select[class='users']").val();
+    let myActor = game.user[myuserId].character;
+    context.mandala1 = await myActor.system.mandala.un.nbrjetonbonus;
+    context.mandala1type = await myActor.system.mandala.un.typejetonbonus;
+    context.mandala2 = await myActor.system.mandala.deux.nbrjetonbonus;
+    context.mandala2type = await myActor.system.mandala.deux.typejetonbonus;
+    context.mandala3 = await myActor.system.mandala.trois.nbrjetonbonus;
+    context.mandala3type = await myActor.system.mandala.trois.typejetonbonus;
+    context.mandala4 = await myActor.system.mandala.quatre.nbrjetonbonus;
+    context.mandala4type = await myActor.system.mandala.quatre.typejetonbonus;
+    context.mandala5 = await myActor.system.mandala.cinq.nbrjetonbonus;
+    context.mandala5type = await myActor.system.mandala.cinq.typejetonbonus;
+    context.mandala6 = await myActor.system.mandala.six.nbrjetonbonus;
+    context.mandala6type = await myActor.system.mandala.six.typejetonbonus;
+    context.mandala7 = await myActor.system.mandala.sept.nbrjetonbonus;
+    context.mandala7type = await myActor.system.mandala.sept.typejetonbonus;
 
+*/
     context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
     context.sonorizedMandalaInterface = await game.settings.get("devastra", "sonorizedMandalaInterface");
 
     context.isGM = game.user.isGM;
     // context.isGM = false; // Pour tester la fonction
 
+    let myUsers = {};
+    function myObject(id, label)
+    {
+      this.id = id;
+      this.label = label;
+    };
+  
+    myUsers["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
+    for (let user of game.users._source) {
+      if (user.role != 4) {
+        myUsers[user._id.toString()] = new myObject(user._id.toString(), user.name.toString());
+      };
+    };
+
+    context.users =
+    { choices: myUsers,
+      options: "0"
+    };
+
     context.DEVASTRA = DEVASTRA;
     return context;
   }
 
 
-  /* -------------------------------------------- */
 
   /** @inheritdoc */
+  /*
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".clickonmandala").click(this._onClickMandalaCheck.bind(this));
-
-  } 
-
-  /* -------------------------------------------- */
-
-  /**
-   * Listen for roll buttons on Jauge.
-   * @param {MouseEvent} event    The originating left click event
-   */
-  async _onClickMandalaCheck(event) {
-
-    // console.log("J'entre dans _onClickMandalaCheck()");
-
-    const element = event.currentTarget;                        // On récupère le clic
-    const whatIsIt = element.dataset.libelId;                   // Va récupérer 'mandala-1' par exemple
-    // console.log("whatIsIt = ", whatIsIt);
-    const whatIsItTab = whatIsIt.split('-');
-    const mandalaType = whatIsItTab[0];                           // Va récupérer 'mandala'
-    const mandalaNumber = whatIsItTab[1];                         // Va récupérer '1'
-    let whichCheckBox ="";
-    let myActor = this.actor;
-    switch (mandalaNumber) {
-      case "0":
-        if (game.settings.get("devastra", "viseur0")) {
-        } else {
-          game.settings.set("devastra", "viseur0", true);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-      break;
-
-      case "1":
-        if (game.settings.get("devastra", "viseur1")) {
-        } else {
-          game.settings.set("devastra", "viseur1", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-      break;
-      case "2":
-        if (game.settings.get("devastra", "viseur2")) {
-        } else {
-          game.settings.set("devastra", "viseur2", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      case "3":
-        if (game.settings.get("devastra", "viseur3")) {
-        } else {
-          game.settings.set("devastra", "viseur3", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      case "4":
-        if (game.settings.get("devastra", "viseur4")) {
-        } else {
-          game.settings.set("devastra", "viseur4", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      case "5":
-        if (game.settings.get("devastra", "viseur5")) {
-        } else {
-          game.settings.set("devastra", "viseur5", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      case "6":
-        if (game.settings.get("devastra", "viseur6")) {
-        } else {
-          game.settings.set("devastra", "viseur6", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur7", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      case "7":
-        if (game.settings.get("devastra", "viseur7")) {
-        } else {
-          game.settings.set("devastra", "viseur7", true);
-          game.settings.set("devastra", "viseur0", false);
-          game.settings.set("devastra", "viseur1", false);
-          game.settings.set("devastra", "viseur2", false);
-          game.settings.set("devastra", "viseur3", false);
-          game.settings.set("devastra", "viseur4", false);
-          game.settings.set("devastra", "viseur5", false);
-          game.settings.set("devastra", "viseur6", false);
-          game.socket.emit('system.devastra', 'viseurupdate');
-        }
-        break;
-      default:
-        console.log("C'est bizarre !");
-    };
-
+    html.find(".menu").update(this._onUpdateUser.bind(this));
   }
+
+ */
+   /**
+   * Listen for click concentration.
+   * @param {MouseEvent} event    The originating left click event
+  */
+ /*
+  async _onUpdateUser (event) {
+    let myuserId = event.find("select[class='users']").val();
+    let myActor = game.user[myuserId].character;
+    context.mandala1 = await myActor.system.mandala.un.nbrjetonbonus;
+    context.mandala1type = await myActor.system.mandala.un.typejetonbonus;
+    context.mandala2 = await myActor.system.mandala.deux.nbrjetonbonus;
+    context.mandala2type = await myActor.system.mandala.deux.typejetonbonus;
+    context.mandala3 = await myActor.system.mandala.trois.nbrjetonbonus;
+    context.mandala3type = await myActor.system.mandala.trois.typejetonbonus;
+    context.mandala4 = await myActor.system.mandala.quatre.nbrjetonbonus;
+    context.mandala4type = await myActor.system.mandala.quatre.typejetonbonus;
+    context.mandala5 = await myActor.system.mandala.cinq.nbrjetonbonus;
+    context.mandala5type = await myActor.system.mandala.cinq.typejetonbonus;
+    context.mandala6 = await myActor.system.mandala.six.nbrjetonbonus;
+    context.mandala6type = await myActor.system.mandala.six.typejetonbonus;
+    context.mandala7 = await myActor.system.mandala.sept.nbrjetonbonus;
+    context.mandala7type = await myActor.system.mandala.sept.typejetonbonus;
+  }
+    */
 
 }

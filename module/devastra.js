@@ -37,7 +37,7 @@ globalThis.SYSTEM = DEVASTRA;
 Hooks.once("init", async function () {
   console.log(`DEVASTRA System | Initializing`);
 
-  game.system.CONST = DEVASTRA;
+  game.system.CONST = SYSTEM;
   
   game.devastra = {
     config: DEVASTRA,
@@ -51,6 +51,7 @@ Hooks.once("init", async function () {
   });
   */
 
+  // CONFIG.DEVASTRA = DEVASTRA;
 
   /*
   // Define custom Entity classes
@@ -87,6 +88,7 @@ Hooks.once("init", async function () {
   });
 
   */
+
 
   game.settings.register("devastra", "viseur0", {
     name: game.i18n.localize("DEVASTRA.Mandala 0 sélectionné"),
@@ -220,7 +222,6 @@ Hooks.once("init", async function () {
   // Init new buttons for the system
   initControlButtons();
   
-
 
 
 
