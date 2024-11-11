@@ -7,7 +7,7 @@
     <div class="body-sheet">
       <div class="menu">
         <select name="users">
-          {{selectOptions users.choices selected=users.value}}
+          {{selectOptions userChoices selected=selectedUser valueAttr="key" labelAttr="label" blank="DEVASTRA.opt.none" localize=true}}
         </select>
       </div>
 
