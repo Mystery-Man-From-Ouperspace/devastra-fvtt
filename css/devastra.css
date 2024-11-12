@@ -1294,6 +1294,11 @@ flex-wrap: wrap;
   position: relative;
 }
 
+.devastra.sheet.actor.npc .body-sheet .translucide,
+.devastra.sheet.actor.monster .body-sheet .translucide {
+  filter: opacity(50%);
+}        
+
 .devastra.sheet.actor.npc .body-sheet span.decale,
 .devastra.sheet.actor.monster .body-sheet span.decale {
   position: absolute;
@@ -1344,6 +1349,7 @@ and (min-resolution:.001dpcm) {
 .devastra.sheet.actor.character .body-sheet span.mandala-decale {
   float: left;
   font-size: 35px;
+  filter: opacity(50%);
   height: 68px;
   width: 70px;
 }
@@ -1566,6 +1572,11 @@ background-color: transparent;
   color: red;
 }
 
+.devastra.gm-manager .body-sheet .translucide {
+  filter: opacity(50%);
+}
+
+
 
 .devastra.players-manager .mandala_wrap {
   background-image: url("");
@@ -1603,21 +1614,21 @@ background-color: transparent;
   z-index: 3;
   display: flex;
   font-weight: bold;
-  margin-top: 50px;
-  margin-left: 125px;
+  margin-top: 62px;
+  margin-left: 128px;
 }
 /* Chrome version 29 and above */
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
   .devastra.players-manager .mandala_wrap div.mandala_decale {
-    margin-top: 57px;
-    margin-left: 125px;
+    margin-top: 62px;
+    margin-left: 128px;
   }
 }
 @supports (-moz-appearance:none) {
   .devastra.players-manager .mandala_wrap div.mandala_decale {
-    margin-top: 57px;
-    margin-left: 125px;
+    margin-top: 62px;
+    margin-left: 128px;
   }
 }
 
@@ -1654,8 +1665,9 @@ and (min-resolution:.001dpcm) {
 
 
 .devastra.players-manager .valeur {
- font-size: 50px;
- width: 84px;
+  font-size: 45px;
+  width: 84px;
+  filter: opacity(50%);
 }
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
