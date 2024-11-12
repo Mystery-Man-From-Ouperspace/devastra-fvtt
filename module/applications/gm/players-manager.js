@@ -14,6 +14,7 @@ export class PlayersManager extends Application {
     Hooks.on("updateSetting", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
     Hooks.on("updateActor", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
     Hooks.on("renderPlayerList", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
+    Hooks.on("updateUser", async (user, update, options, id) => {this._onUpdateUser(user.id, update.character)})
     Hooks.once("ready", () => this.onReady())
   }
 
@@ -25,6 +26,12 @@ export class PlayersManager extends Application {
     if (game.user.isGM) {
       game.devastra.playersManager.render(true)
     }
+  }
+
+  async _onUpdateUser(userId, characterId) {
+    this.userId = userId
+    this.characterId = characterId
+    game.devastra.playersManager.render(false)
   }
 
   static get defaultOptions() {
