@@ -30,7 +30,7 @@ export class GMManager extends Application {
       template: GMManager.GM_MANAGER_TEMPLATE,
       classes: ["devastra", "gm-manager"],
       title: game.i18n.localize("DEVASTRA.GMMANAGER.Title"),
-      top: 100,
+      top: 50,
       left: 120,
       width: 315,
       height: "auto",
