@@ -1320,7 +1320,7 @@ flex-wrap: wrap;
 .devastra.sheet.actor.character .body-sheet img.viseur {
   float: left;
   height: 68px;
-  width: 70px;
+  width: 69.75px;
 }
 /* Chrome version 29 and above */
 @media screen and (-webkit-min-device-pixel-ratio:0)
@@ -1331,7 +1331,7 @@ and (min-resolution:.001dpcm) {
 }
 @supports (-moz-appearance:none) {
   .devastra.sheet.actor.character .body-sheet img.viseur {
-    width: 70px;
+    width: 69.75px;
   }
 }
 
