@@ -1571,7 +1571,7 @@ background-color: transparent;
   background-image: url("");
 }
 
-.devastra.players-manager .mandalas img.dropshadow {
+.devastra.players-manager .drop-shadow {
   -webkit-filter: drop-shadow(5px 5px 5px #666666);
   filter: drop-shadow(5px 5px 5px #666666);
 }
@@ -1588,7 +1588,7 @@ background-color: transparent;
   position: relative;
   z-index: 2;
   display: flex;
-  margin-left: 125px;
+  margin-left: 75px;
 }
 .devastra.players-manager .mandala_wrap img.background {
   position: absolute;
@@ -1603,21 +1603,21 @@ background-color: transparent;
   z-index: 3;
   display: flex;
   font-weight: bold;
-  margin-top: 36px;
-  margin-left: 175px;
+  margin-top: 50px;
+  margin-left: 125px;
 }
 /* Chrome version 29 and above */
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
   .devastra.players-manager .mandala_wrap div.mandala_decale {
-    margin-top: 36px;
-    margin-left: 175px;
+    margin-top: 57px;
+    margin-left: 125px;
   }
 }
 @supports (-moz-appearance:none) {
   .devastra.players-manager .mandala_wrap div.mandala_decale {
-    margin-top: 36px;
-    margin-left: 175px;
+    margin-top: 57px;
+    margin-left: 125px;
   }
 }
 
@@ -1627,28 +1627,28 @@ and (min-resolution:.001dpcm) {
   z-index: 3;
   display: flex;
   font-weight: bold;
-  margin-top: 50px;
-  margin-left: 285px;
+  margin-top: 57px;
+  margin-left: 225px;
 }
 /* Chrome version 29 and above */
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
   .devastra.players-manager .mandala_wrap div.viseur_decale {
     margin-top: 50px;
-    margin-left: 285px;
+    margin-left: 225px;
   }
 }
 @supports (-moz-appearance:none) {
   .devastra.players-manager .mandala_wrap div.viseur_decale {
     margin-top: 50px;
-    margin-left: 285px;
+    margin-left: 225px;
   }
 }
 
 .devastra.players-manager .menu {
   position: absolute;
   z-index: 4;
-  margin-top: 110px;
+  margin-top: 105px;
   margin-left: 5px;
 }
 
@@ -1658,7 +1658,7 @@ and (min-resolution:.001dpcm) {
 
 .devastra.players-manager .valeur {
  font-size: 50px;
- width: 77px;
+ width: 84px;
 }
 
 .devastra.players-manager img {
@@ -1667,7 +1667,7 @@ and (min-resolution:.001dpcm) {
 
 .devastra.players-manager .jetonDepot {
   float: left;
-  width: 77px;
+  width: 87px;
   align-items: center;
   justify-content: center;
 }
@@ -1675,7 +1675,6 @@ and (min-resolution:.001dpcm) {
 .devastra.players-manager .sheet-display {
   background-color: white;
 } 
-
 
 /* concerne l'interface de Foundry */
 
