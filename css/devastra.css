@@ -1652,9 +1652,6 @@ and (min-resolution:.001dpcm) {
   margin-left: 5px;
 }
 
-.devastra.players-manager .mandala_wrap img.viseur-invisible {
-  /* visibility: hidden; */
-}
 
 .devastra.players-manager .valeur {
  font-size: 50px;
