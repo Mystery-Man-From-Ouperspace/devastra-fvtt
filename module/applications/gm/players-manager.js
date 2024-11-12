@@ -14,16 +14,8 @@ export class PlayersManager extends Application {
     Hooks.on("updateSetting", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
     Hooks.on("updateActor", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
     Hooks.on("renderPlayerList", async (setting, update, options, id) => this.updateManager(setting, update, options, id))
-    Hooks.on("updateUser", async (user, update, options, id) => {this._onUpdateUser(user._id, update.character)})
     Hooks.once("ready", () => this.onReady())
   }
-
-  async _onUpdateUser(userId, characterId) {
-    this.userId = userId
-    this.characterId = characterId
-    game.devastra.playersManager.render(false)
-  }
-  
 
   async updateManager(setting, update, options, id) {
     game.devastra.playersManager.render(false)
@@ -57,13 +49,10 @@ export class PlayersManager extends Application {
 
     context.isGM = game.user.isGM
 
-  
     const players = game.users.filter((user) => user.hasPlayerOwner && user.active)
     context.userChoices = players.map((user) => ({ key: user._id, label: user.name }))
     context.selectedUser = this.userId
- 
     
-
     const character = game.actors.get(this.characterId)
     if (character) {
       const mandala = character.system.mandala
