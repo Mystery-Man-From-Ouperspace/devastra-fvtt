@@ -53,7 +53,7 @@
  "DEVASTRA.DescriptionInExtenso": "Description",
  "DEVASTRA.Skills": "Statistiques",
  
- "DEVASTRA.Magies, Enseignements & Notes": "Magies, Enseignements & Notes",
+ "DEVASTRA.Magies, Enseignements & Notes": "Statuts, Magies, Enseignements & Notes",
  
   "DEVASTRA.Mandalas": "Mandala",
   "DEVASTRA.Shakti": "Shakti",
@@ -92,7 +92,8 @@
   "DEVASTRA.défensif - 1 Succès": "défensif - 1 Succès",
 
   "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
-  "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Chakti initiale",
+  "DEVASTRA.Jet de concentration-npc": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires",
+  "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Shakti initiale",
   "DEVASTRA.Clic de jeton d’action": "Cliquez ici (en début de tour) pour obtenir 1 Jeton d’Action",
 
   "DEVASTRA.TokenPile": "Pile de Jetons",
@@ -191,6 +192,20 @@
   "DEVASTRA.NoteDelete": "Supprimer la Note",
   "DEVASTRA.NoteNew": "Nouvelle Note",
 
+  "DEVASTRA.Blessures ou Statuts": "Statuts ou Blessures",
+
+  "DEVASTRA.BlessureCreate": "Créer un Statut",
+  "DEVASTRA.BlessureRead": "Consulter le Statut",
+  "DEVASTRA.BlessureEdit": "Modifier le Statut",
+  "DEVASTRA.BlessureDelete": "Supprimer le Statut",
+  "DEVASTRA.BlessureNew": "Nouveau Statut ou Blessure",
+
+  "DEVASTRA.OpponentProtection": "Tenir automatiquement compte des protections de votre opposant",
+
+
+
+
+
   "DEVASTRA.Chakra": "Chakra",
 
   "DEVASTRA.TypeOfItem": "Type d′Équipement :",
@@ -244,6 +259,7 @@
 
   "DEVASTRA.Initiative": "Initiative",
   "DEVASTRA.Initiative_totale": "Total d′Initiative",
+  "DEVASTRA.Armure_total": "Total d′Armure",
 
 
   "DEVASTRA.Validate": "Valider",
@@ -298,21 +314,27 @@
   "DEVASTRA.Bonus de dés du domaine": "Bonus du Domaine :",
   "DEVASTRA.Bonus de dés de la spécialité": "Bonus de Spécialité :",
   "DEVASTRA.Bonus à appliquer": "Dés bonus supplémentaires à appliquer :",
-  "DEVASTRA.DEBRIDE_Malus à appliquer": "Total des dés malus à appliquer (si non-comptabilisés ci-dessus) :",
+  "DEVASTRA.DEBRIDE_Malus à appliquer": "Total des dés malus à appliquer :",
   "DEVASTRA.Malus à appliquer": "Total des dés malus à appliquer :",
   "DEVASTRA.DEBRIDE_Succès automatiques": "Total des succès automatiques :",
   "DEVASTRA.Succès automatiques": "Succès automatiques :",
   "DEVASTRA.DEBRIDE_+1 succès automatique": "Jetons à retirer à la pile Conviction (sera mise à jour selon contenu) :",
   "DEVASTRA.+1 succès automatique": "+1 Succès automatique depuis pile Conviction (sera mise à jour) :",
+  "DEVASTRA.+1 succès automatique-npc": "+1 Succès automatique depuis Conviction (sera mise à jour) :",
   "DEVASTRA.DEBRIDE_+2 dé d'attaque": "Jetons à retirer à la pile Shakti (sera mise à jour selon contenu) :",
   "DEVASTRA.+2 dé d'attaque": "+2D d′attaque depuis pile Shakti (sera mise à jour si attaque) :",
+  "DEVASTRA.DEBRIDE_+2 dé d'attaque-npc": "Points à retirer à la Shakti (sera mise à jour selon contenu) :",
+  "DEVASTRA.+2 dé d'attaque-npc": "+2D d′attaque depuis Shakti (sera mise à jour si attaque) :",
   "DEVASTRA.Ignorer un malus (pile maj)": "Ignorer un malus depuis pile Conviction (dur. : 1 tour, sera màj) :",
-  "DEVASTRA.Malus ignorés": "⌞ Dés malus à ignorer pour ce jet",
+  "DEVASTRA.Ignorer un malus (pile maj)-npc": "Ignorer un malus depuis Conviction (durée : 1 tour, sera màj) :",
+  "DEVASTRA.Malus ignorés": "⌞ Dés malus supplémentaires à ignorer pour ce jet",
  
   "DEVASTRA.OneDie": "dé",
   "DEVASTRA.ManyDice": "dés",
   "DEVASTRA.Jeton": "jeton",
   "DEVASTRA.Jetons": "jetons",
+  "DEVASTRA.Point": "point",
+  "DEVASTRA.Points": "points",
   "DEVASTRA.D": "D",
   "DEVASTRA.6 Explosifs": "Les 6 sont explosifs :",
   "DEVASTRA.DEBRIDE_5 Explosifs": "⌞ Les 5 sont explosifs (ne cocher que si les 6 le sont déjà) :",
@@ -330,8 +352,8 @@
   "DEVASTRA.Dispose Bonus explosif": "Dispose du bonus 6 explosif",
   "DEVASTRA.Reçoit blessure": "Reçoit une Blessure (ou un Statut) à chaque perte de Prana",
 
-  "DEVASTRA.Jet d′attaque": "Jet d′attaque",
-  "DEVASTRA.Jet de défense": "Jet de défense",
+  "DEVASTRA.Jet d′attaque": "Jet offensif",
+  "DEVASTRA.Jet de défense": "Jet défensif",
   "DEVASTRA.Jet standard": "Jet standard",
   "DEVASTRA.ND": "ND",
   "DEVASTRA.vs ND": "/ ND :",
@@ -353,7 +375,7 @@
   "DEVASTRA.PlutôtPrompt": "Cette opération s′effectue plutôt en renseignant un prompt de Jet de dés",
 
   "DEVASTRA.Version débloquée": "Tout recommencer mais en utilisant plutôt la version non-bridée du prompt",
-  "DEVASTRA.Attention Version débridée": "<< ATTENTION ! VERSION DÉBRIDÉE : PROCÉDEZ AVEC PRUDENCE >>",
+  "DEVASTRA.Attention Version débridée": "ATTENTION ! VERSION DÉBRIDÉE : PROCÉDEZ AVEC PRUDENCE",
 
   "DEVASTRA.Total d′évolution": "Total d′évolution",
   "DEVASTRA.PE restants": "P. E. restants",
@@ -368,8 +390,8 @@
 
   "DEVASTRA.Jet": "Jet",
   "DEVASTRA.Standard": "Standard",
-  "DEVASTRA.Attaque": "Attaque",
-  "DEVASTRA.Défense": "Défense",
+  "DEVASTRA.Attaque": "Offensif",
+  "DEVASTRA.Défense": "Défensif",
 
   "DEVASTRA.Equipped": "Équipé",
   "DEVASTRA.Attack": "Attaque",
@@ -388,8 +410,10 @@
   "DEVASTRA.Error1": "Aucun dé à lancer",
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
-  "DEVASTRA.GMManager.Title": "Afficher Mandala Rangs Action",
-  "DEVASTRA.SpeechMandala": "Sélectionnez le prochain rang d′action du Mandala. Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.",
+  "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses",
+  "DEVASTRA.GMManager.Title": "Afficher Mandala rangs d′action",
+  "DEVASTRA.PlayersManager.Title": "Afficher Mandalas de vos joueuses",
+  "DEVASTRA.SpeechMandala": "Sélectionnez, durant le déroulé du tour en cours, le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.<br>Cliquez après cela sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.<br>Cette fenêtre conservera ses réglages entre deux parties.<br><br>Si cette fenêtre vient à être fermée en cours de partie, vous pourrez la rouvrir en cliquant successivement sur les deux boutons arborant les symboles <i class='fas fa-trillium'></i> et <i class='fa fa-crosshairs-simple'></i>.<br><br>Cliquez plutôt en second sur le symbole <i class='fa-solid fa-users'></i> pour rouvrir la fenêtre des Mandalas de vos joueuses.",
 
 
   "DEVASTRA.typeclassique01": "Type : classique 1",
@@ -405,8 +429,65 @@
   "DEVASTRA.typeelitedangereux02": "Type : élite dangereux 2",
   "DEVASTRA.typeelitedangereux03": "Type : élite dangereux 3",
 
+  "DEVASTRA.opt.none": "—",
+  "DEVASTRA.you": "Vous :",
+  "DEVASTRA.vous": "Vous",
+  "DEVASTRA.chooseopponent": "Votre opposant :",
+  "DEVASTRA.votreopposant": "Votre opposant",
+  "DEVASTRA.WhichTarget": "Quelle cible ?",
 
 
+  "DEVASTRA.choosewhichinventory": "Sélectionnez une arme, un sort dans votre inventaire, ou bien utilisez une arme improvisée :",
+  "DEVASTRA.frominventory": "Inventaire",
+  "DEVASTRA.developedfrominventory": "Sélectionnez une de vos propres armes ou un de vos pouvoirs",
+  "DEVASTRA.improvisedweapon": "Arme improvisée ou trouvée",
+  "DEVASTRA.developedimprovisedweapon": "Sélectionnez les dégâts que vous pourriez infliger",
+  "DEVASTRA.choosefrominventory": "Une arme dans votre inventaire",
+  "DEVASTRA.choosefrominventorydevastra": "Votre Devâstra en tant qu′arme (le cas échéant)",
+  "DEVASTRA.choosefrominventorypower": "Un pouvoir de votre Devâstra pour occasionner des dégâts",
+  "DEVASTRA.choosefrominventorymagic": "Une magie pour occasionner des dégâts",
+  "DEVASTRA.choosedamage": "Demandez à votre MJ les dégâts infligeables par cette arme",
+  "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent :",
+  "DEVASTRA.choosearmor": "Une première protection — comme une armure",
+  "DEVASTRA.chooseshield": "Une seconde protection — comme un bouclier (doit être différente de la première pour être prise en compte)",
+  "DEVASTRA.choosearmordevastra": "Votre Devâstra en tant que protection (le cas échéant)",
+  "DEVASTRA.choosearmorchoose": "Bonus à votre protection — par exemple, une magie en cours",
+  "DEVASTRA.barehands": "Mains nues ou affrontement verbal",
+
+  "DEVASTRA.Blessure": "Blessure",
+  "DEVASTRA.Statut": "Statut",
+  "DEVASTRA.Subtype": "Type",
+
+  "DEVASTRA.Mettre à jour total armure": "Mettre à jour le total d′armure",
+  "DEVASTRA.Calcul Protection": "Calcul du total d′armure",
+  "DEVASTRA.WhichWeapon": "Choix de l′arme",
+
+
+  "DEVASTRA.Alerte": "J′ai besoin de votre confirmation !",
+
+  "DEVASTRA.On met à la poubelle": "Désirez-vous vraiment vous défausser de tous vos Jetons présents sur le Mandala des 7 rangs d′action ainsi que de ceux sur la pile bonus d′initiative&nbsp;?<br>Ces Jetons iront directement à la corbeille…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action est irréversible (la corbeille est un puits sans fond).",
+
+  "DEVASTRA.InitSpecial": "Vous possédez bien la spécialité Initiative…?",
+
+  "DEVASTRA.On tire la concentration": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires.",
+  "DEVASTRA.On tire la concentration-npc": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires.",
+
+  
+  "DEVASTRA.On tire la shakti": "Désirez-vous vraiment déterminer votre réserve de Shakti initiale&nbsp;?<br>Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3.<br>Tous vos anciens Jetons seront défaussés…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de conflit et est irréversible.",
+
+  
+  "DEVASTRA.On tire un jeton Action": "Désirez-vous vraiment tirer un Jeton Action&nbsp;?<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de tour.",
+
+
+  "DEVASTRA.Tirage de jetons pour la Shakti": "Tirage de jetons pour la Shakti",
+
+  "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
+
+
+  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",
+  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Point(s) de Shakti.",
+  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) v/ 3]<br>Soit ^0 Jeton(s) de Shakti initiale.",
+  "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
 
   "TYPES": {
     "Actor": {
@@ -416,6 +497,7 @@
     },
     "Item": {
       "item": "Équipement",
+      "blessureoustatut": "Statut ou Blessure",
       "devastra": "Devâstra",
       "dharma": "Dharma",
       "enseignement": "Enseignement",

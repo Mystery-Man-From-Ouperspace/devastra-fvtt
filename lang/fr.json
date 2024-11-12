@@ -390,8 +390,8 @@
 
   "DEVASTRA.Jet": "Jet",
   "DEVASTRA.Standard": "Standard",
-  "DEVASTRA.Attaque": "Attaque",
-  "DEVASTRA.Défense": "Défense",
+  "DEVASTRA.Attaque": "Offensif",
+  "DEVASTRA.Défense": "Défensif",
 
   "DEVASTRA.Equipped": "Équipé",
   "DEVASTRA.Attack": "Attaque",
