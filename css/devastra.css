@@ -1660,6 +1660,19 @@ and (min-resolution:.001dpcm) {
  font-size: 50px;
  width: 84px;
 }
+@media screen and (-webkit-min-device-pixel-ratio:0)
+and (min-resolution:.001dpcm) {
+  .devastra.players-manager .valeur {
+    width: 84.5px;
+  }
+}
+@supports (-moz-appearance:none) {
+  .devastra.players-manager .valeur {
+    width: 84px;
+  }
+}
+
+
 
 .devastra.players-manager img {
   border-width: 0;

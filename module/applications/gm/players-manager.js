@@ -41,8 +41,8 @@ export class PlayersManager extends Application {
       title: game.i18n.localize("DEVASTRA.PLAYERSMANAGER.Title"),
       top: 50,
       left: 450,
-      width: 740,
-      height: 215,
+      width: 745,
+      height: 220,
       resizable: false,
     })
   }
