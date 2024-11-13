@@ -1846,7 +1846,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     */
 
     let myBonusSupplem = parseInt(myBonusApplique);
-    let myMalusSupplem = parseInt(myMalusApplique);
+    let myMalusSupplem = parseInt(myMalusApplique) - parseInt(myMalusAIgnorer);
+    if (myMalusSupplem < 0) {myMalusSupplem = 0;};
     let mySuccesAutoSupplem = parseInt(mySuccesAuto);
 
 
@@ -1861,7 +1862,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     // et mySuccesAuto, ceux de myPlusUnSuccesAuto
     if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
       myMalusSupplem -= parseInt(myIgnoreMalus);
-      if (myMalusSupplem > 0) { myMalusSupplem = 0};
+      if (myMalusSupplem < 0) { myMalusSupplem = 0;};
 
       mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
     }
@@ -2460,13 +2461,11 @@ async function _skillDiceRollDialogDeblocked (
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
-    shaktirestanteflag: myShaktiRestanteFlag,
-    convictionrestanteflag: myconvictionRestanteFlag,
+    shaktirestanteflag: true,
+    convictionrestanteflag: true,
     plus1succesautoflag : myPlus1SuccesAutoFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,
-    desnonexplo: 0,
-    versiondebloquee: false
   };
   const html = await renderTemplate(template, dialogData);
   // Create the Dialog window

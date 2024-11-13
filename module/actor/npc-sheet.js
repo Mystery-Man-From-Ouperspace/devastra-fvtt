@@ -369,13 +369,12 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       var myBonusApplique = myResultDialog.bonusapplique;
       var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque; // en fait, uniquement nbre jetons Shakti à enlever
       var myMalusApplique = myResultDialog.malususapplique;
-      var myIgnoreMalus = myResultDialog.ignoremalus;
       var mySuccesAuto = myResultDialog.succesauto;
       var myDesNonExplo = 0;
       var mySixExploFlag = myResultDialog.sixexplo;
       var myCinqExploFlag = myResultDialog.cinqexplo;
 
-      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
 
 
     } else {
@@ -392,13 +391,12 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       var myBonusApplique = myResultDialog.bonusapplique;
       var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque;
       var myMalusApplique = myResultDialog.malususapplique;
-      var myIgnoreMalus = myResultDialog.ignoremalus;
       var mySuccesAuto = myResultDialog.succesauto;
       var myDesNonExplo = myResultDialog.desnonexplo;
       var mySixExploFlag = myResultDialog.sixexplo;
       var myCinqExploFlag = myResultDialog.cinqexplo;
 
-      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
     
     }
 
@@ -545,7 +543,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     let myErrorTokenNbr = 0;
     if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
       if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        await myActor.update({ "system.shakti_initiale.value":  parseInt(myActor.system.shakti_initiale.value) - parseInt(myPlusDeuxDesDAttaque) });
         ui.notifications.info(game.i18n.localize("DEVASTRA.Info4-npc"));
       } else {
         ui.notifications.error(game.i18n.localize("DEVASTRA.Error4-npc"));
@@ -948,9 +946,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
 
   const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
-  const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  // const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
-  // const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+  const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
 
   switch (myDomainLibel) {
     case "dph": 
@@ -985,11 +981,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
-    // shaktirestanteflag: myShaktiRestanteFlag,
-    shaktirestanteflag: 0,
-    // convictionrestanteflag: myconvictionRestanteFlag,
-    convictionrestanteflag: 0,
-    plus1succesautoflag : myPlus1SuccesAutoFlag,
+    shaktirestanteflag: myShaktiRestanteFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,
     desnonexplo: 0,
@@ -1074,9 +1066,7 @@ async function _skillDiceRollDialogDeblocked (
   
     const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
     const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
-    const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-    // const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
-    // const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+    // const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
   
     switch (myDomainLibel) {
       case "dph": 
@@ -1111,15 +1101,8 @@ async function _skillDiceRollDialogDeblocked (
       nbrdebonusspecialite: myNbrDeBonusSpecialite,
       specialitecheck: mySpecialiteCheck,
       nd: 4,
-      // shaktirestanteflag: myShaktiRestanteFlag,
-      shaktirestanteflag: 0,
-      // convictionrestanteflag: myconvictionRestanteFlag,
-      convictionrestanteflag: 0,
-      plus1succesautoflag : myPlus1SuccesAutoFlag,
       sixexplo: mySixExploFlag,
       cinqexplo: false,
-      desnonexplo: 0,
-      versiondebloquee: false
     };
     const html = await renderTemplate(template, dialogData);
     // Create the Dialog window
@@ -1171,8 +1154,6 @@ async function _skillDiceRollDialogDeblocked (
         succesauto: myHtml.find("select[name='succesauto']").val(),
         sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
         cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
-        desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
-        versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
       };
       return editedData;
     }
