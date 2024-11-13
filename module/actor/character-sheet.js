@@ -1636,6 +1636,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
+  
     //////////////////////////////////////////////////////////////////
     if (!(myResultDialog)) {
       ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
@@ -1644,41 +1645,85 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     //////////////////////////////////////////////////////////////////
     
 
+
     let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
     if (myVersionDebloqueeFlag) {
+
+
       let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
       myResultDialog = await _skillDiceRollDialogDeblocked (
         myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
       );
-    }
+   
 
-    //////////////////////////////////////////////////////////////////
-    if (!(myResultDialog)) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-      return;
-      };
-    //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      if (!(myResultDialog)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+      
+
+      var myJetAutreFlag = myResultDialog.jetautreflag;
+      var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
+      var myJetDefenseFlag = myResultDialog.jetdefenseflag;
+      var myND = myResultDialog.nd;
+      var myNbrDeDomaine = myResultDialog.nbrdedomaine;
+      var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
+      var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
+      var mySpecialiteFlag = myResultDialog.specialitecheck;
+      var myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
+      var myBonusApplique = myResultDialog.bonusapplique;
+      var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque; // en fait, uniquement nbre jetons Shakti à enlever
+      var myMalusApplique = myResultDialog.malususapplique;
+      var myIgnoreMalus = myResultDialog.ignoremalus;
+      var myMalusAIgnorer = 0;
+      var mySuccesAuto = myResultDialog.succesauto;
+      var myPlusUnSuccesAuto = myResultDialog.plusunsuccesauto; // en fait, uniquement nbre jetons Conviction à enlever
+      var myDesNonExplo = 0;
+      var mySixExploFlag = myResultDialog.sixexplo;
+      var myCinqExploFlag = myResultDialog.cinqexplo;
+
+      console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+      console.log("myIgnoreMalus", myIgnoreMalus);
+      console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+      console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+      var myconvictionSuffisanteFlag = ((myIgnoreMalus + myPlusUnSuccesAuto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+
+    } else {
+
+      var myJetAutreFlag = myResultDialog.jetautreflag;
+      var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
+      var myJetDefenseFlag = myResultDialog.jetdefenseflag;
+      var myND = myResultDialog.nd;
+      var myNbrDeDomaine = myResultDialog.nbrdedomaine;
+      var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
+      var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
+      var mySpecialiteFlag = myResultDialog.specialitecheck;
+      var myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
+      var myBonusApplique = myResultDialog.bonusapplique;
+      var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque;
+      var myMalusApplique = myResultDialog.malususapplique;
+      var myIgnoreMalus = myResultDialog.ignoremalus;
+      var myMalusAIgnorer = myResultDialog.malususaignorer;
+      var mySuccesAuto = myResultDialog.succesauto;
+      var myPlusUnSuccesAuto = myResultDialog.plusunsuccesauto;
+      var myDesNonExplo = myResultDialog.desnonexplo;
+      var mySixExploFlag = myResultDialog.sixexplo;
+      var myCinqExploFlag = myResultDialog.cinqexplo;
+
+      console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+      console.log("myIgnoreMalus", myIgnoreMalus);
+      console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+      console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+      var myconvictionSuffisanteFlag = ((myIgnoreMalus + myPlusUnSuccesAuto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
     
-
-    const myJetAutreFlag = myResultDialog.jetautreflag;
-    const myJetAttaqueFlag = myResultDialog.jetattaqueflag;
-    const mtJetDefenseFlag = myResultDialog.jetdefenseflag;
-    const myND = myResultDialog.nd;
-    const myNbrDeDomaine = myResultDialog.nbrdedomaine;
-    const myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
-    const myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
-    const mySpecialiteFlag = myResultDialog.specialitecheck;
-    const myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
-    const myBonusApplique = myResultDialog.bonusapplique;
-    const myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque;
-    const myMalusApplique = myResultDialog.malususapplique;
-    const myIgnoreMalus = myResultDialog.ignoremalus;
-    const myMalusAIgnorer = myResultDialog.malususaignorer;
-    const mySuccesAuto = myResultDialog.succesauto;
-    const myPlusUnSuccesAuto = myResultDialog.plusunsuccesauto;
-    const myDesNonExplo = myResultDialog.desnonexplo;
-    const mySixExploFlag = myResultDialog.sixexplo;
-    const myCinqExploFlag = myResultDialog.cinqexplo;
+    }
 
     let jetLibel;
     if (myJetAutreFlag) {
@@ -1741,6 +1786,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       myWeaponVal = parseInt(myDamageData.damage);
       mySelectedInventory = myDamageData.selectedinventory;
       myArmorProtection = myDamageData.selectedarmor;
+      
 
       console.log("myDamageData = ", myDamageData);
       console.log("isInventory = ", isInventory);
@@ -1776,27 +1822,80 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let d6_4 = 0;
     let d6_5 = 0;
     let d6_6 = 0;
-    let d6_A = mySuccesAuto;
+    let d6_A = 0;
 
     let suite = "[";
 
-    let total = myNbrDeDomaine;
+    let total = parseInt(myNbrDeDomaine);
 
     // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
     if (myBonusDomaineFlag) {
-      total += myNbrDeBonusDomaine;
+      total += parseInt(myNbrDeBonusDomaine);
       // console.log("myNbrDeBonusDomaine", "compabilisé");
     };
 
     // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
     if (mySpecialiteFlag) {
-      total += myNbrDeBonusSpecialite;
+      total += parseInt(myNbrDeBonusSpecialite);
       // console.log("myNbrDeBonusSpecialite", "compabilisé");
     };
+
 
     /*
     Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
     */
+
+    let myBonusSupplem = parseInt(myBonusApplique);
+    let myMalusSupplem = parseInt(myMalusApplique);
+    let mySuccesAutoSupplem = parseInt(mySuccesAuto);
+
+
+    // Application des bonus valides
+
+    // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
+    if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
+      myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
+    }
+
+    // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
+    // et mySuccesAuto, ceux de myPlusUnSuccesAuto
+    if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
+      myMalusSupplem -= parseInt(myIgnoreMalus);
+      if (myMalusSupplem > 0) { myMalusSupplem = 0};
+
+      mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
+    }
+
+
+    total += myBonusSupplem;
+    total -= myMalusSupplem;
+
+    d6_A = mySuccesAutoSupplem;
+
+
+
+    // Soustraction des jetons si en nombre suffisant, sinon "return"
+    let myErrorTokenNbr = 0;
+    if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
+      if (myShaktiSuffisanteFlag) {
+        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+      } else {
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
+        myErrorTokenNbr++;
+      }
+    }
+    if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
+      if (myconvictionSuffisanteFlag) {
+        await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
+      } else {
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
+        myErrorTokenNbr++;
+      }
+    }
+    if (myErrorTokenNbr) { return };
+
 
     // Ici on traite le cas des dés non-explosifs
     if (myDesNonExplo == 2) {
@@ -1929,7 +2028,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     });
 
       
-    const d_successes  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
+    const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
     // Smart Message
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
@@ -1943,7 +2042,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       d4: n.d6_4,
       d5: n.d6_5,
       d6: n.d6_6,
-      dA: d6_A,
+      dA: mySuccesAutoSupplem,
     }
     console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);

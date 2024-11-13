@@ -365,7 +365,7 @@
   "DEVASTRA.FonctDeverrouillée": "La fonction vient d′être déverrouillée",
   "DEVASTRA.FonctVerrouillée": "La fonction vient d′être verrouillée",
   "DEVASTRA.Verrouiller Entrée manuelle": "Verrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
-  "DEVASTRA.Déverrouiller Entrée manuelle": "Déverrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
+  "DEVASTRA.Déverrouiller Entrée manuelle": "Entrer manuellement le nombre de jetons des piles Conviction et Shakti",
   "DEVASTRA.Cohérence Mandala": "Vérifier la cohérence du Mandala des 7 rangs d′action (fonction en cours de développement)",
 
   "DEVASTRA.trash": "Déposez un jeton ici pour le défausser",
@@ -406,8 +406,18 @@
   "DEVASTRA.Cout en Atman": "Coût en Âtman",
 
 
-  "DEVASTRA.Error2": "Jet annulé",
-  "DEVASTRA.Error1": "Aucun dé à lancer",
+  "DEVASTRA.Error2": "Jet annulé par l′utilisateur",
+  "DEVASTRA.Error1": "Jet annulé : aucun dé à lancer",
+  "DEVASTRA.Info4": "Jetons soustraits à la pile Shakti",
+  "DEVASTRA.Error4": "Jet annulé : pas assez de Jetons dans la pile Shakti",
+  "DEVASTRA.Info5": "Jetons soustraits à la pile Conviction",
+  "DEVASTRA.Error5": "Jet annulé : pas assez de Jetons dans la pile Conviction",
+
+  "DEVASTRA.Info4-npc": "Points soustraits au total de Shakti",
+  "DEVASTRA.Error4-npc": "Jet annulé : pas assez de Points de Shakti",
+  "DEVASTRA.Info5-npc": "Points soustraits au total de Conviction",
+  "DEVASTRA.Error5-npc": "Jet annulé : pas assez de Points de Conviction",
+
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
   "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses",

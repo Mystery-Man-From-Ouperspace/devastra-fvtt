@@ -337,43 +337,69 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
-    //////////////////////////////////////////////////////////////////
-    if (!(myResultDialog)) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-      return;
-      };
-    //////////////////////////////////////////////////////////////////
-    
 
     let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
     if (myVersionDebloqueeFlag) {
-      myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+
+
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
       myResultDialog = await _skillDiceRollDialogDeblocked (
         myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
       );
+   
+
+      //////////////////////////////////////////////////////////////////
+      if (!(myResultDialog)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+      
+
+      var myJetAutreFlag = myResultDialog.jetautreflag;
+      var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
+      var myJetDefenseFlag = myResultDialog.jetdefenseflag;
+      var myND = myResultDialog.nd;
+      var myNbrDeDomaine = myResultDialog.nbrdedomaine;
+      var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
+      var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
+      var mySpecialiteFlag = myResultDialog.specialitecheck;
+      var myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
+      var myBonusApplique = myResultDialog.bonusapplique;
+      var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque; // en fait, uniquement nbre jetons Shakti à enlever
+      var myMalusApplique = myResultDialog.malususapplique;
+      var myIgnoreMalus = myResultDialog.ignoremalus;
+      var mySuccesAuto = myResultDialog.succesauto;
+      var myDesNonExplo = 0;
+      var mySixExploFlag = myResultDialog.sixexplo;
+      var myCinqExploFlag = myResultDialog.cinqexplo;
+
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+
+
+    } else {
+
+      var myJetAutreFlag = myResultDialog.jetautreflag;
+      var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
+      var myJetDefenseFlag = myResultDialog.jetdefenseflag;
+      var myND = myResultDialog.nd;
+      var myNbrDeDomaine = myResultDialog.nbrdedomaine;
+      var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
+      var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
+      var mySpecialiteFlag = myResultDialog.specialitecheck;
+      var myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
+      var myBonusApplique = myResultDialog.bonusapplique;
+      var myPlusDeuxDesDAttaque = myResultDialog.plusdeuxdesdattaque;
+      var myMalusApplique = myResultDialog.malususapplique;
+      var myIgnoreMalus = myResultDialog.ignoremalus;
+      var mySuccesAuto = myResultDialog.succesauto;
+      var myDesNonExplo = myResultDialog.desnonexplo;
+      var mySixExploFlag = myResultDialog.sixexplo;
+      var myCinqExploFlag = myResultDialog.cinqexplo;
+
+      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    
     }
-
-    //////////////////////////////////////////////////////////////////
-    if (!(myResultDialog)) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-      return;
-      };
-    //////////////////////////////////////////////////////////////////
-
-
-    const myJetAutreFlag = myResultDialog.jetautreflag;
-    const myJetAttaqueFlag = myResultDialog.jetattaqueflag;
-    const mtJetDefenseFlag = myResultDialog.jetdefenseflag;
-    const myND = myResultDialog.nd;
-    const myNbrDeDomaine = myResultDialog.nbrdedomaine;
-    const mySpecialiteFlag = myResultDialog.specialitecheck;
-    const myNbrDeBonusSpecialite = myResultDialog.nbrdebonusspecialite;
-    const myBonusApplique = myResultDialog.bonusapplique;
-    const myMalusApplique = myResultDialog.malususapplique;
-    const mySuccesAuto = myResultDialog.succesauto;
-    const myDesNonExplo = myResultDialog.desnonexplo;
-    const mySixExploFlag = myResultDialog.sixexplo;
-    const myCinqExploFlag = myResultDialog.cinqexplo;
 
 
     let jetLibel;
@@ -476,18 +502,56 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     let suite = "[";
 
-    let total = myNbrDeDomaine;
+    let total = parseInt(myNbrDeDomaine);
 
+    // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
+    if (myBonusDomaineFlag) {
+      total += parseInt(myNbrDeBonusDomaine);
+      // console.log("myNbrDeBonusDomaine", "compabilisé");
+    };
 
     // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
     if (mySpecialiteFlag) {
-      total += myNbrDeBonusSpecialite;
+      total += parseInt(myNbrDeBonusSpecialite);
       // console.log("myNbrDeBonusSpecialite", "compabilisé");
     };
+
 
     /*
     Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
     */
+
+    let myBonusSupplem = parseInt(myBonusApplique);
+    let myMalusSupplem = parseInt(myMalusApplique);
+    let mySuccesAutoSupplem = parseInt(mySuccesAuto);
+
+
+    // Application des bonus valides
+
+    // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
+    if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
+      myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
+    }
+
+    total += myBonusSupplem;
+    total -= myMalusSupplem;
+
+    d6_A = mySuccesAutoSupplem;
+
+
+
+    // Soustraction des jetons si en nombre suffisant, sinon "return"
+    let myErrorTokenNbr = 0;
+    if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
+      if (myShaktiSuffisanteFlag) {
+        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4-npc"));
+      } else {
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4-npc"));
+      return;
+      }
+    }
+
 
     // Ici on traite le cas des dés non-explosifs
     if (myDesNonExplo == 2) {
