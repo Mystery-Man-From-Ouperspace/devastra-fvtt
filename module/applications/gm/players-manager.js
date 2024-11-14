@@ -35,12 +35,13 @@ export class PlayersManager extends Application {
   }
 
   static get defaultOptions() {
+    
     return foundry.utils.mergeObject(super.defaultOptions, {
       template: PlayersManager.PLAYERS_MANAGER_TEMPLATE,
       classes: ["devastra", "players-manager"],
       title: game.i18n.localize("DEVASTRA.PLAYERSMANAGER.Title"),
-      top: 50,
-      left: 450,
+      top: window.innerHeight -220,
+      left: window.innerWidth -1045,
       width: 745,
       height: 220,
       resizable: false,
