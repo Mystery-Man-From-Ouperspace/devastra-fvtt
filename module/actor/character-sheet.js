@@ -1645,7 +1645,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     //////////////////////////////////////////////////////////////////
     
 
-
     let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
     if (myVersionDebloqueeFlag) {
 
@@ -1662,12 +1661,13 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
         return;
         };
       //////////////////////////////////////////////////////////////////
-      
+
 
       var myJetAutreFlag = myResultDialog.jetautreflag;
       var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
+      var myMalusBlessureCheck = false;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -1698,6 +1698,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
+      var myMalusBlessureCheck = myResultDialog.malusblessurecheck;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -1851,7 +1852,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let mySuccesAutoSupplem = parseInt(mySuccesAuto);
 
 
-    // Application des bonus valides
+    // Application des bonus valides et des malus
 
     // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
     if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
@@ -1872,6 +1873,31 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     total -= myMalusSupplem;
 
     d6_A = mySuccesAutoSupplem;
+
+
+
+    // Traitement du cas des malus de blessures
+
+    let myNombreDeMalusBlessure = 0;
+    if (myMalusBlessureCheck) {
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "0") { // si le type est blessure
+          myNombreDeMalusBlessure += item.system.value;
+        }
+      };
+    }
+    total -= myNombreDeMalusBlessure;
+    
+
+
+    console.log("total = ", total);
+
+    //////////////////////////////////////////////////////////////////
+    if (total <= 0) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
 
 
 
@@ -1898,6 +1924,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     if (myErrorTokenNbr) { return };
 
 
+
     // Ici on traite le cas des dés non-explosifs
     if (myDesNonExplo == 2) {
       myCinqExploFlag = false;
@@ -1908,14 +1935,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       mySixExploFlag = false;
     };
 
-    console.log("total = ", total);
-
-    //////////////////////////////////////////////////////////////////
-    if (total <= 0) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
-      return;
-      };
-    //////////////////////////////////////////////////////////////////
 
      if (suite.length >= 2) {
       suite += "%";
@@ -2323,6 +2342,19 @@ async function _skillDiceRollDialog(
     break;
     default : console.log("Outch !");
   };
+
+  let myNombreDeMalusBlessure = 0;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "0") { // si le type est blessure
+      myNombreDeMalusBlessure += item.system.value;
+    }
+  };
+  myNombreDeMalusBlessure *= -1;
+  let myMalusBlessureCheck = true;
+  if (myDomainLibel == "dso" || myDomainLibel == "din") { // On ne prend pas en compte les blessures pour ces 2 domaines
+    myMalusBlessureCheck = false;
+  };
+
   var dialogData = {
     initthrow: myInitThrow,
     domaine: myDomaine,
@@ -2333,6 +2365,8 @@ async function _skillDiceRollDialog(
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
+    malusblessurecheck: myMalusBlessureCheck,
+    nbrdemalusblessure: myNombreDeMalusBlessure,
     shaktirestanteflag: myShaktiRestanteFlag,
     convictionrestanteflag: myconvictionRestanteFlag,
     plus1succesautoflag : myPlus1SuccesAutoFlag,
@@ -2381,6 +2415,7 @@ async function _skillDiceRollDialog(
       jetattaqueflag: myHtml.find("input[value='jetattaque']").is(':checked'),
       jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
       nd: myHtml.find("select[name='nd']").val(),
+      malusblessurecheck: myHtml.find("inout[value='malusblessurecheck']").is(':checked'),
       nbrdedomaine: myDialogData.nbrdedomaine,
       nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),

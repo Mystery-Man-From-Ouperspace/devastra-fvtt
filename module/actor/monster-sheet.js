@@ -338,6 +338,14 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     );
 
 
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+    
+
     let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
     if (myVersionDebloqueeFlag) {
 
@@ -360,6 +368,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
+      var myMalusBlessureCheck = false;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -382,6 +391,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       var myJetAttaqueFlag = myResultDialog.jetattaqueflag;
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
+      var myMalusBlessureCheck = myResultDialog.malusblessurecheck;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -536,6 +546,28 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     d6_A = mySuccesAutoSupplem;
 
+    // Traitement du cas des malus de blessures
+
+    let myNombreDeMalusBlessure = 0;
+    if (myMalusBlessureCheck) {
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "0") { // si le type est blessure
+          myNombreDeMalusBlessure += item.system.value;
+        }
+      };
+    }
+    total -= myNombreDeMalusBlessure;
+    
+
+
+    console.log("total = ", total);
+
+    //////////////////////////////////////////////////////////////////
+    if (total <= 0) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
 
 
     // Soustraction des jetons si en nombre suffisant, sinon "return"
@@ -561,14 +593,6 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       mySixExploFlag = false;
     };
 
-    console.log("total = ", total);
-
-    //////////////////////////////////////////////////////////////////
-    if (total <= 0) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
-      return;
-      };
-    //////////////////////////////////////////////////////////////////
 
     if (suite.length >= 2) {
       suite += "%";
@@ -971,6 +995,23 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
     break;
     default : console.log("Outch !");
   };
+
+
+
+  let myNombreDeMalusBlessure = 0;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "0") { // si le type est blessure
+      myNombreDeMalusBlessure += item.system.value;
+    }
+  };
+  myNombreDeMalusBlessure *= -1;
+  let myMalusBlessureCheck = true;
+  if (myDomainLibel == "dso" || myDomainLibel == "din") { // On ne prend pas en compte les blessures pour ces 2 domaines
+    myMalusBlessureCheck = false;
+  };
+
+
+
   var dialogData = {
     initthrow: myInitThrow,
     domaine: myDomaine,
@@ -981,6 +1022,8 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
+    malusblessurecheck: myMalusBlessureCheck,
+    nbrdemalusblessure: myNombreDeMalusBlessure,
     shaktirestanteflag: myShaktiRestanteFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,
@@ -1027,6 +1070,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
       jetattaqueflag: myHtml.find("input[value='jetattaque']").is(':checked'),
       jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
       nd: myHtml.find("select[name='nd']").val(),
+      malusblessurecheck: myHtml.find("inout[value='malusblessurecheck']").is(':checked'),
       nbrdedomaine: myDialogData.nbrdedomaine,
       nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
