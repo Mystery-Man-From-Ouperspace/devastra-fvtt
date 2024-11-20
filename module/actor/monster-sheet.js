@@ -325,6 +325,16 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     let myActor = this.actor;
     let myInitThrow = false;
 
+    const tabDomainLibel = [
+      "_",
+      "@domains.dph",
+      "@domains.dma",
+      "@domains.din",
+      "@domains.dso",
+      "@domains.dmy"
+    ];
+
+
     /*
     Ici on fait remplir les paramètres de lancer de dés
     */
@@ -369,6 +379,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
       var myMalusBlessureCheck = false;
+      var myMalusStatutCheck = false;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -392,6 +403,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
       var myMalusBlessureCheck = myResultDialog.malusblessurecheck;
+      var myMalusStatutCheck = myResultDialog.malusstatutcheck;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -552,11 +564,32 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     if (myMalusBlessureCheck) {
       for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
         if (item.system.subtype == "0") { // si le type est blessure
-          myNombreDeMalusBlessure += item.system.value;
+          myNombreDeMalusBlessure += Math.abs(item.system.value);
         }
       };
     }
     total -= myNombreDeMalusBlessure;
+
+    // Traitement du cas des malus de statuts
+
+    let myNombreDeMalusStatut = 0;
+    if (myMalusStatutCheck) {
+      let j = 0;
+      for (let i=0; i<6; i++) {
+        if (tabDomainLibel[i] == "@domains." + domainLibel) {
+          j = i;
+        }
+      };
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "1") { // si le type est statut
+          if (item.system.domain == j) { // si le domaine correspond
+            myNombreDeMalusStatut += Math.abs(item.system.value);
+          }
+        }
+      }
+    };
+    total -= myNombreDeMalusStatut;
+    
     
 
 
@@ -972,6 +1005,16 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
 
+  const tabDomainLibel = [
+    "_",
+    "@domains.dph",
+    "@domains.dma",
+    "@domains.din",
+    "@domains.dso",
+    "@domains.dmy"
+  ];
+
+
   switch (myDomainLibel) {
     case "dph": 
       myNbrDeDomaine = myActorID.system.domains.dph.value;
@@ -1001,7 +1044,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
   let myNombreDeMalusBlessure = 0;
   for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
     if (item.system.subtype == "0") { // si le type est blessure
-      myNombreDeMalusBlessure += item.system.value;
+      myNombreDeMalusBlessure += Math.abs(item.system.value);
     }
   };
   myNombreDeMalusBlessure *= -1;
@@ -1010,6 +1053,22 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
     myMalusBlessureCheck = false;
   };
 
+  let myNombreDeMalusStatut = 0;
+  let j = 0;
+  for (let i=0; i<6; i++) {
+    if (tabDomainLibel[i] == "@domains." + myDomaine) {
+      j = i;
+    }
+  };
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "1") { // si le type est statut
+      if (item.system.domain == j) { // si le domaine correspond
+        myNombreDeMalusStatut += Math.abs(item.system.value);
+      }
+    }
+  }
+  myNombreDeMalusStatut *= -1;
+  let myMalusStatutCheck = true;
 
 
   var dialogData = {
@@ -1024,6 +1083,8 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
     nd: 4,
     malusblessurecheck: myMalusBlessureCheck,
     nbrdemalusblessure: myNombreDeMalusBlessure,
+    malusstatutcheck: myMalusStatutCheck,
+    nbrdemalusstatut: myNombreDeMalusStatut,
     shaktirestanteflag: myShaktiRestanteFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,
@@ -1071,6 +1132,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
       jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
       nd: myHtml.find("select[name='nd']").val(),
       malusblessurecheck: myHtml.find("inout[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomaine: myDialogData.nbrdedomaine,
       nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),

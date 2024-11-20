@@ -1624,6 +1624,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let myActor = this.actor;
     let myInitThrow = false;
 
+    const tabDomainLibel = [
+      "_",
+      "@domains.dph",
+      "@domains.dma",
+      "@domains.din",
+      "@domains.dso",
+      "@domains.dmy"
+    ];
+
     /*
     Ici on fait remplir les paramètres de lancer de dés
     */
@@ -1668,6 +1677,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
       var myMalusBlessureCheck = false;
+      var myMalusStatutCheck = false;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -1699,6 +1709,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       var myJetDefenseFlag = myResultDialog.jetdefenseflag;
       var myND = myResultDialog.nd;
       var myMalusBlessureCheck = myResultDialog.malusblessurecheck;
+      var myMalusStatutCheck = myResultDialog.malusstatutcheck;
       var myNbrDeDomaine = myResultDialog.nbrdedomaine;
       var myBonusDomaineFlag = myResultDialog.bonusdomainecheck;
       var myNbrDeBonusDomaine = myResultDialog.nbrdebonusdomaine;
@@ -1882,11 +1893,32 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     if (myMalusBlessureCheck) {
       for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
         if (item.system.subtype == "0") { // si le type est blessure
-          myNombreDeMalusBlessure += item.system.value;
+          myNombreDeMalusBlessure += Math.abs(item.system.value);
+        }
+      }
+    };
+    total -= myNombreDeMalusBlessure;
+
+
+    // Traitement du cas des malus de statuts
+
+    let myNombreDeMalusStatut = 0;
+    if (myMalusStatutCheck) {
+      let j = 0;
+      for (let i=0; i<6; i++) {
+        if (tabDomainLibel[i] == "@domains." + domainLibel) {
+          j = i;
         }
       };
-    }
-    total -= myNombreDeMalusBlessure;
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "1") { // si le type est statut
+          if (item.system.domain == j) { // si le domaine correspond
+            myNombreDeMalusStatut += Math.abs(item.system.value);
+          }
+        }
+      }
+    };
+    total -= myNombreDeMalusStatut;
     
 
 
@@ -2319,6 +2351,15 @@ async function _skillDiceRollDialog(
   const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
   const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
 
+  const tabDomainLibel = [
+    "_",
+    "@domains.dph",
+    "@domains.dma",
+    "@domains.din",
+    "@domains.dso",
+    "@domains.dmy"
+  ];
+
   switch (myDomainLibel) {
     case "dph": 
       myNbrDeDomaine = myActorID.system.domains.dph.value;
@@ -2346,7 +2387,7 @@ async function _skillDiceRollDialog(
   let myNombreDeMalusBlessure = 0;
   for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
     if (item.system.subtype == "0") { // si le type est blessure
-      myNombreDeMalusBlessure += item.system.value;
+      myNombreDeMalusBlessure += Math.abs(item.system.value);
     }
   };
   myNombreDeMalusBlessure *= -1;
@@ -2354,6 +2395,24 @@ async function _skillDiceRollDialog(
   if (myDomainLibel == "dso" || myDomainLibel == "din") { // On ne prend pas en compte les blessures pour ces 2 domaines
     myMalusBlessureCheck = false;
   };
+
+  let myNombreDeMalusStatut = 0;
+  let j = 0;
+  for (let i=0; i<6; i++) {
+    if (tabDomainLibel[i] == "@domains." + myDomaine) {
+      j = i;
+    }
+  };
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "1") { // si le type est statut
+      if (item.system.domain == j) { // si le domaine correspond
+        myNombreDeMalusStatut += Math.abs(item.system.value);
+      }
+    }
+  }
+  myNombreDeMalusStatut *= -1;
+  let myMalusStatutCheck = true;
+
 
   var dialogData = {
     initthrow: myInitThrow,
@@ -2367,6 +2426,8 @@ async function _skillDiceRollDialog(
     nd: 4,
     malusblessurecheck: myMalusBlessureCheck,
     nbrdemalusblessure: myNombreDeMalusBlessure,
+    malusstatutcheck: myMalusStatutCheck,
+    nbrdemalusstatut: myNombreDeMalusStatut,
     shaktirestanteflag: myShaktiRestanteFlag,
     convictionrestanteflag: myconvictionRestanteFlag,
     plus1succesautoflag : myPlus1SuccesAutoFlag,
@@ -2415,7 +2476,8 @@ async function _skillDiceRollDialog(
       jetattaqueflag: myHtml.find("input[value='jetattaque']").is(':checked'),
       jetdefenseflag: myHtml.find("input[value='jetdefense']").is(':checked'),
       nd: myHtml.find("select[name='nd']").val(),
-      malusblessurecheck: myHtml.find("inout[value='malusblessurecheck']").is(':checked'),
+      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomaine: myDialogData.nbrdedomaine,
       nbrdebonusdomaine: myDialogData.nbrdebonusdomaine,
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
