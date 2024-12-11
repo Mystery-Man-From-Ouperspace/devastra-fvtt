@@ -306,6 +306,13 @@
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
   "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire de la fiche",
 
+  "DEVASTRA.ThrowDefence": "Lancer Défense Opposant",
+  "DEVASTRA.ThrowWounds": "Lancer Blessures Opposant",
+
+  "DEVASTRA.ApplyDefence": "Appliquer Défense Opposant",
+  "DEVASTRA.ApplyWounds": "Appliquer Blessures Opposant",
+
+
   "DEVASTRA.ButYouOnly": "Malheureusement, vous avez rendu cet affichage invisible au MJ",
 
 

@@ -230,42 +230,42 @@
 
 
 .devastra .sheet-body .statistiques table tr td.click {
-width: 27px;
+  width: 27px;
 }
 .devastra .sheet-body .statistiques table tr td.noclick {
-width: 27px;
+  width: 27px;
 } 
 .devastra .sheet-body .statistiques table tr td table tr td.icon-d {
-width: 27px;
+  width: 27px;
 }
 .devastra .sheet-body .statistiques table tr td.bonus {
-width: 35px;
+  width: 35px;
 }
 .devastra .sheet-body .statistiques table tr td.label {
-width: 25%;
+  width: 25%;
 }
 .devastra .sheet-body .statistiques table tr td.check {
-width: 5%;
+  width: 5%;
 }
 
 .devastra .sheet-body .statistiques table tr td.image {
-width: 5%;
-text-align: center;
+  width: 5%;
+  text-align: center;
 }
 .devastra .sheet-body .statistiques table tr td.image img {
-z-index: 4;
-width: 100%;
+  z-index: 4;
+  width: 100%;
 }
 .devastra .sheet-body .statistiques table tr td.image div.stick {
-margin-top: -52px;
-z-index: 2;
-width: 3%;
-text-align: center;
+  margin-top: -52px;
+  z-index: 2;
+  width: 3%;
+  text-align: center;
 }
 .devastra .sheet-body .statistiques table tr td.image input.input {
 /* border: 0; */
-width: 30px;
-text-align: center;
+  width: 30px;
+  text-align: center;
 }
 
 
@@ -510,7 +510,6 @@ text-align: center;
 .devastra.sheet.magie .sheet-body,
 .devastra.sheet.dharma .sheet-body,
 .devastra.sheet.karma .sheet-body,
-
 .devastra.sheet.tab.sheet-body {
   overflow-y: auto;
 }
@@ -754,6 +753,7 @@ background-color: transparent;
 .devastra .sheet-body .chakras table td.clickonchakra {
   width: 5%;
 }
+
 
 /* Concerne mandalas */
 
@@ -1159,8 +1159,8 @@ flex-wrap: wrap;
 }
 
 
-/* Concerne les NPC */
 
+/* Concerne les NPC */
 
 .devastra.sheet.actor.npc .sheet-body,
 .devastra.sheet.actor.monster .sheet-body {
@@ -1283,10 +1283,6 @@ flex-wrap: wrap;
 
 
 
-
-
-
-
 .devastra.sheet.actor.npc .body-sheet .clickonmandala,
 .devastra.sheet.actor.monster .body-sheet .clickonmandala {
   height: 83.25px;
@@ -1372,70 +1368,78 @@ and (min-resolution:.001dpcm) {
 
 
 
-/* SMART GREEN BUTTON dans le tchat */
+/* SMART BLUE BUTTON dans le tchat */
 
-.devastra-result-window .green-buttons {
+.devastra-result-window .blue-buttons {
   text-align: center;
 }
 
-.devastra-result-window .smart-green-button:hover {
+.devastra-result-window .smart-blue-button:hover {
 cursor: pointer;
 }
 
-.devastra-result-window .smart-green-button {
-  background-color:rgb(75,216,37);
-	font-family: 'Open Sans', sans-serif;
+.demo:active::before {
+	top:50%;
+	margin-top:-12px;
+	-webkit-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-moz-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+}
+
+.devastra-result-window .smart-blue-button {
+  background-color:#3bb3e0;
+	font-family: "ModestoPoster";
 	font-size:12px;
 	text-decoration:none;
-	/* color:orange; */
-  color:black;
+	color:rgb(235, 211, 149);
 	position:relative;
 	padding:10px 20px;
 	padding-right:50px;
-	background-image: linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(52,172,20) 0%, rgb(76,206,41) 100%);
+	background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
 	background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
-	color-stop(0, rgb(52,172,20)),
-	color-stop(1, rgb(61,196,25)),
+	color-stop(0, rgb(44,160,202)),
+	color-stop(1, rgb(62,184,229))
 	);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
-	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
-	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
-	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 5px 0px 0px rgb(12,76,12), 0px 10px 5px #999;
+	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
 }
 
-.devastra-result-window .smart-green-button:active {
-	top:3px;
-	background-image: linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(76,206,41) 0%, rgb(52,172,20) 100%);
+.devastra-result-window .smart-blue-button:active {
+  top:3px;
+	background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
 	background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
-	color-stop(0, rgb(61,196,25)),
-	color-stop(1, rgb(52,172,20))
+	color-stop(0, rgb(62,184,229)),
+	color-stop(1, rgb(44,160,202))
 	);
-	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
-	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
-	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
-	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 2px 0px 0px rgb(12,76,12), 0px 5px 3px #999;
+	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
 }
 
-.devastra-result-window .smart-green-button::before {
-	background-color:rgb(49,157,20);
+.devastra-result-window .smart-blue-button::before {
+	background-color:#2591b4;
 	background-image:url(/systems/devastra/images/ui/right_arrow.png);
 	background-repeat:no-repeat;
 	background-position:center center;
@@ -1450,20 +1454,26 @@ cursor: pointer;
 	-moz-border-radius: 50%;
 	-o-border-radius: 50%;
 	border-radius: 50%;
-	-webkit-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
-	-moz-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
-	-o-box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
-	box-shadow: inset 0px 1px 0px rgb(12,45,4), 0px 1px 0px rgb(92,246,51);
+	-webkit-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	-moz-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	-o-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
 }
 
-.devastra-result-window .smart-green-button:active::before {
+.devastra-result-window .smart-blue-button:active::before {
 	top:50%;
 	margin-top:-12px;
-	-webkit-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
-	-moz-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
-	-o-box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
-	box-shadow: inset 0px 1px 0px rgb(92,246,51), 0px 3px 0px rgb(12,76,12), 0px 6px 3px #999;
+	-webkit-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-moz-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
 }
+
+
+
+
+
+
 
 /* concerne le tchat */
 
@@ -1532,9 +1542,14 @@ background-color: transparent;
   font-size: 16px;
 }
 
+
+
+
+
 /* concerne les APP */
 
-/* Concerne le Cmd Mandala */
+
+/* Concerne le GM MANAGER */
 .devastra.gm-manager {
   min-width: 315px; /* 560px; */
   max-width: 315px;
@@ -1577,10 +1592,7 @@ background-color: transparent;
 }
 
 
-
-
-
-
+/* Concerne le PLAYERS MANAGER */
 .devastra.players-manager .mandala_wrap {
   background-image: url("");
 }
@@ -1701,6 +1713,9 @@ and (min-resolution:.001dpcm) {
   background-color: white;
 } 
 
+
+
+
 /* concerne l'interface de Foundry */
 
 h1, h2, h3, h4, h5, h6 {
@@ -1728,12 +1743,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
 /* concerne les préférences */
 
 .devastra .side-sheet .click-prefs:hover {
   cursor: pointer;
   filter: drop-shadow(0px 0px 6px #af010a);
 }
+
 
 
 /* concerne les pages de journaux */
