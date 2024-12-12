@@ -1780,9 +1780,12 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     */
     myTitle = game.i18n.localize("DEVASTRA.WhichWeapon");
     let isInventory;
-    let myWeaponVal;
     let mySelectedInventory;
-    let myArmorProtection;
+    let mySelectedInventoryDevastra;
+    let mySelectedInventoryPower;
+    let mySelectedInventoryMagic;
+    let myDamage;
+    let myDamageType;
 
 
     if (jetLibel == "attck") {
@@ -1797,10 +1800,12 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
 
       isInventory = myDamageData.isinventory;
-      myWeaponVal = parseInt(myDamageData.damage);
       mySelectedInventory = myDamageData.selectedinventory;
-      myArmorProtection = myDamageData.selectedarmor;
-      
+      mySelectedInventoryDevastra = myDamageData.selectedinventorydevastra;
+      mySelectedInventoryPower = myDamageData.selectedinventorypower;
+      mySelectedInventoryMagic = myDamageData.selectedinventorymagic;
+      myDamage = myDamageData.damage;
+      myDamageType = myDamageData.damagetype;      
 
       console.log("myDamageData = ", myDamageData);
       console.log("isInventory = ", isInventory);
@@ -2094,6 +2099,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
       consideropponentprotection: considerOpponentProtection,
+
+      isinventory: isInventory,
+      selectedinventory: mySelectedInventory,
+      selectedinventorydevastra: mySelectedInventoryDevastra,
+      selectedinventorypower: mySelectedInventoryPower,
+      selectedinventorymagic: mySelectedInventoryMagic,
+      damage: myDamage,
+      damagetype: myDamageType,      
+
       domaine: domainLibel,
       jet: jetLibel,
       succes: d_successes,
@@ -2237,7 +2251,7 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
       selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),
       selectedinventorymagic: myHtml.find("select[name='inventorymagic']").val(),
       damage: parseInt(myHtml.find("select[name='damage']").val()),
-
+      damagetype: parseInt(myHtml.find("select[name='damagetype']").val()),
     };
     // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
     // console.log("myinventory = ", myinventory);

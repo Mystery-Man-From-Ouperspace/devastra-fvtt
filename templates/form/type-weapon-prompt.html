@@ -104,7 +104,7 @@
                             {{ localize "DEVASTRA.choosefrominventory" }}</input>
                         </td>
                         <td class="chooseinventory">
-                            <select class="inventory" data-type="String">
+                            <select name="inventory" data-type="String">
                                 {{selectOptions inventorychoices selected=selectedinventory labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -115,7 +115,7 @@
                             {{ localize "DEVASTRA.choosefrominventorydevastra" }}</input>
                         </td>
                         <td class="chooseinventory">
-                            <select class="inventorydevastra" data-type="String">
+                            <select name="inventorydevastra" data-type="String">
                                 {{selectOptions inventorydevastrachoices selected=selectedinventorydevastra labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -126,7 +126,7 @@
                             {{ localize "DEVASTRA.choosefrominventorypower" }}</input>
                         </td>
                         <td class="chooseinventory">
-                            <select class="inventorypower" data-type="String">
+                            <select name="inventorypower" data-type="String">
                                 {{selectOptions inventorypowerchoices selected=selectedinventorypower labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -137,7 +137,7 @@
                             {{ localize "DEVASTRA.choosefrominventorymagic" }}</input>
                         </td>
                         <td class="chooseinventory">
-                            <select class="inventorymagic" data-type="String">
+                            <select name="inventorymagic" data-type="String">
                                 {{selectOptions inventorymagicchoices selected=selectedinventorymagic labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -148,7 +148,7 @@
                         </td>
                         <td class="choosedamage" style="display: none;">
                             <div style="display: flex;">
-                                <select class="damage" style="display: table;">
+                                <select name="damage" style="display: table;">
                                     {{#select damage}}
                                         <option value="0">0</option>
                                         <option value="1">1</option>
@@ -168,7 +168,7 @@
                                         <option value="15">15</option>
                                     {{/select}}
                                 </select>
-                                <select class="damage" style="float: left;">
+                                <select name="damage" style="float: left;">
                                     {{#select damagetype}}
                                         <option value="0">{{ localize "DEVASTRA.opt.none" }}</option>
                                         <option value="1">+ @domains.dph</option>
