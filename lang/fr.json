@@ -304,7 +304,7 @@
   "DEVASTRA.PCWounded":  "Le PNJ touche le PJ ; blessures infligées",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
-  "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire de la fiche",
+  "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire du token/de la fiche",
 
   "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
 

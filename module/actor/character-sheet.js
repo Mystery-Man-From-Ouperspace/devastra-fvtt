@@ -1753,6 +1753,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     myTitle = game.i18n.localize("DEVASTRA.WhichTarget");
 
     var opponentActor = null;
+    var considerOpponentProtection = false;
     if (jetLibel == "attck") {
       var myTarget = await _whichTarget (
         myActor, template, myTitle, myDialogOptions, domainLibel
@@ -1767,6 +1768,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           };
         };
       };
+      considerOpponentProtection = myTarget.opponentprotection;
     };
 
 
@@ -2083,8 +2085,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
     // Smart Message
+    let opponentActorId ="";
+    if (opponentActor) opponentActorId = opponentActor.id;
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
+      attaquantId: game.user.id,
+      nd: myND,
+      attaquantficheId: myActor.id,
+      opposantficheId: opponentActorId,
+      consideropponentprotection: considerOpponentProtection,
       domaine: domainLibel,
       jet: jetLibel,
       succes: d_successes,
@@ -2320,6 +2329,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
       youimg: "",
       targetchoices: {},
       selectedtarget: myHtml.find("select[name='target']").val(),
+      opponentprotection: myHtml.find("input[name='opponentprotection']").is(':checked'),
       tokenimg: ""
     };
     return editedData;
@@ -2558,8 +2568,8 @@ async function _skillDiceRollDialogDeblocked (
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
     nd: 4,
-    shaktirestanteflag: true,
-    convictionrestanteflag: true,
+    shaktirestanteflag: myShaktiRestanteFlag,
+    convictionrestanteflag: myconvictionRestanteFlag,
     plus1succesautoflag : myPlus1SuccesAutoFlag,
     sixexplo: mySixExploFlag,
     cinqexplo: false,

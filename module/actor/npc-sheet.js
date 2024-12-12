@@ -439,6 +439,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     myTitle = game.i18n.localize("DEVASTRA.WhichTarget");
 
     var opponentActor = null;
+    var considerOpponentProtection = false;
     if (jetLibel == "attck") {
       var myTarget = await _whichTarget (
         myActor, template, myTitle, myDialogOptions, domainLibel
@@ -453,6 +454,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
           };
         };
       };
+      considerOpponentProtection = myTarget.opponentprotection;
     };
 
 
@@ -748,8 +750,15 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     const d_successes  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     // Smart Message
+    let opponentActorId = "";
+    if (opponentActor) opponentActorId = opponentActor.id;
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
+      attaquantId: game.user.id,
+      nd: myND,
+      attaquantficheId: myActor.id,
+      opposantficheId: opponentActorId,
+      consideropponentprotection: considerOpponentProtection,
       domaine: domainLibel,
       jet: jetLibel,
       succes: d_successes,
@@ -981,6 +990,7 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
       youimg: "",
       targetchoices: {},
       selectedtarget: myHtml.find("select[name='target']").val(),
+      opponentprotection: myHtml.find("input[name='opponentprotection']").is(':checked'),
       tokenimg: ""
     };
     return editedData;
@@ -1008,7 +1018,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
 
   const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
-  const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
+  const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
 
   const tabDomainLibel = [
     "_",
