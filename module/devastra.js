@@ -327,19 +327,30 @@ function preLocalizeConfig() {
 /* -------------------------------------------- */
 /*  Chat Message Hooks                          */
 /* -------------------------------------------- */
-// Hooks for Green Buttons in Chat
+// Hooks for Blue Buttons in Chat
 
 Hooks.on("renderChatMessage", (app, html, data,) => {
 
-  const rerollButton = html[0].querySelector("[class='smart-green-button reroll-click']");
-  const moonrollButton = html[0].querySelector("[class='smart-green-button moon-click']");
-  const woundscalculateButton = html[0].querySelector("[class='smart-green-button wounds-calculate-click']");
-  const woundsapplytoNPCButton = html[0].querySelector("[class='smart-green-button wounds-apply-to-NPC-click']");
-  const woundsapplytoPCButton = html[0].querySelector("[class='smart-green-button wounds-apply-to-PC-click']");
+  const defencecalculateButton = html[0].querySelector("[class='smart-blue-button defence-calculate-click']");
+  const woundscalculateButton = html[0].querySelector("[class='smart-blue-button wounds-calculate-click']");
+  // const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
 
-  
-  if (woundsapplytoPCButton != undefined && woundsapplytoPCButton != null) {
-    woundsapplytoPCButton.addEventListener('click', () => {
+
+
+
+  if (defencecalculateButton != undefined && defencecalculateButton != null) {
+    defencecalculateButton.addEventListener('click', () => {
+
+    // La joueuse ou le PNJ calcule depuis le Tchat sa défense contre une attaque
+    // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+
+      console.log("Pas glop ! Pas glop !")
+    })
+  }
+
+/*
+  if (woundsapplyButton != undefined && woundsapplyButton != null) {
+    woundsapplyButton.addEventListener('click', () => {
 
     // La joueuse applique depuis le Tchat les blessures infiligées à son PJ par le PNJ
     // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
@@ -374,8 +385,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       _updateActorSheetWoundsJauge (myActor, wounds);
 
       let typeOfThrow = parseInt(typeofthrow);
-;
-      let smartTemplate = 'systems/devastra/templates/form/dice-result-apply-wounds.html'
+
+      let smartTemplate = 'systems/devastra/templates/form/dice-result-apply-wounds.html';
 
       let smartData = {};
 
@@ -384,8 +395,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   
     })
   }
+    */
 
 
+/*
   if (woundsapplytoNPCButton != undefined && woundsapplytoNPCButton != null) {
     woundsapplytoNPCButton.addEventListener('click', () => {
 
@@ -429,6 +442,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
   })
   }
+  */
   
 
   if (woundscalculateButton != undefined && woundscalculateButton != null) {
@@ -503,97 +517,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   }
 
 
-  if (moonrollButton != undefined && moonrollButton != null) {
-    moonrollButton.addEventListener('click', async () => {
 
-    // La joueuse lance un dé de Lune depuis le Tchat
-    // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
-
-    console.log('Je suis dans moonrollButton')
-
-    const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
-
-    const yourplayerid = html[0].querySelector("div[class='yourplayerid']").textContent;
-    const youractorid = html[0].querySelector("div[class='youractorid']").textContent;
-
-    const myUser = game.user;
-    console.log("game.user.id = ", game.user.id);
-    console.log("yourplayerid = ", yourplayerid);
-    if (!(game.user.id == yourplayerid)) {console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
-
-    console.log("youractorid = ", youractorid);
-    const myActor = game.actors.get(youractorid);
-    if (myActor == null) {console.log("TADAM !") ;return;};
-
-    const myTypeOfThrow = parseInt(typeofthrow);
-    
-    let rMoon = new Roll('1d8');
-    await rMoon.roll();
-
-
-    const theResult = rMoon.result;
-    console.log("rMoon.result = ", rMoon.result);
-
-    const mySmartMoonTemplate = 'systems/devastra/templates/form/dice-result-moon.html';
-    const mySmartMoonData =
-    {
-      moonname: game.i18n.localize(myActor.system.skill.moondicetypes[theResult - 1]),
-      theresult: parseInt(theResult)
-    };
-  
-    const titleSmartRMoon = "Joli message à venir";
-    const mySmartRMoonTemplate = 'systems/devastra/templates/form/dice-result-just-title-moon.html';
-    const mySmartRMoonData = {
-      title: titleSmartRMoon
-      //
-    }
-
-    await _showMessagesInChat (myActor, myTypeOfThrow, rMoon, mySmartRMoonTemplate, mySmartRMoonData, mySmartMoonTemplate, mySmartMoonData);
-  
-  })
   }
 
 
-  if (rerollButton != undefined && rerollButton != null) {
-    rerollButton.addEventListener('click', () => {
-
-    // La joueuse relance les dés depuis le Tchat
-    // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
-
-    console.log('Je suis dans rerollButton')
-
-    const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
-
-    const numberofdice = html[0].querySelector("div[class='numberofdice']").textContent;
-    const skill = html[0].querySelector("div[class='skill']").textContent;
-    const bonus = html[0].querySelector("div[class='bonus']").textContent;
-    const rolldifficulty = html[0].querySelector("div[class='rolldifficulty']").textContent;
-
-    const youwin = html[0].querySelector("div[class='youwin']").textContent;
-    const yourplayerid = html[0].querySelector("div[class='yourplayerid']").textContent;
-    const youractorid = html[0].querySelector("div[class='youractorid']").textContent;
-    const yourdamage = html[0].querySelector("div[class='yourdamage']").textContent;
-    const yourprotection = html[0].querySelector("div[class='yourprotection']").textContent;
-    const youropponent = html[0].querySelector("div[class='youropponent']").textContent;
-    const youropponentid = html[0].querySelector("div[class='youropponentid']").textContent;
-    const youropponentdamage = html[0].querySelector("div[class='youropponentdamage']").textContent;
-    const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
-
-    const myUser = game.user;
-    console.log("game.user.id = ", game.user.id);
-    console.log("yourplayerid = ", yourplayerid);
-    if (!(game.user.id == yourplayerid)) {console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
-
-
-
-
-
-
-  })
-  }
-
-
-})
+)
 
 
 /* -------------------------------------------- */

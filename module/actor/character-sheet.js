@@ -2091,13 +2091,18 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     // Smart Message
     let opponentActorId ="";
-    if (opponentActor) opponentActorId = opponentActor.id;
+    let opponentName ="";
+    if (opponentActor) {
+      opponentActorId = opponentActor.id;
+      opponentName = opponentActor.name;
+    }
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
       attaquantId: game.user.id,
       nd: myND,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
+      opposant: opponentName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
@@ -2251,7 +2256,7 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
       selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),
       selectedinventorymagic: myHtml.find("select[name='inventorymagic']").val(),
       damage: parseInt(myHtml.find("select[name='damage']").val()),
-      damagetype: parseInt(myHtml.find("select[name='damagetype']").val()),
+      damagetype: myHtml.find("select[name='damagetype']").val(),
     };
     // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
     // console.log("myinventory = ", myinventory);

@@ -304,15 +304,18 @@
   "DEVASTRA.PCWounded":  "Le PNJ touche le PJ ; blessures infligées",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
-  "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire du token/de la fiche",
+  "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
+  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant ou le MJ",
 
   "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
 
-  "DEVASTRA.ThrowDefence": "Déterminer Défense Opposant",
-  "DEVASTRA.ThrowWounds": "Déterminer Blessures Opposant",
+  "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
+  "DEVASTRA.ThrowWounds": "Déterminer Blessures infligées",
 
-  "DEVASTRA.ApplyDefence": "Appliquer Défense Opposant",
-  "DEVASTRA.ApplyWounds": "Appliquer Blessures Opposant",
+  "DEVASTRA.ApplyDefence": "Appliquer Défense",
+  "DEVASTRA.ApplyWounds": "Appliquer Blessures [Opposant]",
+
+  "DEVASTRA.DefenderName": "Opposant : ",
 
 
   "DEVASTRA.ButYouOnly": "Malheureusement, vous avez rendu cet affichage invisible au MJ",
