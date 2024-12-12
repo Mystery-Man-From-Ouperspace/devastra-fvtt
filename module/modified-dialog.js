@@ -11,6 +11,9 @@ export class ModifiedDialog extends Dialog {
     html.find('input[value="isinventory"]').click(this._onInventoryClick.bind(this));
     html.find('input[value="isimprovised"]').click(this._onDamageClick.bind(this));
 
+    html.find('select[name="domains"]').change(this._onChangeDomain.bind(this));
+
+
     // html.find('input[value="isinventoryopponent"]').click(this._onInventoryOpponentClick.bind(this));
     // html.find('input[value="isimprovisedopponent"]').click(this._onDamageOpponentClick.bind(this));
 
@@ -107,6 +110,7 @@ export class ModifiedDialog extends Dialog {
     choosedamage.hide();
   }
 
+
   /*
   _onInventoryOpponentClick(event) {
     // console.log("J'exécute _onInventoryOpponentClick()")
@@ -136,6 +140,74 @@ export class ModifiedDialog extends Dialog {
     chooseinventory.hide();
     choosedamage.show();
   }
+
+
+  _onChangeDomain(event) {
+    console.log("J'exécute _onChangeDomain()");
+    let domains = this.element.find('select[name="domains"]').val();
+    let dph = this.element.find('tr[class="dph"]');
+    let dma = this.element.find('tr[class="dma"]');
+    let din = this.element.find('tr[class="din"]');
+    let dso = this.element.find('tr[class="dso"]');
+    let dmy = this.element.find('tr[class="dmy"]');
+
+    let nbrdomainedph = this.element.find('div[class="nbrdomainedph"]');
+    let nbrdomainedma = this.element.find('div[class="nbrdomainedma"]');
+    let nbrdomainedin = this.element.find('div[class="nbrdomainedin"]');
+    let nbrdomainedso = this.element.find('div[class="nbrdomainedso"]');
+    let nbrdomainedmy = this.element.find('div[class="nbrdomainedmy"]');
+
+    let bonusdomainedph = this.element.find('div[class="bonusdomainedph"]');
+    let bonusdomainedma = this.element.find('div[class="bonusdomainedma"]');
+    let bonusdomainedin = this.element.find('div[class="bonusdomainedin"]');
+    let bonusdomainedso = this.element.find('div[class="bonusdomainedso"]');
+    let bonusdomainedmy = this.element.find('div[class="bonusdomainedmy"]');
+
+    let malusstatutdph = this.element.find('div[class="malusstatutdph"]');
+    let malusstatutdma = this.element.find('div[class="malusstatutdma"]');
+    let malusstatutdin = this.element.find('div[class="malusstatutdin"]');
+    let malusstatutdso = this.element.find('div[class="malusstatutdso"]');
+    let malusstatutdmy = this.element.find('div[class="malusstatutdmy"]');
+
+    dph.hide();
+    dma.hide();
+    din.hide();
+    dso.hide();
+    dmy.hide();
+
+    nbrdomainedph.hide();
+    nbrdomainedma.hide();
+    nbrdomainedin.hide();
+    nbrdomainedso.hide();
+    nbrdomainedmy.hide();
+
+    bonusdomainedph.hide();
+    bonusdomainedma.hide();
+    bonusdomainedin.hide();
+    bonusdomainedso.hide();
+    bonusdomainedmy.hide();
+
+    malusstatutdph.hide();
+    malusstatutdma.hide();
+    malusstatutdin.hide();
+    malusstatutdso.hide();
+    malusstatutdmy.hide();
+
+
+    switch (domains) {
+      case 'dph': { dph.show(); nbrdomainedph.show(); bonusdomainedph.show(); malusstatutdph.show(); };
+      break;
+      case 'dma': { dma.show(); nbrdomainedma.show(); bonusdomainedma.show(); malusstatutdma.show(); };
+      break;
+      case 'din': { din.show(); nbrdomainedin.show(); bonusdomainedin.show(); malusstatutdin.show(); };
+      break;
+      case 'dso': { dso.show(); nbrdomainedso.show(); bonusdomainedso.show(); malusstatutdso.show(); };
+      break;
+      case 'dmy': { dmy.show(); nbrdomainedmy.show(); bonusdomainedmy.show(); malusstatutdmy.show(); };
+      break;
+    }
+  }
+
 
   /*
   _onDamageOpponentClick(event) {

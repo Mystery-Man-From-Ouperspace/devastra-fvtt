@@ -25,6 +25,8 @@ import { PlayersManager } from "./applications/gm/players-manager.js";
 import { Macros } from "./macros.js";
 import { initControlButtons } from "./control-buttons.js";
 
+import { ModifiedDialog } from "./modified-dialog.js";
+
 globalThis.SYSTEM = DEVASTRA;
 
 /* -------------------------------------------- */
@@ -344,9 +346,40 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
     // La joueuse ou le PNJ calcule depuis le Tchat sa défense contre une attaque
     // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
 
-      console.log("Pas glop ! Pas glop !")
+
+          /*
+    Ici on fait remplir les paramètres de lancer de dés
+    */
+    const myActorId = html[0].querySelector("span[class='opposantficheId']").textContent;
+    let myActor = game.actors.get(myActorId);
+
+    let myTitle = game.i18n.localize("DEVASTRA.Jet de dés");
+    let myDialogOptions = {
+      classes: ["devastra", "sheet"]
+    };
+    let template = "";
+
+    if (myActor == undefined || myActor.type == 'npc' || myActor.type == 'monster') {
+      console.log("Pas glop ! Pas glop !");
+    } else {
+
+      let myResultDialog =  _skillDiceRollDefenceDialog(
+        myActor, template, myTitle, myDialogOptions
+      );
+
+          //////////////////////////////////////////////////////////////////
+      if (!(myResultDialog)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+      }
+    
     })
+  
   }
+
+
 
 /*
   if (woundsapplyButton != undefined && woundsapplyButton != null) {
@@ -761,4 +794,203 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 
   myActor.update({ "system.blessures.lvl": newLevelBlessures });
 
+}
+
+
+/* -------------------------------------------- */
+/*  Dialogue de lancer de dés                   */
+/* -------------------------------------------- */
+async function _skillDiceRollDefenceDialog(
+  myActor, template, myTitle, myDialogOptions
+  ) {
+
+  // Render modal dialog
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-defence.html';
+  const myActorID = myActor;
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  const myNbrDeBonusSpecialite = 1;
+  const myBonusDomaineCheck = true;
+
+  const mySpecialiteCheck = true;
+  const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
+  const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
+  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+
+  const tabDomainLibel = [
+    "_",
+    "@domains.dph",
+    "@domains.dma",
+    "@domains.din",
+    "@domains.dso",
+    "@domains.dmy"
+  ];
+
+  const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
+  const myNbrDeBonusDomaineDPh = myActorID.system.domains.dph.bonusdice;
+
+  const myNbrDeDomaineDMa = myActorID.system.domains.dma.value;
+  const myNbrDeBonusDomaineDMa = myActorID.system.domains.dma.bonusdice;
+
+  const myNbrDeDomaineDIn = myActorID.system.domains.din.value;
+  const myNbrDeBonusDomaineDIn = myActorID.system.domains.din.bonusdice;
+
+  const myNbrDeDomaineDSo = myActorID.system.domains.dso.value;
+  const myNbrDeBonusDomaineDSo = myActorID.system.domains.dso.bonusdice;
+
+  const myNbrDeDomaineDMy = myActorID.system.domains.dmy.value;
+  const myNbrDeBonusDomaineDMy = myActorID.system.domains.dmy.bonusdice;
+
+  let myDomainLibel = "dsa";
+
+  let myNombreDeMalusBlessure = 0;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "0") { // si le type est blessure
+      myNombreDeMalusBlessure += Math.abs(item.system.value);
+    }
+  };
+  myNombreDeMalusBlessure *= -1;
+  let myMalusBlessureCheck = false;
+
+  let myNombreDeMalusStatutDPh = 0;
+  let myNombreDeMalusStatutDMa = 0;
+  let myNombreDeMalusStatutDIn = 0;
+  let myNombreDeMalusStatutDSo = 0;
+  let myNombreDeMalusStatutDMy = 0;
+  let j;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "1") { // si le type est statut
+      j = item.system.domain;
+      console.log("j = ", j);
+      switch (j) {
+        case '1': myNombreDeMalusStatutDPh++;
+        break;
+        case '2': myNombreDeMalusStatutDMa++;
+        break;
+        case '3': myNombreDeMalusStatutDIn++;
+        break;
+        case '4': myNombreDeMalusStatutDSo++;
+        break;
+        case '5': myNombreDeMalusStatutDMy++;
+        break;
+        default: console.log(`Sorry, that's an error.`);
+      }
+    }
+  }
+  myNombreDeMalusStatutDPh *= -1;
+  myNombreDeMalusStatutDMa *= -1;
+  myNombreDeMalusStatutDIn *= -1;
+  myNombreDeMalusStatutDSo *= -1;
+  myNombreDeMalusStatutDMy *= -1;
+
+  let myMalusStatutCheck = true;
+
+
+  var dialogData = {
+    domains: "dma",
+    systemData: myActorID.system,
+    nbrdedomainedph: myNbrDeDomaineDPh,
+    nbrdedomainedma: myNbrDeDomaineDMa,
+    nbrdedomainedin: myNbrDeDomaineDIn,
+    nbrdedomainedso: myNbrDeDomaineDSo,
+    nbrdedomainedmy: myNbrDeDomaineDMy,
+    nbrdebonusdomainedph: myNbrDeBonusDomaineDPh,
+    nbrdebonusdomainedma: myNbrDeBonusDomaineDMa,
+    nbrdebonusdomainedin: myNbrDeBonusDomaineDIn,
+    nbrdebonusdomainedso: myNbrDeBonusDomaineDSo,
+    nbrdebonusdomainedmy: myNbrDeBonusDomaineDMy,
+    bonusdomainecheck: myBonusDomaineCheck,
+    nbrdebonusspecialite: myNbrDeBonusSpecialite,
+    specialitecheck: mySpecialiteCheck,
+    nd: 4,
+    malusblessurecheck: myMalusBlessureCheck,
+    nbrdemalusblessure: myNombreDeMalusBlessure,
+    malusstatutcheck: myMalusStatutCheck,
+    nbrdemalusstatutdph: myNombreDeMalusStatutDPh,
+    nbrdemalusstatutdma: myNombreDeMalusStatutDMa,
+    nbrdemalusstatutdin: myNombreDeMalusStatutDIn,
+    nbrdemalusstatutdso: myNombreDeMalusStatutDSo,
+    nbrdemalusstatutdmy: myNombreDeMalusStatutDMy,
+    shaktirestanteflag: myShaktiRestanteFlag,
+    convictionrestanteflag: myconvictionRestanteFlag,
+    plus1succesautoflag : myPlus1SuccesAutoFlag,
+    sixexplo: mySixExploFlag,
+    cinqexplo: false,
+    desnonexplo: 0,
+    versiondebloquee: false
+  };
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 500,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      nd: myHtml.find("select[name='nd']").val(),
+      domains: myHtml.find("select[name='domains']").val(),
+      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      nbrdedomainedph: myDialogData.nbrdedomainedph,
+      nbrdedomainedma: myDdialogData.nbrdedomainedma,
+      nbrdedomainedin: myDialogData.nbrdedomainedin,
+      nbrdedomainedso: myDialogData.nbrdedomainedso,
+      nbrdedomainedmy: myDialogData.nbrdedomainedmy,
+      nbrdebonusdomainedph: myDialogData.nbrdebonusdomainedph,
+      nbrdebonusdomainedma: myDialogData.nbrdebonusdomainedma,
+      nbrdebonusdomainedin: myDialogData.nbrdebonusdomainedin,
+      nbrdebonusdomainedso: myDialogData.nbrdebonusdomainedso,
+      nbrdebonusdomainedmy: myDialogData.nbrdebonusdomainedmy,
+      nbrdemalusstatutdph: myDialogData.nbrdemalusstatutdph,
+      nbrdemalusstatutdma: myDialogData.nbrdemalusstatutdma,
+      nbrdemalusstatutdin: myDialogData.nbrdemalusstatutdin,
+      nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
+      nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
+      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
+      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
+      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+    };
+    return editedData;
+  }
+  
 }
