@@ -358,7 +358,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       };
 
       let myUserId = game.user.id;
-      console.log('myUserId', myUserId);
       let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
 
       /* if (game.user.isGM) {
@@ -381,7 +380,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       if (myActor.type == 'npc' || myActor.type == 'monster') {
 
-        console.log("Pas glop ! Pas glop !");
         _treatSkillDiceRollDefenceNPCDialog(
           myActor, template, myTitle, myDialogOptions, nd
         );
@@ -530,11 +528,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       if (PCwoundedtotal < 0) {PCwoundedtotal = 0};
       let autoWoundsNPC = game.settings.get("devastra", "autoWoundsNPC");
 
-      console.log("autoWoundsNPC = ", autoWoundsNPC);
+      // console.log("autoWoundsNPC = ", autoWoundsNPC);
 
       const myUser = game.user;
-      console.log("game.user.id = ", game.user.id);
-      console.log("yourplayerid = ", yourplayerid);
+      // console.log("game.user.id = ", game.user.id);
+      // console.log("yourplayerid = ", yourplayerid);
       if (!(game.user.id == yourplayerid)) {console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
 
       const myActor = game.actors.get(youractorid);
@@ -885,7 +883,6 @@ async function _skillDiceRollDefenceDialog(
   for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
     if (item.system.subtype == "1") { // si le type est statut
       j = item.system.domain;
-      console.log("j = ", j);
       switch (j) {
         case '1': myNombreDeMalusStatutDPh++;
         break;
@@ -1085,7 +1082,6 @@ async function _skillDiceRollDefenceNPCDialog(
   for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
     if (item.system.subtype == "1") { // si le type est statut
       j = item.system.domain;
-      console.log("j = ", j);
       switch (j) {
         case '1': myNombreDeMalusStatutDPh++;
         break;
