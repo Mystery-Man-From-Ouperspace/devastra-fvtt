@@ -440,6 +440,10 @@
   "DEVASTRA.Info5-npc": "Points soustraits au total de Conviction",
   "DEVASTRA.Error5-npc": "Jet annulé : pas assez de Points de Conviction",
 
+  "DEVASTRA.Error3": "Impossible : vous n’êtes pas propriétaire",
+
+  "DEVASTRA.Error7": "Impossible : l’opposant n’a pas été défini",
+
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
   "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses connectées",

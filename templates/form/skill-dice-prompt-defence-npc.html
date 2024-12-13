@@ -236,47 +236,6 @@
                             </select>
                         </td>
                     </tr>
-                    {{#if initthrow}}
-                    {{else}}
-                    <tr>
-                        <td>
-                            {{ localize "DEVASTRA.+2 dé d'attaque-npc" }}
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td class="right">
-                            {{#if shaktirestanteflag}}
-                            <select name="plusdeuxdesdattaque">
-                                {{#select plusdeuxdesdattaque}}
-                                    <option value="0">–</option>
-                                    <option value="1">1&nbsp;{{ localize "DEVASTRA.Jeton" }}</option>
-                                    <option value="2">2&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="3">3&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="4">4&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="5">5&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="6">6&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="7">7&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="8">8&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="9">9&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="10">10&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="11">11&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="12">12&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="13">13&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="14">14&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                    <option value="15">15&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
-                                {{/select}}
-                            </select>
-                            {{else}}
-                            <select name="plusdeuxdesdattaque" disabled>
-                                {{#select plusdeuxdesdattaque}}
-                                <option value="0">{{ localize "DEVASTRA.N-A" }}</option>
-                                {{/select}}
-                            </select>
-                            {{/if}}
-                        </td>
-                    </tr>
-                    {{/if}}
                     <tr>
                         <td>
                             {{ localize "DEVASTRA.Malus à appliquer" }}

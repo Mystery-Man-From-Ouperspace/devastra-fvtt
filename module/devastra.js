@@ -353,6 +353,21 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       let myActor = game.actors.get(myActorId);
 
       if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+
+      let myUserId = game.user.id;
+      console.log('myUserId', myUserId);
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      /* if (game.user.isGM) {
+        isOwner = true;
+      }
+      */
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
         return;
       };
 
