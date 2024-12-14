@@ -1734,6 +1734,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 5px;
 }
 
+#pause { 
+  top: calc(50% - 96px);
+}
+
 #pause > img {
   content: url("/systems/devastra/images/ui/Wheel.webp");
   height: 192px;
@@ -1741,7 +1745,6 @@ h1, h2, h3, h4, h5, h6 {
   top: -45px;
   left: calc(50% - 96px);
 }
-
 
 
 /* concerne les préférences */
