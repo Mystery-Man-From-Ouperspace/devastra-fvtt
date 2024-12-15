@@ -2090,19 +2090,18 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
     // Smart Message
-    let opponentActorId ="";
-    let opponentName ="";
+    let opponentActorId = "";
+    let opponentActorName = "";
     if (opponentActor) {
       opponentActorId = opponentActor.id;
-      opponentName = opponentActor.name;
+      opponentActorName = opponentActor.name;
     }
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
-      attaquantId: game.user.id,
       nd: myND,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
-      opposant: opponentName,
+      opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,

@@ -12,6 +12,8 @@ export class ModifiedDialog extends Dialog {
     html.find('input[value="isimprovised"]').click(this._onDamageClick.bind(this));
 
     html.find('select[name="domains"]').change(this._onChangeDomain.bind(this));
+    html.find('input[value="ouijet"]').click(this._onThrowDefenceClick.bind(this));
+    html.find('input[value="ouishaktidefense"]').click(this._onShaktiDefenceClick.bind(this));
 
 
     // html.find('input[value="isinventoryopponent"]').click(this._onInventoryOpponentClick.bind(this));
@@ -39,6 +41,8 @@ export class ModifiedDialog extends Dialog {
     html.find('select[name="jaugewounds"]').change(this._onSkillDicePrompt.bind(this));
     html.find('select[name="jaugedestiny"]').change(this._onSkillDicePrompt.bind(this));
     html.find('select[name="jaugespleen"]').change(this._onSkillDicePrompt.bind(this));
+
+
   }
 
   /* -------------------------------------------- */
@@ -47,6 +51,18 @@ export class ModifiedDialog extends Dialog {
    * Handle changing the...
    * @param {Event} event   The input change event
    */
+
+
+  _onThrowDefenceClick(event) {
+    let cadre = this.element.find('div[class="cadre"]');
+    cadre.show();
+  }
+  _onShaktiDefenceClick(event) {
+    let cadre = this.element.find('div[class="cadre"]');
+    cadre.hide();
+  }
+
+
 
   _onKnownOppositionClick(event) {
     // console.log(1);

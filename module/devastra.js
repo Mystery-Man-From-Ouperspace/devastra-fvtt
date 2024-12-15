@@ -1176,10 +1176,8 @@ async function _skillDiceRollDefenceNPCDialog(
     const editedData = {
       domains: myHtml.find("select[name='domains']").val(),
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
       nd: myHtml.find("select[name='nd']").val(),
       ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
-      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
       defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),

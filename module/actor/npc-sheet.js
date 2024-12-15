@@ -757,17 +757,17 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     // Smart Message
     let opponentActorId = "";
-    let opponentName ="";
+    let opponentActorName = "";
     if (opponentActor) {
       opponentActorId = opponentActor.id;
-      opponentName = opponentActor.name;
-    }    const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+      opponentActorName = opponentActor.name;
+    }
+    const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
-      attaquantId: game.user.id,
       nd: myND,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
-      opposant: opponentName,
+      opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
