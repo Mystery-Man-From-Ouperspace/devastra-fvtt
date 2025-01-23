@@ -886,11 +886,8 @@ async function _treatSkillDiceRollDefenceDialog(
     var domains = myResultDialog.domains;
     var jet = "defnc";
     var ouijet = myResultDialog.ouijet;
-    var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
     var ouishaktidefense = myResultDialog.ouishaktidefense;
-    var nonshaktidefense = myResultDialog.nonshaktidefense;
-    var defenseshakti = myResultDialog.defenseshakti;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
     var specialiteflag = myResultDialog.specialitecheck;
     var malusblessureflag = myResultDialog.malusblessurecheck;
@@ -953,11 +950,8 @@ async function _treatSkillDiceRollDefenceDialog(
     var domains = myResultDialog.domains;
     var jet = "defnc";
     var ouijet = myResultDialog.ouijet;
-    var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
     var ouishaktidefense = myResultDialog.ouishaktidefense;
-    var nonshaktidefense = myResultDialog.nonshaktidefense;
-    var defenseshakti = myResultDialog.defenseshakti;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
     var specialiteflag = myResultDialog.specialitecheck;
     var malusblessureflag = myResultDialog.malusblessurecheck;
@@ -1006,8 +1000,107 @@ async function _treatSkillDiceRollDefenceDialog(
   
   }
 
-  const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
-  const smartData = {
+  if (ouijet) {
+
+    const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+    const smartData = {
+      /*
+      nd: myND,
+      total: rModif._total,
+      attaquantficheId: myActor.id,
+      opposantficheId: opponentActorId,
+      opposant: opponentActorName,
+      consideropponentprotection: considerOpponentProtection,
+
+      isinventory: isInventory,
+      selectedinventory: mySelectedInventory,
+      selectedinventorydevastra: mySelectedInventoryDevastra,
+      selectedinventorypower: mySelectedInventoryPower,
+      selectedinventorymagic: mySelectedInventoryMagic,
+      damage: myDamage,
+      damagetype: myDamageType,      
+      */
+      domaine: domains,
+      jet: jet,
+      /*
+      succes: d_successes,
+      d1: n.d6_1,
+      d2: n.d6_2,
+      d3: n.d6_3,
+      d4: n.d6_4,
+      d5: n.d6_5,
+      d6: n.d6_6,
+      dA: mySuccesAutoSupplem
+      */
+    }
+    console.log("smartData avant retour func = ", smartData);
+    const smartHtml = await renderTemplate(smartTemplate, smartData);
+
+    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+    
+    ChatMessage.create({
+      user: game.user.id,
+      // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+      speaker: ChatMessage.getSpeaker({ actor: myActor }),
+      content: smartHtml,
+      rollMode: myTypeOfThrow
+    });
+  
+  } else {
+    const shaktidefenceTemplate = 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+    const shaktidefenceTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
+    const shaktidefenceDialogOptions  = {
+      classes: ["devastra", "sheet"]
+    };
+    myResultDialog = await _skillEnterShaktiDefence (
+      myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      mySelectedinventorymagic, myDamage, myDamagetype
+    );
+
+    
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+    
+
+  };
+
+
+
+  
+}
+
+
+async function _skillEnterShaktiDefence(
+  myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
+  ) {
+
+  // Render modal dialog
+
+  const template = shaktidefenceTemplate;
+  const myActorID = myActor;
+  const title = shaktidefenceTitle;
+  const dialogOptions = shaktidefenceDialogOptions;
+  const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
+  var dialogData = {
     /*
     nd: myND,
     total: rModif._total,
@@ -1022,39 +1115,56 @@ async function _treatSkillDiceRollDefenceDialog(
     selectedinventorypower: mySelectedInventoryPower,
     selectedinventorymagic: mySelectedInventoryMagic,
     damage: myDamage,
-    damagetype: myDamageType,      
+    damagetype: myDamageType
     */
-    domaine: domains,
-    jet: jet,
-    /*
-    succes: d_successes,
-    d1: n.d6_1,
-    d2: n.d6_2,
-    d3: n.d6_3,
-    d4: n.d6_4,
-    d5: n.d6_5,
-    d6: n.d6_6,
-    dA: mySuccesAutoSupplem
-    */
+    
   }
-  console.log("smartData avant retour func = ", smartData);
-  const smartHtml = await renderTemplate(smartTemplate, smartData);
 
-  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-   
-  ChatMessage.create({
-    user: game.user.id,
-    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-    speaker: ChatMessage.getSpeaker({ actor: myActor }),
-    content: smartHtml,
-    rollMode: myTypeOfThrow
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 500,
+      height: "auto"
+    });
   });
 
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+    };
+    return editedData;
+  }
 
 
-  
+
 }
-
+  
 
 async function _skillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
@@ -1220,12 +1330,9 @@ async function _skillDiceRollDefenceDialog(
       
       domains: myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
-      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
       malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
@@ -1427,12 +1534,9 @@ async function _skillDiceRollDefenceDialogDeblocked(
       
       domains: myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
-      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
       malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
@@ -1526,11 +1630,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var jet = myResultDialog.jet;
 
     var ouijet = myResultDialog.ouijet;
-    var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
     var ouishaktidefense = myResultDialog.ouishaktidefense;
-    var nonshaktidefense = myResultDialog.nonshaktidefense;
-    var defenseshakti = myResultDialog.defenseshakti;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
     var specialiteflag = myResultDialog.specialitecheck;
     var malusblessureflag = myResultDialog.malusblessurecheck;
@@ -1594,11 +1695,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var jet = myResultDialog.throw;
 
     var ouijet = myResultDialog.ouijet;
-    var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
     var ouishaktidefense = myResultDialog.ouishaktidefense;
-    var nonshaktidefense = myResultDialog.nonshaktidefense;
-    var defenseshakti = myResultDialog.defenseshakti;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
     var specialiteflag = myResultDialog.specialitecheck;
     var malusblessureflag = myResultDialog.malusblessurecheck;
@@ -1854,12 +1952,9 @@ async function _skillDiceRollDefenceNPCDialog(
       
       domains: myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
-      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
       malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
@@ -2056,12 +2151,9 @@ async function  _skillDiceRollDefenceNPCDialogDeblocked(
       
       domains: myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
-      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
       malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),

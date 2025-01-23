@@ -1,0 +1,55 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+	
+    {{!-- Sheet Body --}}
+    <section class="form-body">
+
+        {{!-- Frame --}}
+        <div class="frame">
+            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
+            <div class="youractorid" style="display: none;">{{youractorid}}</div>
+            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
+            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
+            <div class="youropponent" style="display: none;">{{youropponent}}</div>
+            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
+            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
+            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
+
+            <div class="dicebar">
+                <table class="checkboxes">
+                    <tr>
+                        <td class="center douzepc">
+                            <i class="fas fa-compact-disc"></i><i class="fas fa-compact-disc"></i><br><i class="fas fa-compact-disc"></i>
+                        </td>
+                        <td>
+                            {{ localize "DEVASTRA.Shakti de défense" }}
+                        </td>
+                        <td class="right tierspc">
+                            {{ localize "DEVASTRA.Jetons Shakti" }}&nbsp;
+                            <select name="defenseshakti">
+                                {{#select defenseshakti}}
+                                    <option value="0">–</option>
+                                    <option value="1">1&nbsp;{{ localize "DEVASTRA.Jeton" }}</option>
+                                    <option value="2">2&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="3">3&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="4">4&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="5">5&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="6">6&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="7">7&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="8">8&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="9">9&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="10">10&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="11">11&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="12">12&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="13">13&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="14">14&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="15">15&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+</form>
