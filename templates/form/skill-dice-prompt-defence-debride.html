@@ -6,118 +6,82 @@
         {{!-- Frame --}}
         <div class="frame">
             <div class="domain">
-                {{#if initthrow}}
                 <table class="domain-table">
-                    <tr>
+                    <tr class="dph" style="display: none;">
                         <td class="domain-icon">
-                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                            <img  style="height: 30px;" src="{{systemData.domains.dph.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dph.label }}" alt="Icon" />
                         </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
-                        <td class="specialities">
-                            {{systemData.domains.din.specialities}}
-                        </td>
-                    </tr>
-                </table>
-                {{else}}
-                <table class="domain-table">
-                    {{#if (eq domaine "dph")}}
-                    <tr>
-                        <td class="domain-icon">
-                            <img src="{{systemData.domains.dph.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dph.label }}" alt="Icon" />
-                        </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dph.label }}</b></td>
                         <td class="specialities">
                             {{systemData.domains.dph.specialities}}
                         </td>
                     </tr>
-                    {{else}}
-                    {{/if}}
-                    {{#if (eq domaine "dma")}}
-                    <tr>
+                    <tr class="dma">
                         <td class="domain-icon">
-                            <img src="{{systemData.domains.dma.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dma.label }}" alt="Icon" />
+                            <img  style="height: 30px;" src="{{systemData.domains.dma.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dma.label }}" alt="Icon" />
                         </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dma.label }}</b></td>
                         <td class="specialities">
                             {{systemData.domains.dma.specialities}}
                         </td>
                     </tr>
-                    {{else}}
-                    {{/if}}
-                    {{#if (eq domaine "din")}}
-                    <tr>
+                    <tr class="din" style="display: none;">
                         <td class="domain-icon">
-                            <img src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
+                            <img  style="height: 30px;" src="{{systemData.domains.din.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.din.label }}" alt="Icon" />
                         </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.din.label }}</b></td>
                         <td class="specialities">
                             {{systemData.domains.din.specialities}}
                         </td>
                     </tr>
-                    {{else}}
-                    {{/if}}
-                    {{#if (eq domaine "dso")}}
-                    <tr>
+                    <tr class="dso" style="display: none;">
                         <td class="domain-icon">
-                            <img src="{{systemData.domains.dso.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dso.label }}" alt="Icon" />
+                            <img  style="height: 30px;" src="{{systemData.domains.dso.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dso.label }}" alt="Icon" />
                         </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dso.label }}</b></td>
                         <td class="specialities">
                             {{systemData.domains.dso.specialities}}
                         </td>
                     </tr>
-                    {{else}}
-                    {{/if}}
-                    {{#if (eq domaine "dmy")}}
-                    <tr>
+                    <tr class="dmy" style="display: none;">
                         <td class="domain-icon">
-                            <img src="{{systemData.domains.dmy.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dmy.label }}" alt="Icon" />
+                            <img  style="height: 30px;" src="{{systemData.domains.dmy.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize systemData.domains.dmy.label }}" alt="Icon" />
                         </td>
-                        <td class="label"><b>&nbsp;{{ localize systemData.domains.dmy.label }}</b></td>
                         <td class="specialities">
                             {{systemData.domains.dmy.specialities}}
                         </td>
                     </tr>
-                    {{else}}
-                    {{/if}}
                 </table>
-                {{/if}}
+                <table class="domain-table">
+                    <tr>
+                        <td>
+                            {{ localize "DEVASTRA.Domaine :" }}&nbsp;
+                            <select name="domains">
+                                {{#select domains}}
+                                    <option value="dph">{{ localize systemData.domains.dph.label }}</option>
+                                    <option value="dma">{{ localize systemData.domains.dma.label }}</option>
+                                    <option value="din">{{ localize systemData.domains.din.label }}</option>
+                                    <option value="dso">{{ localize systemData.domains.dso.label }}</option>
+                                    <option value="dmy">{{ localize systemData.domains.dmy.label }}</option>
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <br>
             <div class="dicebar">
-                {{#if initthrow}}
-                <table>
-                    <td class="center douzepc">
-                        <i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><br><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i>
-                    </td>
-                    <td style="text-align: center;">
-                        {{ localize "DEVASTRA.vs ND" }}
-                    </td>
-                    <td>
-                    </td>
-                    <td class="valeur2">
-                        3
-                    </td>
-                </table>
-                {{else}}
                 <table class="checkboxes">
                     <tr>
+                        <td>
+                            <input type="radio" name="jet" value="ouijet" checked />
+                        </td>
                         <td class="center douzepc">
                             <i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><br><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i><i class="fas fa-dice-d6"></i>
                         </td>
                         <td>
-                            <input type="radio" name="jet" value="autre" checked />{{ localize "DEVASTRA.Jet standard" }}
-                        </td>
-                        <td>
-                            <input type="radio" name="jet" value="jetattaque" />{{ localize "DEVASTRA.Jet d′attaque" }}
-                        </td>
-                        <td>
-                            <input type="radio" name="jet" value="jetdefense" />{{ localize "DEVASTRA.Jet de défense" }}
+                            {{ localize "DEVASTRA.Jet de défense" }}
                         </td>
                         <td class="right tierspc">
                             {{ localize "DEVASTRA.vs ND" }}&nbsp;
-                            <select name="nd">
-                                {{#select nd }}
+                            <select name="defencend">
+                                {{#select defencend}}
                                     <option value="2">2&nbsp;{{ localize "DEVASTRA.(Enfantin)" }}</option>
                                     <option value="3">3&nbsp;{{ localize "DEVASTRA.(Facile)" }}</option>
                                     <option value="4">4&nbsp;{{ localize "DEVASTRA.(Moyen)" }}</option>
@@ -128,8 +92,42 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="jet" value="ouishaktidefense" />
+                        </td>
+                        <td class="center douzepc">
+                            <i class="fas fa-compact-disc"></i><i class="fas fa-compact-disc"></i><br><i class="fas fa-compact-disc"></i>
+                        </td>
+                        <td>
+                            {{ localize "DEVASTRA.Shakti de défense" }}
+                        </td>
+                        <td class="right tierspc">
+                            {{ localize "DEVASTRA.Jetons Shakti" }}&nbsp;
+                            <select name="defenseshakti">
+                                {{#select defenseshakti}}
+                                    <option value="0">–</option>
+                                    <option value="1">1&nbsp;{{ localize "DEVASTRA.Jeton" }}</option>
+                                    <option value="2">2&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="3">3&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="4">4&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="5">5&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="6">6&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="7">7&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="8">8&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="9">9&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="10">10&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="11">11&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="12">12&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="13">13&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="14">14&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+                                    <option value="15">15&nbsp;{{ localize "DEVASTRA.Jetons" }}</option>
+
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
                 </table>
-                {{/if}}
             </div>
             <div class="cadre">
                 <table>
@@ -140,8 +138,22 @@
                         <td>
                         </td>
                         <td class="valeur2">
-                            {{nbrdedomaine}}{{ localize "DEVASTRA.D" }}
-                        </td>
+                            <div class="nbrdomainedph" style="display: none;">
+                                {{nbrdedomainedph}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="nbrdomainedma">
+                                {{nbrdedomainedma}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="nbrdomainedin" style="display: none;">
+                                {{nbrdedomainedin}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="nbrdomainedso" style="display: none;">
+                                {{nbrdedomainedso}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="nbrdomainedmy" style="display: none;">
+                                {{nbrdedomainedmy}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                        </tr>
                     </tr>
                     <tr>
                         <td>
@@ -149,7 +161,21 @@
                         </td>
                         <td class="check right"><input type="checkbox" name="bonusdomainecheck" {{checked bonusdomainecheck}} /></td>
                         <td class="valeur2">
-                            {{nbrdebonusdomaine}}{{ localize "DEVASTRA.D" }}
+                            <div class="bonusdomainedph" style="display: none;">
+                                {{nbrdebonusdomainedph}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="bonusdomainedma">
+                                {{nbrdebonusdomainedma}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="bonusdomainedin" style="display: none;">
+                                {{nbrdebonusdomainedin}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="bonusdomainedso" style="display: none;">
+                                {{nbrdebonusdomainedso}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="bonusdomainedmy" style="display: none;">
+                                {{nbrdebonusdomainedmy}}{{ localize "DEVASTRA.D" }}
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -159,6 +185,38 @@
                         <td class="check right"><input type="checkbox" name="specialitecheck" {{checked specialitecheck}} /></td>
                         <td class="valeur2">
                             {{nbrdebonusspecialite}}{{ localize "DEVASTRA.D" }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ localize "DEVASTRA.Malus de blessure" }}
+                        </td>
+                        <td class="check right"><input type="checkbox" name="malusblessurecheck" {{checked malusblessurecheck}} /></td>
+                        <td class="valeur2">
+                            {{nbrdemalusblessure}}{{ localize "DEVASTRA.D" }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ localize "DEVASTRA.Malus de statut" }}
+                        </td>
+                        <td class="check right"><input type="checkbox" name="malusstatutcheck" {{checked malusstatutcheck}} /></td>
+                        <td class="valeur2">
+                            <div class="malusstatutdph" style="display: none;">
+                                {{nbrdemalusstatutdph}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="malusstatutdma" >
+                                {{nbrdemalusstatutdma}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="malusstatutdin" style="display: none;">
+                                {{nbrdemalusstatutdin}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="malusstatutdso" style="display: none;">
+                                {{nbrdemalusstatutdso}}{{ localize "DEVASTRA.D" }}
+                            </div>
+                            <div class="malusstatutdmy" style="display: none;">
+                                {{nbrdemalusstatutdmy}}{{ localize "DEVASTRA.D" }}
+                            </div>
                         </td>
                     </tr>
                 </table>

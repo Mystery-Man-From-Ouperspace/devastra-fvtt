@@ -346,10 +346,25 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
 
 
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
+
       /*
-      Ici on fait remplir les paramètres de lancer de dés
+      Ici on fait remplir les paramètres de lancer de dés por le défenseur
       */
-      const myActorId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const myActorId = opposantficheId;
       let myActor = game.actors.get(myActorId);
 
       if (myActor == undefined) {
@@ -376,18 +391,20 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       };
       let template = "";
 
-      const nd = html[0].querySelector("span[class='nd']").textContent;
-
       if (myActor.type == 'npc' || myActor.type == 'monster') {
 
         _treatSkillDiceRollDefenceNPCDialog(
-          myActor, template, myTitle, myDialogOptions, nd
+          myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          selectedinventorymagic, damage, damagetype
         );
 
       } else {
 
         _treatSkillDiceRollDefenceDialog(
-          myActor, template, myTitle, myDialogOptions, nd
+          myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          selectedinventorymagic, damage, damagetype
         );
 
       }
@@ -816,10 +833,15 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 /*  Dialogue de lancer de défense               */
 /* -------------------------------------------- */
 async function _treatSkillDiceRollDefenceDialog(
-  myActor, template, myTitle, myDialogOptions, nd
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
 ) {
+  console.log("Il s'agit d'un PJ")
   let myResultDialog =  await _skillDiceRollDefenceDialog(
-    myActor, template, myTitle, myDialogOptions, nd
+    myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+    myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+    mySelectedinventorymagic, myDamage, myDamagetype
   );
 
   //////////////////////////////////////////////////////////////////
@@ -829,11 +851,167 @@ async function _treatSkillDiceRollDefenceDialog(
   };
   //////////////////////////////////////////////////////////////////
 
+  let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+  if (myVersionDebloqueeFlag) {
+
+
+    myResultDialog = await _skillDiceRollDefenceDialogDeblocked (
+      myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      mySelectedinventorymagic, myDamage, myDamagetype
+    );
+ 
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
+
+    var nd = myND;
+    var total = myTotal;
+    var attaquantficheId = myAttaquantficheId;
+    var opposantficheId = myOpposantficheId;
+    var consideropponentprotection = myConsideropponentprotection;
+    var isinventory = myIsinventory;
+    var selectedinventory = mySelectedinventory;
+    var selectedinventorydevastra = mySelectedinventorydevastra;
+    var selectedinventorypower = mySelectedinventorypower;
+    var selectedinventorymagic = mySelectedinventorymagic;
+    var damage =  myDamage;
+    var damagetype = myDamagetype;
+
+    var domains = myResultDialog.domains;
+    var ouijet = myResultDialog.ouijet;
+    var nonjet = myResultDialog.nonjet;
+    var defencend = myResultDialog.defencend;
+    var ouishaktidefense = myResultDialog.ouishaktidefense;
+    var nonshaktidefense = myResultDialog.nonshaktidefense;
+    var defenseshakti = myResultDialog.defenseshakti;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var nbrdedomainedph = myResultDialog.nbrdedomainedph;
+    var nbrdedomainedma = myResultDialog.nbrdedomainedma;
+    var nbrdedomainedin = myResultDialog.nbrdedomainedin;
+    var nbrdedomainedso = myResultDialog.nbrdedomainedso;
+    var nbrdedomainedmy = myResultDialog.nbrdedomainedmy;
+    var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
+    var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
+    var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
+    var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
+    var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
+    var nbrdemalusstatutdph = myResultDialog.nbrdemalusstatutdph;
+    var nbrdemalusstatutdma = myResultDialog.nbrdemalusstatutdma;
+    var nbrdemalusstatutdin = myResultDialog.nbrdemalusstatutdin;
+    var nbrdemalusstatutdso = myResultDialog.nbrdemalusstatutdso;
+    var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+
+    var defencend = myResultDialog.defencend;
+    var malusblessureflag = false;
+    var malusstatutflag = false;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var bonusapplique = myResultDialog.bonusapplique;
+    var plusdeuxdesdattaque = myResultDialog.plusdeuxdesdattaque; // en fait, uniquement nbre jetons Shakti à enlever
+    var malususapplique = myResultDialog.malususapplique;
+    var ignoremalus = myResultDialog.ignoremalus;
+    var malusAignorer = 0;
+    var succesauto = myResultDialog.succesauto;
+    var plusunsuccesauto = myResultDialog.plusunsuccesauto; // en fait, uniquement nbre jetons Conviction à enlever
+    var desnonexplo = 0;
+    var sixexploflag = myResultDialog.sixexplo;
+    var cinqexploflag = myResultDialog.cinqexplo;
+
+    // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+    // console.log("myIgnoreMalus", myIgnoreMalus);
+    // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+    // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+    var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+
+  } else {
+
+    var nd = myND;
+    var total = myTotal;
+    var attaquantficheId = myAttaquantficheId;
+    var opposantficheId = myOpposantficheId;
+    var consideropponentprotection = myConsideropponentprotection;
+    var isinventory = myIsinventory;
+    var selectedinventory = mySelectedinventory;
+    var selectedinventorydevastra = mySelectedinventorydevastra;
+    var selectedinventorypower = mySelectedinventorypower;
+    var selectedinventorymagic = mySelectedinventorymagic;
+    var damage =  myDamage;
+    var damagetype = myDamagetype;
+
+    var domains = myResultDialog.domains;
+    var ouijet = myResultDialog.ouijet;
+    var nonjet = myResultDialog.nonjet;
+    var defencend = myResultDialog.defencend;
+    var ouishaktidefense = myResultDialog.ouishaktidefense;
+    var nonshaktidefense = myResultDialog.nonshaktidefense;
+    var defenseshakti = myResultDialog.defenseshakti;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var nbrdedomainedph = myResultDialog.nbrdedomainedph;
+    var nbrdedomainedma = myResultDialog.nbrdedomainedma;
+    var nbrdedomainedin = myResultDialog.nbrdedomainedin;
+    var nbrdedomainedso = myResultDialog.nbrdedomainedso;
+    var nbrdedomainedmy = myResultDialog.nbrdedomainedmy;
+    var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
+    var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
+    var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
+    var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
+    var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
+    var nbrdemalusstatutdph = myResultDialog.nbrdemalusstatutdph;
+    var nbrdemalusstatutdma = myResultDialog.nbrdemalusstatutdma;
+    var nbrdemalusstatutdin = myResultDialog.nbrdemalusstatutdin;
+    var nbrdemalusstatutdso = myResultDialog.nbrdemalusstatutdso;
+    var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+
+    var defencend = myResultDialog.defencend;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+    var bonusapplique = myResultDialog.bonusapplique;
+    var plusdeuxdesdattaque = myResultDialog.plusdeuxdesdattaque;
+    var malususapplique = myResultDialog.malususapplique;
+    var ignoremalus = myResultDialog.ignoremalus;
+    var ignoremalus = myResultDialog.malususaignorer;
+    var succesauto = myResultDialog.succesauto;
+    var plusunsuccesauto = myResultDialog.plusunsuccesauto;
+    var desnonexplo = myResultDialog.desnonexplo;
+    var sixexplo = myResultDialog.sixexplo;
+    var cinqexplo = myResultDialog.cinqexplo;
+
+    // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+    // console.log("myIgnoreMalus", myIgnoreMalus);
+    // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+    // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+    var shaktisuffisanteflag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+  
+  }
+
+
 }
 
 
 async function _skillDiceRollDefenceDialog(
-  myActor, template, myTitle, myDialogOptions, myND
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
   ) {
 
   // Render modal dialog
@@ -842,6 +1020,18 @@ async function _skillDiceRollDefenceDialog(
   const title = myTitle;
   const dialogOptions = myDialogOptions;
   const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
   const myNbrDeBonusSpecialite = 1;
   const mySpecialiteCheck = false;
   const myBonusDomaineCheck = true;
@@ -907,6 +1097,8 @@ async function _skillDiceRollDefenceDialog(
   let myMalusStatutCheck = true;
 
   var dialogData = {
+    nd: nd,
+  
     domains: "dma",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
@@ -922,7 +1114,7 @@ async function _skillDiceRollDefenceDialog(
     bonusdomainecheck: myBonusDomaineCheck,
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
     specialitecheck: mySpecialiteCheck,
-    nd: nd,
+    defencend: nd,
     malusblessurecheck: myMalusBlessureCheck,
     nbrdemalusblessure: myNombreDeMalusBlessure,
     malusstatutcheck: myMalusStatutCheck,
@@ -975,10 +1167,217 @@ async function _skillDiceRollDefenceDialog(
   //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
+      nd: myDialogData.nd,
+      
       domains: myHtml.find("select[name='domains']").val(),
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
       nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
-      nd: myHtml.find("select[name='nd']").val(),
+      defencend: myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
+      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
+      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      nbrdedomainedph: myDialogData.nbrdedomainedph,
+      nbrdedomainedma: myDialogData.nbrdedomainedma,
+      nbrdedomainedin: myDialogData.nbrdedomainedin,
+      nbrdedomainedso: myDialogData.nbrdedomainedso,
+      nbrdedomainedmy: myDialogData.nbrdedomainedmy,
+      nbrdebonusdomainedph: myDialogData.nbrdebonusdomainedph,
+      nbrdebonusdomainedma: myDialogData.nbrdebonusdomainedma,
+      nbrdebonusdomainedin: myDialogData.nbrdebonusdomainedin,
+      nbrdebonusdomainedso: myDialogData.nbrdebonusdomainedso,
+      nbrdebonusdomainedmy: myDialogData.nbrdebonusdomainedmy,
+      nbrdemalusstatutdph: myDialogData.nbrdemalusstatutdph,
+      nbrdemalusstatutdma: myDialogData.nbrdemalusstatutdma,
+      nbrdemalusstatutdin: myDialogData.nbrdemalusstatutdin,
+      nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
+      nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
+      nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
+      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+    };
+    return editedData;
+  }
+  
+}
+
+async function _skillDiceRollDefenceDialogDeblocked(
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
+  ) {
+
+  // Render modal dialog
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-defence-debride.html';
+  const myActorID = myActor;
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
+  const myNbrDeBonusSpecialite = 1;
+  const mySpecialiteCheck = false;
+  const myBonusDomaineCheck = true;
+  const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
+  const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
+  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
+
+  const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
+  const myNbrDeBonusDomaineDPh = myActorID.system.domains.dph.bonusdice;
+
+  const myNbrDeDomaineDMa = myActorID.system.domains.dma.value;
+  const myNbrDeBonusDomaineDMa = myActorID.system.domains.dma.bonusdice;
+
+  const myNbrDeDomaineDIn = myActorID.system.domains.din.value;
+  const myNbrDeBonusDomaineDIn = myActorID.system.domains.din.bonusdice;
+
+  const myNbrDeDomaineDSo = myActorID.system.domains.dso.value;
+  const myNbrDeBonusDomaineDSo = myActorID.system.domains.dso.bonusdice;
+
+  const myNbrDeDomaineDMy = myActorID.system.domains.dmy.value;
+  const myNbrDeBonusDomaineDMy = myActorID.system.domains.dmy.bonusdice;
+
+  let myNombreDeMalusBlessure = 0;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "0") { // si le type est blessure
+      myNombreDeMalusBlessure += Math.abs(item.system.value);
+    }
+  };
+  myNombreDeMalusBlessure *= -1;
+  let myMalusBlessureCheck = false;
+
+  let myNombreDeMalusStatutDPh = 0;
+  let myNombreDeMalusStatutDMa = 0;
+  let myNombreDeMalusStatutDIn = 0;
+  let myNombreDeMalusStatutDSo = 0;
+  let myNombreDeMalusStatutDMy = 0;
+  let j;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "1") { // si le type est statut
+      j = item.system.domain;
+      switch (j) {
+        case '1': myNombreDeMalusStatutDPh++;
+        break;
+        case '2': myNombreDeMalusStatutDMa++;
+        break;
+        case '3': myNombreDeMalusStatutDIn++;
+        break;
+        case '4': myNombreDeMalusStatutDSo++;
+        break;
+        case '5': myNombreDeMalusStatutDMy++;
+        break;
+        default: console.log(`Sorry, that's an error.`);
+      }
+    }
+  };
+  myNombreDeMalusStatutDPh *= -1;
+  myNombreDeMalusStatutDMa *= -1;
+  myNombreDeMalusStatutDIn *= -1;
+  myNombreDeMalusStatutDSo *= -1;
+  myNombreDeMalusStatutDMy *= -1;
+
+  let myMalusStatutCheck = true;
+
+  var dialogData = {
+    nd: nd,
+  
+    domains: "dma",
+    systemData: myActorID.system,
+    nbrdedomainedph: myNbrDeDomaineDPh,
+    nbrdedomainedma: myNbrDeDomaineDMa,
+    nbrdedomainedin: myNbrDeDomaineDIn,
+    nbrdedomainedso: myNbrDeDomaineDSo,
+    nbrdedomainedmy: myNbrDeDomaineDMy,
+    nbrdebonusdomainedph: myNbrDeBonusDomaineDPh,
+    nbrdebonusdomainedma: myNbrDeBonusDomaineDMa,
+    nbrdebonusdomainedin: myNbrDeBonusDomaineDIn,
+    nbrdebonusdomainedso: myNbrDeBonusDomaineDSo,
+    nbrdebonusdomainedmy: myNbrDeBonusDomaineDMy,
+    bonusdomainecheck: myBonusDomaineCheck,
+    nbrdebonusspecialite: myNbrDeBonusSpecialite,
+    specialitecheck: mySpecialiteCheck,
+    defencend: nd,
+    malusblessurecheck: myMalusBlessureCheck,
+    nbrdemalusblessure: myNombreDeMalusBlessure,
+    malusstatutcheck: myMalusStatutCheck,
+    nbrdemalusstatutdph: myNombreDeMalusStatutDPh,
+    nbrdemalusstatutdma: myNombreDeMalusStatutDMa,
+    nbrdemalusstatutdin: myNombreDeMalusStatutDIn,
+    nbrdemalusstatutdso: myNombreDeMalusStatutDSo,
+    nbrdemalusstatutdmy: myNombreDeMalusStatutDMy,
+    shaktirestanteflag: myShaktiRestanteFlag,
+    convictionrestanteflag: myconvictionRestanteFlag,
+    plus1succesautoflag : myPlus1SuccesAutoFlag,
+    sixexplo: mySixExploFlag,
+    cinqexplo: false,
+    desnonexplo: 0,
+    versiondebloquee: false
+  };
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 500,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      nd: myDialogData.nd,
+      
+      domains: myHtml.find("select[name='domains']").val(),
+      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
+      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      defencend: myHtml.find("select[name='defencend']").val(),
       ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
       nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
       defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
@@ -1021,10 +1420,15 @@ async function _skillDiceRollDefenceDialog(
 
 
 async function _treatSkillDiceRollDefenceNPCDialog(
-  myActor, template, myTitle, myDialogOptions, nd
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
 ) {
+  console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog =  await _skillDiceRollDefenceNPCDialog(
-    myActor, template, myTitle, myDialogOptions, nd
+    myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+    myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+    mySelectedinventorymagic, myDamage, myDamagetype
   );
 
   //////////////////////////////////////////////////////////////////
@@ -1034,11 +1438,167 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   };
   //////////////////////////////////////////////////////////////////
 
+  let myVersionDebloqueeFlag = (myResultDialog.versiondebloquee == 1);
+  if (myVersionDebloqueeFlag) {
+
+
+    myResultDialog = await _skillDiceRollDefenceNPCDialogDeblocked (
+      myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      mySelectedinventorymagic, myDamage, myDamagetype
+    );
+ 
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
+
+
+    var nd = myND;
+    var total = myTotal;
+    var attaquantficheId = myAttaquantficheId;
+    var opposantficheId = myOpposantficheId;
+    var consideropponentprotection = myConsideropponentprotection;
+    var isinventory = myIsinventory;
+    var selectedinventory = mySelectedinventory;
+    var selectedinventorydevastra = mySelectedinventorydevastra;
+    var selectedinventorypower = mySelectedinventorypower;
+    var selectedinventorymagic = mySelectedinventorymagic;
+    var damage =  myDamage;
+    var damagetype = myDamagetype;
+
+    var domains = myResultDialog.domains;
+    var ouijet = myResultDialog.ouijet;
+    var nonjet = myResultDialog.nonjet;
+    var defencend = myResultDialog.defencend;
+    var ouishaktidefense = myResultDialog.ouishaktidefense;
+    var nonshaktidefense = myResultDialog.nonshaktidefense;
+    var defenseshakti = myResultDialog.defenseshakti;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var nbrdedomainedph = myResultDialog.nbrdedomainedph;
+    var nbrdedomainedma = myResultDialog.nbrdedomainedma;
+    var nbrdedomainedin = myResultDialog.nbrdedomainedin;
+    var nbrdedomainedso = myResultDialog.nbrdedomainedso;
+    var nbrdedomainedmy = myResultDialog.nbrdedomainedmy;
+    // var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
+    // var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
+    // var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
+    // var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
+    // var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
+    // var nbrdemalusstatutdph = myResultDialog.nbrdemalusstatutdph;
+    var nbrdemalusstatutdma = myResultDialog.nbrdemalusstatutdma;
+    var nbrdemalusstatutdin = myResultDialog.nbrdemalusstatutdin;
+    var nbrdemalusstatutdso = myResultDialog.nbrdemalusstatutdso;
+    var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+
+    var defencend = myResultDialog.defencend;
+    var malusblessureflag = false;
+    var malusstatutflag = false;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var bonusapplique = myResultDialog.bonusapplique;
+    var plusdeuxdesdattaque = myResultDialog.plusdeuxdesdattaque; // en fait, uniquement nbre jetons Shakti à enlever
+    var malususapplique = myResultDialog.malususapplique;
+    var ignoremalus = myResultDialog.ignoremalus;
+    var malusAignorer = 0;
+    var succesauto = myResultDialog.succesauto;
+    var plusunsuccesauto = myResultDialog.plusunsuccesauto; // en fait, uniquement nbre jetons Conviction à enlever
+    var desnonexplo = 0;
+    var sixexploflag = myResultDialog.sixexplo;
+    var cinqexploflag = myResultDialog.cinqexplo;
+
+    // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+    // console.log("myIgnoreMalus", myIgnoreMalus);
+    // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+    // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+    var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+
+  } else {
+
+    var nd = myND;
+    var total = myTotal;
+    var attaquantficheId = myAttaquantficheId;
+    var opposantficheId = myOpposantficheId;
+    var consideropponentprotection = myConsideropponentprotection;
+    var isinventory = myIsinventory;
+    var selectedinventory = mySelectedinventory;
+    var selectedinventorydevastra = mySelectedinventorydevastra;
+    var selectedinventorypower = mySelectedinventorypower;
+    var selectedinventorymagic = mySelectedinventorymagic;
+    var damage =  myDamage;
+    var damagetype = myDamagetype;
+
+    var domains = myResultDialog.domains;
+    var ouijet = myResultDialog.ouijet;
+    var nonjet = myResultDialog.nonjet;
+    var defencend = myResultDialog.defencend;
+    var ouishaktidefense = myResultDialog.ouishaktidefense;
+    var nonshaktidefense = myResultDialog.nonshaktidefense;
+    var defenseshakti = myResultDialog.defenseshakti;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var nbrdedomainedph = myResultDialog.nbrdedomainedph;
+    var nbrdedomainedma = myResultDialog.nbrdedomainedma;
+    var nbrdedomainedin = myResultDialog.nbrdedomainedin;
+    var nbrdedomainedso = myResultDialog.nbrdedomainedso;
+    var nbrdedomainedmy = myResultDialog.nbrdedomainedmy;
+    var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
+    var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
+    var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
+    var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
+    var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
+    var nbrdemalusstatutdph = myResultDialog.nbrdemalusstatutdph;
+    var nbrdemalusstatutdma = myResultDialog.nbrdemalusstatutdma;
+    var nbrdemalusstatutdin = myResultDialog.nbrdemalusstatutdin;
+    var nbrdemalusstatutdso = myResultDialog.nbrdemalusstatutdso;
+    var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+
+    var defencend = myResultDialog.defencend;
+    var malusblessureflag = myResultDialog.malusblessurecheck;
+    var malusstatutflag = myResultDialog.malusstatutcheck;
+    var bonusdomaineflag = myResultDialog.bonusdomainecheck;
+    var specialiteflag = myResultDialog.specialitecheck;
+    var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
+    var bonusapplique = myResultDialog.bonusapplique;
+    var plusdeuxdesdattaque = myResultDialog.plusdeuxdesdattaque;
+    var malususapplique = myResultDialog.malususapplique;
+    var ignoremalus = myResultDialog.ignoremalus;
+    var ignoremalus = myResultDialog.malususaignorer;
+    var succesauto = myResultDialog.succesauto;
+    var plusunsuccesauto = myResultDialog.plusunsuccesauto;
+    var desnonexplo = myResultDialog.desnonexplo;
+    var sixexplo = myResultDialog.sixexplo;
+    var cinqexplo = myResultDialog.cinqexplo;
+
+    // console.log("myIgnoreMalus", myIgnoreMalus);
+    // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+    // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+
+    var shaktisuffisanteflag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    // var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+  
+  }
+
+
+
 }
 
 
 async function _skillDiceRollDefenceNPCDialog(
-  myActor, template, myTitle, myDialogOptions, myND
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
   ) {
 
   // Render modal dialog
@@ -1047,6 +1607,18 @@ async function _skillDiceRollDefenceNPCDialog(
   const title = myTitle;
   const dialogOptions = myDialogOptions;
   const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
   const myNbrDeBonusSpecialite = 1;
   const mySpecialiteCheck = false;
   const myBonusDomaineCheck = true;
@@ -1106,6 +1678,8 @@ async function _skillDiceRollDefenceNPCDialog(
   let myMalusStatutCheck = true;
 
   var dialogData = {
+    nd: nd,
+  
     domains: "dma",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
@@ -1118,13 +1692,13 @@ async function _skillDiceRollDefenceNPCDialog(
     // nbrdebonusdomainedin: myNbrDeBonusDomaineDIn,
     // nbrdebonusdomainedso: myNbrDeBonusDomaineDSo,
     // nbrdebonusdomainedmy: myNbrDeBonusDomaineDMy,
-    bonusdomainecheck: myBonusDomaineCheck,
+    bonusdomaineflag: myBonusDomaineCheck,
     nbrdebonusspecialite: myNbrDeBonusSpecialite,
-    specialitecheck: mySpecialiteCheck,
-    nd: nd,
-    malusblessurecheck: myMalusBlessureCheck,
+    specialiteflag: mySpecialiteCheck,
+    defencend: nd,
+    malusblessureflag: myMalusBlessureCheck,
     nbrdemalusblessure: myNombreDeMalusBlessure,
-    malusstatutcheck: myMalusStatutCheck,
+    malusstatutflag: myMalusStatutCheck,
     nbrdemalusstatutdph: myNombreDeMalusStatutDPh,
     nbrdemalusstatutdma: myNombreDeMalusStatutDMa,
     nbrdemalusstatutdin: myNombreDeMalusStatutDIn,
@@ -1138,6 +1712,7 @@ async function _skillDiceRollDefenceNPCDialog(
     desnonexplo: 0,
     versiondebloquee: false
   };
+
   const html = await renderTemplate(template, dialogData);
   // Create the Dialog window
   let prompt = await new Promise((resolve) => {
@@ -1174,10 +1749,14 @@ async function _skillDiceRollDefenceNPCDialog(
   //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
+      nd: myDialogData.nd,
+      
       domains: myHtml.find("select[name='domains']").val(),
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
-      nd: myHtml.find("select[name='nd']").val(),
+      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      defencend: myHtml.find("select[name='defencend']").val(),
       ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
+      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
       defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
       bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
       specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
@@ -1188,11 +1767,211 @@ async function _skillDiceRollDefenceNPCDialog(
       nbrdedomainedin: myDialogData.nbrdedomainedin,
       nbrdedomainedso: myDialogData.nbrdedomainedso,
       nbrdedomainedmy: myDialogData.nbrdedomainedmy,
-      nbrdebonusdomainedph: myDialogData.nbrdebonusdomainedph,
-      nbrdebonusdomainedma: myDialogData.nbrdebonusdomainedma,
-      nbrdebonusdomainedin: myDialogData.nbrdebonusdomainedin,
-      nbrdebonusdomainedso: myDialogData.nbrdebonusdomainedso,
-      nbrdebonusdomainedmy: myDialogData.nbrdebonusdomainedmy,
+      // nbrdebonusdomainedph: myDialogData.nbrdebonusdomainedph,
+      // nbrdebonusdomainedma: myDialogData.nbrdebonusdomainedma,
+      // nbrdebonusdomainedin: myDialogData.nbrdebonusdomainedin,
+      // nbrdebonusdomainedso: myDialogData.nbrdebonusdomainedso,
+      // nbrdebonusdomainedmy: myDialogData.nbrdebonusdomainedmy,
+      nbrdemalusstatutdph: myDialogData.nbrdemalusstatutdph,
+      nbrdemalusstatutdma: myDialogData.nbrdemalusstatutdma,
+      nbrdemalusstatutdin: myDialogData.nbrdemalusstatutdin,
+      nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
+      nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
+      nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
+      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+    };
+    return editedData;
+  }
+  
+}
+
+async function  _skillDiceRollDefenceNPCDialogDeblocked(
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype
+  ) {
+
+  // Render modal dialog
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-defence-debride-npc.html';
+  const myActorID = myActor;
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+  const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
+  const myNbrDeBonusSpecialite = 1;
+  const mySpecialiteCheck = false;
+  const myBonusDomaineCheck = true;
+  const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
+  const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
+  const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
+
+  const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
+
+  const myNbrDeDomaineDMa = myActorID.system.domains.dma.value;
+
+  const myNbrDeDomaineDIn = myActorID.system.domains.din.value;
+
+  const myNbrDeDomaineDSo = myActorID.system.domains.dso.value;
+
+  const myNbrDeDomaineDMy = myActorID.system.domains.dmy.value;
+
+  let myNombreDeMalusBlessure = 0;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "0") { // si le type est blessure
+      myNombreDeMalusBlessure += Math.abs(item.system.value);
+    }
+  };
+  myNombreDeMalusBlessure *= -1;
+  let myMalusBlessureCheck = false;
+
+  let myNombreDeMalusStatutDPh = 0;
+  let myNombreDeMalusStatutDMa = 0;
+  let myNombreDeMalusStatutDIn = 0;
+  let myNombreDeMalusStatutDSo = 0;
+  let myNombreDeMalusStatutDMy = 0;
+  let j;
+  for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+    if (item.system.subtype == "1") { // si le type est statut
+      j = item.system.domain;
+      switch (j) {
+        case '1': myNombreDeMalusStatutDPh++;
+        break;
+        case '2': myNombreDeMalusStatutDMa++;
+        break;
+        case '3': myNombreDeMalusStatutDIn++;
+        break;
+        case '4': myNombreDeMalusStatutDSo++;
+        break;
+        case '5': myNombreDeMalusStatutDMy++;
+        break;
+        default: console.log(`Sorry, that's an error.`);
+      }
+    }
+  };
+  myNombreDeMalusStatutDPh *= -1;
+  myNombreDeMalusStatutDMa *= -1;
+  myNombreDeMalusStatutDIn *= -1;
+  myNombreDeMalusStatutDSo *= -1;
+  myNombreDeMalusStatutDMy *= -1;
+
+  let myMalusStatutCheck = true;
+
+  var dialogData = {
+    nd: nd,
+  
+    domains: "dma",
+    systemData: myActorID.system,
+    nbrdedomainedph: myNbrDeDomaineDPh,
+    nbrdedomainedma: myNbrDeDomaineDMa,
+    nbrdedomainedin: myNbrDeDomaineDIn,
+    nbrdedomainedso: myNbrDeDomaineDSo,
+    nbrdedomainedmy: myNbrDeDomaineDMy,
+    // nbrdebonusdomainedph: myNbrDeBonusDomaineDPh,
+    // nbrdebonusdomainedma: myNbrDeBonusDomaineDMa,
+    // nbrdebonusdomainedin: myNbrDeBonusDomaineDIn,
+    // nbrdebonusdomainedso: myNbrDeBonusDomaineDSo,
+    // nbrdebonusdomainedmy: myNbrDeBonusDomaineDMy,
+    bonusdomaineflag: myBonusDomaineCheck,
+    nbrdebonusspecialite: myNbrDeBonusSpecialite,
+    specialiteflag: mySpecialiteCheck,
+    defencend: nd,
+    malusblessureflag: myMalusBlessureCheck,
+    nbrdemalusblessure: myNombreDeMalusBlessure,
+    malusstatutflag: myMalusStatutCheck,
+    nbrdemalusstatutdph: myNombreDeMalusStatutDPh,
+    nbrdemalusstatutdma: myNombreDeMalusStatutDMa,
+    nbrdemalusstatutdin: myNombreDeMalusStatutDIn,
+    nbrdemalusstatutdso: myNombreDeMalusStatutDSo,
+    nbrdemalusstatutdmy: myNombreDeMalusStatutDMy,
+    shaktirestanteflag: myShaktiRestanteFlag,
+    // convictionrestanteflag: myconvictionRestanteFlag,
+    plus1succesautoflag : myPlus1SuccesAutoFlag,
+    sixexplo: mySixExploFlag,
+    cinqexplo: false,
+    desnonexplo: 0,
+    versiondebloquee: false
+  };
+
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new ModifiedDialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 500,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      nd: myDialogData.nd,
+      
+      domains: myHtml.find("select[name='domains']").val(),
+      ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
+      nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
+      defencend: myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: myHtml.find("input[name='ouishaktidefense']").is(':checked'),
+      nonshaktidefense: myHtml.find("input[name='nonshaktidefense']").is(':checked'),
+      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      nbrdedomainedph: myDialogData.nbrdedomainedph,
+      nbrdedomainedma: myDialogData.nbrdedomainedma,
+      nbrdedomainedin: myDialogData.nbrdedomainedin,
+      nbrdedomainedso: myDialogData.nbrdedomainedso,
+      nbrdedomainedmy: myDialogData.nbrdedomainedmy,
+      // nbrdebonusdomainedph: myDialogData.nbrdebonusdomainedph,
+      // nbrdebonusdomainedma: myDialogData.nbrdebonusdomainedma,
+      // nbrdebonusdomainedin: myDialogData.nbrdebonusdomainedin,
+      // nbrdebonusdomainedso: myDialogData.nbrdebonusdomainedso,
+      // nbrdebonusdomainedmy: myDialogData.nbrdebonusdomainedmy,
       nbrdemalusstatutdph: myDialogData.nbrdemalusstatutdph,
       nbrdemalusstatutdma: myDialogData.nbrdemalusstatutdma,
       nbrdemalusstatutdin: myDialogData.nbrdemalusstatutdin,

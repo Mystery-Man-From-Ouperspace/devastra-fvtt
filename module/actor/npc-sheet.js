@@ -765,6 +765,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
       nd: myND,
+      total: rModif._total,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
       opposant: opponentActorName,

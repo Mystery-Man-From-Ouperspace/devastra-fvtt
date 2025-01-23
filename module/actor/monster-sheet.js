@@ -751,14 +751,18 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     // Smart Message
     let opponentActorId = "";
+    let opponentActorName = "";
     if (opponentActor) {
       opponentActorId = opponentActor.id;
+      opponentActorName = opponentActor.name;
     }
     const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
     const smartData = {
       nd: myND,
+      total: rModif._total,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
+      opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
