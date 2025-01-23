@@ -311,6 +311,8 @@
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
   "DEVASTRA.ThrowWounds": "Déterminer Blessures infligées",
+  "DEVASTRA.ThrowReceivedWounds": "Déterminer Blessures reçues",
+
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
   "DEVASTRA.ApplyWounds": "Appliquer Blessures [Opposant]",
