@@ -343,7 +343,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
     defencecalculateButton.addEventListener('click', () => {
 
       // La joueuse ou le PNJ calcule depuis le Tchat sa défense contre une attaque
-      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
 
 
       // On récupère les datas de l'attaquant dans le Tchat
@@ -372,6 +371,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
       let myUserId = game.user.id;
       let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
 
@@ -884,6 +884,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
+    var jet = "defnc";
     var ouijet = myResultDialog.ouijet;
     var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
@@ -950,6 +951,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
+    var jet = "defnc";
     var ouijet = myResultDialog.ouijet;
     var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
@@ -1004,7 +1006,53 @@ async function _treatSkillDiceRollDefenceDialog(
   
   }
 
+  const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+  const smartData = {
+    /*
+    nd: myND,
+    total: rModif._total,
+    attaquantficheId: myActor.id,
+    opposantficheId: opponentActorId,
+    opposant: opponentActorName,
+    consideropponentprotection: considerOpponentProtection,
 
+    isinventory: isInventory,
+    selectedinventory: mySelectedInventory,
+    selectedinventorydevastra: mySelectedInventoryDevastra,
+    selectedinventorypower: mySelectedInventoryPower,
+    selectedinventorymagic: mySelectedInventoryMagic,
+    damage: myDamage,
+    damagetype: myDamageType,      
+    */
+    domaine: domains,
+    jet: jet,
+    /*
+    succes: d_successes,
+    d1: n.d6_1,
+    d2: n.d6_2,
+    d3: n.d6_3,
+    d4: n.d6_4,
+    d5: n.d6_5,
+    d6: n.d6_6,
+    dA: mySuccesAutoSupplem
+    */
+  }
+  console.log("smartData avant retour func = ", smartData);
+  const smartHtml = await renderTemplate(smartTemplate, smartData);
+
+  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+   
+  ChatMessage.create({
+    user: game.user.id,
+    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: myActor }),
+    content: smartHtml,
+    rollMode: myTypeOfThrow
+  });
+
+
+
+  
 }
 
 
@@ -1100,6 +1148,7 @@ async function _skillDiceRollDefenceDialog(
     nd: nd,
   
     domains: "dma",
+    throw: "defnc",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
     nbrdedomainedma: myNbrDeDomaineDMa,
@@ -1170,6 +1219,7 @@ async function _skillDiceRollDefenceDialog(
       nd: myDialogData.nd,
       
       domains: myHtml.find("select[name='domains']").val(),
+      throw: "defnc",
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
       nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
@@ -1305,6 +1355,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
     nd: nd,
   
     domains: "dma",
+    throw: "defnc",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
     nbrdedomainedma: myNbrDeDomaineDMa,
@@ -1375,6 +1426,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
       nd: myDialogData.nd,
       
       domains: myHtml.find("select[name='domains']").val(),
+      throw: "defnc",
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
       nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
@@ -1471,6 +1523,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
+    var jet = myResultDialog.jet;
+
     var ouijet = myResultDialog.ouijet;
     var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
@@ -1519,7 +1573,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
     var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
-    var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
+    // var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
 
   } else {
 
@@ -1537,6 +1591,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
+    var jet = myResultDialog.throw;
+
     var ouijet = myResultDialog.ouijet;
     var nonjet = myResultDialog.nonjet;
     var defencend = myResultDialog.defencend;
@@ -1591,6 +1647,50 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   }
 
 
+
+  const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+  const smartData = {
+    /*
+    nd: myND,
+    total: rModif._total,
+    attaquantficheId: myActor.id,
+    opposantficheId: opponentActorId,
+    opposant: opponentActorName,
+    consideropponentprotection: considerOpponentProtection,
+
+    isinventory: isInventory,
+    selectedinventory: mySelectedInventory,
+    selectedinventorydevastra: mySelectedInventoryDevastra,
+    selectedinventorypower: mySelectedInventoryPower,
+    selectedinventorymagic: mySelectedInventoryMagic,
+    damage: myDamage,
+    damagetype: myDamageType,      
+    */
+    domaine: domains,
+    jet: jet,
+    /*
+    succes: d_successes,
+    d1: n.d6_1,
+    d2: n.d6_2,
+    d3: n.d6_3,
+    d4: n.d6_4,
+    d5: n.d6_5,
+    d6: n.d6_6,
+    dA: mySuccesAutoSupplem
+    */
+  }
+  console.log("smartData avant retour func = ", smartData);
+  const smartHtml = await renderTemplate(smartTemplate, smartData);
+
+  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+
+  ChatMessage.create({
+    user: game.user.id,
+    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: myActor }),
+    content: smartHtml,
+    rollMode: myTypeOfThrow
+  });
 
 }
 
@@ -1681,6 +1781,7 @@ async function _skillDiceRollDefenceNPCDialog(
     nd: nd,
   
     domains: "dma",
+    throw: "defnc",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
     nbrdedomainedma: myNbrDeDomaineDMa,
@@ -1752,6 +1853,7 @@ async function _skillDiceRollDefenceNPCDialog(
       nd: myDialogData.nd,
       
       domains: myHtml.find("select[name='domains']").val(),
+      throw: "defnc",
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
       nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
@@ -1881,6 +1983,7 @@ async function  _skillDiceRollDefenceNPCDialogDeblocked(
     nd: nd,
   
     domains: "dma",
+    throw: "defnc",
     systemData: myActorID.system,
     nbrdedomainedph: myNbrDeDomaineDPh,
     nbrdedomainedma: myNbrDeDomaineDMa,
@@ -1952,6 +2055,7 @@ async function  _skillDiceRollDefenceNPCDialogDeblocked(
       nd: myDialogData.nd,
       
       domains: myHtml.find("select[name='domains']").val(),
+      throw: "defnc",
       ouijet: myHtml.find("input[name='ouijet']").is(':checked'),
       nonjet: myHtml.find("input[name='nonjet']").is(':checked'),
       defencend: myHtml.find("select[name='defencend']").val(),
