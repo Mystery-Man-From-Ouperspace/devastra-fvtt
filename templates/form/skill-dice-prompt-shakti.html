@@ -5,14 +5,23 @@
 
         {{!-- Frame --}}
         <div class="frame">
-            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
-            <div class="youractorid" style="display: none;">{{youractorid}}</div>
-            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
-            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
-            <div class="youropponent" style="display: none;">{{youropponent}}</div>
-            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
-            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
-            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
+            <div style="display: none;">
+                <span class="nd">{{ nd }}</span>
+                <span class="total">{{ total }}</span>
+                <span class="attaquantficheId">{{ attaquantficheId }}</span>
+                <span class="opposantficheId">{{ opposantficheId }}</span>
+                <span class="consideropponentprotection">{{ consideropponentprotection }}</span>
+                <span class="isinventory">{{ isinventory }}</span>
+                <span class="selectedinventory">{{ selectedinventory }}</span>
+                <span class="selectedinventorydevastra">{{ selectedinventorydevastra }}</span>
+                <span class="selectedinventorypower">{{ selectedinventorypower }}</span>
+                <span class="selectedinventorymagic">{{ selectedinventorymagic }}</span>
+                <span class="damage">{{ damage }}</span>
+                <span class="damagetype">{{ damagetype }}</span>
+                
+                <span class="defence">{{ defence }}</span>
+                <span class="defencetype">{{ defencetype }}</span>
+            </div>
 
             <div class="dicebar">
                 <table class="checkboxes">
