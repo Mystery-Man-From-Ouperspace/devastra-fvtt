@@ -761,8 +761,11 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     if (opponentActor) {
       opponentActorId = opponentActor.id;
       opponentActorName = opponentActor.name;
-    }
-    const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    };
+    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    if (jetLibel == "defnc") {
+      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+    };
     const smartData = {
       nd: myND,
       total: rModif._total,

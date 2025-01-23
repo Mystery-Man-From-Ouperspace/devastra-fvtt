@@ -2095,8 +2095,11 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     if (opponentActor) {
       opponentActorId = opponentActor.id;
       opponentActorName = opponentActor.name;
-    }
-    const smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    };
+    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    if (jetLibel == "defnc") {
+      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+    };
     const smartData = {
       nd: myND,
       total: rModif._total,
