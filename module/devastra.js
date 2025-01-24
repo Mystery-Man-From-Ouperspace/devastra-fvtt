@@ -454,11 +454,9 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       let myUserId = game.user.id;
       let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
 
-      /*
       if (game.user.isGM) {
         isOwner = true;
       }
-      */
 
       if (!(isOwner)) {
         ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
