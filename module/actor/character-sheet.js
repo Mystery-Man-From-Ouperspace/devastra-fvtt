@@ -2100,6 +2100,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     if (jetLibel == "defnc") {
       smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     };
+
+    let myDefence = "xxx";
+    let myDefenceType = "xxx";
+
     const smartData = {
       nd: myND,
       total: rModif._total,
@@ -2116,8 +2120,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       damage: myDamage,
       damagetype: myDamageType,
       
-      defence: 0,
-      defencetype: myDamageType,
+      defence: myDefence,
+      defencetype: myDefenceType,
 
       domaine: domainLibel,
       jet: jetLibel,
@@ -2128,7 +2132,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       d4: n.d6_4,
       d5: n.d6_5,
       d6: n.d6_6,
-      dA: mySuccesAutoSupplem,
+      dA: mySuccesAutoSupplem
     }
     console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);

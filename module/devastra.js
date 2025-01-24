@@ -360,6 +360,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
       const damage = html[0].querySelector("span[class='damage']").textContent;
       const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
       const defence = html[0].querySelector("span[class='defence']").textContent;
       const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
 
@@ -438,9 +439,14 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const damage = html[0].querySelector("span[class='damage']").textContent;
       const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
 
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+      const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
+
+
+
 
       /*
-      Ici on fait remplir les paramètres de lancer de dés por le défenseur
+      Ici on fait remplir les paramètres de lancer de dés pour le défenseur
       */
       const myActorId = opposantficheId;
       let myActor = game.actors.get(myActorId);
@@ -595,128 +601,144 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   if (woundscalculateButton != undefined && woundscalculateButton != null) {
     woundscalculateButton.addEventListener('click', () => {
 
-      // La joueuse effectue depuis le Tchat le calcul des blessures infligées
+      // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
       console.log('Je suis dans woundscalculateButton')
 
-      const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
+      // On récupère les datas de l'attaquant dans le Tchat
+      // const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
+      // const defence = html[0].querySelector("span[class='defence']").textContent;
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
 
-      const numberofdice = html[0].querySelector("div[class='numberofdice']").textContent;
-      const skill = html[0].querySelector("div[class='skill']").textContent;
-      const bonus = html[0].querySelector("div[class='bonus']").textContent;
-      const rolldifficulty = html[0].querySelector("div[class='rolldifficulty']").textContent;
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+      const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
 
-      const youwin = html[0].querySelector("div[class='youwin']").textContent;
-      const yourplayerid = html[0].querySelector("div[class='yourplayerid']").textContent;
-      const youractorid = html[0].querySelector("div[class='youractorid']").textContent;
-      const yourdamage = html[0].querySelector("div[class='yourdamage']").textContent;
-      const yourprotection = html[0].querySelector("div[class='yourprotection']").textContent;
-      const youropponent = html[0].querySelector("div[class='youropponent']").textContent;
-      const youropponentid = html[0].querySelector("div[class='youropponentid']").textContent;
-      const youropponentdamage = html[0].querySelector("div[class='youropponentdamage']").textContent;
-      const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
 
-      let NPCwoundedtotal = 1+parseInt(yourdamage)-parseInt(youropponentprotection);
-      if (NPCwoundedtotal < 0) {NPCwoundedtotal = 0};
-      let PCwoundedtotal = 1+parseInt(youropponentdamage)-parseInt(yourprotection);
-      if (PCwoundedtotal < 0) {PCwoundedtotal = 0};
-      let autoWoundsNPC = game.settings.get("devastra", "autoWoundsNPC");
-
-      // console.log("autoWoundsNPC = ", autoWoundsNPC);
-
-      const myUser = game.user;
-      // console.log("game.user.id = ", game.user.id);
-      // console.log("yourplayerid = ", yourplayerid);
-      if (!(game.user.id == yourplayerid)) {console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
-
-      const myActor = game.actors.get(youractorid);
-      if (myActor == null) {console.log("TADAM !") ;return;};
-
-      const myTypeOfThrow = parseInt(typeofthrow);
-
-      // Smart Message
-      const smartTemplate = 'systems/devastra/templates/form/dice-result-wounds.html';
-      const smartData = 
-      {
-        typeofthrow: myTypeOfThrow,
-
-        youwin: (youwin == 'true'),
-        yourplayerid: yourplayerid,
-        youractorid: youractorid,
-        yourdamage: yourdamage,
-        yourprotection: yourprotection,
-        youropponent: youropponent,
-        youropponentid: youropponentid,
-        youropponentdamage: youropponentdamage,
-        youropponentprotection: youropponentprotection,
-
-        NPCwoundedtotal: NPCwoundedtotal,
-        PCwoundedtotal: PCwoundedtotal,
-        autoWoundsNPC: autoWoundsNPC
+      /*
+      Ici on calcule les blessures infligées
+      */
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
       };
 
-    // console.log("smartData = ", smartData);
+      let myActor = game.actors.get(myActorId);
 
-    _showCalculateWoundsInChat (myActor, myTypeOfThrow, smartTemplate, smartData);
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      let myTitle = game.i18n.localize("DEVASTRA.Jet de défense titre").replace("^0", myActor.name);
+      let myDialogOptions = {
+        classes: ["devastra", "sheet"]
+      };
+      let template = "";
+
+
+      _showCalculateWoundsInChat(
+        myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        selectedinventorymagic, damage, damagetype, defence, defencetype
+      );
 
     })
-  }
 
+  }
 
 })
 
 
+
 /* -------------------------------------------- */
 
-async function _showCalculateWoundsInChat (myActor, myTypeOfThrow, smartTemplate, smartData) {
+async function _showCalculateWoundsInChat (
+  myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        selectedinventorymagic, damage, damagetype, defence, defencetype
+  ) {
   
+  const smartTemplate = 'systems/devastra/templates/form/dice-result-wounds.html';
+  const smartData = {
+    nd: nd,
+
+    // total: rModif._total,
+
+    attaquantficheId: attaquantficheId,
+    opposantficheId: opposantficheId,
+    consideropponentprotection: consideropponentprotection,
+
+    isinventory: isinventory,
+    selectedinventory: selectedinventory,
+    selectedinventorydevastra: selectedinventorydevastra,
+    selectedinventorypower: selectedinventorypower,
+    selectedinventorymagic: selectedinventorymagic,
+    damage: damage,
+    damagetype: damagetype,
+    
+    defence: defence,
+    defencetype: defencetype,
+    /*
+    succes: d_successes,
+    d1: n.d6_1,
+    d2: n.d6_2,
+    d3: n.d6_3,
+    d4: n.d6_4,
+    d5: n.d6_5,
+    d6: n.d6_6,
+    dA: mySuccesAutoSupplem
+    */
+  }
+  console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
 
-  switch ( myTypeOfThrow ) {
-    case 0:
-      ChatMessage.create({
-        user: game.user.id,
-        // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-        speaker: ChatMessage.getSpeaker({ actor: myActor }),
-        content: smartHtml,
-        rollMode: 'roll'                          // Public Roll
-      });
+  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+  
+  ChatMessage.create({
+    user: game.user.id,
+    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: myActor }),
+    content: smartHtml,
+    rollMode: myTypeOfThrow
+  });
 
-    break;
-    case 1:
-      ChatMessage.create({
-        user: game.user.id,
-        // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-        speaker: ChatMessage.getSpeaker({ actor: myActor }),
-        content: smartHtml,
-        rollMode: 'gmroll'                        // Private Roll
-      });
 
-    break;
-    case 2:
-      ChatMessage.create({
-        user: game.user.id,
-        // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-        speaker: ChatMessage.getSpeaker({ actor: myActor }),
-        content: smartHtml,
-        rollMode: 'blindroll'                       // Blind GM Roll
-      });
-
-    break;
-    case 3:
-      ChatMessage.create({
-        user: game.user.id,
-        // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-        speaker: ChatMessage.getSpeaker({ actor: myActor }),
-        content: smartHtml,
-        rollMode: 'selfroll'                        // Self Roll
-      });
-
-    break;
-    default: console.log("C'est bizarre !");
-  };
 }
+
+
+
+
+
+
 
 /* -------------------------------------------- */
 
@@ -936,7 +958,7 @@ async function _treatShaktiDialog(
 async function _shaktiDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
   ) {
 
   // Render modal dialog
@@ -960,7 +982,7 @@ async function _shaktiDialog(
   const damagetype = myDamagetype;
 
   const defence =  myDefence;
-  const defencetype = myDefencetype;
+  const defencetype = myDefenceType;
 
 
   var dialogData = {
@@ -1219,8 +1241,8 @@ async function _treatSkillDiceRollDefenceDialog(
 
 
 
-  const myDefence = 0; // defence
-  const myDefencetype = ""; // defencetype
+  const myDefence = 0; // defence à calculer (lancer de dés)
+  const myDefenceType = ""; // defencetype à calculer (lancer de dés)
 
 
   if (ouijet) {
@@ -1228,9 +1250,9 @@ async function _treatSkillDiceRollDefenceDialog(
     const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     const smartData = {
       nd: myND,
-      /*
-      total: rModif._total,
-      */
+
+      // total: rModif._total,
+
       attaquantficheId: attaquantficheId,
       opposantficheId: opposantficheId,
       consideropponentprotection: consideropponentprotection,
@@ -1244,10 +1266,10 @@ async function _treatSkillDiceRollDefenceDialog(
       damagetype: damagetype,
       
       defence: myDefence,
-      defencetype: myDefencetype,
+      defencetype: myDefenceType,
    
       domaine: domains,
-      jet: jet,
+      jet: jet
       /*
       succes: d_successes,
       d1: n.d6_1,
@@ -1281,7 +1303,7 @@ async function _treatSkillDiceRollDefenceDialog(
     myResultDialog = await _skillEnterShaktiDefence (
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
+      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
     );
 
 
@@ -1304,7 +1326,7 @@ async function _treatSkillDiceRollDefenceDialog(
 async function _skillEnterShaktiDefence(
   myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
   ) {
 
   // Render modal dialog
@@ -1327,6 +1349,9 @@ async function _skillEnterShaktiDefence(
   const damage =  myDamage;
   const damagetype = myDamagetype;
 
+  const defence = myDefence;
+  const defencetype = myDefenceType;
+
   var dialogData = {
     nd: nd,
     /*
@@ -1342,12 +1367,12 @@ async function _skillEnterShaktiDefence(
     selectedinventorypower: selectedinventorypower,
     selectedinventorymagic: selectedinventorymagic,
     damage: damage,
-    damagetype: damagetype
+    damagetype: damagetype,
 
-    /*
+  
     defence: defence,
     defencetype: defencetype
-    */
+  
 
   }
 
@@ -1978,7 +2003,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
 
   const myDefence = 0; // defence
-  const myDefencetype = ""; // defencetype
+  const myDefenceType = ""; // defencetype
 
 
   if (ouijet) {
@@ -2003,7 +2028,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       damagetype: myDamageType,
       
       defence: myDefence,
-      defencetype: myDefencetype,
+      defencetype: myDefenceType,
    
       domaine: domains,
       jet: jet,
@@ -2040,7 +2065,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     myResultDialog = await _skillEnterShaktiDefence (
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
+      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
     );
 
 

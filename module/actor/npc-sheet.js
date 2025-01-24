@@ -766,6 +766,10 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     if (jetLibel == "defnc") {
       smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     };
+
+    let myDefence = "xxx";
+    let myDefenceType = "xxx";
+
     const smartData = {
       nd: myND,
       total: rModif._total,
@@ -782,8 +786,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       damage: myDamage,
       damagetype: myDamageType,
       
-      defence: 0,
-      defencetype: myDamageType,
+      defence: myDefence,
+      defencetype: myDefenceType,
 
       domaine: domainLibel,
       jet: jetLibel,
@@ -794,7 +798,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       d4: n.d6_4,
       d5: n.d6_5,
       d6: n.d6_6,
-      dA: d6_A,
+      dA: d6_A
     }
     console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
