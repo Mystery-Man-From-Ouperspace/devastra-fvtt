@@ -334,8 +334,10 @@ function preLocalizeConfig() {
 Hooks.on("renderChatMessage", (app, html, data,) => {
 
   const defencecalculateButton = html[0].querySelector("[class='smart-blue-button defence-calculate-click']");
-  const woundscalculateButton = html[0].querySelector("[class='smart-blue-button wounds-calculate-click']");
-  // const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
+  const woundscalculateButton1 = html[0].querySelector("[class='smart-blue-button wounds-calculate-click']");
+  const woundscalculateButton2 = html[0].querySelector("[class='smart-blue-button wounds-auto-calculate-click']");
+  const woundscalculateButton3 = html[0].querySelector("[class='smart-blue-button wounds-off-auto-calculate-click']");
+  const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
 
@@ -499,15 +501,16 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 
 
-  /*
+
   if (woundsapplyButton != undefined && woundsapplyButton != null) {
     woundsapplyButton.addEventListener('click', () => {
 
-      // La joueuse applique depuis le Tchat les blessures infiligées à son PJ par le PNJ
+      // La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-      console.log('Je suis dans woundsapplytoPCButton')
 
+      console.log("La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant");
+      /*
       const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
 
       const youwin = html[0].querySelector("div[class='youwin']").textContent;
@@ -543,11 +546,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateWoundsInChat (myActor, typeOfThrow, smartTemplate, smartData);
       };
-  
+      */
+
     })
 
   }
-  */
 
 
   /*
@@ -596,15 +599,32 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
   }
   */
-  
+  if (woundscalculateButton3 != undefined && woundscalculateButton3 != null) {
+    woundscalculateButton3.addEventListener('click', () => {
+      // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées
+      // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-  if (woundscalculateButton != undefined && woundscalculateButton != null) {
-    woundscalculateButton.addEventListener('click', () => {
+      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées");
+    });
+  }
+
+  if (woundscalculateButton2 != undefined && woundscalculateButton2 != null) {
+    woundscalculateButton2.addEventListener('click', () => {
+      // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues
+      // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
+
+      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues");
+
+    });
+  }
+
+  if (woundscalculateButton1 != undefined && woundscalculateButton1 != null) {
+    woundscalculateButton1.addEventListener('click', () => {
 
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-      console.log('Je suis dans woundscalculateButton')
+      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées");
 
       // On récupère les datas de l'attaquant dans le Tchat
       // const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
