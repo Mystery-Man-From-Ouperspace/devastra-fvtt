@@ -444,7 +444,12 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
         myActor, template, myTitle, myDialogOptions, domainLibel
       );
 
-      if (myTarget == null) {return};
+      //////////////////////////////////////////////////////////////////
+      if (myTarget == null) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
 
       if (game.user.targets.size != 0) {
         for (let targetedtoken of game.user.targets) {

@@ -445,8 +445,13 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
         myActor, template, myTitle, myDialogOptions, domainLibel
       );
 
-      if (myTarget == null) {return};
-
+      //////////////////////////////////////////////////////////////////
+      if (myTarget == null) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+  
       if (game.user.targets.size != 0) {
         for (let targetedtoken of game.user.targets) {
           if (targetedtoken.id == myTarget.selectedtarget) {
@@ -460,6 +465,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     console.log("opponentActor = ", opponentActor);
     
+
 
     /*
     Ici on fait choisir l'arme
