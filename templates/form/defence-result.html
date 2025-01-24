@@ -20,7 +20,9 @@
                 <span class="selectedinventorypower">{{ selectedinventorypower }}</span>
                 <span class="selectedinventorymagic">{{ selectedinventorymagic }}</span>
                 <span class="damage">{{ damage }}</span>
-                <span class="damagetype">{{ damagetype }}</span>      
+                <span class="damagetype">{{ damagetype }}</span>
+                <span class="defence">{{ defence }}</span>
+                <span class="defencetype">{{ defencetype }}</span>      
             </div>
             <table style="border: 0px; background-color: transparent;">
                 <tr style="background-color: transparent;">
@@ -158,7 +160,17 @@
                         <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button shakti-defence-calculate-click">{{ localize "DEVASTRA.Shakti de défense" }}</span></p>
                     </td>
                 </tr>
-                {{#if (eq opposantficheId '')}}
+                {{#if (eq opposantficheId "")}}
+                <tr>
+                    <td style="text-align: center;">
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoDefence" }}</b></span></p>
+                    </td>
+                </tr>
+                <tr style="background-color: transparent;">
+                    <td class="blue-buttons">
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button wounds-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedWounds" }}</span></p>
+                    </td>
+                </tr>
                 {{else}}
                 <tr>
                     <td style="text-align: center;">

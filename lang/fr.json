@@ -312,6 +312,7 @@
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
   "DEVASTRA.ThrowWounds": "Déterminer Blessures infligées",
   "DEVASTRA.ThrowReceivedWounds": "Déterminer Blessures reçues",
+  "DEVASTRA.ThrowOffReceivedWounds": "Déterminer Blessures évitées",
 
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
@@ -520,6 +521,9 @@
   "DEVASTRA.Tirage de jetons pour la Shakti": "Tirage de jetons pour la Shakti",
 
   "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
+
+
+  
 
 
   "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",

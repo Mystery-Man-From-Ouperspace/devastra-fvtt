@@ -336,6 +336,85 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const defencecalculateButton = html[0].querySelector("[class='smart-blue-button defence-calculate-click']");
   const woundscalculateButton = html[0].querySelector("[class='smart-blue-button wounds-calculate-click']");
   // const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
+  const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
+
+
+  if (shakticalculateButton != undefined && shakticalculateButton != null) {
+    shakticalculateButton.addEventListener('click', () => {
+
+      console.log("On est bien dans shakticalculatebutton");
+
+      // La joueuse ou le PNJ utilise de la shakti depuis le Tchat pour sa défense contre une attaque
+
+
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+      const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
+
+      
+
+      // Ici on fait remplir les paramètres de shakti por le défenseur
+
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
+      };
+
+      let myActor = game.actors.get(myActorId);
+
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      let myTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
+      let myDialogOptions = {
+        classes: ["devastra", "sheet"]
+      };
+      let template = "";
+
+
+      _treatShaktiDialog (
+        myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        selectedinventorymagic, damage, damagetype, defence, defencetype
+      );
+
+  
+    })
+  };
+
 
 
 
@@ -375,7 +454,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       let myUserId = game.user.id;
       let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
 
-      /* if (game.user.isGM) {
+      /*
+      if (game.user.isGM) {
         isOwner = true;
       }
       */
@@ -829,6 +909,130 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 }
 
 
+
+async function _treatShaktiDialog(
+  myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  selectedinventorymagic, damage, damagetype, defence, defencetype
+) {
+  let myResultDialog = await _shaktiDialog(
+    myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+    consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+    selectedinventorymagic, damage, damagetype, defence, defencetype
+  );
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////
+  if (!(myResultDialog)) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    return;
+  };
+  //////////////////////////////////////////////////////////////////
+
+
+}
+
+async function _shaktiDialog(
+  myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
+  ) {
+
+  // Render modal dialog
+
+  template = template || 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+  const myActorID = myActor;
+  const title = myTitle;
+  const dialogOptions = myDialogOptions;
+
+  const nd = myND;
+  const total = myTotal;
+  const attaquantficheId = myAttaquantficheId;
+  const opposantficheId = myOpposantficheId;
+  const consideropponentprotection = myConsideropponentprotection;
+  const isinventory = myIsinventory;
+  const selectedinventory = mySelectedinventory;
+  const selectedinventorydevastra = mySelectedinventorydevastra;
+  const selectedinventorypower = mySelectedinventorypower;
+  const selectedinventorymagic = mySelectedinventorymagic;
+  const damage =  myDamage;
+  const damagetype = myDamagetype;
+
+  const defence =  myDefence;
+  const defencetype = myDefencetype;
+
+
+  var dialogData = {
+    nd: nd,
+
+    // total: rModif._total,
+
+    attaquantficheId: attaquantficheId,
+    opposantficheId: opposantficheId,
+
+    consideropponentprotection: consideropponentprotection,
+    isinventory: isinventory,
+    selectedinventory: selectedinventory,
+    selectedinventorydevastra: selectedinventorydevastra,
+    selectedinventorypower: selectedinventorypower,
+    selectedinventorymagic: selectedinventorymagic,
+    damage: damage,
+    damagetype: damagetype,
+
+    defence: defence,
+    defencetype: defencetype
+
+  }
+
+  const html = await renderTemplate(template, dialogData);
+  // Create the Dialog window
+  let prompt = await new Promise((resolve) => {
+    new Dialog(
+      {
+        title: title,
+        content: html,
+        buttons: {
+          validateBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
+            callback: (html) => resolve( dialogData = _computeResult(myActorID, dialogData, html) )
+          },
+          cancelBtn: {
+            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
+            callback: (html) => resolve( null )
+          }
+        },
+        default: 'validateBtn',
+        close: () => resolve( null )
+    },
+    dialogOptions
+    ).render(true, {
+      width: 300,
+      height: "auto"
+    });
+  });
+
+  if (prompt == null) {
+    dialogData = null;
+  };
+
+  return dialogData;
+
+  //////////////////////////////////////////////////////////////
+  async function _computeResult(myActor, myDialogData, myHtml) {
+    const editedData = {
+      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+    };
+    return editedData;
+  }
+
+
+
+}
+
+
 /* -------------------------------------------- */
 /*  Dialogue de lancer de défense               */
 /* -------------------------------------------- */
@@ -1025,25 +1229,25 @@ async function _treatSkillDiceRollDefenceDialog(
 
     const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     const smartData = {
-      /*
       nd: myND,
+      /*
       total: rModif._total,
-      attaquantficheId: myActor.id,
-      opposantficheId: opponentActorId,
-      opposant: opponentActorName,
-      consideropponentprotection: considerOpponentProtection,
+      */
+      attaquantficheId: attaquantficheId,
+      opposantficheId: opposantficheId,
+      consideropponentprotection: consideropponentprotection,
 
-      isinventory: isInventory,
-      selectedinventory: mySelectedInventory,
-      selectedinventorydevastra: mySelectedInventoryDevastra,
-      selectedinventorypower: mySelectedInventoryPower,
-      selectedinventorymagic: mySelectedInventoryMagic,
-      damage: myDamage,
-      damagetype: myDamageType,
+      isinventory: isinventory,
+      selectedinventory: selectedinventory,
+      selectedinventorydevastra: selectedinventorydevastra,
+      selectedinventorypower: selectedinventorypower,
+      selectedinventorymagic: selectedinventorymagic,
+      damage: damage,
+      damagetype: damagetype,
       
       defence: myDefence,
       defencetype: myDefencetype,
-      */
+   
       domaine: domains,
       jet: jet,
       /*
@@ -1735,11 +1939,11 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var nbrdedomainedin = myResultDialog.nbrdedomainedin;
     var nbrdedomainedso = myResultDialog.nbrdedomainedso;
     var nbrdedomainedmy = myResultDialog.nbrdedomainedmy;
-    var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
-    var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
-    var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
-    var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
-    var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
+    // var nbrdebonusdomainedph = myResultDialog.nbrdebonusdomainedph;
+    // var nbrdebonusdomainedma = myResultDialog.nbrdebonusdomainedma;
+    // var nbrdebonusdomainedin = myResultDialog.nbrdebonusdomainedin;
+    // var nbrdebonusdomainedso = myResultDialog.nbrdebonusdomainedso;
+    // var nbrdebonusdomainedmy = myResultDialog.nbrdebonusdomainedmy;
     var nbrdemalusstatutdph = myResultDialog.nbrdemalusstatutdph;
     var nbrdemalusstatutdma = myResultDialog.nbrdemalusstatutdma;
     var nbrdemalusstatutdin = myResultDialog.nbrdemalusstatutdin;
@@ -1783,10 +1987,11 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     const smartData = {
-      /*
       nd: myND,
+      /*
       total: rModif._total,
-      attaquantficheId: myActor.id,
+      */
+      attaquantficheId: attaquantficheId,
       opposantficheId: opponentActorId,
       opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
@@ -1801,7 +2006,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       
       defence: myDefence,
       defencetype: myDefencetype,
-      */
+   
       domaine: domains,
       jet: jet,
       /*
@@ -1839,6 +2044,15 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype
     );
+
+
+
+    //////////////////////////////////////////////////////////////////
+    if (!(myResultDialog)) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
 
 
   }

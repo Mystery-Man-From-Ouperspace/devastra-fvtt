@@ -304,7 +304,29 @@
   "DEVASTRA.PCWounded":  "Le PNJ touche le PJ ; blessures infligées",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
-  "DEVASTRA.OnlyCanOWner": "Applicable uniquement par la propriétaire de la fiche",
+  "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
+  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant ou le MJ",
+
+  "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
+
+  "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
+  "DEVASTRA.ThrowWounds": "Déterminer Blessures infligées",
+  "DEVASTRA.ThrowReceivedWounds": "Déterminer Blessures reçues",
+
+
+  "DEVASTRA.ApplyDefence": "Appliquer Défense",
+  "DEVASTRA.ApplyWounds": "Appliquer Blessures [Opposant]",
+
+  "DEVASTRA.DefenderName": "Opposant : ",
+
+  "DEVASTRA.Oui": "Oui",
+  "DEVASTRA.Non": "Non",
+  "DEVASTRA.Shakti de défense": "Shakti en défense",
+  "DEVASTRA.Jetons Shakti": "Shakti :",
+
+  "DEVASTRA.Domaine :": "Domaine :",
+
+  "DEVASTRA.Jet de défense titre": "Déterminer Défense [^0]",
 
   "DEVASTRA.ButYouOnly": "Malheureusement, vous avez rendu cet affichage invisible au MJ",
 
@@ -313,9 +335,11 @@
   "DEVASTRA.Nbre de dés du domaine": "Score du Domaine :",
   "DEVASTRA.Bonus de dés du domaine": "Bonus du Domaine :",
   "DEVASTRA.Bonus de dés de la spécialité": "Bonus de Spécialité :",
+  "DEVASTRA.Malus de blessure": "Tenir compte des malus de Blessures :",
+  "DEVASTRA.Malus de statut": "Tenir compte des malus de Statuts concernant le Domaine :",
   "DEVASTRA.Bonus à appliquer": "Dés bonus supplémentaires à appliquer :",
   "DEVASTRA.DEBRIDE_Malus à appliquer": "Total des dés malus à appliquer :",
-  "DEVASTRA.Malus à appliquer": "Total des dés malus à appliquer :",
+  "DEVASTRA.Malus à appliquer": "Dés malus supplémentaires à appliquer :",
   "DEVASTRA.DEBRIDE_Succès automatiques": "Total des succès automatiques :",
   "DEVASTRA.Succès automatiques": "Succès automatiques :",
   "DEVASTRA.DEBRIDE_+1 succès automatique": "Jetons à retirer à la pile Conviction (sera mise à jour selon contenu) :",
@@ -340,7 +364,7 @@
   "DEVASTRA.DEBRIDE_5 Explosifs": "⌞ Les 5 sont explosifs (ne cocher que si les 6 le sont déjà) :",
   "DEVASTRA.5 Explosifs": "⌞ Les 5 sont explosifs :",
   "DEVASTRA.DEBRIDE_Dés non-explosifs": "(À vous de décocher les dés non-explosifs, s′il y a lieu)",
-  "DEVASTRA.Dés non-explosifs": "Dés non-explosifs :",
+  "DEVASTRA.Dés non-explosifs": "Niveaux de dés non-explosifs :",
 
   "DEVASTRA.Exceller": "Exceller",
   "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner", 
@@ -365,7 +389,7 @@
   "DEVASTRA.FonctDeverrouillée": "La fonction vient d′être déverrouillée",
   "DEVASTRA.FonctVerrouillée": "La fonction vient d′être verrouillée",
   "DEVASTRA.Verrouiller Entrée manuelle": "Verrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
-  "DEVASTRA.Déverrouiller Entrée manuelle": "Déverrouiller l′entrée manuelle des jetons des piles Conviction et Shakti",
+  "DEVASTRA.Déverrouiller Entrée manuelle": "Entrer manuellement le nombre de jetons des piles Conviction et Shakti",
   "DEVASTRA.Cohérence Mandala": "Vérifier la cohérence du Mandala des 7 rangs d′action (fonction en cours de développement)",
 
   "DEVASTRA.trash": "Déposez un jeton ici pour le défausser",
@@ -406,11 +430,25 @@
   "DEVASTRA.Cout en Atman": "Coût en Âtman",
 
 
-  "DEVASTRA.Error2": "Jet annulé",
-  "DEVASTRA.Error1": "Aucun dé à lancer",
+  "DEVASTRA.Error2": "Jet annulé par l′utilisateur",
+  "DEVASTRA.Error1": "Jet annulé : aucun dé à lancer",
+  "DEVASTRA.Info4": "Jetons soustraits à la pile Shakti",
+  "DEVASTRA.Error4": "Jet annulé : pas assez de Jetons dans la pile Shakti",
+  "DEVASTRA.Info5": "Jetons soustraits à la pile Conviction",
+  "DEVASTRA.Error5": "Jet annulé : pas assez de Jetons dans la pile Conviction",
+
+  "DEVASTRA.Info4-npc": "Points soustraits au total de Shakti",
+  "DEVASTRA.Error4-npc": "Jet annulé : pas assez de Points de Shakti",
+  "DEVASTRA.Info5-npc": "Points soustraits au total de Conviction",
+  "DEVASTRA.Error5-npc": "Jet annulé : pas assez de Points de Conviction",
+
+  "DEVASTRA.Error3": "Impossible : vous n’êtes pas propriétaire",
+
+  "DEVASTRA.Error7": "Impossible : l’opposant n’a pas été défini",
+
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
-  "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses",
+  "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses connectées",
   "DEVASTRA.GMManager.Title": "Afficher Mandala rangs d′action",
   "DEVASTRA.PlayersManager.Title": "Afficher Mandalas de vos joueuses",
   "DEVASTRA.SpeechMandala": "Sélectionnez, durant le déroulé du tour en cours, le prochain rang d′action du Mandala (dans l′ordre, de 7 à 1). Ce rang d′action sera matérialisé par un viseur sur le Mandala de tous les Acteurs dont la fenêtre est ouverte.<br>Cliquez après cela sur le symbole <i class='fas fa-pause'></i> (pause) lorsque que le tour s′achève. Le viseur disparaîtra alors de toutes les fiches.<br>Cette fenêtre conservera ses réglages entre deux parties.<br><br>Si cette fenêtre vient à être fermée en cours de partie, vous pourrez la rouvrir en cliquant successivement sur les deux boutons arborant les symboles <i class='fas fa-trillium'></i> et <i class='fa fa-crosshairs-simple'></i>.<br><br>Cliquez plutôt en second sur le symbole <i class='fa-solid fa-users'></i> pour rouvrir la fenêtre des Mandalas de vos joueuses.",

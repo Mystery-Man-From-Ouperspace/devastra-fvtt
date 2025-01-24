@@ -2114,7 +2114,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       selectedinventorypower: mySelectedInventoryPower,
       selectedinventorymagic: mySelectedInventoryMagic,
       damage: myDamage,
-      damagetype: myDamageType,      
+      damagetype: myDamageType,
+      
+      defence: 0,
+      defencetype: myDamageType,
 
       domaine: domainLibel,
       jet: jetLibel,
