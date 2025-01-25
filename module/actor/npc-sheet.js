@@ -773,6 +773,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     };
 
+    
     let myDefence = "xxx";
     let myDefenceType = "xxx";
 
@@ -794,6 +795,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       
       defence: myDefence,
       defencetype: myDefenceType,
+
+      shakti: 0,
 
       domaine: domainLibel,
       jet: jetLibel,

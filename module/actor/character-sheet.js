@@ -2128,6 +2128,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       defence: myDefence,
       defencetype: myDefenceType,
 
+      shakti: 0,
+
       domaine: domainLibel,
       jet: jetLibel,
       succes: d_successes,

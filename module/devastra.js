@@ -366,7 +366,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const defence = html[0].querySelector("span[class='defence']").textContent;
       const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
 
-      
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
+
 
       // Ici on fait remplir les paramètres de shakti por le défenseur
 
@@ -411,7 +412,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       _treatShaktiDialog (
         myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, defencetype
+        selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
       );
 
   
@@ -444,7 +445,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const defence = html[0].querySelector("span[class='defence']").textContent;
       const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
 
-
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
 
       /*
@@ -477,12 +478,14 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       };
       let template = "";
 
+      let theShakti = 0;
+
       if (myActor.type == 'npc' || myActor.type == 'monster') {
 
         _treatSkillDiceRollDefenceNPCDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
           consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype
+          selectedinventorymagic, damage, damagetype, theShakti
         );
 
       } else {
@@ -490,7 +493,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         _treatSkillDiceRollDefenceDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
           consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype
+          selectedinventorymagic, damage, damagetype, theShakti
         );
 
       }
@@ -652,6 +655,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const defence = html[0].querySelector("span[class='defence']").textContent;
       const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
+
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
 
       /*
@@ -1020,12 +1025,12 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 async function _treatShaktiDialog(
   myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
   consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-  selectedinventorymagic, damage, damagetype, defence, defencetype
+  selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
 ) {
   let myResultDialog = await _shaktiDialog(
     myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
     consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-    selectedinventorymagic, damage, damagetype, defence, defencetype
+    selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
   );
 
 
@@ -1073,10 +1078,10 @@ async function _shaktiDialog(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
-  const defence =  myDefence;
+  const defence = myDefence;
   const defencetype = myDefenceType;
 
 
@@ -1154,7 +1159,7 @@ async function _shaktiDialog(
 async function _treatSkillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
 ) {
   console.log("Il s'agit d'un PJ")
 
@@ -1174,7 +1179,7 @@ async function _treatSkillDiceRollDefenceDialog(
   let myResultDialog =  await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-    mySelectedinventorymagic, myDamage, myDamagetype
+    mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
   );
 
   //////////////////////////////////////////////////////////////////
@@ -1191,7 +1196,7 @@ async function _treatSkillDiceRollDefenceDialog(
     myResultDialog = await _skillDiceRollDefenceDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype
+      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
     );
  
 
@@ -1213,8 +1218,10 @@ async function _treatSkillDiceRollDefenceDialog(
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
     var selectedinventorymagic = mySelectedinventorymagic;
-    var damage =  myDamage;
+    var damage =myDamage;
     var damagetype = myDamagetype;
+    var defence;
+    var shakti = myShakti;
 
     var domains = myResultDialog.domains;
     var jet = "defnc";
@@ -1242,7 +1249,6 @@ async function _treatSkillDiceRollDefenceDialog(
     var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
     var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
 
-    var defencend = myResultDialog.defencend;
     var malusblessureflag = false;
     var malusstatutflag = false;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
@@ -1279,8 +1285,10 @@ async function _treatSkillDiceRollDefenceDialog(
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
     var selectedinventorymagic = mySelectedinventorymagic;
-    var damage =  myDamage;
+    var damage = myDamage;
     var damagetype = myDamagetype;
+    var defence;
+    var shakti = myShakti;
 
     var domains = myResultDialog.domains;
     var jet = "defnc";
@@ -1308,7 +1316,6 @@ async function _treatSkillDiceRollDefenceDialog(
     var nbrdemalusstatutdmy = myResultDialog.nbrdemalusstatutdmy;
     var nbrdebonusspecialite = myResultDialog.nbrdebonusspecialite;
 
-    var defencend = myResultDialog.defencend;
     var malusblessureflag = myResultDialog.malusblessurecheck;
     var malusstatutflag = myResultDialog.malusstatutcheck;
     var bonusdomaineflag = myResultDialog.bonusdomainecheck;
@@ -1421,7 +1428,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
     let suite = "[";
 
-    let defence = parseInt(myNbrDeDomaine);
+    defence = parseInt(myNbrDeDomaine);
 
     // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
     if (bonusdomaineflag) {
@@ -1689,7 +1696,6 @@ async function _treatSkillDiceRollDefenceDialog(
     const myDefence = theDefence; // calculé (lancer de dés)
     const myDefenceType = defencetype; // calculé (lancer de dés)
   
-  
     if (ouijet) {
 
       const smartData = {
@@ -1709,6 +1715,8 @@ async function _treatSkillDiceRollDefenceDialog(
         
         defence: defence,
         defencetype: defencetype,
+
+        shakti: shakti,
 
         domaine: domains,
         jet: jet,
@@ -1748,7 +1756,7 @@ async function _treatSkillDiceRollDefenceDialog(
       myResultDialog = await _skillEnterShaktiDefence (
         myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
         myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-        mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
+        mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType, myShakti
       );
 
 
@@ -1795,6 +1803,7 @@ async function _skillEnterShaktiDefence(
 
   const defence = myDefence;
   const defencetype = myDefenceType;
+
 
   var dialogData = {
     nd: nd,
@@ -1869,7 +1878,7 @@ async function _skillEnterShaktiDefence(
 async function _skillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myShakti
   ) {
 
   // Render modal dialog
@@ -2073,7 +2082,7 @@ async function _skillDiceRollDefenceDialog(
 async function _skillDiceRollDefenceDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
   ) {
 
   // Render modal dialog
@@ -2278,13 +2287,13 @@ async function _skillDiceRollDefenceDialogDeblocked(
 async function _treatSkillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
 ) {
   console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog =  await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-    mySelectedinventorymagic, myDamage, myDamagetype
+    mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
   );
 
   //////////////////////////////////////////////////////////////////
@@ -2301,7 +2310,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     myResultDialog = await _skillDiceRollDefenceNPCDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype
+      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
     );
  
 
@@ -2323,7 +2332,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
     var selectedinventorymagic = mySelectedinventorymagic;
-    var damage =  myDamage;
+    var damage = myDamage;
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
@@ -2391,11 +2400,11 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
     var selectedinventorymagic = mySelectedinventorymagic;
-    var damage =  myDamage;
+    var damage = myDamage;
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
-    var jet = myResultDialog.throw;
+    var jet = myResultDialog.jet;
 
     var ouijet = myResultDialog.ouijet;
     var defencend = myResultDialog.defencend;
@@ -2825,6 +2834,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       defence: defence,
       defencetype: defencetype,
 
+      shakti: myShakti,
+
       domaine: domains,
       jet: jet,
       succes: d_successes,
@@ -2879,7 +2890,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 async function _skillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
   ) {
 
   // Render modal dialog
@@ -2897,7 +2908,7 @@ async function _skillDiceRollDefenceNPCDialog(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
   const myNbrDeBonusSpecialite = 1;
@@ -3075,7 +3086,7 @@ async function _skillDiceRollDefenceNPCDialog(
   
 }
 
-async function  _skillDiceRollDefenceNPCDialogDeblocked(
+async function _skillDiceRollDefenceNPCDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype
