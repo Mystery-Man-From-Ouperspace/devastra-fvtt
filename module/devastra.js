@@ -706,6 +706,65 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 })
 
 
+/* -------------------------------------------- */
+
+async function _showCalculateShaktiWoundsInChat (
+  myActor, nd, total, attaquantficheId, opposantficheId,
+  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
+  ) {
+
+  console.log("_showCalculateShaktiWoundsInChat");
+  
+  const smartTemplate = 'systems/devastra/templates/form/shakti-result.html';
+  const smartData = {
+    nd: nd,
+
+    // total: rModif._total,
+
+    attaquantficheId: attaquantficheId,
+    opposantficheId: opposantficheId,
+    consideropponentprotection: consideropponentprotection,
+
+    isinventory: isinventory,
+    selectedinventory: selectedinventory,
+    selectedinventorydevastra: selectedinventorydevastra,
+    selectedinventorypower: selectedinventorypower,
+    selectedinventorymagic: selectedinventorymagic,
+    damage: damage,
+    damagetype: damagetype,
+    
+    defence: defence,
+    defencetype: defencetype,
+
+    shakti: shakti
+    /*
+    succes: d_successes,
+    d1: n.d6_1,
+    d2: n.d6_2,
+    d3: n.d6_3,
+    d4: n.d6_4,
+    d5: n.d6_5,
+    d6: n.d6_6,
+    dA: mySuccesAutoSupplem
+    */
+  }
+  console.log("smartData avant retour func = ", smartData);
+  const smartHtml = await renderTemplate(smartTemplate, smartData);
+
+  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+  
+  ChatMessage.create({
+    user: game.user.id,
+    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: myActor }),
+    content: smartHtml,
+    rollMode: myTypeOfThrow
+  });
+
+
+}
+
 
 /* -------------------------------------------- */
 
@@ -979,6 +1038,14 @@ async function _treatShaktiDialog(
     return;
   };
   //////////////////////////////////////////////////////////////////
+
+  var shakti = myResultDialog.defenseshakti;
+
+  _showCalculateShaktiWoundsInChat(
+    myActor, nd, total, attaquantficheId, opposantficheId,
+    consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+    selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
+  );
 
 
 }
@@ -1691,6 +1758,7 @@ async function _treatSkillDiceRollDefenceDialog(
         return;
         };
       //////////////////////////////////////////////////////////////////
+
     
     };
 
@@ -1886,7 +1954,7 @@ async function _skillDiceRollDefenceDialog(
 
   let myMalusStatutCheck = true;
 
-    const dialogData = {
+    var dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -2090,7 +2158,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
 
   let myMalusStatutCheck = true;
 
-  const dialogData = {
+  var dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -2786,7 +2854,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     const shaktidefenceDialogOptions  = {
       classes: ["devastra", "sheet"]
     };
-    myResultDialog = await _skillEnterShaktiDefence (
+    myResultDialog = await _skillEnterShaktiDefence(
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
@@ -2799,6 +2867,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       return;
       };
     //////////////////////////////////////////////////////////////////
+
+  
     
   };
 
@@ -2888,7 +2958,7 @@ async function _skillDiceRollDefenceNPCDialog(
 
   let myMalusStatutCheck = true;
 
-  const dialogData = {
+  var dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -3087,7 +3157,7 @@ async function  _skillDiceRollDefenceNPCDialogDeblocked(
 
   let myMalusStatutCheck = true;
 
-  const dialogData = {
+  var dialogData = {
     nd: nd,
   
     domains: "dma",
