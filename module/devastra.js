@@ -1090,6 +1090,20 @@ async function _treatSkillDiceRollDefenceDialog(
   mySelectedinventorymagic, myDamage, myDamagetype
 ) {
   console.log("Il s'agit d'un PJ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   let myResultDialog =  await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
@@ -1679,7 +1693,7 @@ async function _treatSkillDiceRollDefenceDialog(
       //////////////////////////////////////////////////////////////////
     
     };
-    
+
   }
 
 }
@@ -1872,7 +1886,7 @@ async function _skillDiceRollDefenceDialog(
 
   let myMalusStatutCheck = true;
 
-  var dialogData = {
+    const dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -2076,7 +2090,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
 
   let myMalusStatutCheck = true;
 
-  var dialogData = {
+  const dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -2874,7 +2888,7 @@ async function _skillDiceRollDefenceNPCDialog(
 
   let myMalusStatutCheck = true;
 
-  var dialogData = {
+  const dialogData = {
     nd: nd,
   
     domains: "dma",
@@ -3073,7 +3087,7 @@ async function  _skillDiceRollDefenceNPCDialogDeblocked(
 
   let myMalusStatutCheck = true;
 
-  var dialogData = {
+  const dialogData = {
     nd: nd,
   
     domains: "dma",
