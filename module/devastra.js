@@ -1605,123 +1605,82 @@ async function _treatSkillDiceRollDefenceDialog(
     let myDefenceType = "xxx";
     */
 
-    const smartData = {
-      nd: myND,
-      total: total,
-      attaquantficheId: attaquantficheId,
-      opposantficheId: opposantficheId,
-      consideropponentprotection: consideropponentprotection,
-
-      isinventory: isinventory,
-      selectedinventory: selectedinventory,
-      selectedinventorydevastra: selectedinventorydevastra,
-      selectedinventorypower: selectedinventorypower,
-      selectedinventorymagic: selectedinventorymagic,
-      damage: damage,
-      damagetype: damagetype,
-      
-      defence: defence,
-      defencetype: defencetype,
-
-      domaine: domains,
-      jet: jet,
-      succes: d_successes,
-      d1: n.d6_1,
-      d2: n.d6_2,
-      d3: n.d6_3,
-      d4: n.d6_4,
-      d5: n.d6_5,
-      d6: n.d6_6,
-      dA: mySuccesAutoSupplem
-    }
-    console.log("smartData avant retour func = ", smartData);
-    const smartHtml = await renderTemplate(smartTemplate, smartData);
-      
-    ChatMessage.create({
-      user: game.user.id,
-      // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-      speaker: ChatMessage.getSpeaker({ actor: myActor }),
-      content: smartHtml,
-      rollMode: myTypeOfThrow
-    });
-
-  };
-
-
-
-  const myDefence = theDefence; // calculé (lancer de dés)
-  const myDefenceType = defencetype; // calculé (lancer de dés)
-
-
-  if (ouijet) {
-
-    const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
-    const smartData = {
-      nd: myND,
-
-      // total: rModif._total,
-
-      attaquantficheId: attaquantficheId,
-      opposantficheId: opposantficheId,
-      consideropponentprotection: consideropponentprotection,
-
-      isinventory: isinventory,
-      selectedinventory: selectedinventory,
-      selectedinventorydevastra: selectedinventorydevastra,
-      selectedinventorypower: selectedinventorypower,
-      selectedinventorymagic: selectedinventorymagic,
-      damage: damage,
-      damagetype: damagetype,
-      
-      defence: myDefence,
-      defencetype: myDefenceType,
-   
-      domaine: domains,
-      jet: jet,
-      succes: d_successes,
-      d1: n.d6_1,
-      d2: n.d6_2,
-      d3: n.d6_3,
-      d4: n.d6_4,
-      d5: n.d6_5,
-      d6: n.d6_6,
-      dA: mySuccesAutoSupplem
-    }
-    console.log("smartData avant retour func = ", smartData);
-    const smartHtml = await renderTemplate(smartTemplate, smartData);
-
-    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    
-    ChatMessage.create({
-      user: game.user.id,
-      // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-      speaker: ChatMessage.getSpeaker({ actor: myActor }),
-      content: smartHtml,
-      rollMode: myTypeOfThrow
-    });
+    const myDefence = theDefence; // calculé (lancer de dés)
+    const myDefenceType = defencetype; // calculé (lancer de dés)
   
-  } else {
+  
+    if (ouijet) {
 
-    const shaktidefenceTemplate = 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
-    const shaktidefenceTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
-    const shaktidefenceDialogOptions  = {
-      classes: ["devastra", "sheet"]
-    };
-    myResultDialog = await _skillEnterShaktiDefence (
-      myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
-    );
+      const smartData = {
+        nd: myND,
+        total: total,
+        attaquantficheId: attaquantficheId,
+        opposantficheId: opposantficheId,
+        consideropponentprotection: consideropponentprotection,
+
+        isinventory: isinventory,
+        selectedinventory: selectedinventory,
+        selectedinventorydevastra: selectedinventorydevastra,
+        selectedinventorypower: selectedinventorypower,
+        selectedinventorymagic: selectedinventorymagic,
+        damage: damage,
+        damagetype: damagetype,
+        
+        defence: defence,
+        defencetype: defencetype,
+
+        domaine: domains,
+        jet: jet,
+        succes: d_successes,
+        d1: n.d6_1,
+        d2: n.d6_2,
+        d3: n.d6_3,
+        d4: n.d6_4,
+        d5: n.d6_5,
+        d6: n.d6_6,
+        dA: mySuccesAutoSupplem
+      }
+      console.log("smartData avant retour func = ", smartData);
+      const smartHtml = await renderTemplate(smartTemplate, smartData);
+        
+      ChatMessage.create({
+        user: game.user.id,
+        // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+        speaker: ChatMessage.getSpeaker({ actor: myActor }),
+        content: smartHtml,
+        rollMode: myTypeOfThrow
+      });
 
 
-    //////////////////////////////////////////////////////////////////
-    if (!(myResultDialog)) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
-      return;
+
+
+
+
+  
+    } else {
+
+      const shaktidefenceTemplate = 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+      const shaktidefenceTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
+      const shaktidefenceDialogOptions  = {
+        classes: ["devastra", "sheet"]
       };
-    //////////////////////////////////////////////////////////////////
+      myResultDialog = await _skillEnterShaktiDefence (
+        myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+        myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+        mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
+      );
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(myResultDialog)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
     
-  };
+    };
+    
+  }
 
 }
 
@@ -2409,7 +2368,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   
   }
 
-  
+
   let myNbrDeDomaine = 0;
   let myNbrDeBonusDomaine = 0;
   switch (domains) {
@@ -2761,62 +2720,14 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   let myDefence = "xxx";
   let myDefenceType = "xxx";
   */
-
-  const smartData = {
-    nd: myND,
-    total: total,
-    attaquantficheId: attaquantficheId,
-    opposantficheId: opposantficheId,
-    consideropponentprotection: consideropponentprotection,
-
-    isinventory: isinventory,
-    selectedinventory: selectedinventory,
-    selectedinventorydevastra: selectedinventorydevastra,
-    selectedinventorypower: selectedinventorypower,
-    selectedinventorymagic: selectedinventorymagic,
-    damage: damage,
-    damagetype: damagetype,
-    
-    defence: defence,
-    defencetype: defencetype,
-
-    domaine: domains,
-    jet: jet,
-    succes: d_successes,
-    d1: n.d6_1,
-    d2: n.d6_2,
-    d3: n.d6_3,
-    d4: n.d6_4,
-    d5: n.d6_5,
-    d6: n.d6_6,
-    dA: mySuccesAutoSupplem
-  }
-  console.log("smartData avant retour func = ", smartData);
-  const smartHtml = await renderTemplate(smartTemplate, smartData);
-    
-  ChatMessage.create({
-    user: game.user.id,
-    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-    speaker: ChatMessage.getSpeaker({ actor: myActor }),
-    content: smartHtml,
-    rollMode: myTypeOfThrow
-  });
-
-
-
-
-  const myDefence = theDefence; // calculé (lancer de dés)
-  const myDefenceType = defencetype; // calculé (lancer de dés)
-
-
   if (ouijet) {
 
-    const smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+    const myDefence = theDefence; // calculé (lancer de dés)
+    const myDefenceType = defencetype; // calculé (lancer de dés)
+
     const smartData = {
       nd: myND,
-
-      // total: rModif._total,
-
+      total: total,
       attaquantficheId: attaquantficheId,
       opposantficheId: opposantficheId,
       consideropponentprotection: consideropponentprotection,
@@ -2829,9 +2740,9 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       damage: damage,
       damagetype: damagetype,
       
-      defence: myDefence,
-      defencetype: myDefenceType,
-  
+      defence: defence,
+      defencetype: defencetype,
+
       domaine: domains,
       jet: jet,
       succes: d_successes,
@@ -2845,9 +2756,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     }
     console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
-
-    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    
+      
     ChatMessage.create({
       user: game.user.id,
       // speaker: ChatMessage.getSpeaker({ token: this.actor }),
