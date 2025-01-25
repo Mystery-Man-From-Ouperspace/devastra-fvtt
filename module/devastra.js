@@ -701,7 +701,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       _showCalculateWoundsInChat(
         myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, defencetype
+        selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
       );
 
     })
@@ -725,7 +725,7 @@ async function _showCalculateShaktiWoundsInChat (
   const smartData = {
     nd: nd,
 
-    // total: rModif._total,
+    total: total,
 
     attaquantficheId: attaquantficheId,
     opposantficheId: opposantficheId,
@@ -736,6 +736,7 @@ async function _showCalculateShaktiWoundsInChat (
     selectedinventorydevastra: selectedinventorydevastra,
     selectedinventorypower: selectedinventorypower,
     selectedinventorymagic: selectedinventorymagic,
+
     damage: damage,
     damagetype: damagetype,
     
@@ -775,9 +776,9 @@ async function _showCalculateShaktiWoundsInChat (
 
 async function _showCalculateWoundsInChat (
   myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, defencetype
-  ) {
+  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
+) {
   
   const smartTemplate = 'systems/devastra/templates/form/dice-result-wounds.html';
   const smartData = {
@@ -1044,12 +1045,12 @@ async function _treatShaktiDialog(
   };
   //////////////////////////////////////////////////////////////////
 
-  var shakti = myResultDialog.defenseshakti;
+  var theShakti = myResultDialog.defenseshakti;
 
   _showCalculateShaktiWoundsInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
     consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-    selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
+    selectedinventorymagic, damage, damagetype, defence, defencetype, theShakti
   );
 
 
@@ -1058,7 +1059,7 @@ async function _treatShaktiDialog(
 async function _shaktiDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType, myShakti
   ) {
 
   // Render modal dialog
@@ -1084,6 +1085,8 @@ async function _shaktiDialog(
   const defence = myDefence;
   const defencetype = myDefenceType;
 
+  const shakti = myShakti;
+
 
   var dialogData = {
     nd: nd,
@@ -1103,7 +1106,9 @@ async function _shaktiDialog(
     damagetype: damagetype,
 
     defence: defence,
-    defencetype: defencetype
+    defencetype: defencetype,
+
+    defenseshakti: shakti
 
   }
 
@@ -1176,7 +1181,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
 
 
-  let myResultDialog =  await _skillDiceRollDefenceDialog(
+  let myResultDialog = await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
     mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
@@ -1263,7 +1268,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var sixexploflag = myResultDialog.sixexplo;
     var cinqexploflag = myResultDialog.cinqexplo;
 
-    var defencetype = domains;
+    var theDefencetype = domains;
 
     // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
     // console.log("myIgnoreMalus", myIgnoreMalus);
@@ -1332,7 +1337,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var sixexplo = myResultDialog.sixexplo;
     var cinqexplo = myResultDialog.cinqexplo;
 
-    var defencetype = domains;
+    var theDefencetype = domains;
 
     // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
     // console.log("myIgnoreMalus", myIgnoreMalus);
@@ -1396,307 +1401,313 @@ async function _treatSkillDiceRollDefenceDialog(
     let myMalusStatutCheck = parseInt(malusstatutflag);
     let myDesNonExplo = parseInt(desnonexplo);
 
-    /***********************************************************************************
-    * 
-    * {N} : nombre de dés lancés
-    * {S} : seuil à atteindre (Niveau de Difficulté)
-    * {A} : nombre de réussites automatiques
-    * 
-    * /r {N}d6cs>={S} : roll N d6, count successes (>=S), no dice results are explosive
-    * /r {N}d6x=6cs>={S} : roll N d6, count successes (>=S), only 6 are explosive
-    * /r {N}d6x>=5cs>={S} : roll N d6, count successes (>=S), 5 and 6 are explosive
-    * 
-    * nombre de 1 = ?
-    * nombre de 2 = ?
-    * nombre de 3 = ?
-    * nombre de 4 = ?
-    * nombre de 5 = ?
-    * nombre de 6 = ?
-    * nombre de réussites automatiques = {A}
-    * defence nombre de réussites = roll.result+{A}
-    * 
-    ************************************************************************************/
+    var theDefence = myDefence;
+    var theDamage = myDamage;
+    var theDamagetype = myDamagetype;
+    var theShakti = myShakti;
+
+    if (ouijet) {
+
+      /***********************************************************************************
+      * 
+      * {N} : nombre de dés lancés
+      * {S} : seuil à atteindre (Niveau de Difficulté)
+      * {A} : nombre de réussites automatiques
+      * 
+      * /r {N}d6cs>={S} : roll N d6, count successes (>=S), no dice results are explosive
+      * /r {N}d6x=6cs>={S} : roll N d6, count successes (>=S), only 6 are explosive
+      * /r {N}d6x>=5cs>={S} : roll N d6, count successes (>=S), 5 and 6 are explosive
+      * 
+      * nombre de 1 = ?
+      * nombre de 2 = ?
+      * nombre de 3 = ?
+      * nombre de 4 = ?
+      * nombre de 5 = ?
+      * nombre de 6 = ?
+      * nombre de réussites automatiques = {A}
+      * defence nombre de réussites = roll.result+{A}
+      * 
+      ************************************************************************************/
 
 
-    let d6_1 = 0;
-    let d6_2 = 0;
-    let d6_3 = 0;
-    let d6_4 = 0;
-    let d6_5 = 0;
-    let d6_6 = 0;
-    let d6_A = 0;
+      let d6_1 = 0;
+      let d6_2 = 0;
+      let d6_3 = 0;
+      let d6_4 = 0;
+      let d6_5 = 0;
+      let d6_6 = 0;
+      let d6_A = 0;
 
-    let suite = "[";
+      let suite = "[";
 
-    defence = parseInt(myNbrDeDomaine);
+      defence = parseInt(myNbrDeDomaine);
 
-    // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
-    if (bonusdomaineflag) {
-      defence += parseInt(myNbrDeBonusDomaine);
-      // console.log("myNbrDeBonusDomaine", "compabilisé");
-    };
-
-    // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
-    if (specialiteflag) {
-      defence += parseInt(myNbrDeBonusSpecialite);
-      // console.log("myNbrDeBonusSpecialite", "compabilisé");
-    };
-
-
-    /*
-    Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
-    */
-
-    let myBonusSupplem = parseInt(myBonusApplique);
-    let myMalusSupplem = parseInt(myMalusApplique) - parseInt(myMalusAIgnorer);
-    if (myMalusSupplem < 0) {myMalusSupplem = 0;};
-    var mySuccesAutoSupplem = parseInt(mySuccesAuto);
-
-
-    // Application des bonus valides et des malus
-
-    // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
-    if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
-      myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
-    }
-
-    // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
-    // et mySuccesAuto, ceux de myPlusUnSuccesAuto
-    if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
-      myMalusSupplem -= parseInt(myIgnoreMalus);
-      if (myMalusSupplem < 0) { myMalusSupplem = 0;};
-
-      mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
-    }
-
-
-    defence += myBonusSupplem;
-    defence -= myMalusSupplem;
-
-    d6_A = mySuccesAutoSupplem;
-
-
-
-    // Traitement du cas des malus de blessures
-
-    let myNombreDeMalusBlessure = 0;
-    if (myMalusBlessureCheck) {
-      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
-        if (item.system.subtype == "0") { // si le type est blessure
-          myNombreDeMalusBlessure += Math.abs(item.system.value);
-        }
-      }
-    };
-    defence -= myNombreDeMalusBlessure;
-
-
-    // Traitement du cas des malus de statuts
-
-    let myNombreDeMalusStatut = 0;
-    if (myMalusStatutCheck) {
-      let j = 0;
-      for (let i=0; i<6; i++) {
-        if (tabDomainLibel[i] == "@domains." + domainLibel) {
-          j = i;
-        }
+      // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
+      if (bonusdomaineflag) {
+        defence += parseInt(myNbrDeBonusDomaine);
+        // console.log("myNbrDeBonusDomaine", "compabilisé");
       };
-      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
-        if (item.system.subtype == "1") { // si le type est statut
-          if (item.system.domain == j) { // si le domaine correspond
-            myNombreDeMalusStatut += Math.abs(item.system.value);
+
+      // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
+      if (specialiteflag) {
+        defence += parseInt(myNbrDeBonusSpecialite);
+        // console.log("myNbrDeBonusSpecialite", "compabilisé");
+      };
+
+
+      /*
+      Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
+      */
+
+      let myBonusSupplem = parseInt(myBonusApplique);
+      let myMalusSupplem = parseInt(myMalusApplique) - parseInt(myMalusAIgnorer);
+      if (myMalusSupplem < 0) {myMalusSupplem = 0;};
+      var mySuccesAutoSupplem = parseInt(mySuccesAuto);
+
+
+      // Application des bonus valides et des malus
+
+      // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
+      if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
+        myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
+      }
+
+      // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
+      // et mySuccesAuto, ceux de myPlusUnSuccesAuto
+      if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
+        myMalusSupplem -= parseInt(myIgnoreMalus);
+        if (myMalusSupplem < 0) { myMalusSupplem = 0;};
+
+        mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
+      }
+
+
+      defence += myBonusSupplem;
+      defence -= myMalusSupplem;
+
+      d6_A = mySuccesAutoSupplem;
+
+
+
+      // Traitement du cas des malus de blessures
+
+      let myNombreDeMalusBlessure = 0;
+      if (myMalusBlessureCheck) {
+        for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+          if (item.system.subtype == "0") { // si le type est blessure
+            myNombreDeMalusBlessure += Math.abs(item.system.value);
           }
         }
-      }
-    };
-    defence -= myNombreDeMalusStatut;
-    
-
-
-    console.log("defence = ", defence);
-
-    //////////////////////////////////////////////////////////////////
-    if (defence <= 0) {
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
-      return;
       };
-    //////////////////////////////////////////////////////////////////
+      defence -= myNombreDeMalusBlessure;
 
 
+      // Traitement du cas des malus de statuts
 
-    // Soustraction des jetons si en nombre suffisant, sinon "return"
-    let myErrorTokenNbr = 0;
-    if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
-      if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
-        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
-      } else {
-        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
-        myErrorTokenNbr++;
-      }
-    }
-    if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
-      if (myconvictionSuffisanteFlag) {
-        await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
-        ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
-      } else {
-        ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
-        myErrorTokenNbr++;
-      }
-    }
-    if (myErrorTokenNbr) { return };
-
-
-
-    // Ici on traite le cas des dés non-explosifs
-    if (myDesNonExplo == 2) {
-      myCinqExploFlag = false;
-      mySixExploFlag = false;
-    } else if ((myDesNonExplo == 1) && myCinqExploFlag) {
-      myCinqExploFlag = false;
-    } else if ((myDesNonExplo == 1) && !(myCinqExploFlag)) {
-      mySixExploFlag = false;
-    };
-
-
-      if (suite.length >= 2) {
-      suite += "%";
-      suite = suite.replace(', %', ']');
-    } else {
-      suite = "";
-    };
-
-    var n = {
-      myReussite: 0,
-      myND: myND,
-      mySixExplo: mySixExploFlag,
-      myCinqExplo: myCinqExploFlag,
-      nbrRelance: defence,
-      d6_1: 0,
-      d6_2: 0,
-      d6_3: 0,
-      d6_4: 0,
-      d6_5: 0,
-      d6_6: 0
-
-    };
-
-    var msg;
-
-    let myRoll = "";
-
-    do {
-      let myRoll = "";
-      myRoll +=  n.nbrRelance+"d6cs>="+n.myND;
-      d6_1 = 0;
-      d6_2 = 0;
-      d6_3 = 0;
-      d6_4 = 0;
-      d6_5 = 0;
-      d6_6 = 0;
-
-      const r = new Roll(myRoll, myActor.getRollData());
-      await r.evaluate();
-      console.log(r);
-      let myRDice = r.dice;
-      console.log(myRDice);
-      console.log(myRDice[0]);
-      for (let key in myRDice) {
-        console.log(myRDice[key]);
-        for (let i=0; i<myRDice[key].number; i++) {
-          let myD = myRDice[key].results[i].result;
-          console.log(myD);
-          switch ( myD ) {
-            case 1: d6_1++;
-            break;
-            case 2: d6_2++;
-            break;
-            case 3: d6_3++;
-            break;
-            case 4: d6_4++;
-            break;
-            case 5: d6_5++;
-            break;
-            case 6: d6_6++;
-            break;
-            default: console.log("C'est bizarre !");
-          };
-          n.nbrRelance = 0;
-          if (n.mySixExplo) {
-            n.nbrRelance += d6_6;
-            if (n.myCinqExplo) {
-              n.nbrRelance += d6_5;
+      let myNombreDeMalusStatut = 0;
+      if (myMalusStatutCheck) {
+        let j = 0;
+        for (let i=0; i<6; i++) {
+          if (tabDomainLibel[i] == "@domains." + domainLibel) {
+            j = i;
+          }
+        };
+        for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+          if (item.system.subtype == "1") { // si le type est statut
+            if (item.system.domain == j) { // si le domaine correspond
+              myNombreDeMalusStatut += Math.abs(item.system.value);
             }
           }
         }
       };
+      defence -= myNombreDeMalusStatut;
+      
 
 
-      n.d6_1 += d6_1;
-      n.d6_2 += d6_2;
-      n.d6_3 += d6_3;
-      n.d6_4 += d6_4;
-      n.d6_5 += d6_5;
-      n.d6_6 += d6_6;
+      console.log("defence = ", defence);
+
+      //////////////////////////////////////////////////////////////////
+      if (defence <= 0) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
 
 
-      n.myReussite = parseInt(n.myReussite) + parseInt(r._total);
 
-      // r._total = "0";
+      // Soustraction des jetons si en nombre suffisant, sinon "return"
+      let myErrorTokenNbr = 0;
+      if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
+        if (myShaktiSuffisanteFlag) {
+          await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+          ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+        } else {
+          ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
+          myErrorTokenNbr++;
+        }
+      }
+      if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
+        if (myconvictionSuffisanteFlag) {
+          await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
+          ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
+        } else {
+          ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
+          myErrorTokenNbr++;
+        }
+      }
+      if (myErrorTokenNbr) { return };
+
+
+
+      // Ici on traite le cas des dés non-explosifs
+      if (myDesNonExplo == 2) {
+        myCinqExploFlag = false;
+        mySixExploFlag = false;
+      } else if ((myDesNonExplo == 1) && myCinqExploFlag) {
+        myCinqExploFlag = false;
+      } else if ((myDesNonExplo == 1) && !(myCinqExploFlag)) {
+        mySixExploFlag = false;
+      };
+
+
+        if (suite.length >= 2) {
+        suite += "%";
+        suite = suite.replace(', %', ']');
+      } else {
+        suite = "";
+      };
+
+      var n = {
+        myReussite: 0,
+        myND: myND,
+        mySixExplo: mySixExploFlag,
+        myCinqExplo: myCinqExploFlag,
+        nbrRelance: defence,
+        d6_1: 0,
+        d6_2: 0,
+        d6_3: 0,
+        d6_4: 0,
+        d6_5: 0,
+        d6_6: 0
+
+      };
+
+      var msg;
+
+      let myRoll = "";
+
+      do {
+        let myRoll = "";
+        myRoll += n.nbrRelance+"d6cs>="+n.myND;
+        d6_1 = 0;
+        d6_2 = 0;
+        d6_3 = 0;
+        d6_4 = 0;
+        d6_5 = 0;
+        d6_6 = 0;
+
+        const r = new Roll(myRoll, myActor.getRollData());
+        await r.evaluate();
+        console.log(r);
+        let myRDice = r.dice;
+        console.log(myRDice);
+        console.log(myRDice[0]);
+        for (let key in myRDice) {
+          console.log(myRDice[key]);
+          for (let i=0; i<myRDice[key].number; i++) {
+            let myD = myRDice[key].results[i].result;
+            console.log(myD);
+            switch ( myD ) {
+              case 1: d6_1++;
+              break;
+              case 2: d6_2++;
+              break;
+              case 3: d6_3++;
+              break;
+              case 4: d6_4++;
+              break;
+              case 5: d6_5++;
+              break;
+              case 6: d6_6++;
+              break;
+              default: console.log("C'est bizarre !");
+            };
+            n.nbrRelance = 0;
+            if (n.mySixExplo) {
+              n.nbrRelance += d6_6;
+              if (n.myCinqExplo) {
+                n.nbrRelance += d6_5;
+              }
+            }
+          }
+        };
+
+
+        n.d6_1 += d6_1;
+        n.d6_2 += d6_2;
+        n.d6_3 += d6_3;
+        n.d6_4 += d6_4;
+        n.d6_5 += d6_5;
+        n.d6_6 += d6_6;
+
+
+        n.myReussite = parseInt(n.myReussite) + parseInt(r._total);
+
+        // r._total = "0";
+
+        const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+        console.log("myTypeOfThrow", myTypeOfThrow);
+
+        msg = await r.toMessage({
+          user: game.user.id,
+          speaker: ChatMessage.getSpeaker({ actor: myActor }),
+          rollMode: myTypeOfThrow
+        });
+
+        await new Promise(w => setTimeout(w, 2750));
+
+      } while (n.nbrRelance);
+
+      const rModif = new Roll("0[Defense Réussites]", myActor.getRollData());
+      await rModif.evaluate();
+      rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
+
+      defence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
 
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       console.log("myTypeOfThrow", myTypeOfThrow);
 
-      msg = await r.toMessage({
+      msg = await rModif.toMessage({
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: myActor }),
         rollMode: myTypeOfThrow
       });
 
-      await new Promise(w => setTimeout(w, 2750));
+        
+      var d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
-    } while (n.nbrRelance);
+      // Smart Message
+      /*
+      let opponentActorId = "";
+      let opponentActorName = "";
+      if (opponentActor) {
+        opponentActorId = opponentActor.id;
+        opponentActorName = opponentActor.name;
+      };
+      */
+      let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+      if (jetLibel == "defnc") {
+        smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+      };
 
-    const rModif = new Roll("0[Defense Réussites]", myActor.getRollData());
-    await rModif.evaluate();
-    rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
+      /*
+      let myDefence = "xxx";
+      let myDefenceType = "xxx";
+      */
 
-    var theDefence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
+      const myDefence = theDefence; // calculé (lancer de dés)
+      const myDefencetype = theDefencetype; // calculé (lancer de dés)
 
-    const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    console.log("myTypeOfThrow", myTypeOfThrow);
-
-    msg = await rModif.toMessage({
-      user: game.user.id,
-      speaker: ChatMessage.getSpeaker({ actor: myActor }),
-      rollMode: myTypeOfThrow
-    });
-
-      
-    var d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
-
-    // Smart Message
-    /*
-    let opponentActorId = "";
-    let opponentActorName = "";
-    if (opponentActor) {
-      opponentActorId = opponentActor.id;
-      opponentActorName = opponentActor.name;
-    };
-    */
-    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
-    if (jetLibel == "defnc") {
-      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
-    };
-
-    /*
-    let myDefence = "xxx";
-    let myDefenceType = "xxx";
-    */
-
-    const myDefence = theDefence; // calculé (lancer de dés)
-    const myDefenceType = defencetype; // calculé (lancer de dés)
-  
-    if (ouijet) {
 
       const smartData = {
         nd: myND,
@@ -1713,8 +1724,8 @@ async function _treatSkillDiceRollDefenceDialog(
         damage: damage,
         damagetype: damagetype,
         
-        defence: defence,
-        defencetype: defencetype,
+        defence: myDefence,
+        defencetype: myDefencetype,
 
         shakti: shakti,
 
@@ -1740,11 +1751,6 @@ async function _treatSkillDiceRollDefenceDialog(
         rollMode: myTypeOfThrow
       });
 
-
-
-
-
-
   
     } else {
 
@@ -1756,7 +1762,7 @@ async function _treatSkillDiceRollDefenceDialog(
       myResultDialog = await _skillEnterShaktiDefence (
         myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
         myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-        mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType, myShakti
+        mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theDefencetype, theShakti
       );
 
 
@@ -1767,7 +1773,14 @@ async function _treatSkillDiceRollDefenceDialog(
         };
       //////////////////////////////////////////////////////////////////
 
-    
+      var thisistheShakti = myResultDialog.defenseshakti;
+
+      _showCalculateShaktiWoundsInChat(
+        myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+        myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+        mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theDefencetype, thisistheShakti
+      );
+  
     };
 
   }
@@ -1778,7 +1791,7 @@ async function _treatSkillDiceRollDefenceDialog(
 async function _skillEnterShaktiDefence(
   myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
   myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
+  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
   ) {
 
   // Render modal dialog
@@ -1798,11 +1811,11 @@ async function _skillEnterShaktiDefence(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
   const defence = myDefence;
-  const defencetype = myDefenceType;
+  const defencetype = myDefencetype;
 
 
   var dialogData = {
@@ -1822,11 +1835,9 @@ async function _skillEnterShaktiDefence(
     damage: damage,
     damagetype: damagetype,
 
-  
-    defence: defence,
+      defence: defence,
     defencetype: defencetype
   
-
   }
 
   const html = await renderTemplate(template, dialogData);
@@ -1896,7 +1907,7 @@ async function _skillDiceRollDefenceDialog(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
   const myNbrDeBonusSpecialite = 1;
@@ -2100,7 +2111,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
   const myNbrDeBonusSpecialite = 1;
@@ -2290,7 +2301,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
 ) {
   console.log("Il s'agit d'un PNJ ou d'un monstre")
-  let myResultDialog =  await _skillDiceRollDefenceNPCDialog(
+  let myResultDialog = await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
     mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefencetype, myShakti
@@ -2377,7 +2388,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var sixexploflag = myResultDialog.sixexplo;
     var cinqexploflag = myResultDialog.cinqexplo;
 
-    var defencetype = domains;
+    var theDefencetype = domains;
 
 
     // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
@@ -2447,7 +2458,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var sixexplo = myResultDialog.sixexplo;
     var cinqexplo = myResultDialog.cinqexplo;
 
-    var defencetype = domains;
+    var theDefencetype = domains;
 
 
     // console.log("myIgnoreMalus", myIgnoreMalus);
@@ -2515,306 +2526,313 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   let myMalusStatutCheck = parseInt(malusstatutflag);
   let myDesNonExplo = parseInt(desnonexplo);
 
-  /***********************************************************************************
-  * 
-  * {N} : nombre de dés lancés
-  * {S} : seuil à atteindre (Niveau de Difficulté)
-  * {A} : nombre de réussites automatiques
-  * 
-  * /r {N}d6cs>={S} : roll N d6, count successes (>=S), no dice results are explosive
-  * /r {N}d6x=6cs>={S} : roll N d6, count successes (>=S), only 6 are explosive
-  * /r {N}d6x>=5cs>={S} : roll N d6, count successes (>=S), 5 and 6 are explosive
-  * 
-  * nombre de 1 = ?
-  * nombre de 2 = ?
-  * nombre de 3 = ?
-  * nombre de 4 = ?
-  * nombre de 5 = ?
-  * nombre de 6 = ?
-  * nombre de réussites automatiques = {A}
-  * defence nombre de réussites = roll.result+{A}
-  * 
-  ************************************************************************************/
+  var theDefence = myDefence;
+  var theDamage = myDamage;
+  var theDamagetype = myDamagetype;
+  var theShakti = myShakti;
+
+  
+  if (ouijet) {
+
+    /***********************************************************************************
+    * 
+    * {N} : nombre de dés lancés
+    * {S} : seuil à atteindre (Niveau de Difficulté)
+    * {A} : nombre de réussites automatiques
+    * 
+    * /r {N}d6cs>={S} : roll N d6, count successes (>=S), no dice results are explosive
+    * /r {N}d6x=6cs>={S} : roll N d6, count successes (>=S), only 6 are explosive
+    * /r {N}d6x>=5cs>={S} : roll N d6, count successes (>=S), 5 and 6 are explosive
+    * 
+    * nombre de 1 = ?
+    * nombre de 2 = ?
+    * nombre de 3 = ?
+    * nombre de 4 = ?
+    * nombre de 5 = ?
+    * nombre de 6 = ?
+    * nombre de réussites automatiques = {A}
+    * defence nombre de réussites = roll.result+{A}
+    * 
+    ************************************************************************************/
 
 
-  let d6_1 = 0;
-  let d6_2 = 0;
-  let d6_3 = 0;
-  let d6_4 = 0;
-  let d6_5 = 0;
-  let d6_6 = 0;
-  let d6_A = 0;
+    let d6_1 = 0;
+    let d6_2 = 0;
+    let d6_3 = 0;
+    let d6_4 = 0;
+    let d6_5 = 0;
+    let d6_6 = 0;
+    let d6_A = 0;
 
-  let suite = "[";
+    let suite = "[";
 
-  let defence = parseInt(myNbrDeDomaine);
+    let defence = parseInt(myNbrDeDomaine);
 
-  // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
-  if (bonusdomaineflag) {
-    defence += parseInt(myNbrDeBonusDomaine);
-    // console.log("myNbrDeBonusDomaine", "compabilisé");
-  };
-
-  // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
-  if (specialiteflag) {
-    defence += parseInt(myNbrDeBonusSpecialite);
-    // console.log("myNbrDeBonusSpecialite", "compabilisé");
-  };
-
-
-  /*
-  Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
-  */
-
-  let myBonusSupplem = parseInt(myBonusApplique);
-  let myMalusSupplem = parseInt(myMalusApplique) - parseInt(myMalusAIgnorer);
-  if (myMalusSupplem < 0) {myMalusSupplem = 0;};
-  var mySuccesAutoSupplem = parseInt(mySuccesAuto);
-
-
-  // Application des bonus valides et des malus
-
-  // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
-  if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
-    myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
-  }
-
-  // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
-  // et mySuccesAuto, ceux de myPlusUnSuccesAuto
-  if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
-    myMalusSupplem -= parseInt(myIgnoreMalus);
-    if (myMalusSupplem < 0) { myMalusSupplem = 0;};
-
-    mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
-  }
-
-
-  defence += myBonusSupplem;
-  defence -= myMalusSupplem;
-
-  d6_A = mySuccesAutoSupplem;
-
-
-
-  // Traitement du cas des malus de blessures
-
-  let myNombreDeMalusBlessure = 0;
-  if (myMalusBlessureCheck) {
-    for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
-      if (item.system.subtype == "0") { // si le type est blessure
-        myNombreDeMalusBlessure += Math.abs(item.system.value);
-      }
-    }
-  };
-  defence -= myNombreDeMalusBlessure;
-
-
-  // Traitement du cas des malus de statuts
-
-  let myNombreDeMalusStatut = 0;
-  if (myMalusStatutCheck) {
-    let j = 0;
-    for (let i=0; i<6; i++) {
-      if (tabDomainLibel[i] == "@domains." + domainLibel) {
-        j = i;
-      }
+    // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
+    if (bonusdomaineflag) {
+      defence += parseInt(myNbrDeBonusDomaine);
+      // console.log("myNbrDeBonusDomaine", "compabilisé");
     };
-    for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
-      if (item.system.subtype == "1") { // si le type est statut
-        if (item.system.domain == j) { // si le domaine correspond
-          myNombreDeMalusStatut += Math.abs(item.system.value);
+
+    // console.log("myNbrDeBonusSpecialite", myNbrDeBonusSpecialite);
+    if (specialiteflag) {
+      defence += parseInt(myNbrDeBonusSpecialite);
+      // console.log("myNbrDeBonusSpecialite", "compabilisé");
+    };
+
+
+    /*
+    Ici, on vérifie la validité de tous les bonus et on les applique ; et on soustrait les jetons en conséquence.
+    */
+
+    let myBonusSupplem = parseInt(myBonusApplique);
+    let myMalusSupplem = parseInt(myMalusApplique) - parseInt(myMalusAIgnorer);
+    if (myMalusSupplem < 0) {myMalusSupplem = 0;};
+    var mySuccesAutoSupplem = parseInt(mySuccesAuto);
+
+
+    // Application des bonus valides et des malus
+
+    // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
+    if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
+      myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
+    }
+
+    // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
+    // et mySuccesAuto, ceux de myPlusUnSuccesAuto
+    if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
+      myMalusSupplem -= parseInt(myIgnoreMalus);
+      if (myMalusSupplem < 0) { myMalusSupplem = 0;};
+
+      mySuccesAutoSupplem += parseInt(myPlusUnSuccesAuto);
+    }
+
+
+    defence += myBonusSupplem;
+    defence -= myMalusSupplem;
+
+    d6_A = mySuccesAutoSupplem;
+
+
+
+    // Traitement du cas des malus de blessures
+
+    let myNombreDeMalusBlessure = 0;
+    if (myMalusBlessureCheck) {
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "0") { // si le type est blessure
+          myNombreDeMalusBlessure += Math.abs(item.system.value);
         }
       }
-    }
-  };
-  defence -= myNombreDeMalusStatut;
-  
-
-
-  console.log("defence = ", defence);
-
-  //////////////////////////////////////////////////////////////////
-  if (defence <= 0) {
-    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
-    return;
     };
-  //////////////////////////////////////////////////////////////////
+    defence -= myNombreDeMalusBlessure;
 
 
+    // Traitement du cas des malus de statuts
 
-  // Soustraction des jetons si en nombre suffisant, sinon "return"
-  let myErrorTokenNbr = 0;
-  if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
-    if (myShaktiSuffisanteFlag) {
-      await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
-      ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
-    } else {
-      ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
-      myErrorTokenNbr++;
-    }
-  }
-  if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
-    if (myconvictionSuffisanteFlag) {
-      await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
-      ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
-    } else {
-      ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
-      myErrorTokenNbr++;
-    }
-  }
-  if (myErrorTokenNbr) { return };
-
-
-
-  // Ici on traite le cas des dés non-explosifs
-  if (myDesNonExplo == 2) {
-    myCinqExploFlag = false;
-    mySixExploFlag = false;
-  } else if ((myDesNonExplo == 1) && myCinqExploFlag) {
-    myCinqExploFlag = false;
-  } else if ((myDesNonExplo == 1) && !(myCinqExploFlag)) {
-    mySixExploFlag = false;
-  };
-
-
-    if (suite.length >= 2) {
-    suite += "%";
-    suite = suite.replace(', %', ']');
-  } else {
-    suite = "";
-  };
-
-  var n = {
-    myReussite: 0,
-    myND: myND,
-    mySixExplo: mySixExploFlag,
-    myCinqExplo: myCinqExploFlag,
-    nbrRelance: defence,
-    d6_1: 0,
-    d6_2: 0,
-    d6_3: 0,
-    d6_4: 0,
-    d6_5: 0,
-    d6_6: 0
-
-  };
-
-  var msg;
-
-  let myRoll = "";
-
-  do {
-    let myRoll = "";
-    myRoll +=  n.nbrRelance+"d6cs>="+n.myND;
-    d6_1 = 0;
-    d6_2 = 0;
-    d6_3 = 0;
-    d6_4 = 0;
-    d6_5 = 0;
-    d6_6 = 0;
-
-    const r = new Roll(myRoll, myActor.getRollData());
-    await r.evaluate();
-    console.log(r);
-    let myRDice = r.dice;
-    console.log(myRDice);
-    console.log(myRDice[0]);
-    for (let key in myRDice) {
-      console.log(myRDice[key]);
-      for (let i=0; i<myRDice[key].number; i++) {
-        let myD = myRDice[key].results[i].result;
-        console.log(myD);
-        switch ( myD ) {
-          case 1: d6_1++;
-          break;
-          case 2: d6_2++;
-          break;
-          case 3: d6_3++;
-          break;
-          case 4: d6_4++;
-          break;
-          case 5: d6_5++;
-          break;
-          case 6: d6_6++;
-          break;
-          default: console.log("C'est bizarre !");
-        };
-        n.nbrRelance = 0;
-        if (n.mySixExplo) {
-          n.nbrRelance += d6_6;
-          if (n.myCinqExplo) {
-            n.nbrRelance += d6_5;
+    let myNombreDeMalusStatut = 0;
+    if (myMalusStatutCheck) {
+      let j = 0;
+      for (let i=0; i<6; i++) {
+        if (tabDomainLibel[i] == "@domains." + domainLibel) {
+          j = i;
+        }
+      };
+      for (let item of myActor.items.filter(item => item.type === 'blessureoustatut')) {
+        if (item.system.subtype == "1") { // si le type est statut
+          if (item.system.domain == j) { // si le domaine correspond
+            myNombreDeMalusStatut += Math.abs(item.system.value);
           }
         }
       }
     };
+    defence -= myNombreDeMalusStatut;
+    
 
 
-    n.d6_1 += d6_1;
-    n.d6_2 += d6_2;
-    n.d6_3 += d6_3;
-    n.d6_4 += d6_4;
-    n.d6_5 += d6_5;
-    n.d6_6 += d6_6;
+    console.log("defence = ", defence);
+
+    //////////////////////////////////////////////////////////////////
+    if (defence <= 0) {
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error1"));
+      return;
+      };
+    //////////////////////////////////////////////////////////////////
 
 
-    n.myReussite = parseInt(n.myReussite) + parseInt(r._total);
 
-    // r._total = "0";
+    // Soustraction des jetons si en nombre suffisant, sinon "return"
+    let myErrorTokenNbr = 0;
+    if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
+      if (myShaktiSuffisanteFlag) {
+        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+      } else {
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
+        myErrorTokenNbr++;
+      }
+    }
+    if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
+      if (myconvictionSuffisanteFlag) {
+        await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
+      } else {
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
+        myErrorTokenNbr++;
+      }
+    }
+    if (myErrorTokenNbr) { return };
+
+
+
+    // Ici on traite le cas des dés non-explosifs
+    if (myDesNonExplo == 2) {
+      myCinqExploFlag = false;
+      mySixExploFlag = false;
+    } else if ((myDesNonExplo == 1) && myCinqExploFlag) {
+      myCinqExploFlag = false;
+    } else if ((myDesNonExplo == 1) && !(myCinqExploFlag)) {
+      mySixExploFlag = false;
+    };
+
+
+      if (suite.length >= 2) {
+      suite += "%";
+      suite = suite.replace(', %', ']');
+    } else {
+      suite = "";
+    };
+
+    var n = {
+      myReussite: 0,
+      myND: myND,
+      mySixExplo: mySixExploFlag,
+      myCinqExplo: myCinqExploFlag,
+      nbrRelance: defence,
+      d6_1: 0,
+      d6_2: 0,
+      d6_3: 0,
+      d6_4: 0,
+      d6_5: 0,
+      d6_6: 0
+
+    };
+
+    var msg;
+
+    let myRoll = "";
+
+    do {
+      let myRoll = "";
+      myRoll += n.nbrRelance+"d6cs>="+n.myND;
+      d6_1 = 0;
+      d6_2 = 0;
+      d6_3 = 0;
+      d6_4 = 0;
+      d6_5 = 0;
+      d6_6 = 0;
+
+      const r = new Roll(myRoll, myActor.getRollData());
+      await r.evaluate();
+      console.log(r);
+      let myRDice = r.dice;
+      console.log(myRDice);
+      console.log(myRDice[0]);
+      for (let key in myRDice) {
+        console.log(myRDice[key]);
+        for (let i=0; i<myRDice[key].number; i++) {
+          let myD = myRDice[key].results[i].result;
+          console.log(myD);
+          switch ( myD ) {
+            case 1: d6_1++;
+            break;
+            case 2: d6_2++;
+            break;
+            case 3: d6_3++;
+            break;
+            case 4: d6_4++;
+            break;
+            case 5: d6_5++;
+            break;
+            case 6: d6_6++;
+            break;
+            default: console.log("C'est bizarre !");
+          };
+          n.nbrRelance = 0;
+          if (n.mySixExplo) {
+            n.nbrRelance += d6_6;
+            if (n.myCinqExplo) {
+              n.nbrRelance += d6_5;
+            }
+          }
+        }
+      };
+
+
+      n.d6_1 += d6_1;
+      n.d6_2 += d6_2;
+      n.d6_3 += d6_3;
+      n.d6_4 += d6_4;
+      n.d6_5 += d6_5;
+      n.d6_6 += d6_6;
+
+
+      n.myReussite = parseInt(n.myReussite) + parseInt(r._total);
+
+      // r._total = "0";
+
+      const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+      console.log("myTypeOfThrow", myTypeOfThrow);
+
+      msg = await r.toMessage({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: myActor }),
+        rollMode: myTypeOfThrow
+      });
+
+      await new Promise(w => setTimeout(w, 2750));
+
+    } while (n.nbrRelance);
+
+    const rModif = new Roll("0[Defense Réussites]", myActor.getRollData());
+    await rModif.evaluate();
+    rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
+
+    defence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
 
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
     console.log("myTypeOfThrow", myTypeOfThrow);
 
-    msg = await r.toMessage({
+    msg = await rModif.toMessage({
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ actor: myActor }),
       rollMode: myTypeOfThrow
     });
 
-    await new Promise(w => setTimeout(w, 2750));
+      
+    var d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
-  } while (n.nbrRelance);
+    // Smart Message
+    /*
+    let opponentActorId = "";
+    let opponentActorName = "";
+    if (opponentActor) {
+      opponentActorId = opponentActor.id;
+      opponentActorName = opponentActor.name;
+    };
+    */
+    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    if (jetLibel == "defnc") {
+      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+    };
 
-  const rModif = new Roll("0[Defense Réussites]", myActor.getRollData());
-  await rModif.evaluate();
-  rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
-
-  var theDefence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
-
-  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-  console.log("myTypeOfThrow", myTypeOfThrow);
-
-  msg = await rModif.toMessage({
-    user: game.user.id,
-    speaker: ChatMessage.getSpeaker({ actor: myActor }),
-    rollMode: myTypeOfThrow
-  });
-
-    
-  var d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
-
-  // Smart Message
-  /*
-  let opponentActorId = "";
-  let opponentActorName = "";
-  if (opponentActor) {
-    opponentActorId = opponentActor.id;
-    opponentActorName = opponentActor.name;
-  };
-  */
-  let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
-  if (jetLibel == "defnc") {
-    smartTemplate = 'systems/devastra/templates/form/defence-result.html';
-  };
-
-  /*
-  let myDefence = "xxx";
-  let myDefenceType = "xxx";
-  */
-  if (ouijet) {
+    /*
+    let myDefence = "xxx";
+    let myDefenceType = "xxx";
+    */
 
     const myDefence = theDefence; // calculé (lancer de dés)
-    const myDefenceType = defencetype; // calculé (lancer de dés)
+    const myDefencetype = theDefencetype; // calculé (lancer de dés)
 
     const smartData = {
       nd: myND,
@@ -2831,8 +2849,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       damage: damage,
       damagetype: damagetype,
       
-      defence: defence,
-      defencetype: defencetype,
+      defence: myDefence,
+      defencetype: myDefencetype,
 
       shakti: myShakti,
 
@@ -2868,7 +2886,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     myResultDialog = await _skillEnterShaktiDefence(
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myDefenceType
+      mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theDefencetype, theShakti
     );
 
 
@@ -2879,7 +2897,14 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       };
     //////////////////////////////////////////////////////////////////
 
-  
+    var thisistheShakti = myResultDialog.defenseshakti;
+
+    _showCalculateShaktiWoundsInChat(
+      myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
+      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theDefencetype, thisistheShakti
+    );
+
     
   };
 
@@ -3107,7 +3132,7 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
   const selectedinventorymagic = mySelectedinventorymagic;
-  const damage =  myDamage;
+  const damage = myDamage;
   const damagetype = myDamagetype;
 
   const myNbrDeBonusSpecialite = 1;

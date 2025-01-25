@@ -146,7 +146,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 
-    let myResultDialog =  await _skillDiceRollDialog(
+    let myResultDialog = await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
@@ -343,7 +343,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       classes: ["devastra", "sheet"]
     };
     let template = "";
-    let myResultDialog =  await _skillDiceRollDialog(
+    let myResultDialog = await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
@@ -675,7 +675,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     do {
       let myRoll = "";
-      myRoll +=  n.nbrRelance+"d6cs>="+n.myND;
+      myRoll += n.nbrRelance+"d6cs>="+n.myND;
       d6_1 = 0;
       d6_2 = 0;
       d6_3 = 0;
