@@ -258,7 +258,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 
-    let myResultDialog =  await _skillDiceRollDialog(
+    let myResultDialog = await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
@@ -347,7 +347,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     let pureDomOrSpeLibel;
     let myInitThrow = true;
 
-    let myResultDialog =  await _skillDiceRollDialog(
+    let myResultDialog = await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
@@ -1641,7 +1641,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       classes: ["devastra", "sheet"]
     };
     let template = "";
-    let myResultDialog =  await _skillDiceRollDialog(
+    let myResultDialog = await _skillDiceRollDialog(
       myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myInitThrow
     );
 
@@ -2008,7 +2008,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     do {
       let myRoll = "";
-      myRoll +=  n.nbrRelance+"d6cs>="+n.myND;
+      myRoll += n.nbrRelance+"d6cs>="+n.myND;
       d6_1 = 0;
       d6_2 = 0;
       d6_3 = 0;

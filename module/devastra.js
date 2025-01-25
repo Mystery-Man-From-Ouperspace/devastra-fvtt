@@ -720,7 +720,33 @@ async function _showCalculateShaktiWoundsInChat (
   ) {
 
   console.log("_showCalculateShaktiWoundsInChat");
-  
+
+  let myDamage = 0;
+  if (damage != undefined) { myDamage = parseInt(damage); };
+  let myDefence = 0;
+  if (defence != undefined) { myDefence = parseInt(defence); };
+  let myShakti = 0;
+  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  let youwin = ((myDamage - (myDefence + myShakti)) <= 0);
+
+  let sentence1;
+  let sentence2;
+  let sentence3;
+
+  let pdc = 5;
+
+  if (opposantficheId != "") {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
+  }
+  let totalresist = myDefence + myShakti;
   const smartTemplate = 'systems/devastra/templates/form/shakti-result.html';
   const smartData = {
     nd: nd,
@@ -743,7 +769,13 @@ async function _showCalculateShaktiWoundsInChat (
     defence: defence,
     defencetype: defencetype,
 
-    shakti: shakti
+    shakti: shakti,
+
+    sentence1: sentence1,
+    sentence2: sentence2,
+    sentence3: sentence3,
+
+    totalresist: totalresist
     /*
     succes: d_successes,
     d1: n.d6_1,
@@ -779,6 +811,32 @@ async function _showCalculateWoundsInChat (
   consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
 ) {
+
+  let myDamage = 0;
+  if (damage != undefined) { myDamage = parseInt(damage); };
+  let myDefence = 0;
+  if (defence != undefined) { myDefence = parseInt(defence); };
+  let myShakti = 0;
+  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  let youwin = ((myDamage - (myDefence + myShakti)) <= 0);
+
+  let sentence1;
+  let sentence2;
+  let sentence3;
+
+  let pdc = 5;
+
+  if (opposantficheId != "") {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
+  }
   
   const smartTemplate = 'systems/devastra/templates/form/dice-result-wounds.html';
   const smartData = {
@@ -800,6 +858,10 @@ async function _showCalculateWoundsInChat (
     
     defence: defence,
     defencetype: defencetype,
+
+    sentence1: sentence1,
+    sentence2: sentence2,
+    sentence3: sentence3
     /*
     succes: d_successes,
     d1: n.d6_1,
@@ -1064,7 +1126,7 @@ async function _shaktiDialog(
 
   // Render modal dialog
 
-  template = template || 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+  template = template || 'systems/devastra/templates/form/shakti-prompt.html';
   const myActorID = myActor;
   const title = myTitle;
   const dialogOptions = myDialogOptions;
@@ -1754,7 +1816,7 @@ async function _treatSkillDiceRollDefenceDialog(
   
     } else {
 
-      const shaktidefenceTemplate = 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+      const shaktidefenceTemplate = 'systems/devastra/templates/form/shakti-prompt.html';
       const shaktidefenceTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
       const shaktidefenceDialogOptions  = {
         classes: ["devastra", "sheet"]
@@ -2878,7 +2940,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
   } else {
 
-    const shaktidefenceTemplate = 'systems/devastra/templates/form/skill-dice-prompt-shakti.html';
+    const shaktidefenceTemplate = 'systems/devastra/templates/form/shakti-prompt.html';
     const shaktidefenceTitle = game.i18n.localize("DEVASTRA.Shakti de défense");
     const shaktidefenceDialogOptions  = {
       classes: ["devastra", "sheet"]

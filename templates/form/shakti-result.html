@@ -44,39 +44,29 @@
             <table class="devastra-no-rich">
                 <tr class="devastra-no-rich">
                     <th  style="text-align: center;">
-                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.woundscomputing" }}</span></p>
+                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.AttacksComputing" }}</span></p>
                     </th>
                 </tr>
             </table>
 
             <table class="devastra-no-rich">
-                {{#if youwin}}
-                <tr class="devastra-no-rich">
-                    <td title="{{ localize 'DEVASTRA.NPCWoundedDeveloped' }}">
-                        {{ localize "DEVASTRA.Shakti" }}<br>{{ localize "DEVASTRA.YouWin" }}<br>{{ localize "DEVASTRA.NPCWounded" }}
+                <tr class="devastra-no-rich"> 
+                    <td style="text-align: center;" title="{{ localize 'DEVASTRA.PCWoundedDeveloped' }}">
+                        {{sentence1}}<br>{{sentence2}}<br>{{sentence3}}
+                        <br><br><b style="font-size: 18px; width: 10%;">{{ totalresist }}</b>
                     </td>
-                    <th style="text-align: center; font-size: 18px; width: 10%;">{{ NPCwoundedtotal }}</th>
                 </tr>
-                {{else}}
-                <tr class="devastra-no-rich">
-                    <td title="{{ localize 'DEVASTRA.PCWoundedDeveloped' }}">
-                        {{ localize "DEVASTRA.Shakti" }}<br>{{ localize "DEVASTRA.YouLoose" }}<br>{{ localize "DEVASTRA.PCWounded" }}
-                    </td>
-                    <th style="text-align: center; font-size: 18px; width: 10%;">{{ PCwoundedtotal }}</th>
-                </tr>
-                {{/if}}
             </table>
-            <br>
             {{#if (eq opposantficheId "")}}
             <table style="border: 0px; background-color: transparent;">
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.Appliquer les blessures" }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.ApplyWounds" }}</b></span></p>
                     </td>
                 </tr>
                 <tr style="background-color: transparent;">
                     <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button wounds-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedWounds" }}</span></p>
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button wounds-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedAttacks" }}</span></p>
                     </td>
                 </tr>
             </table>
@@ -84,12 +74,12 @@
             <table style="border: 0px; background-color: transparent;">
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.Appliquer les blessures" }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.ApplyWounds" }}</b></span></p>
                     </td>
                 </tr>
                 <tr style="background-color: transparent;">
                     <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button wounds-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedWounds" }}</span></p>
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button wounds-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
                     </td>
                 </tr>
             </table>

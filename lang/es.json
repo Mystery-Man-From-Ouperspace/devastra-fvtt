@@ -295,13 +295,14 @@
 
   "DEVASTRA.LOpposantEstManquant": "Pas d’Opposant sélectionné",
 
-  "DEVASTRA.woundscomputing": "Calcul des Blessures",
+  "DEVASTRA.YouLose": "Votre opposant l’emporte !",
+  "DEVASTRA.YouWin": "Vous résistez à votre opposant !",
 
-  "DEVASTRA.YouWin": "Vous l’emportez sur votre opposant !",
-  "DEVASTRA.YouLoose": "Votre opposant l’emporte !",
+  "DEVASTRA.YouReHit": "^0 vous a touché·e/atteint·e.",
+  "DEVASTRA.YouArentHit": "Vous parez les coups assénés par ^0.",
 
-  "DEVASTRA.NPCWounded": "Le PJ touche le PNJ ; blessures infligées",
-  "DEVASTRA.PCWounded":  "Le PNJ touche le PJ ; blessures infligées",
+  "DEVASTRA.YouReWounded": "Vous encaissez ^0 points de coup.",
+  "DEVASTRA.YouArentWounded":  "Vous n’encaissez aucun point de coup.",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
   "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
@@ -310,8 +311,10 @@
   "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
-  "DEVASTRA.ThrowWounds": "Déterminer Blessures infligées",
-  "DEVASTRA.ThrowReceivedWounds": "Déterminer Blessures reçues",
+  "DEVASTRA.AttacksComputing": "Calcul des Attaques",
+  "DEVASTRA.ThrowAttacks": "Déterminer Attaques infligées",
+  "DEVASTRA.ThrowReceivedAttacks": "Déterminer Attaques encaissées",
+  "DEVASTRA.ThrowOffReceivedAttacks": "Déterminer Attaques évitées",
 
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
@@ -520,6 +523,11 @@
   "DEVASTRA.Tirage de jetons pour la Shakti": "Tirage de jetons pour la Shakti",
 
   "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
+
+  "DEVASTRA.ApplyWounds": "Apliquer Blessures",
+  "DEVASTRA.ApplyWounds": "Apliquer les Blessures",
+
+  
 
 
   "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",
