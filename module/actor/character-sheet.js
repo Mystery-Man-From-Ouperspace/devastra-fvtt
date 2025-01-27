@@ -2107,7 +2107,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
 
     let myDefence = rModif._total;
-    let myDefenceType = domainLibel;
 
     let myShakti = 0;
 
@@ -2128,7 +2127,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       damagetype: myDamageType,
       
       defence: myDefence,
-      defencetype: myDefenceType,
 
       shakti: myShakti,
 

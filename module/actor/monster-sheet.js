@@ -767,7 +767,6 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     };
 
     let myDefence = rModif._total;
-    let myDefenceType = domainLibel;
 
     let myShakti = 0;
 
@@ -788,7 +787,6 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       damagetype: myDamageType,
       
       defence: myDefence,
-      defencetype: myDefenceType,
 
       shakti: myShakti,
 
