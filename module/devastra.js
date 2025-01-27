@@ -849,7 +849,7 @@ async function _showCalculateShaktiWoundsInChat (
     d6: n.d6_6,
     dA: mySuccesAutoSupplem
     */
-  }
+  };
   console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
 
@@ -872,7 +872,7 @@ async function _showCalculateShaktiWoundsInChat (
     piledejetonsShakti = parseInt(myActor.system.shakti.piledejetons);
   } else {
     piledejetonsShakti = parseInt(myActor.system.shakti_initiale.value);
-  }
+  };
 
   console.log("myShakti = ", myShakti);
   console.log("piledejetonsShakti = ", piledejetonsShakti);
@@ -894,12 +894,14 @@ async function _showCalculateShaktiWoundsInChat (
   } else {
 
     if (myActor.type === "character") {
-      await myActor.update({ "system.shakti.piledejetons": parseInt(myActor.system.shakti.piledejetons) - parseInt(shakti) });
+      await myActor.update({ "system.shakti.piledejetons": parseInt(myActor.system.shakti.piledejetons) - myShakti });
     } else {
-      await myActor.update({ "system.shakti_initiale.value": parseInt(myActor.system.shakti_initiale.value) - parseInt(shakti) });
+      await myActor.update({ "system.shakti_initiale.value": parseInt(myActor.system.shakti_initiale.value) - myShakti });
     };
     //////////////////////////////////////////////////////////////////
-    ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+    if (myShakti > 0) {
+      ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+    }
     //////////////////////////////////////////////////////////////////
   
     ChatMessage.create({
