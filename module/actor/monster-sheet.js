@@ -766,8 +766,10 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       smartTemplate = 'systems/devastra/templates/form/defence-result.html';
     };
 
-    let myDefence = "xxx";
-    let myDefenceType = "xxx";
+    let myDefence = rModif._total;
+    let myDefenceType = domainLibel;
+
+    let myShakti = 0;
 
     const smartData = {
       nd: myND,
@@ -788,7 +790,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       defence: myDefence,
       defencetype: myDefenceType,
 
-      shakti: 0,
+      shakti: myShakti,
 
       domaine: domainLibel,
       jet: jetLibel,

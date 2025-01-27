@@ -774,8 +774,10 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     };
 
     
-    let myDefence = "xxx";
-    let myDefenceType = "xxx";
+    let myDefence = rModif._total;
+    let myDefenceType = domainLibel;
+
+    let myShakti = 0;
 
     const smartData = {
       nd: myND,
@@ -796,7 +798,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       defence: myDefence,
       defencetype: myDefenceType,
 
-      shakti: 0,
+      shakti: myShakti,
 
       domaine: domainLibel,
       jet: jetLibel,

@@ -616,6 +616,64 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
       console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées");
+
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+      const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
+
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
+
+      /*
+      Ici on calcule les blessures évitées
+      */
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
+      };
+
+      let myActor = game.actors.get(myActorId);
+
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      _showCalculateShaktiWoundsInChat(
+        myActor, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
+        );
+      
     });
   }
 
@@ -638,8 +696,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées");
 
       // On récupère les datas de l'attaquant dans le Tchat
-      // const defencetype = html[0].querySelector("span[class='defencetype']").textContent;
-      // const defence = html[0].querySelector("span[class='defence']").textContent;
       const nd = html[0].querySelector("span[class='nd']").textContent;
       const total = html[0].querySelector("span[class='total']").textContent;
       const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
@@ -691,18 +747,27 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      let myTitle = game.i18n.localize("DEVASTRA.Jet de défense titre").replace("^0", myActor.name);
-      let myDialogOptions = {
-        classes: ["devastra", "sheet"]
-      };
-      let template = "";
+      let theDefence = 0;
+      let theDefencetype = "xxx";
+      let theShakti = 0;
 
+      if (opposantficheId != "") {
 
-      _showCalculateWoundsInChat(
-        myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
-      );
+        _showCalculateShaktiWoundsInChat(
+          myActor, nd, total, attaquantficheId, opposantficheId,
+          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          selectedinventorymagic, damage, damagetype, theDefence, theDefencetype, theShakti
+        );
+
+      } else {
+
+        _showCalculateWoundsInChat(
+          myActor, nd, total, attaquantficheId, opposantficheId,
+          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          selectedinventorymagic, damage, damagetype, theDefence, theDefencetype, theShakti
+        );
+
+      }
 
     })
 
@@ -721,13 +786,13 @@ async function _showCalculateShaktiWoundsInChat (
 
   console.log("_showCalculateShaktiWoundsInChat");
 
-  let myDamage = 0;
-  if (damage != undefined) { myDamage = parseInt(damage); };
+  let myTotal = 0;
+  if (total != undefined) { myTotal = parseInt(total); };
   let myDefence = 0;
   if (defence != undefined) { myDefence = parseInt(defence); };
   let myShakti = 0;
   if (shakti != undefined) { myShakti = parseInt(shakti); };
-  let youwin = ((myDamage - (myDefence + myShakti)) <= 0);
+  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   let sentence1;
   let sentence2;
@@ -775,7 +840,9 @@ async function _showCalculateShaktiWoundsInChat (
     sentence2: sentence2,
     sentence3: sentence3,
 
-    totalresist: totalresist
+    totalresist: totalresist,
+
+    youwin: youwin
     /*
     succes: d_successes,
     d1: n.d6_1,
@@ -807,7 +874,7 @@ async function _showCalculateShaktiWoundsInChat (
 /* -------------------------------------------- */
 
 async function _showCalculateWoundsInChat (
-  myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
+  myActor, nd, total, attaquantficheId, opposantficheId,
   consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, defencetype, shakti
 ) {
@@ -1463,7 +1530,7 @@ async function _treatSkillDiceRollDefenceDialog(
     let myMalusStatutCheck = parseInt(malusstatutflag);
     let myDesNonExplo = parseInt(desnonexplo);
 
-    var theDefence = myDefence;
+    var theDefence = defence;
     var theDamage = myDamage;
     var theDamagetype = myDamagetype;
     var theShakti = myShakti;
@@ -1730,7 +1797,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
       } while (n.nbrRelance);
 
-      const rModif = new Roll("0[Defense Réussites]", myActor.getRollData());
+      const rModif = new Roll("0[Défense Réussites]", myActor.getRollData());
       await rModif.evaluate();
       rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
@@ -1767,7 +1834,7 @@ async function _treatSkillDiceRollDefenceDialog(
       let myDefenceType = "xxx";
       */
 
-      const myDefence = theDefence; // calculé (lancer de dés)
+      const myDefence = defence; // calculé (lancer de dés)
       const myDefencetype = theDefencetype; // calculé (lancer de dés)
 
 
@@ -1789,7 +1856,7 @@ async function _treatSkillDiceRollDefenceDialog(
         defence: myDefence,
         defencetype: myDefencetype,
 
-        shakti: shakti,
+        shakti: theShakti,
 
         domaine: domains,
         jet: jet,

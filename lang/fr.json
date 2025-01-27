@@ -295,30 +295,36 @@
 
   "DEVASTRA.LOpposantEstManquant": "Pas d’Opposant sélectionné",
 
-  "DEVASTRA.YouLose": "Votre opposant l’emporte !",
-  "DEVASTRA.YouWin": "Vous résistez à votre opposant !",
+  "DEVASTRA.YouLose": "Votre opposant·e l’emporte !",
+  "DEVASTRA.YouWin": "Vous résistez à votre opposant·e !",
 
   "DEVASTRA.YouReHit": "^0 vous a touché·e/atteint·e.",
   "DEVASTRA.YouArentHit": "Vous parez les coups assénés par ^0.",
 
-  "DEVASTRA.YouReWounded": "Vous encaissez ^0 points de coup.",
+  "DEVASTRA.YouReWounded": "Il·elle vous porte ^0 points de coup (votre total d’armure n'a pas encore été pris en compte).",
   "DEVASTRA.YouArentWounded":  "Vous n’encaissez aucun point de coup.",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
   "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
-  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant ou le MJ",
+  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant·e ou le MJ",
 
   "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
   "DEVASTRA.AttacksComputing": "Calcul des Attaques",
+  "DEVASTRA.DefencesComputing": "Calcul des Défenses",
   "DEVASTRA.ThrowAttacks": "Déterminer Attaques infligées",
   "DEVASTRA.ThrowReceivedAttacks": "Déterminer Attaques encaissées",
   "DEVASTRA.ThrowOffReceivedAttacks": "Déterminer Attaques évitées",
   "DEVASTRA.ApplyWounds": "Appliquer les Blessures",
+  "DEVASTRA.ApplyDefences": "Appliquer les Défenses",
+  "DEVASTRA.TotalDefence": "Défense totale opposée :",
+  "DEVASTRA.TotalAttack": "Attaque totale tirée :",
 
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
+  "DEVASTRA.AskYourGMApplyDefences": "Demandez à votre MJ d'appliquer manuellement votre Défense à l’Attaque de votre opposant·e.",
+  "DEVASTRA.AskYourGMApplyAttacks": "Demandez à votre MJ d'appliquer manuellement votre Attaque à l’ensemble de vos opposant·e.s",
 
   "DEVASTRA.DefenderName": "Opposant : ",
 
