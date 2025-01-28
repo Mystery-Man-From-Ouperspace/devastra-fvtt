@@ -21,7 +21,7 @@
                 <span class="selectedinventorymagic">{{ selectedinventorymagic }}</span>
                 <span class="damage">{{ damage }}</span>
                 <span class="damagetype">{{ damagetype }}</span>
-                
+
                 <span class="defence">{{ defence }}</span>
 
                 <span class="shakti">{{ shakti }}</span>
@@ -156,44 +156,36 @@
                     </td>
                 </tr>
             </table>
-            {{#if (eq jet "attck")}}
             <table style="border: 0px; background-color: transparent;">
+                <tr style="background-color: transparent;">
+                    <td class="blue-buttons">
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button shakti-defence-calculate-click">{{ localize "DEVASTRA.Shakti de défense" }}</span></p>
+                    </td>
+                </tr>
+                {{#if (eq opposantficheId "")}}
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.DefenderName" }}{{ opposant }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoOtherDefence" }}</b></span></p>
                     </td>
                 </tr>
                 <tr style="background-color: transparent;">
                     <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button defence-calculate-click">{{ localize "DEVASTRA.ThrowDefence" }}</span></p>
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button attacks-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedAttacks" }}</span></p>
                     </td>
                 </tr>
+                {{else}}
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoDefence" }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoOtherDefence" }}</b></span></p>
                     </td>
                 </tr>
                 <tr style="background-color: transparent;">
                     <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button wounds-calculate-click">{{ localize "DEVASTRA.ThrowAttacks" }}</span></p>
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button attacks-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
                     </td>
                 </tr>
+                {{/if}}
             </table>
-            {{else}}
-            {{/if}}
-            {{#if (eq jet "defnc")}}
-            <tr>
-                <td style="text-align: center;">
-                    <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoDefence" }}</b></span></p>
-                </td>
-            </tr>
-            <tr style="background-color: transparent;">
-                <td class="blue-buttons">
-                    <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button wounds-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedAttacks" }}</span></p>
-                </td>
-            </tr>
-            {{else}}
-            {{/if}}
         </div>	
     </section>
 </form>

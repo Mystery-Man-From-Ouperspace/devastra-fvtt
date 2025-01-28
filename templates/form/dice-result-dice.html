@@ -10,6 +10,7 @@
         <div class="frame devastra-result-window">
             <div style="display: none;">
                 <span class="nd">{{ nd }}</span>
+                <span class="total">{{ total }}</span>
                 <span class="attaquantficheId">{{ attaquantficheId }}</span>
                 <span class="opposantficheId">{{ opposantficheId }}</span>
                 <span class="consideropponentprotection">{{ consideropponentprotection }}</span>
@@ -20,7 +21,7 @@
                 <span class="selectedinventorymagic">{{ selectedinventorymagic }}</span>
                 <span class="damage">{{ damage }}</span>
                 <span class="damagetype">{{ damagetype }}</span>
-
+                
                 <span class="defence">{{ defence }}</span>
 
                 <span class="shakti">{{ shakti }}</span>
@@ -169,15 +170,28 @@
                 </tr>
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoDefence" }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoOtherDefence" }}</b></span></p>
                     </td>
                 </tr>
                 <tr style="background-color: transparent;">
                     <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button wounds-calculate-click">{{ localize "DEVASTRA.ThrowAttacks" }}</span></p>
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button attacks-calculate-click">{{ localize "DEVASTRA.ThrowAttacks" }}</span></p>
                     </td>
                 </tr>
             </table>
+            {{else}}
+            {{/if}}
+            {{#if (eq jet "defnc")}}
+            <tr>
+                <td style="text-align: center;">
+                    <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.IfNoOtherDefence" }}</b></span></p>
+                </td>
+            </tr>
+            <tr style="background-color: transparent;">
+                <td class="blue-buttons">
+                    <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button attacks-off-auto-calculate-click">{{ localize "DEVASTRA.ThrowOffReceivedAttacks" }}</span></p>
+                </td>
+            </tr>
             {{else}}
             {{/if}}
         </div>	

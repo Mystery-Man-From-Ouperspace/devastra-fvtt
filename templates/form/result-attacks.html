@@ -43,20 +43,16 @@
             <table class="devastra-no-rich">
                 <tr class="devastra-no-rich">
                     <th  style="text-align: center;">
-                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.DefencesComputing" }}</span></p>
+                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.DamageComputing" }}</span></p>
                     </th>
                 </tr>
             </table>
 
             <table class="devastra-no-rich">
                 <tr class="devastra-no-rich"> 
-                    <td style="text-align: center;">
+                    <td style="text-align: center;" title="{{ localize 'DEVASTRA.PCWoundedDeveloped' }}">
                         {{sentence1}}<br>{{sentence2}}<br>{{sentence3}}
-                        {{#if (eq opposantficheId "")}}
-                        {{else}}
                         <br><br><b style="font-size: 18px; width: 10%;">{{localize "DEVASTRA.TotalAttack" }}&nbsp;{{ total }}</b>
-                        {{/if}}
-                        <br><br><b style="font-size: 18px; width: 10%;">{{localize "DEVASTRA.TotalDefence" }}&nbsp;{{ totalresist }}</b>
                     </td>
                 </tr>
             </table>
@@ -64,7 +60,7 @@
             <table style="border: 0px; background-color: transparent;">
                 <tr>
                     <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.AskYourGMApplyDefences" }}</b></span></p>
+                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.AskYourGMApplyAttacks" }}</b></span></p>
                     </td>
                 </tr>
             </table>
@@ -74,12 +70,12 @@
                 <table style="border: 0px; background-color: transparent;">
                     <tr>
                         <td style="text-align: center;">
-                            <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.AttacksComputing" }}</b></span></p>
+                            <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.DamageComputing" }}</b></span></p>
                         </td>
                     </tr>
                     <tr style="background-color: transparent;">
                         <td class="blue-buttons">
-                            <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button wounds-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
+                            <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button attacks-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
                         </td>
                     </tr>
                 </table>

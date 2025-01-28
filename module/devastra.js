@@ -334,12 +334,21 @@ function preLocalizeConfig() {
 Hooks.on("renderChatMessage", (app, html, data,) => {
 
   const defencecalculateButton = html[0].querySelector("[class='smart-blue-button defence-calculate-click']");
-  const woundscalculateButton1 = html[0].querySelector("[class='smart-blue-button wounds-calculate-click']");
-  const woundscalculateButton2 = html[0].querySelector("[class='smart-blue-button wounds-auto-calculate-click']");
-  const woundscalculateButton3 = html[0].querySelector("[class='smart-blue-button wounds-off-auto-calculate-click']");
+  const attackscalculateButton1 = html[0].querySelector("[class='smart-blue-button attacks-calculate-click']");
+  const attackscalculateButton2 = html[0].querySelector("[class='smart-blue-button attacks-auto-calculate-click']");
+  const attackscalculateButton3 = html[0].querySelector("[class='smart-blue-button attacks-off-auto-calculate-click']");
+  const attacksapplyButton = html[0].querySelector("[class='smart-blue-button attacks-apply-click']");
   const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
+  if (attacksapplyButton != undefined && attacksapplyButton != null) {
+    attacksapplyButton.addEventListener('click', () => {
+
+      console.log("On est bien dans attacksapplyButton");
+
+
+    })
+  }
 
   if (shakticalculateButton != undefined && shakticalculateButton != null) {
     shakticalculateButton.addEventListener('click', () => {
@@ -549,11 +558,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         let typeOfThrow = parseInt(typeofthrow);
 
-        let smartTemplate = 'systems/devastra/templates/form/dice-result-apply-wounds.html';
+        let smartTemplate = 'systems/devastra/templates/form/dice-result-dice-apply-wounds.html';
 
         let smartData = {};
 
-        _showCalculateWoundsInChat (myActor, typeOfThrow, smartTemplate, smartData);
+        _showCalculateAttacksInChat (myActor, typeOfThrow, smartTemplate, smartData);
       };
       */
 
@@ -596,11 +605,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         let typeOfThrow = 3; // juste pour le MJ utilisateur
 
-        let smartTemplate = 'systems/devastra/templates/form/dice-result-apply-wounds.html'
+        let smartTemplate = 'systems/devastra/templates/form/dice-result-dice-apply-wounds.html'
 
         let smartData = {};
 
-        _showCalculateWoundsInChat (myActor, typeOfThrow, smartTemplate, smartData);
+        _showCalculateAttacksInChat (myActor, typeOfThrow, smartTemplate, smartData);
 
       };
 
@@ -608,8 +617,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
   }
   */
-  if (woundscalculateButton3 != undefined && woundscalculateButton3 != null) {
-    woundscalculateButton3.addEventListener('click', () => {
+  if (attackscalculateButton3 != undefined && attackscalculateButton3 != null) {
+    attackscalculateButton3.addEventListener('click', () => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
@@ -665,7 +674,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      _showCalculateShaktiWoundsInChat(
+      _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
         selectedinventorymagic, damage, damagetype, defence, shakti
@@ -674,8 +683,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
     });
   }
 
-  if (woundscalculateButton2 != undefined && woundscalculateButton2 != null) {
-    woundscalculateButton2.addEventListener('click', () => {
+  if (attackscalculateButton2 != undefined && attackscalculateButton2 != null) {
+    attackscalculateButton2.addEventListener('click', () => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
@@ -733,7 +742,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       let theShakti = 0;
 
-      _showCalculateShaktiWoundsInChat(
+      _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
         selectedinventorymagic, damage, damagetype, defence, theShakti
@@ -741,8 +750,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
     });
   }
 
-  if (woundscalculateButton1 != undefined && woundscalculateButton1 != null) {
-    woundscalculateButton1.addEventListener('click', () => {
+  if (attackscalculateButton1 != undefined && attackscalculateButton1 != null) {
+    attackscalculateButton1.addEventListener('click', () => {
 
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
@@ -805,7 +814,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       if (opposantficheId != "") {
 
-        _showCalculateShaktiWoundsInChat(
+        _showCalculateShaktiInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
           consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theDefence, theShakti
@@ -813,7 +822,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       } else {
 
-        _showCalculateWoundsInChat(
+        _showCalculateAttacksInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
           consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theDefence, theShakti
@@ -830,13 +839,13 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 /* -------------------------------------------- */
 
-async function _showCalculateShaktiWoundsInChat (
+async function _showCalculateShaktiInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
   consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
-  console.log("_showCalculateShaktiWoundsInChat");
+  console.log("_showCalculateShaktiInChat");
 
   let myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
@@ -865,7 +874,7 @@ async function _showCalculateShaktiWoundsInChat (
   }
   let totalresist = myDefence + myShakti;
 
-  const smartTemplate = 'systems/devastra/templates/form/shakti-result.html';
+  const smartTemplate = 'systems/devastra/templates/form/result-shakti.html';
 
   const smartData = {
     nd: nd,
@@ -977,7 +986,7 @@ async function _showCalculateShaktiWoundsInChat (
 
 /* -------------------------------------------- */
 
-async function _showCalculateWoundsInChat (
+async function _showCalculateAttacksInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
   consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, shakti
@@ -1009,7 +1018,7 @@ async function _showCalculateWoundsInChat (
     }
   }
   
-  const smartTemplate = 'systems/devastra/templates/form/dice-result-wounds.html';
+  const smartTemplate = 'systems/devastra/templates/form/result-attacks.html';
   const smartData = {
     nd: nd,
 
@@ -1279,7 +1288,7 @@ async function _treatShaktiDialog(
 
   var theShakti = myResultDialog.defenseshakti;
 
-  _showCalculateShaktiWoundsInChat(
+  _showCalculateShaktiInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
     consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
     selectedinventorymagic, damage, damagetype, defence, theShakti
@@ -1921,9 +1930,9 @@ async function _treatSkillDiceRollDefenceDialog(
         opponentActorName = opponentActor.name;
       };
       */
-      let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+      let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
       if (jetLibel == "defnc") {
-        smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+        smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
       };
 
       /*
@@ -1997,7 +2006,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
       var thisistheShakti = myResultDialog.defenseshakti;
 
-      _showCalculateShaktiWoundsInChat(
+      _showCalculateShaktiInChat(
         myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
         myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
         mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
@@ -3037,9 +3046,9 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       opponentActorName = opponentActor.name;
     };
     */
-    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
-      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+      smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
     };
 
     /*
@@ -3112,7 +3121,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     var thisistheShakti = myResultDialog.defenseshakti;
 
-    _showCalculateShaktiWoundsInChat(
+    _showCalculateShaktiInChat(
       myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti

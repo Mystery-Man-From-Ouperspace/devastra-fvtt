@@ -309,16 +309,17 @@
   "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant·e ou le MJ",
 
   "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
-  "DEVASTRA.IfNoOtherDefence": "Si pas de Défense opposée :",
+  "DEVASTRA.IfNoOtherDefence": "Si pas d’autre Défense opposée :",
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
-  "DEVASTRA.AttacksComputing": "Calcul des Attaques",
+  "DEVASTRA.DamageComputing": "Calcul des Dégâts",
   "DEVASTRA.DefencesComputing": "Calcul des Défenses",
   "DEVASTRA.ThrowAttacks": "Déterminer Attaques infligées",
   "DEVASTRA.ThrowReceivedAttacks": "Déterminer Attaques encaissées",
   "DEVASTRA.ThrowOffReceivedAttacks": "Déterminer Attaques évitées",
   "DEVASTRA.ApplyWounds": "Appliquer les Blessures",
   "DEVASTRA.ApplyDefences": "Appliquer les Défenses",
+  "DEVASTRA.DamageComputed": "Déterminer Dégâts encaissés",
   "DEVASTRA.TotalDefence": "Défense totale opposée :",
   "DEVASTRA.TotalAttack": "Attaque totale tirée :",
 

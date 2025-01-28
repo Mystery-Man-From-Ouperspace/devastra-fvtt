@@ -308,10 +308,10 @@
   "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
   "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant ou le MJ",
 
-  "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
+  "DEVASTRA.IfNoOtherDefence": "Si pas de Défense opposée :",
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
-  "DEVASTRA.AttacksComputing": "Calcul des Attaques",
+  "DEVASTRA.DamageComputing": "Calcul des Attaques",
   "DEVASTRA.ThrowAttacks": "Déterminer Attaques infligées",
   "DEVASTRA.ThrowReceivedAttacks": "Déterminer Attaques encaissées",
   "DEVASTRA.ThrowOffReceivedAttacks": "Déterminer Attaques évitées",

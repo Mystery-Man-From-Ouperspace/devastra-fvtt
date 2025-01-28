@@ -2101,9 +2101,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       opponentActorId = opponentActor.id;
       opponentActorName = opponentActor.name;
     };
-    let smartTemplate = 'systems/devastra/templates/form/dice-result.html';
+    let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
-      smartTemplate = 'systems/devastra/templates/form/defence-result.html';
+      smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
     };
 
     let myDefence = rModif._total;
