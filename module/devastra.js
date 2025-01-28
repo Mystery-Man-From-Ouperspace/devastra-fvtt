@@ -681,6 +681,63 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues");
 
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
+
+      /*
+      Ici on calcule les blessures reçues
+      */
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
+      };
+
+      let myActor = game.actors.get(myActorId);
+
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      let theShakti = 0;
+
+      _showCalculateShaktiWoundsInChat(
+        myActor, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        selectedinventorymagic, damage, damagetype, defence, theShakti
+        );
     });
   }
 
@@ -855,7 +912,7 @@ async function _showCalculateShaktiWoundsInChat (
 
   const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
 
-  /*
+ 
   let theActorId = "";
   if (opposantficheId != "") {
     theActorId = opposantficheId;
@@ -863,15 +920,15 @@ async function _showCalculateShaktiWoundsInChat (
     theActorId = attaquantficheId;
   };
 
-  let theActiveActor = game.actors.get(theActorId);
-  */
+  var theActiveActor = await game.actors.get(theActorId);
 
-  let piledejetonsShakti = -999;
-  console.log("myActor.type = ", myActor.type);
-  if (myActor.type === "character") {
-    piledejetonsShakti = parseInt(myActor.system.shakti.piledejetons);
+
+  var piledejetonsShakti = -999;
+  console.log("myActor.type = ", theActiveActor.type);
+  if (theActiveActor.type === "character") {
+    piledejetonsShakti = parseInt(await theActiveActor.system.shakti.piledejetons);
   } else {
-    piledejetonsShakti = parseInt(myActor.system.shakti_initiale.value);
+    piledejetonsShakti = parseInt(await theActiveActor.system.shakti_initiale.value);
   };
 
   console.log("myShakti = ", myShakti);
@@ -879,7 +936,7 @@ async function _showCalculateShaktiWoundsInChat (
   if (myShakti > piledejetonsShakti)
   {
 
-    if (myActor.type === "character") {
+    if (theActiveActor.type === "character") {
       //////////////////////////////////////////////////////////////////
       ui.notifications.warn(game.i18n.localize("DEVASTRA.Error4"));
       return;
@@ -893,10 +950,10 @@ async function _showCalculateShaktiWoundsInChat (
 
   } else {
 
-    if (myActor.type === "character") {
-      await myActor.update({ "system.shakti.piledejetons": parseInt(myActor.system.shakti.piledejetons) - myShakti });
+    if (theActiveActor.type === "character") {
+      await theActiveActor.update({ "system.shakti.piledejetons": parseInt(theActiveActor.system.shakti.piledejetons) - myShakti });
     } else {
-      await myActor.update({ "system.shakti_initiale.value": parseInt(myActor.system.shakti_initiale.value) - myShakti });
+      await theActiveActor.update({ "system.shakti_initiale.value": parseInt(theActiveActor.system.shakti_initiale.value) - myShakti });
     };
     //////////////////////////////////////////////////////////////////
     if (myShakti > 0) {
@@ -907,7 +964,7 @@ async function _showCalculateShaktiWoundsInChat (
     ChatMessage.create({
       user: game.user.id,
       // speaker: ChatMessage.getSpeaker({ token: this.actor }),
-      speaker: ChatMessage.getSpeaker({ actor: myActor }),
+      speaker: ChatMessage.getSpeaker({ actor: theActiveActor }),
       content: smartHtml,
       rollMode: myTypeOfThrow
     });
