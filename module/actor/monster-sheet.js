@@ -470,12 +470,18 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     */
     myTitle = game.i18n.localize("DEVASTRA.WhichWeapon");
     let isInventory;
+    let weapon;
+    let power;
+    let magic;
+
     let mySelectedInventory;
     let mySelectedInventoryDevastra;
     let mySelectedInventoryPower;
     let mySelectedInventoryMagic;
     let myDamage;
     let myDamageType;
+
+    let myWeaponDiceBonus = 0;
 
 
     if (jetLibel == "attck") {
@@ -490,6 +496,10 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
 
       isInventory = myDamageData.isinventory;
+      weapon = myDamageData.weapon;
+      power = myDamageData.power;
+      magic = myDamageData.magic;
+
       mySelectedInventory = myDamageData.selectedinventory;
       mySelectedInventoryDevastra = myDamageData.selectedinventorydevastra;
       mySelectedInventoryPower = myDamageData.selectedinventorypower;
@@ -499,8 +509,38 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
       console.log("myDamageData = ", myDamageData);
       console.log("isInventory = ", isInventory);
-    }
 
+      let myItem;
+      if (isInventory) {
+        if (weapon)  {
+          if (mySelectedInventory == "0" || mySelectedInventory == "-1") {
+            myWeaponDiceBonus = 0;
+          } else {
+            for (let item of myActor.items.filter(item => item.type === 'item')) {
+              if (item._id == mySelectedInventory) {
+                myItem = item;
+              }
+            }
+            myWeaponDiceBonus = parseInt(myItem.system.attack_base);
+          }
+        } else {
+          if (mySelectedInventoryDevastra == "0") {
+            myWeaponDiceBonus = 0;
+          } else {
+            for (let item of myActor.items.filter(item => item.type === 'devastra')) {
+              if (item._id == mySelectedInventoryDevastra) {
+                myItem = item;
+              }
+            }
+            myWeaponDiceBonus = parseInt(myItem.system.attack_base);
+          }
+        }
+      }
+
+      console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
+  
+    }
+  
     
 
     /***********************************************************************************
@@ -536,6 +576,11 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     let suite = "[";
 
     let total = parseInt(myNbrDeDomaine);
+
+    /*
+    Ici, on ajoute le bonus d'attaque éventuel de l'arme ou du devâstra.
+    */
+    total += parseInt(myWeaponDiceBonus);
 
     // console.log("myNbrDeBonusDomaine", myNbrDeBonusDomaine);
     if (myBonusDomaineFlag) {
@@ -779,6 +824,10 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
+      weapon: weapon,
+      power: power,
+      magic: magic,
+  
       selectedinventory: mySelectedInventory,
       selectedinventorydevastra: mySelectedInventoryDevastra,
       selectedinventorypower: mySelectedInventoryPower,
@@ -929,6 +978,10 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
       isinventory: myHtml.find("input[value='isinventory']").is(':checked'),
+      weapon: myHtml.find("input[value='weapon']").is(':checked'),
+      power: myHtml.find("input[value='power']").is(':checked'),
+      magic: myHtml.find("input[value='magic']").is(':checked'),
+
       selectedinventory: myHtml.find("select[name='inventory']").val(),
       selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),
       selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),

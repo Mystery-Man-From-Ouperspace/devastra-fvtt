@@ -15,6 +15,10 @@
                 <span class="opposantficheId">{{ opposantficheId }}</span>
                 <span class="consideropponentprotection">{{ consideropponentprotection }}</span>
                 <span class="isinventory">{{ isinventory }}</span>
+                <span class="weapon">{{ weapon }}</span>
+                <span class="power">{{ power }}</span>
+                <span class="magic">{{ magic }}</span>
+
                 <span class="selectedinventory">{{ selectedinventory }}</span>
                 <span class="selectedinventorydevastra">{{ selectedinventorydevastra }}</span>
                 <span class="selectedinventorypower">{{ selectedinventorypower }}</span>
@@ -63,6 +67,11 @@
                         <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.AskYourGMApplyAttacks" }}</b></span></p>
                     </td>
                 </tr>
+                <tr style="background-color: transparent;">
+                    <td class="blue-buttons">
+                        <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button attacks-apply-click">{{ localize "DEVASTRA.MakeDamage" }}</span></p>
+                    </td>
+                </tr>
             </table>
             {{else}}
                 {{#if youwin}}
@@ -75,7 +84,7 @@
                     </tr>
                     <tr style="background-color: transparent;">
                         <td class="blue-buttons">
-                            <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button attacks-auto-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
+                            <p><span title="{{ localize 'DEVASTRA.OnlyCanOwner' }}" class="smart-blue-button damage-calculate-click">{{ localize "DEVASTRA.ThrowReceivedAttacks" }}</span></p>
                         </td>
                     </tr>
                 </table>

@@ -338,6 +338,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const attackscalculateButton2 = html[0].querySelector("[class='smart-blue-button attacks-auto-calculate-click']");
   const attackscalculateButton3 = html[0].querySelector("[class='smart-blue-button attacks-off-auto-calculate-click']");
   const attacksapplyButton = html[0].querySelector("[class='smart-blue-button attacks-apply-click']");
+  const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-calculate-click']");
   const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
@@ -345,6 +346,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
     attacksapplyButton.addEventListener('click', () => {
 
       console.log("On est bien dans attacksapplyButton");
+
+
+    })
+  }
+
+  if (damagedoneButton != undefined && damagedoneButton != null) {
+    damagedoneButton.addEventListener('click', () => {
+
+      console.log("On est bien dans damagedoneButton");
 
 
     })
@@ -365,6 +375,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
       const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
       const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
       const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
@@ -419,7 +433,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _treatShaktiDialog (
         myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
         selectedinventorymagic, damage, damagetype, defence, shakti
       );
 
@@ -443,6 +457,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
       const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
       const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
       const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
@@ -491,7 +509,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _treatSkillDiceRollDefenceNPCDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theShakti
         );
 
@@ -499,7 +517,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _treatSkillDiceRollDefenceDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theShakti
         );
 
@@ -631,6 +649,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
       const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
       const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
       const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
@@ -676,7 +698,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
         selectedinventorymagic, damage, damagetype, defence, shakti
         );
       
@@ -697,6 +719,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
       const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
       const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
       const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
@@ -744,7 +770,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
         selectedinventorymagic, damage, damagetype, defence, theShakti
         );
     });
@@ -765,6 +791,10 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
       const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
       const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
       const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
@@ -816,7 +846,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateShaktiInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
@@ -824,7 +854,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateAttacksInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
           selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
@@ -841,7 +871,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 async function _showCalculateShaktiInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
@@ -886,6 +916,10 @@ async function _showCalculateShaktiInChat (
     consideropponentprotection: consideropponentprotection,
 
     isinventory: isinventory,
+    weapon: weapon,
+    power: power,
+    magic: magic,
+
     selectedinventory: selectedinventory,
     selectedinventorydevastra: selectedinventorydevastra,
     selectedinventorypower: selectedinventorypower,
@@ -988,7 +1022,7 @@ async function _showCalculateShaktiInChat (
 
 async function _showCalculateAttacksInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
 
@@ -1029,6 +1063,10 @@ async function _showCalculateAttacksInChat (
     consideropponentprotection: consideropponentprotection,
 
     isinventory: isinventory,
+    weapon: weapon,
+    power: power,
+    magic: magic,
+
     selectedinventory: selectedinventory,
     selectedinventorydevastra: selectedinventorydevastra,
     selectedinventorypower: selectedinventorypower,
@@ -1266,12 +1304,12 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 
 async function _treatShaktiDialog(
   myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
   selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
   let myResultDialog = await _shaktiDialog(
     myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
     selectedinventorymagic, damage, damagetype, defence, shakti
   );
 
@@ -1290,7 +1328,7 @@ async function _treatShaktiDialog(
 
   _showCalculateShaktiInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, selectedinventory, selectedinventorydevastra, selectedinventorypower,
+    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
     selectedinventorymagic, damage, damagetype, defence, theShakti
   );
 
@@ -1299,7 +1337,7 @@ async function _treatShaktiDialog(
 
 async function _shaktiDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -1316,6 +1354,10 @@ async function _shaktiDialog(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
@@ -1338,6 +1380,10 @@ async function _shaktiDialog(
 
     consideropponentprotection: consideropponentprotection,
     isinventory: isinventory,
+    weapon: weapon,
+    power: power,
+    magic: magic,
+
     selectedinventory: selectedinventory,
     selectedinventorydevastra: selectedinventorydevastra,
     selectedinventorypower: selectedinventorypower,
@@ -1402,7 +1448,7 @@ async function _shaktiDialog(
 /* -------------------------------------------- */
 async function _treatSkillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   console.log("Il s'agit d'un PJ")
@@ -1422,7 +1468,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
   let myResultDialog = await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
     mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
@@ -1439,7 +1485,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
     myResultDialog = await _skillDiceRollDefenceDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
@@ -1458,6 +1504,10 @@ async function _treatSkillDiceRollDefenceDialog(
     var opposantficheId = myOpposantficheId;
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
+    var weapon = myWeapon;
+    var power = myPower;
+    var magic = myMagic;
+
     var selectedinventory = mySelectedinventory;
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
@@ -1523,6 +1573,10 @@ async function _treatSkillDiceRollDefenceDialog(
     var opposantficheId = myOpposantficheId;
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
+    var weapon = myWeapon;
+    var power = myPower;
+    var magic = myMagic;
+
     var selectedinventory = mySelectedinventory;
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
@@ -1949,6 +2003,10 @@ async function _treatSkillDiceRollDefenceDialog(
         consideropponentprotection: consideropponentprotection,
 
         isinventory: isinventory,
+        weapon: weapon,
+        power: power,
+        magic: magic,
+    
         selectedinventory: selectedinventory,
         selectedinventorydevastra: selectedinventorydevastra,
         selectedinventorypower: selectedinventorypower,
@@ -1992,7 +2050,7 @@ async function _treatSkillDiceRollDefenceDialog(
       };
       myResultDialog = await _skillEnterShaktiDefence (
         myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
         mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
       );
 
@@ -2038,6 +2096,10 @@ async function _skillEnterShaktiDefence(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = weapon;
+  const power = power;
+  const magic = magic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
@@ -2058,6 +2120,10 @@ async function _skillEnterShaktiDefence(
 
     consideropponentprotection: consideropponentprotection,
     isinventory: isinventory,
+    weapon: weapon,
+    power: power,
+    magic: magic,
+
     selectedinventory: selectedinventory,
     selectedinventorydevastra: selectedinventorydevastra,
     selectedinventorypower: selectedinventorypower,
@@ -2117,7 +2183,7 @@ async function _skillEnterShaktiDefence(
 
 async function _skillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myShakti
   ) {
 
@@ -2132,6 +2198,10 @@ async function _skillDiceRollDefenceDialog(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
@@ -2321,7 +2391,7 @@ async function _skillDiceRollDefenceDialog(
 
 async function _skillDiceRollDefenceDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -2336,6 +2406,10 @@ async function _skillDiceRollDefenceDialogDeblocked(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
@@ -2526,13 +2600,13 @@ async function _skillDiceRollDefenceDialogDeblocked(
 
 async function _treatSkillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog = await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
     mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
@@ -2549,7 +2623,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     myResultDialog = await _skillDiceRollDefenceNPCDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
@@ -2568,6 +2642,10 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var opposantficheId = myOpposantficheId;
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
+    var weapon = myWeapon;
+    var power = myPower;
+    var magic = myMagic;
+  
     var selectedinventory = mySelectedinventory;
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
@@ -2634,6 +2712,10 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var opposantficheId = myOpposantficheId;
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
+    var weapon = myWeapon;
+    var power = myPower;
+    var magic = myMagic;
+  
     var selectedinventory = mySelectedinventory;
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
@@ -3065,6 +3147,10 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       consideropponentprotection: consideropponentprotection,
 
       isinventory: isinventory,
+      weapon: weapon,
+      power: power,
+      magic: magic,
+  
       selectedinventory: selectedinventory,
       selectedinventorydevastra: selectedinventorydevastra,
       selectedinventorypower: selectedinventorypower,
@@ -3107,7 +3193,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     };
     myResultDialog = await _skillEnterShaktiDefence(
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
     );
 
@@ -3123,7 +3209,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     _showCalculateShaktiInChat(
       myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
       mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
     );
 
@@ -3136,7 +3222,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
 async function _skillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -3151,6 +3237,10 @@ async function _skillDiceRollDefenceNPCDialog(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;
@@ -3335,7 +3425,7 @@ async function _skillDiceRollDefenceNPCDialog(
 
 async function _skillDiceRollDefenceNPCDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype
   ) {
 
@@ -3350,6 +3440,10 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
+
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
   const selectedinventorypower = mySelectedinventorypower;

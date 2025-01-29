@@ -320,6 +320,7 @@
   "DEVASTRA.ApplyWounds": "Appliquer les Blessures",
   "DEVASTRA.ApplyDefences": "Appliquer les Défenses",
   "DEVASTRA.DamageComputed": "Déterminer Dégâts encaissés",
+  "DEVASTRA.MakeDamage": "Déterminer Dégâts infligés",
   "DEVASTRA.TotalDefence": "Défense totale opposée :",
   "DEVASTRA.TotalAttack": "Attaque totale tirée :",
 
