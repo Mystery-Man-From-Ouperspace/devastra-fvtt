@@ -61,7 +61,7 @@ export class GMManager extends Application {
     context.DEVASTRA = DEVASTRA;
     return context;
 
-    console.log("game.actors", game.actors);
+    // console.log("game.actors", game.actors);
 
   }
 
@@ -209,7 +209,7 @@ export class GMManager extends Application {
         }
         break;
       default:
-        console.log("C'est bizarre !");
+        // console.log("C'est bizarre !");
     };
 
 

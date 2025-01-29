@@ -83,7 +83,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     // with the arguments from the emission.
     /*
     game.socket.on('system.devastra', (arg0) => {
-      console.log(arg0);
+      // console.log(arg0);
       if (arg0 === 'viseurupdate') {
         context.viseur1 = game.settings.get("devastra", "viseur1");
         context.viseur2 = game.settings.get("devastra", "viseur2");
@@ -305,7 +305,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
         }
         break;
       default:
-        console.log("C'est bizarre !");
+        // console.log("C'est bizarre !");
     };
   }
 
@@ -463,7 +463,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     };
 
 
-    console.log("opponentActor = ", opponentActor);
+    // console.log("opponentActor = ", opponentActor);
     
 
 
@@ -510,8 +510,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       myDamage = myDamageData.damage;
       myDamageType = myDamageData.damagetype;
 
-      console.log("myDamageData = ", myDamageData);
-      console.log("isInventory = ", isInventory);
+      // console.log("myDamageData = ", myDamageData);
+      // console.log("isInventory = ", isInventory);
 
 
       let myItem;
@@ -541,8 +541,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
         }
       }
 
-      console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
-      }
+      // console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
+    }
 
 
     
@@ -656,7 +656,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     
 
 
-    console.log("total = ", total);
+    // console.log("total = ", total);
 
     //////////////////////////////////////////////////////////////////
     if (total <= 0) {
@@ -669,7 +669,6 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
 
     // Soustraction des jetons si en nombre suffisant, sinon "return"
-    let myErrorTokenNbr = 0;
     if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
       if (myShaktiSuffisanteFlag) {
         await myActor.update({ "system.shakti_initiale.value":  parseInt(myActor.system.shakti_initiale.value) - parseInt(myPlusDeuxDesDAttaque) });
@@ -732,15 +731,15 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
       const r = new Roll(myRoll, this.actor.getRollData());
       await r.evaluate();
-      console.log(r);
+      // console.log(r);
       let myRDice = r.dice;
-      console.log(myRDice);
-      console.log(myRDice[0]);
+      // console.log(myRDice);
+      // console.log(myRDice[0]);
       for (let key in myRDice) {
-        console.log(myRDice[key]);
+        // console.log(myRDice[key]);
         for (let i=0; i<myRDice[key].number; i++) {
           let myD = myRDice[key].results[i].result;
-          console.log(myD);
+          // console.log(myD);
           switch ( myD ) {
             case 1: d6_1++;
             break;
@@ -754,7 +753,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
             break;
             case 6: d6_6++;
             break;
-            default: console.log("C'est bizarre !");
+            default: // console.log("C'est bizarre !");
           };
           n.nbrRelance = 0;
           if (n.mySixExplo) {
@@ -780,7 +779,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       // r._total = "0";
 
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-      console.log("myTypeOfThrow", myTypeOfThrow);
+      // console.log("myTypeOfThrow", myTypeOfThrow);
 
       msg = await r.toMessage({
         user: game.user.id,
@@ -797,7 +796,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    console.log("myTypeOfThrow", myTypeOfThrow);
+    // console.log("myTypeOfThrow", myTypeOfThrow);
 
     msg = await rModif.toMessage({
       user: game.user.id,
@@ -860,7 +859,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       d6: n.d6_6,
       dA: d6_A
     }
-    console.log("smartData avant retour func = ", smartData);
+    // console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
     
     ChatMessage.create({
@@ -1024,8 +1023,8 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
     this.label = label;
   };
   myItemTarget["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  console.log('game.user.targets = ', game.user.targets);
-  console.log('game.user.targets.size = ', game.user.targets.size);
+  // console.log('game.user.targets = ', game.user.targets);
+  // console.log('game.user.targets.size = ', game.user.targets.size);
   if (game.user.targets.size != 0) {
     for (let targetedtoken of game.user.targets) {
       myItemTarget[targetedtoken.id.toString()] = new myObject(targetedtoken.id.toString(), targetedtoken.name.toString());
@@ -1145,7 +1144,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
       myNbrDeDomaine = myActorID.system.domains.dmy.value;
       myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
     break;
-    default : console.log("Outch !");
+    default : // console.log("Outch !");
   };
 
 
@@ -1304,7 +1303,7 @@ async function _skillDiceRollDialogDeblocked (
         myNbrDeDomaine = myActorID.system.domains.dmy.value;
         myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
       break;
-      default : console.log("Outch !");
+      default : // console.log("Outch !");
     };
     var dialogData = {
       initthrow: myInitThrow,

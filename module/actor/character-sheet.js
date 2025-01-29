@@ -96,7 +96,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     // with the arguments from the emission.
     /*
     game.socket.on('system.devastra', (arg0) => {
-      console.log(arg0);
+      // console.log(arg0);
       if (arg0 === 'viseurupdate') {
         context.viseur1 = game.settings.get("devastra", "viseur1");
         context.viseur2 = game.settings.get("devastra", "viseur2");
@@ -514,57 +514,57 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
    */
 
   async _onDragStartJetonAction(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'actionColJeton' });
   }
   async _onDragStartJetonShakti(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'shaktiJeton' });
   }
   async _onDragStartJetonInit(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'depotInit' });
   }
   async _onDragStartJetonPoubelle(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'depotPoubelle' });
   }
   async _onDragStartJetonDepot1(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot1' });
   }
   async _onDragStartJetonDepot2(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot2' });
   }
   async _onDragStartJetonDepot3(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot3' });
   }
   async _onDragStartJetonDepot4(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot4' });
   }
   async _onDragStartJetonDepot5(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot5' });
   }
   async _onDragStartJetonDepot6(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot6' });
   }
   async _onDragStartJetonDepot7(event) {
-    console.log("Je passe bien ici !");
+    // console.log("Je passe bien ici !");
     let myActor = this.actor;
     await myActor.update({ "system.srcJeton": 'jetonDepot7' });
   }
@@ -630,7 +630,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
   }
@@ -698,7 +698,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
 
@@ -765,14 +765,14 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
 
   async _onDragDropJetonPoubelle(event) {
     let myActor = this.actor;
     let srcJeton = await myActor.system.srcJeton;
-    console.log("srcJeton", srcJeton);
+    // console.log("srcJeton", srcJeton);
     switch (srcJeton) {
       case 'actionColJeton':
         if (myActor.system.action.piledejetons) {
@@ -828,7 +828,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
@@ -914,7 +914,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
   }
@@ -994,7 +994,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
   }
@@ -1074,7 +1074,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
     }
   }
@@ -1154,7 +1154,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
     }
   }
@@ -1234,7 +1234,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
     }
   }
@@ -1315,7 +1315,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
         };
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
   }
@@ -1395,7 +1395,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       // ça n'est pas censé arriver
       break;
       default:
-        console.log(`Sorry, that's an error.`);
+        // console.log(`Sorry, that's an error.`);
     }
   }
   }
@@ -1472,8 +1472,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let whichCheckBox ="";
     let whichLevel = 0;
     let myActor = this.actor;
-    console.log("myActor", myActor);
-    console.log("myActor.tokens", myActor.tokens);
+    // console.log("myActor", myActor);
+    // console.log("myActor.tokens", myActor.tokens);
     switch (jaugeNumber) {
       case "1":
         whichCheckBox = myActor.system.chakra.niveaux.un;
@@ -1497,7 +1497,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
         whichCheckBox = myActor.system.chakra.niveaux.sept;
         break;
       default:
-        console.log("C'est bizarre !");
+        // console.log("C'est bizarre !");
     }
     
     let oldLevelChakra = myActor.system.chakra.value;
@@ -1694,10 +1694,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       var mySixExploFlag = myResultDialog.sixexplo;
       var myCinqExploFlag = myResultDialog.cinqexplo;
 
-      console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
-      console.log("myIgnoreMalus", myIgnoreMalus);
-      console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
-      console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+      // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+      // console.log("myIgnoreMalus", myIgnoreMalus);
+      // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+      // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
       var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
       var myconvictionSuffisanteFlag = ((myIgnoreMalus + myPlusUnSuccesAuto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
@@ -1726,10 +1726,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       var mySixExploFlag = myResultDialog.sixexplo;
       var myCinqExploFlag = myResultDialog.cinqexplo;
 
-      console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
-      console.log("myIgnoreMalus", myIgnoreMalus);
-      console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
-      console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
+      // console.log("myPlusDeuxDesDAttaque", myPlusDeuxDesDAttaque);
+      // console.log("myIgnoreMalus", myIgnoreMalus);
+      // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
+      // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
 
       var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
@@ -1777,7 +1777,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
 
 
-    console.log("opponentActor = ", opponentActor);
+    // console.log("opponentActor = ", opponentActor);
 
 
     /*
@@ -1822,10 +1822,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       myDamage = myDamageData.damage;
       myDamageType = myDamageData.damagetype;      
 
-      console.log("myDamageData = ", myDamageData);
-      console.log("isInventory = ", isInventory);
+      // console.log("myDamageData = ", myDamageData);
+      // console.log("isInventory = ", isInventory);
 
-      console.log("myActor = ", myActor);
+      // console.log("myActor = ", myActor);
 
 
       let myItem;
@@ -1855,7 +1855,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
         }
       }
 
-      console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
+      // console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
   
     }
 
@@ -1982,7 +1982,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
 
 
-    console.log("total = ", total);
+    // console.log("total = ", total);
 
     //////////////////////////////////////////////////////////////////
     if (total <= 0) {
@@ -2066,15 +2066,15 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       const r = new Roll(myRoll, this.actor.getRollData());
       await r.evaluate();
-      console.log(r);
+      // console.log(r);
       let myRDice = r.dice;
-      console.log(myRDice);
-      console.log(myRDice[0]);
+      // console.log(myRDice);
+      // console.log(myRDice[0]);
       for (let key in myRDice) {
-        console.log(myRDice[key]);
+        // console.log(myRDice[key]);
         for (let i=0; i<myRDice[key].number; i++) {
           let myD = myRDice[key].results[i].result;
-          console.log(myD);
+          // console.log(myD);
           switch ( myD ) {
             case 1: d6_1++;
             break;
@@ -2088,7 +2088,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
             break;
             case 6: d6_6++;
             break;
-            default: console.log("C'est bizarre !");
+            default: // console.log("C'est bizarre !");
           };
           n.nbrRelance = 0;
           if (n.mySixExplo) {
@@ -2114,7 +2114,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       // r._total = "0";
 
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-      console.log("myTypeOfThrow", myTypeOfThrow);
+      // console.log("myTypeOfThrow", myTypeOfThrow);
 
       msg = await r.toMessage({
         user: game.user.id,
@@ -2131,7 +2131,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     rModif._total  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    console.log("myTypeOfThrow", myTypeOfThrow);
+    // console.log("myTypeOfThrow", myTypeOfThrow);
 
     msg = await rModif.toMessage({
       user: game.user.id,
@@ -2193,7 +2193,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       d6: n.d6_6,
       dA: mySuccesAutoSupplem
     }
-    console.log("smartData avant retour func = ", smartData);
+    // console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
      
     ChatMessage.create({
@@ -2365,8 +2365,8 @@ async function _whichTarget (myActor, template, myTitle, myDialogOptions, domain
     this.label = label;
   };
   myItemTarget["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  console.log('game.user.targets = ', game.user.targets);
-  console.log('game.user.targets.size = ', game.user.targets.size);
+  // console.log('game.user.targets = ', game.user.targets);
+  // console.log('game.user.targets.size = ', game.user.targets.size);
   if (game.user.targets.size != 0) {
     for (let targetedtoken of game.user.targets) {
       myItemTarget[targetedtoken.id.toString()] = new myObject(targetedtoken.id.toString(), targetedtoken.name.toString());
@@ -2487,7 +2487,7 @@ async function _skillDiceRollDialog(
       myNbrDeDomaine = myActorID.system.domains.dmy.value;
       myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
     break;
-    default : console.log("Outch !");
+    default : // console.log("Outch !");
   };
 
   let myNombreDeMalusBlessure = 0;
@@ -2652,7 +2652,7 @@ async function _skillDiceRollDialogDeblocked (
       myNbrDeDomaine = myActorID.system.domains.dmy.value;
       myNbrDeBonusDomaine = myActorID.system.domains.dmy.bonusdice;
     break;
-    default : console.log("Outch !");
+    default : // console.log("Outch !");
   };
   var dialogData = {
     initthrow: myInitThrow,

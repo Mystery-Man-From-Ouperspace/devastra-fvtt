@@ -466,20 +466,19 @@
                         <div>
                             {{ localize "DEVASTRA.Dés non-explosifs" }}
                         </div>
-                    </td>
-                    <td> 
-                    </td>
-                    <td class="right">
-                        <select name="desnonexplo">
-                            {{#select desnonexplo}}
-                                <option value="0">–</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            {{/select}}
-                        </select>
-                    </td>
-                </tr>
-
+                        </td>
+                        <td> 
+                        </td>
+                        <td class="right">
+                            <select name="desnonexplo">
+                                {{#select desnonexplo}}
+                                    <option value="0">–</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                {{/select}}
+                            </select>
+                        </td>
+                    </tr>
                 </table>
                 <td class="check right"><input type="checkbox" name="versiondebloquee" {{checked versiondebloquee}} />{{ localize "DEVASTRA.Version débloquée" }}</td>
             </div>

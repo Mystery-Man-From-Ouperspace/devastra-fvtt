@@ -111,7 +111,7 @@ export class PlayersManager extends Application {
    * @param {MouseEvent} event    The originating left click event
   */
   async _onUpdateUser (event) {
-    console.log("event", event)
+    // console.log("event", event)
     let myUserId = event.currentTarget.value;
     let myActorId;
     for (let user of game.users._source) {
@@ -119,9 +119,9 @@ export class PlayersManager extends Application {
         myActorId = user.character;
       }
     }
-    console.log("myActorId", myActorId);
+    // console.log("myActorId", myActorId);
     let myActor = game.actors.get(myActorId);
-    console.log("myActor", myActor);
+    // console.log("myActor", myActor);
 
     if (myActor) {
 

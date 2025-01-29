@@ -37,7 +37,7 @@ globalThis.SYSTEM = DEVASTRA;
  * Init hook.
  */
 Hooks.once("init", async function () {
-  console.log(`DEVASTRA System | Initializing`);
+  // console.log(`DEVASTRA System | Initializing`);
 
   game.system.CONST = SYSTEM;
   
@@ -247,7 +247,7 @@ Hooks.once("init", async function () {
   game.devastra.playersManager = new PlayersManager();
 
 
-  console.log(`DEVASTRA System | Initialized`);
+  // console.log(`DEVASTRA System | Initialized`);
 });
 
 
@@ -345,7 +345,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   if (attacksapplyButton != undefined && attacksapplyButton != null) {
     attacksapplyButton.addEventListener('click', () => {
 
-      console.log("On est bien dans attacksapplyButton");
+      // console.log("On est bien dans attacksapplyButton");
 
 
     })
@@ -354,7 +354,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   if (damagedoneButton != undefined && damagedoneButton != null) {
     damagedoneButton.addEventListener('click', () => {
 
-      console.log("On est bien dans damagedoneButton");
+      // console.log("On est bien dans damagedoneButton");
 
 
     })
@@ -363,7 +363,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   if (shakticalculateButton != undefined && shakticalculateButton != null) {
     shakticalculateButton.addEventListener('click', () => {
 
-      console.log("On est bien dans shakticalculatebutton");
+      // console.log("On est bien dans shakticalculatebutton");
 
       // La joueuse ou le PNJ utilise de la shakti depuis le Tchat pour sa défense contre une attaque
 
@@ -545,7 +545,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
 
-      console.log("La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant");
+      // console.log("La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant");
       /*
       const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
 
@@ -560,9 +560,9 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
 
       const myUser = game.user;
-      console.log("game.user.id = ", game.user.id);
-      console.log("yourplayerid = ", yourplayerid);
-      if (!(game.user.id == yourplayerid)) {console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
+      // console.log("game.user.id = ", game.user.id);
+      // console.log("yourplayerid = ", yourplayerid);
+      if (!(game.user.id == yourplayerid)) {// console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
 
       const myActor = game.actors.get(youractorid);
 
@@ -596,7 +596,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // Le MJ applique depuis le Tchat les blessures infligées à son PNJ par le PJ
       // On vérifie d'abord que c'est bien le MJ, sinon on ne fait rien
 
-      console.log('Je suis dans woundsapplytoNPCButton')
+      // console.log('Je suis dans woundsapplytoNPCButton')
 
       const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
 
@@ -608,7 +608,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const youropponentdamage = html[0].querySelector("div[class='youropponentdamage']").textContent;
       const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
 
-      if (!(game.user.isGM)) {console.log("TADAM !") ;return}; // Pas le bon utilisateur !
+      if (!(game.user.isGM)) {// console.log("TADAM !") ;return}; // Pas le bon utilisateur !
 
 
       const myActor = game.actors.get(youropponentid);
@@ -640,7 +640,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées");
+      // console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées");
 
       // On récupère les datas de l'attaquant dans le Tchat
       const nd = html[0].querySelector("span[class='nd']").textContent;
@@ -710,7 +710,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues");
+      // console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a reçues");
 
       // On récupère les datas de l'attaquant dans le Tchat
       const nd = html[0].querySelector("span[class='nd']").textContent;
@@ -782,7 +782,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
 
-      console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées");
+      // console.log("La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a infligées");
 
       // On récupère les datas de l'attaquant dans le Tchat
       const nd = html[0].querySelector("span[class='nd']").textContent;
@@ -875,7 +875,7 @@ async function _showCalculateShaktiInChat (
   selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
-  console.log("_showCalculateShaktiInChat");
+  // console.log("_showCalculateShaktiInChat");
 
   let myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
@@ -950,7 +950,7 @@ async function _showCalculateShaktiInChat (
     dA: mySuccesAutoSupplem
     */
   };
-  console.log("smartData avant retour func = ", smartData);
+  // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
 
   const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
@@ -967,15 +967,15 @@ async function _showCalculateShaktiInChat (
 
 
   var piledejetonsShakti = -999;
-  console.log("myActor.type = ", theActiveActor.type);
+  // console.log("myActor.type = ", theActiveActor.type);
   if (theActiveActor.type === "character") {
     piledejetonsShakti = parseInt(await theActiveActor.system.shakti.piledejetons);
   } else {
     piledejetonsShakti = parseInt(await theActiveActor.system.shakti_initiale.value);
   };
 
-  console.log("myShakti = ", myShakti);
-  console.log("piledejetonsShakti = ", piledejetonsShakti);
+  // console.log("myShakti = ", myShakti);
+  // console.log("piledejetonsShakti = ", piledejetonsShakti);
   if (myShakti > piledejetonsShakti)
   {
 
@@ -1090,7 +1090,7 @@ async function _showCalculateAttacksInChat (
     dA: mySuccesAutoSupplem
     */
   }
-  console.log("smartData avant retour func = ", smartData);
+  // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
 
   const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
@@ -1145,7 +1145,7 @@ async function _showMessagesInChat (myActor, myTypeOfThrow, r, mySmartRTemplate,
       rollMode: 'selfroll'                      // Self Roll
     });
     break;
-    default: console.log("C'est bizarre !");
+    default: // console.log("C'est bizarre !");
 
 
     if (game.modules.get("dice-so-nice")?.active) {
@@ -1200,7 +1200,7 @@ async function _showMessagesInChat (myActor, myTypeOfThrow, r, mySmartRTemplate,
       });
 
     break;
-    default: console.log("C'est bizarre !");
+    default: // console.log("C'est bizarre !");
   };
 
   // SmartR Message
@@ -1249,7 +1249,7 @@ async function _showMessagesInChat (myActor, myTypeOfThrow, r, mySmartRTemplate,
       });
 
     break;
-    default: console.log("C'est bizarre !");
+    default: // console.log("C'est bizarre !");
   };
 
 }
@@ -1260,7 +1260,7 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 
   const oldLevelBlessures = await myActor.system.blessures.lvl;
 
-  console.log("oldLevelBlessures = ", oldLevelBlessures);
+  // console.log("oldLevelBlessures = ", oldLevelBlessures);
 
   let newLevelBlessures = oldLevelBlessures + wounds;
 
@@ -1268,7 +1268,7 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
     newLevelBlessures = 8;
   };
 
-  console.log("newLevelBlessures = ", newLevelBlessures);
+  // console.log("newLevelBlessures = ", newLevelBlessures);
 
   if (oldLevelBlessures < 1 && newLevelBlessures >= 1) {
     myActor.update({ "system.blessures.blessure_1.check": true });
@@ -1451,19 +1451,7 @@ async function _treatSkillDiceRollDefenceDialog(
   myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
-  console.log("Il s'agit d'un PJ")
-
-
-
-
-
-
-
-
-
-
-
-
+  // console.log("Il s'agit d'un PJ")
 
 
   let myResultDialog = await _skillDiceRollDefenceDialog(
@@ -1665,7 +1653,7 @@ async function _treatSkillDiceRollDefenceDialog(
         myNbrDeBonusDomaine = parseInt(nbrdebonusdomainedmy);
 
       break;
-      default: console.log("C'est bizarre !");
+      default: // console.log("C'est bizarre !");
     }
     if (!(parseInt(bonusdomaineflag))) {
       myNbrDeBonusDomaine = 0;
@@ -1813,7 +1801,7 @@ async function _treatSkillDiceRollDefenceDialog(
       
 
 
-      console.log("defence = ", defence);
+      // console.log("defence = ", defence);
 
       //////////////////////////////////////////////////////////////////
       if (defence <= 0) {
@@ -1897,15 +1885,15 @@ async function _treatSkillDiceRollDefenceDialog(
 
         const r = new Roll(myRoll, myActor.getRollData());
         await r.evaluate();
-        console.log(r);
+        // console.log(r);
         let myRDice = r.dice;
-        console.log(myRDice);
-        console.log(myRDice[0]);
+        // console.log(myRDice);
+        // console.log(myRDice[0]);
         for (let key in myRDice) {
-          console.log(myRDice[key]);
+          // console.log(myRDice[key]);
           for (let i=0; i<myRDice[key].number; i++) {
             let myD = myRDice[key].results[i].result;
-            console.log(myD);
+            // console.log(myD);
             switch ( myD ) {
               case 1: d6_1++;
               break;
@@ -1919,7 +1907,7 @@ async function _treatSkillDiceRollDefenceDialog(
               break;
               case 6: d6_6++;
               break;
-              default: console.log("C'est bizarre !");
+              default: // console.log("C'est bizarre !");
             };
             n.nbrRelance = 0;
             if (n.mySixExplo) {
@@ -1945,7 +1933,7 @@ async function _treatSkillDiceRollDefenceDialog(
         // r._total = "0";
 
         const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-        console.log("myTypeOfThrow", myTypeOfThrow);
+        // console.log("myTypeOfThrow", myTypeOfThrow);
 
         msg = await r.toMessage({
           user: game.user.id,
@@ -1964,7 +1952,7 @@ async function _treatSkillDiceRollDefenceDialog(
       defence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
 
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-      console.log("myTypeOfThrow", myTypeOfThrow);
+      // console.log("myTypeOfThrow", myTypeOfThrow);
 
       msg = await rModif.toMessage({
         user: game.user.id,
@@ -2029,7 +2017,7 @@ async function _treatSkillDiceRollDefenceDialog(
         d6: n.d6_6,
         dA: mySuccesAutoSupplem
       }
-      console.log("smartData avant retour func = ", smartData);
+      // console.log("smartData avant retour func = ", smartData);
       const smartHtml = await renderTemplate(smartTemplate, smartData);
         
       ChatMessage.create({
@@ -2066,7 +2054,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
       _showCalculateShaktiInChat(
         myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
         mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
       );
   
@@ -2079,7 +2067,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
 async function _skillEnterShaktiDefence(
   myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -2096,9 +2084,9 @@ async function _skillEnterShaktiDefence(
   const opposantficheId = myOpposantficheId;
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
-  const weapon = weapon;
-  const power = power;
-  const magic = magic;
+  const weapon = myWeapon;
+  const power = myPower;
+  const magic = myMagic;
 
   const selectedinventory = mySelectedinventory;
   const selectedinventorydevastra = mySelectedinventorydevastra;
@@ -2261,7 +2249,7 @@ async function _skillDiceRollDefenceDialog(
         break;
         case '5': myNombreDeMalusStatutDMy++;
         break;
-        default: console.log(`Sorry, that's an error.`);
+        default: // console.log(`Sorry, that's an error.`);
       }
     }
   };
@@ -2469,7 +2457,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
         break;
         case '5': myNombreDeMalusStatutDMy++;
         break;
-        default: console.log(`Sorry, that's an error.`);
+        default: // console.log(`Sorry, that's an error.`);
       }
     }
   };
@@ -2603,7 +2591,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
   myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
   mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
-  console.log("Il s'agit d'un PNJ ou d'un monstre")
+  // console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog = await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
     myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
@@ -2701,7 +2689,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
     // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
-    var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
     // var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
 
   } else {
@@ -2772,7 +2760,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
     // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
-    var shaktisuffisanteflag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    var shaktisuffisanteflag = (plusdeuxdesdattaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
     // var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
   
   }
@@ -2806,7 +2794,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       // myNbrDeBonusDomaine = parseInt(nbrdebonusdomainedmy);
 
     break;
-    default: console.log("C'est bizarre !");
+    default: // console.log("C'est bizarre !");
   }
   if (!(parseInt(bonusdomaineflag))) {
     myNbrDeBonusDomaine = 0;
@@ -2957,7 +2945,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     
 
 
-    console.log("defence = ", defence);
+    // console.log("defence = ", defence);
 
     //////////////////////////////////////////////////////////////////
     if (defence <= 0) {
@@ -2969,26 +2957,15 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
 
     // Soustraction des jetons si en nombre suffisant, sinon "return"
-    let myErrorTokenNbr = 0;
     if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
       if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
-        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
+        await myActor.update({ "system.shakti_initiale.value":  parseInt(myActor.system.shakti_initiale.value) - parseInt(myPlusDeuxDesDAttaque) });
+        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4-npc"));
       } else {
-        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
-        myErrorTokenNbr++;
+        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4-npc"));
+      return;
       }
     }
-    if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
-      if (myconvictionSuffisanteFlag) {
-        await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
-        ui.notifications.info(game.i18n.localize("DEVASTRA.Info5"));
-      } else {
-        ui.notifications.error(game.i18n.localize("DEVASTRA.Error5"));
-        myErrorTokenNbr++;
-      }
-    }
-    if (myErrorTokenNbr) { return };
 
 
 
@@ -3041,15 +3018,15 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
       const r = new Roll(myRoll, myActor.getRollData());
       await r.evaluate();
-      console.log(r);
+      // console.log(r);
       let myRDice = r.dice;
-      console.log(myRDice);
-      console.log(myRDice[0]);
+      // console.log(myRDice);
+      // console.log(myRDice[0]);
       for (let key in myRDice) {
-        console.log(myRDice[key]);
+        // console.log(myRDice[key]);
         for (let i=0; i<myRDice[key].number; i++) {
           let myD = myRDice[key].results[i].result;
-          console.log(myD);
+          // console.log(myD);
           switch ( myD ) {
             case 1: d6_1++;
             break;
@@ -3063,7 +3040,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
             break;
             case 6: d6_6++;
             break;
-            default: console.log("C'est bizarre !");
+            default: // console.log("C'est bizarre !");
           };
           n.nbrRelance = 0;
           if (n.mySixExplo) {
@@ -3089,7 +3066,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       // r._total = "0";
 
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-      console.log("myTypeOfThrow", myTypeOfThrow);
+      // console.log("myTypeOfThrow", myTypeOfThrow);
 
       msg = await r.toMessage({
         user: game.user.id,
@@ -3108,7 +3085,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     defence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
 
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
-    console.log("myTypeOfThrow", myTypeOfThrow);
+    // console.log("myTypeOfThrow", myTypeOfThrow);
 
     msg = await rModif.toMessage({
       user: game.user.id,
@@ -3173,7 +3150,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       d6: n.d6_6,
       dA: mySuccesAutoSupplem
     }
-    console.log("smartData avant retour func = ", smartData);
+    // console.log("smartData avant retour func = ", smartData);
     const smartHtml = await renderTemplate(smartTemplate, smartData);
       
     ChatMessage.create({
@@ -3294,7 +3271,7 @@ async function _skillDiceRollDefenceNPCDialog(
         break;
         case '5': myNombreDeMalusStatutDMy++;
         break;
-        default: console.log(`Sorry, that's an error.`);
+        default: // console.log(`Sorry, that's an error.`);
       }
     }
   };
@@ -3497,7 +3474,7 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
         break;
         case '5': myNombreDeMalusStatutDMy++;
         break;
-        default: console.log(`Sorry, that's an error.`);
+        default: // console.log(`Sorry, that's an error.`);
       }
     }
   };

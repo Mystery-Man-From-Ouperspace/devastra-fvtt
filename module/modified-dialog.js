@@ -159,7 +159,7 @@ export class ModifiedDialog extends Dialog {
 
 
   _onChangeDomain(event) {
-    console.log("J'exécute _onChangeDomain()");
+    // console.log("J'exécute _onChangeDomain()");
     let domains = this.element.find('select[name="domains"]').val();
     let dph = this.element.find('tr[class="dph"]');
     let dma = this.element.find('tr[class="dma"]');
