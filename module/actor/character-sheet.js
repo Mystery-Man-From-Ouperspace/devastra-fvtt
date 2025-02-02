@@ -2391,10 +2391,6 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
       power: myHtml.find("span[class='power']").is(':checked'),
       magic: myHtml.find("span[class='magic']").is(':checked'),
 
-      weapon: myHtml.find("input[value='weapon']").is(':checked'),
-      power: myHtml.find("input[value='power']").is(':checked'),
-      magic: myHtml.find("input[value='magic']").is(':checked'),
-
       selectedinventory: myHtml.find("select[name='inventory']").val(),
       selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),
       selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),

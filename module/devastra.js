@@ -918,6 +918,23 @@ async function _showCalculateDamageInChat (
   let myAttackant = game.actors.get(attaquantficheId);
   let myOpponent = game.actors.get(opposantficheId);
 
+  let myDamage = parseInt(damage);
+  let myDamageType = "";
+  const theDamageType = damagetype.toString();
+  switch (theDamageType) {
+    case "1": myDamageType = "@domains.dph";
+    break;
+    case "2": myDamageType = "@domains.dma";
+    break;
+    case "3": myDamageType = "@domains.din";
+    break;
+    case "4": myDamageType = "@domains.dso";
+    break;
+    case "5": myDamageType = "@domains.dmy";
+    break;
+    default: myDamageType = "";
+  }
+
   let sentence1;
   let sentence2;
   let sentence3;
@@ -956,9 +973,9 @@ async function _showCalculateDamageInChat (
   let myMagicDamage = "";
 
 
-  if (isinventory) {
+  if (parseInt(isinventory)) {
 
-    if (weapon) {
+    if (parseInt(weapon)) {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -971,7 +988,7 @@ async function _showCalculateDamageInChat (
         }
         if (myItem != undefined) {
           myWeaponDamageBase = parseInt(myItem.system.damage_base);
-          myWeaponDamage = myItem.system.damage;
+          myWeaponDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myWeaponDamageBase;
@@ -991,7 +1008,7 @@ async function _showCalculateDamageInChat (
         }
         if (myItem != undefined) {
           myDevastraDamageBase = parseInt(myItem.system.damage_base);
-          myDevastraDamage = myItem.system.damage;
+          myDevastraDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myDevastraDamageBase;
@@ -1000,7 +1017,7 @@ async function _showCalculateDamageInChat (
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
 
-    if (power) {
+    if (parseInt(power)) {
       myItem = undefined;
       if (selectedinventorypower == "0") {
         myPowerDamageBase = 0;
@@ -1013,7 +1030,7 @@ async function _showCalculateDamageInChat (
         }
         if (myItem != undefined) {
           myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+          myPowerDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myPowerDamageBase;
@@ -1022,7 +1039,7 @@ async function _showCalculateDamageInChat (
       console.log("myPowerDamage = ", myPowerDamage);
     }
 
-    if (magic) {
+    if (parseInt(magic)) {
       myItem = undefined;
       if (selectedinventorymagic == "0") {
         myMagicDamageBase = 0;
@@ -1035,7 +1052,7 @@ async function _showCalculateDamageInChat (
         }
         if (myItem != undefined) {
           myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = myItem.system.damage;
+          myMagicDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myMagicDamageBase;
@@ -1046,8 +1063,8 @@ async function _showCalculateDamageInChat (
 
   } else {
 
-    myWeaponDamageBase = damage;
-    myWeaponDamage = damagetype;
+    myWeaponDamageBase = myDamage;
+    myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
     pdc += await _computeDomain2Val(myWeaponDamage);  
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -1172,6 +1189,23 @@ async function _showCalculateShaktiInChat (
 
   let myAttackant = game.actors.get(attaquantficheId);
 
+  let myDamage = parseInt(damage);
+  let myDamageType = "";
+  const theDamageType = damagetype.toString();
+  switch (theDamageType) {
+    case "1": myDamageType = "@domains.dph";
+    break;
+    case "2": myDamageType = "@domains.dma";
+    break;
+    case "3": myDamageType = "@domains.din";
+    break;
+    case "4": myDamageType = "@domains.dso";
+    break;
+    case "5": myDamageType =  "@domains.dmy";
+    break;
+    default: myDamageType = "";
+  }
+
   let sentence1;
   let sentence2;
   let sentence3;
@@ -1209,9 +1243,9 @@ async function _showCalculateShaktiInChat (
   let myMagicDamage = "";
 
 
-  if (isinventory) {
+  if (parseInt(isinventory)) {
 
-    if (weapon) {
+    if (parseInt(weapon)) {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -1224,7 +1258,7 @@ async function _showCalculateShaktiInChat (
         }
         if (myItem != undefined) {
           myWeaponDamageBase = parseInt(myItem.system.damage_base);
-          myWeaponDamage = myItem.system.damage;
+          myWeaponDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myWeaponDamageBase;
@@ -1244,7 +1278,7 @@ async function _showCalculateShaktiInChat (
         }
         if (myItem != undefined) {
           myDevastraDamageBase = parseInt(myItem.system.damage_base);
-          myDevastraDamage = myItem.system.damage;
+          myDevastraDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myDevastraDamageBase;
@@ -1253,7 +1287,7 @@ async function _showCalculateShaktiInChat (
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
 
-    if (power) {
+    if (parseInt(power)) {
       myItem = undefined;
       if (selectedinventorypower == "0") {
         myPowerDamageBase = 0;
@@ -1266,7 +1300,7 @@ async function _showCalculateShaktiInChat (
         }
         if (myItem != undefined) {
           myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+          myPowerDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myPowerDamageBase;
@@ -1275,7 +1309,7 @@ async function _showCalculateShaktiInChat (
       console.log("myPowerDamage = ", myPowerDamage);
     }
 
-    if (magic) {
+    if (parseInt(magic)) {
       myItem = undefined;
       if (selectedinventorymagic == "0") {
         myMagicDamageBase = 0;
@@ -1288,7 +1322,7 @@ async function _showCalculateShaktiInChat (
         }
         if (myItem != undefined) {
           myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = myItem.system.damage;
+          myMagicDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myMagicDamageBase;
@@ -1299,12 +1333,12 @@ async function _showCalculateShaktiInChat (
 
   } else {
 
-    myWeaponDamageBase = damage;
-    myWeaponDamage = damagetype;
+    myWeaponDamageBase = myDamage;
+    myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
     pdc += await _computeDomain2Val(myWeaponDamage);  
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
-    console.log("myWeaponDamage = ", mymyWeaponDamageMagicDamage);
+    console.log("myWeaponDamage = ", myWeaponDamage);
   }
 
  async function _computeDomain2Val (myDamage) {
@@ -1468,6 +1502,23 @@ async function _showCalculateAttacksInChat (
   let myAttackant = game.actors.get(attaquantficheId);
   let myOpponent = game.actors.get(opposantficheId);
 
+  let myDamage = parseInt(damage);
+  let myDamageType = "";
+  const theDamageType = damagetype.toString();
+  switch (theDamageType) {
+    case "1": myDamageType = "@domains.dph";
+    break;
+    case "2": myDamageType = "@domains.dma";
+    break;
+    case "3": myDamageType = "@domains.din";
+    break;
+    case "4": myDamageType = "@domains.dso";
+    break;
+    case "5": myDamageType =  "@domains.dmy";
+    break;
+    default: myDamageType = "";
+  }
+
   let sentence1;
   let sentence2;
   let sentence3;
@@ -1506,9 +1557,9 @@ async function _showCalculateAttacksInChat (
   let myMagicDamage = "";
 
 
-  if (isinventory) {
+  if (parseInt(isinventory)) {
 
-    if (weapon) {
+    if (parseInt(weapon)) {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -1521,7 +1572,7 @@ async function _showCalculateAttacksInChat (
         }
         if (myItem != undefined) {
           myWeaponDamageBase = parseInt(myItem.system.damage_base);
-          myWeaponDamage = myItem.system.damage;
+          myWeaponDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myWeaponDamageBase;
@@ -1541,7 +1592,7 @@ async function _showCalculateAttacksInChat (
         }
         if (myItem != undefined) {
           myDevastraDamageBase = parseInt(myItem.system.damage_base);
-          myDevastraDamage = myItem.system.damage;
+          myDevastraDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myDevastraDamageBase;
@@ -1550,7 +1601,7 @@ async function _showCalculateAttacksInChat (
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
 
-    if (power) {
+    if (parseInt(power)) {
       myItem = undefined;
       if (selectedinventorypower == "0") {
         myPowerDamageBase = 0;
@@ -1563,7 +1614,7 @@ async function _showCalculateAttacksInChat (
         }
         if (myItem != undefined) {
           myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+          myPowerDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myPowerDamageBase;
@@ -1572,7 +1623,7 @@ async function _showCalculateAttacksInChat (
       console.log("myPowerDamage = ", myPowerDamage);
     }
 
-    if (magic) {
+    if (parseInt(magic)) {
       myItem = undefined;
       if (selectedinventorymagic == "0") {
         myMagicDamageBase = 0;
@@ -1585,7 +1636,7 @@ async function _showCalculateAttacksInChat (
         }
         if (myItem != undefined) {
           myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = myItem.system.damage;
+          myMagicDamage = parseInt(myItem.system.damage);
         }
       }
       pdc += myMagicDamageBase;
@@ -1596,12 +1647,13 @@ async function _showCalculateAttacksInChat (
 
   } else {
 
-    myWeaponDamageBase = damage;
-    myWeaponDamage = damagetype;
+    myWeaponDamageBase = myDamage;
+    myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
     pdc += await _computeDomain2Val(myWeaponDamage);  
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
-    console.log("myWeaponDamage = ", mymyWeaponDamageMagicDamage);
+    console.log("myWeaponDamage = ", myWeaponDamage);
+    
   }
 
   async function _computeDomain2Val (myDamage) {
