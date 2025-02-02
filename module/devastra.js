@@ -341,7 +341,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const attackscalculateButton3 = html[0].querySelector("[class='smart-blue-button attacks-off-auto-calculate-click']");
   const damagebutton = html[0].querySelector("[class='smart-blue-button damage-calculate-click']");
   const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-done-calculate-click']");
-  const damageapplybutton = html[0].querySelector("[class='smart-blue-button damage-apply-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
 
@@ -351,7 +350,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       console.log("On est bien dans damagedoneButton");
 
-      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque
+      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque infligée
 
       // On récupère les datas de l'attaquant dans le Tchat
       const nd = html[0].querySelector("span[class='nd']").textContent;
@@ -419,14 +418,12 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   }
 
 
-
-
   if (damagebutton != undefined && damagebutton != null) {
     damagebutton.addEventListener('click', () => {
 
       console.log("On est bien dans damagebutton");
 
-      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque
+      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque encaissée
 
       // On récupère les datas de l'attaquant dans le Tchat
       const nd = html[0].querySelector("span[class='nd']").textContent;
@@ -575,8 +572,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   };
 
 
-
-
   if (defencecalculateButton != undefined && defencecalculateButton != null) {
     defencecalculateButton.addEventListener('click', () => {
 
@@ -656,118 +651,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       }
 
-
-
-
-
-
-
-
-    
     })
   
   }
 
-
-
-
-  if (damageapplybutton != undefined && damageapplybutton != null) {
-    damageapplybutton.addEventListener('click', () => {
-
-      // La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant
-      // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
-
-
-      // console.log("La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant");
-      /*
-      const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
-
-      const youwin = html[0].querySelector("div[class='youwin']").textContent;
-      const yourplayerid = html[0].querySelector("div[class='yourplayerid']").textContent;
-      const youractorid = html[0].querySelector("div[class='youractorid']").textContent;
-      const yourdamage = html[0].querySelector("div[class='yourdamage']").textContent;
-      const yourprotection = html[0].querySelector("div[class='yourprotection']").textContent;
-      const youropponent = html[0].querySelector("div[class='youropponent']").textContent;
-      const youropponentid = html[0].querySelector("div[class='youropponentid']").textContent;
-      const youropponentdamage = html[0].querySelector("div[class='youropponentdamage']").textContent;
-      const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
-
-      const myUser = game.user;
-      // console.log("game.user.id = ", game.user.id);
-      // console.log("yourplayerid = ", yourplayerid);
-      if (!(game.user.id == yourplayerid)) {// console.log("TADAM !") ;return;}; // Pas le bon utilisateur !
-
-      const myActor = game.actors.get(youractorid);
-
-      let wounds = 0;
-      if (myActor != null) {
-        wounds = 1 + parseInt(youropponentdamage) - parseInt(yourprotection);
-        if (wounds < 0) {
-          wounds = 0;
-        };
-        _updateActorSheetWoundsJauge (myActor, wounds);
-
-        let typeOfThrow = parseInt(typeofthrow);
-
-        let smartTemplate = 'systems/devastra/templates/form/dice-result-dice-apply-wounds.html';
-
-        let smartData = {};
-
-        _showCalculateAttacksInChat (myActor, typeOfThrow, smartTemplate, smartData);
-      };
-      */
-
-    })
-
-  }
-
-
-  /*
-  if (woundsapplytoNPCButton != undefined && woundsapplytoNPCButton != null) {
-    woundsapplytoNPCButton.addEventListener('click', () => {
-
-      // Le MJ applique depuis le Tchat les blessures infligées à son PNJ par le PJ
-      // On vérifie d'abord que c'est bien le MJ, sinon on ne fait rien
-
-      // console.log('Je suis dans woundsapplytoNPCButton')
-
-      const typeofthrow = html[0].querySelector("div[class='typeofthrow']").textContent;
-
-      const youwin = html[0].querySelector("div[class='youwin']").textContent;
-      const yourdamage = html[0].querySelector("div[class='yourdamage']").textContent;
-      const yourprotection = html[0].querySelector("div[class='yourprotection']").textContent;
-      const youropponent = html[0].querySelector("div[class='youropponent']").textContent;
-      const youropponentid = html[0].querySelector("div[class='youropponentid']").textContent;
-      const youropponentdamage = html[0].querySelector("div[class='youropponentdamage']").textContent;
-      const youropponentprotection = html[0].querySelector("div[class='youropponentprotection']").textContent;
-
-      if (!(game.user.isGM)) {// console.log("TADAM !") ;return}; // Pas le bon utilisateur !
-
-
-      const myActor = game.actors.get(youropponentid);
-
-      let wounds = 0;
-      if (myActor != null) {
-        wounds = 1 + parseInt(yourdamage) - parseInt(youropponentprotection);
-        if (wounds < 0) {
-          wounds = 0;
-        };
-        _updateActorSheetWoundsJauge (myActor, wounds);
-
-        let typeOfThrow = 3; // juste pour le MJ utilisateur
-
-        let smartTemplate = 'systems/devastra/templates/form/dice-result-dice-apply-wounds.html'
-
-        let smartData = {};
-
-        _showCalculateAttacksInChat (myActor, typeOfThrow, smartTemplate, smartData);
-
-      };
-
-    })
-
-  }
-  */
+  
   if (attackscalculateButton3 != undefined && attackscalculateButton3 != null) {
     attackscalculateButton3.addEventListener('click', () => {
       // La joueuse effectue depuis le Tchat le calcul des blessures qu'elle a évitées
