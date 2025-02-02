@@ -343,7 +343,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-done-calculate-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
-
   
   if (damagedoneButton != undefined && damagedoneButton != null) {
     damagedoneButton.addEventListener('click', () => {
@@ -1048,7 +1047,8 @@ async function _showCalculateDamageInChat (
 
   async function computeDomain2Val (myDamage) {
     let domainValue = 0;
-    switch (myDamage) {
+    const theDamage = myDamage;
+    switch (theDamage) {
       case "@domains.dph":
         domainValue = myAttackant.system.domains.dph.value;
       break;
@@ -1066,6 +1066,7 @@ async function _showCalculateDamageInChat (
       break;
       default: domainValue = 9999999999;
     }
+    return domainValue;
   };
 
   // Ici on calcul le total d'armure du défenseur
@@ -1159,11 +1160,159 @@ async function _showCalculateShaktiInChat (
   if (shakti != undefined) { myShakti = parseInt(shakti); };
   let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
+  let myAttackant = game.actors.get(attaquantficheId);
+
   let sentence1;
   let sentence2;
   let sentence3;
 
-  let pdc = 5;
+  let pdc = 0;
+
+    /*
+  if (opposantficheId != "") {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
+  }
+  */
+
+  // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
+  let item;
+  let myItem;
+
+  let myWeaponDamageBase = 0;
+  let myWeaponDamage = "";
+
+  let myDevastraDamageBase = 0;
+  let myDevastraDamage = "";
+
+  let myPowerDamageBase = 0;
+  let myPowerDamage = "";
+
+  let myMagicDamageBase = 0;
+  let myMagicDamage = "";
+
+
+  if (isinventory) {
+
+    if (weapon) {
+      myItem = undefined;
+      if (selectedinventory == "0" || selectedinventory == "-1") {
+        myWeaponDamageBase = 0;
+        myWeaponDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'item')) {
+          if (item._id == selectedinventory) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myWeaponDamageBase = parseInt(myItem.system.damage_base);
+          myWeaponDamage = myItem.system.damage;
+        }
+      }
+      pdc += myWeaponDamageBase;
+      pdc += computeDomain2Val(myWeaponDamage);
+    } else {
+      myItem = undefined;
+      if (selectedinventorydevastra == "0") {
+        myDevastraDamageBase = 0;
+        myDevastraDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'devastra')) {
+          if (item._id == selectedinventorydevastra) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myDevastraDamageBase = parseInt(myItem.system.damage_base);
+          myDevastraDamage = myItem.system.damage;
+        }
+      }
+      pdc += myDevastraDamageBase;
+      pdc += computeDomain2Val(myDevastraDamage);  
+    }
+
+    if (power) {
+      myItem = undefined;
+      if (selectedinventorypower == "0") {
+        myPowerDamageBase = 0;
+        myPowerDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'power')) {
+          if (item._id == selectedinventorypower) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myPowerDamageBase = parseInt(myItem.system.damage_base);
+          myPowerDamage = myItem.system.damage;
+        }
+      }
+      pdc += myPowerDamageBase;
+      pdc += computeDomain2Val(myPowerDamage);  
+    }
+
+    if (magic) {
+      myItem = undefined;
+      if (selectedinventorymagic == "0") {
+        myMagicDamageBase = 0;
+        myMagicDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'magic')) {
+          if (item._id == selectedinventorymagic) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myMagicDamageBase = parseInt(myItem.system.damage_base);
+          myMagicDamage = myItem.system.damage;
+        }
+      }
+      pdc += myMagicDamageBase;
+      pdc += computeDomain2Val(myMagicDamage);  
+    }
+
+  } else {
+
+    myWeaponDamageBase = damage;
+    myWeaponDamage = damagetype;
+    pdc += myWeaponDamageBase;
+    pdc += computeDomain2Val(myWeaponDamage);  
+
+  }
+
+  async function computeDomain2Val (myDamage) {
+    let domainValue = 0;
+    const theDamage = myDamage;
+    switch (theDamage) {
+      case "@domains.dph":
+        domainValue = myAttackant.system.domains.dph.value;
+      break;
+      case "@domains.dma":
+        domainValue = myAttackant.system.domains.dma.value;
+      break;
+      case "@domains.din":
+        domainValue = myAttackant.system.domains.din.value;
+      break;
+      case "@domains.dso":
+        domainValue = myAttackant.system.domains.dso.value;
+      break;
+      case "@domains.dmy":
+        domainValue = myAttackant.system.domains.dmy.value;
+      break;
+      default: domainValue = 9999999999;
+    }
+    return domainValue;
+  };
+
+  console.log("pdc = ", pdc);
 
   if (opposantficheId != "") {
     if (youwin) {
@@ -1289,19 +1438,169 @@ async function _showCalculateAttacksInChat (
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
 
-  let myDamage = 0;
-  if (damage != undefined) { myDamage = parseInt(damage); };
+  let myTotal = 0;
+  if (total != undefined) { myTotal = parseInt(total); };
   let myDefence = 0;
   if (defence != undefined) { myDefence = parseInt(defence); };
   let myShakti = 0;
   if (shakti != undefined) { myShakti = parseInt(shakti); };
-  let youwin = ((myDamage - (myDefence + myShakti)) <= 0);
+  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
+
+  let myAttackant = game.actors.get(attaquantficheId);
+  let myOpponent = game.actors.get(opposantficheId);
 
   let sentence1;
   let sentence2;
   let sentence3;
 
-  let pdc = 5;
+  let pdc = 0;
+  let pdcMinusArmor = 0;
+
+    /*
+  if (opposantficheId != "") {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
+  }
+  */
+
+  // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
+  let item;
+  let myItem;
+
+  let myWeaponDamageBase = 0;
+  let myWeaponDamage = "";
+
+  let myDevastraDamageBase = 0;
+  let myDevastraDamage = "";
+
+  let myPowerDamageBase = 0;
+  let myPowerDamage = "";
+
+  let myMagicDamageBase = 0;
+  let myMagicDamage = "";
+
+
+  if (isinventory) {
+
+    if (weapon) {
+      myItem = undefined;
+      if (selectedinventory == "0" || selectedinventory == "-1") {
+        myWeaponDamageBase = 0;
+        myWeaponDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'item')) {
+          if (item._id == selectedinventory) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myWeaponDamageBase = parseInt(myItem.system.damage_base);
+          myWeaponDamage = myItem.system.damage;
+        }
+      }
+      pdc += myWeaponDamageBase;
+      pdc += computeDomain2Val(myWeaponDamage);
+    } else {
+      myItem = undefined;
+      if (selectedinventorydevastra == "0") {
+        myDevastraDamageBase = 0;
+        myDevastraDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'devastra')) {
+          if (item._id == selectedinventorydevastra) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myDevastraDamageBase = parseInt(myItem.system.damage_base);
+          myDevastraDamage = myItem.system.damage;
+        }
+      }
+      pdc += myDevastraDamageBase;
+      pdc += computeDomain2Val(myDevastraDamage);  
+    }
+
+    if (power) {
+      myItem = undefined;
+      if (selectedinventorypower == "0") {
+        myPowerDamageBase = 0;
+        myPowerDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'power')) {
+          if (item._id == selectedinventorypower) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myPowerDamageBase = parseInt(myItem.system.damage_base);
+          myPowerDamage = myItem.system.damage;
+        }
+      }
+      pdc += myPowerDamageBase;
+      pdc += computeDomain2Val(myPowerDamage);  
+    }
+
+    if (magic) {
+      myItem = undefined;
+      if (selectedinventorymagic == "0") {
+        myMagicDamageBase = 0;
+        myMagicDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'magic')) {
+          if (item._id == selectedinventorymagic) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myMagicDamageBase = parseInt(myItem.system.damage_base);
+          myMagicDamage = myItem.system.damage;
+        }
+      }
+      pdc += myMagicDamageBase;
+      pdc += computeDomain2Val(myMagicDamage);  
+    }
+
+  } else {
+
+    myWeaponDamageBase = damage;
+    myWeaponDamage = damagetype;
+    pdc += myWeaponDamageBase;
+    pdc += computeDomain2Val(myWeaponDamage);  
+
+  }
+
+  async function computeDomain2Val (myDamage) {
+    let domainValue = 0;
+    const theDamage = myDamage;
+    switch (theDamage) {
+      case "@domains.dph":
+        domainValue = myAttackant.system.domains.dph.value;
+      break;
+      case "@domains.dma":
+        domainValue = myAttackant.system.domains.dma.value;
+      break;
+      case "@domains.din":
+        domainValue = myAttackant.system.domains.din.value;
+      break;
+      case "@domains.dso":
+        domainValue = myAttackant.system.domains.dso.value;
+      break;
+      case "@domains.dmy":
+        domainValue = myAttackant.system.domains.dmy.value;
+      break;
+      default: domainValue = 9999999999;
+    }
+    return domainValue;
+  };
+
+  console.log("pdc = ", pdc);
 
   if (opposantficheId != "") {
     if (youwin) {
@@ -1338,6 +1637,7 @@ async function _showCalculateAttacksInChat (
     damagetype: damagetype,
     
     defence: defence,
+    pdc: pdc,
 
     sentence1: sentence1,
     sentence2: sentence2,
@@ -2073,15 +2373,6 @@ async function _treatSkillDiceRollDefenceDialog(
 
       // Soustraction des jetons si en nombre suffisant, sinon "return"
       let myErrorTokenNbr = 0;
-      if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
-        if (myShaktiSuffisanteFlag) {
-          await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
-          ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
-        } else {
-          ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
-          myErrorTokenNbr++;
-        }
-      }
       if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
         if (myconvictionSuffisanteFlag) {
           await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
@@ -2231,14 +2522,7 @@ async function _treatSkillDiceRollDefenceDialog(
         opponentActorName = opponentActor.name;
       };
       */
-      let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
-      if (jetLibel == "defnc") {
-        smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
-      };
-
-      /*
-      let myDefence = "xxx";
-      */
+      let smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
 
       const myDefence = defence; // calculé (lancer de dés)
 
@@ -2915,7 +3199,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
-    var jet = myResultDialog.jet;
+    var jet = "defnc";
 
     var ouijet = myResultDialog.ouijet;
     var defencend = myResultDialog.defencend;
@@ -2985,7 +3269,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var damagetype = myDamagetype;
 
     var domains = myResultDialog.domains;
-    var jet = myResultDialog.jet;
+    var jet = "defnc";
 
     var ouijet = myResultDialog.ouijet;
     var defencend = myResultDialog.defencend;
@@ -3378,10 +3662,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       opponentActorName = opponentActor.name;
     };
     */
-    let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
-    if (jetLibel == "defnc") {
-      smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
-    };
+
+    let smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
 
     /*
     let myDefence = 0;
@@ -3410,7 +3692,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       
       defence: myDefence,
 
-      shakti: myShakti,
+      shakti: theShakti,
 
       domaine: domains,
       jet: jet,
