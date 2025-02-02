@@ -194,7 +194,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
 
   /**
-   * Listen for roll click armure.
+   * Listen for click armure.
    * @param {MouseEvent} event    The originating left click event
   */
   async _onClickArmor (event) {
@@ -215,8 +215,76 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     return;
     };
     //////////////////////////////////////////////////////////////////
+
+    const armorchoices = myDefenceData.armorchoices;
+    const armorshieldchoices = myDefenceData.armorshieldchoices;
+    const armordevastrachoices = myDefenceData.armordevastrachoices;
+    const armorchoose = myDefenceData.armorchoose;
+
+    let totalArmor = 0;
+    let item;
+    let myItem;
+
+    let myArmorChoicesBonus = 0;
+    let myArmorShieldChoicesBonus = 0;
+    let myArmorDevastraChoicesBonus = 0;
+
+    myItem = undefined;
+    if (armorchoices == "0") {
+      myArmorChoicesBonus = 0;
+    } else {
+      for (item of myActor.items.filter(item => item.type === 'item')) {
+        if (item._id == armorchoices) {
+          myItem = item;
+        }
+      }
+      if (myItem != undefined) {
+        myArmorChoicesBonus = parseInt(myItem.system.protection);
+      }
+    }
+
+    myItem = undefined;
+    if (armorshieldchoices == "0") {
+      myArmorShieldChoicesBonus = 0;
+    } else {
+      for (item of myActor.items.filter(item => item.type === 'item')) {
+        if (item._id == armorshieldchoices) {
+          myItem = item;
+        }
+      }
+      if (myItem != undefined) {
+        myArmorShieldChoicesBonus = parseInt(myItem.system.protection);
+      }
+    }
+
+    myItem = undefined;
+    if (armordevastrachoices == "0") {
+      myArmorDevastraChoicesBonus = 0;
+    } else {
+      for (item of myActor.items.filter(item => item.type === 'devastra')) {
+        if (item._id == armordevastrachoices) {
+          myItem = item;
+        }
+      }
+      if (myItem != undefined) {
+        myArmorDevastraChoicesBonus = parseInt(myItem.system.protection);
+      }
+    }
+
+    totalArmor += myArmorChoicesBonus;
+
+    if (armorshieldchoices != armorchoices) {
+      totalArmor += myArmorShieldChoicesBonus;
+    }
+
+    totalArmor += myArmorDevastraChoicesBonus;
+
+    totalArmor += parseInt(armorchoose);
+
+    myActor.update({ "system.armure_total": totalArmor });
   
   }
+
 
   /* -------------------------------------------- */
 
@@ -1402,18 +1470,14 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
 
 
   var dialogData = {
-    domaine: myDomain,
-    systemData: myActorID.system,
-    // selectedinventory: myActor.system.prefs.lastweaponusedid,
-    // damage: myActor.system.prefs.improviseddamage,
     armorchoices: myItemArmor,
     armorshieldchoices: myItemArmor,
     armordevastrachoices: myItemArmorDevastra,
-    // selectedarmor: myActor.system.prefs.lastarmorusedid,
+    selectedarmor: "0",
+    selectedarmorshield: "0",
+    selectedarmordevastra: "0"
 
   };
-
-  // dialogData = null;
 
   // console.log(dialogData);
   const html = await renderTemplate(template, dialogData);
@@ -1454,16 +1518,15 @@ async function _whichTypeOfDefence (myActor, template, myTitle, myDialogOptions,
   async function _computeResult(myActor, myHtml) {
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
-      selectedarmor: myHtml.find("select[name='armor']").val(),
-      selectedarmorshield: myHtml.find("select[class='shield']").val(),
-      selectedarmordevastra: myHtml.find("select[name='armordevastra']").val(),
-
+      armorchoices: myHtml.find("select[class='armorchoices']").val(),
+      armorshieldchoices: myHtml.find("select[class='armorshieldchoices']").val(),
+      armordevastrachoices: myHtml.find("select[class='armordevastrachoices']").val(),
+      armorchoose: myHtml.find("select[class='armorchoose']").val(),
     };
-    // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
-    // console.log("myinventory = ", myinventory);
     return editedData;
   }
 }
+
 
 /* -------------------------------------------- */
 /*  Dialogue générique d'alerte                 */

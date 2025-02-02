@@ -23,7 +23,7 @@
                             <span class="value">{{ localize "DEVASTRA.choosearmor" }}</span>
                         </td>
                         <td class ="choosearmor">
-                            <select class="armor" data-type="String">
+                            <select class="armorchoices" data-type="String">
                                 {{selectOptions armorchoices selected=selectedarmor labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -33,7 +33,7 @@
                             <span class="value">{{ localize "DEVASTRA.chooseshield" }}</span>
                         </td>
                         <td class ="chooseshield">
-                            <select class="shield" data-type="String">
+                            <select class="armorshieldchoices" data-type="String">
                                 {{selectOptions armorshieldchoices selected=selectedarmorshield labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -43,7 +43,7 @@
                             <span class="value">{{ localize "DEVASTRA.choosearmordevastra" }}</span>
                         </td>
                         <td class="choosearmordevastra">
-                            <select class="armordevastra" data-type="String">
+                            <select class="armordevastrachoices" data-type="String">
                                 {{selectOptions armordevastrachoices selected=selectedarmordevastra labelAttr="label" localize=true}}
                             </select>
                         </td>
@@ -52,7 +52,7 @@
                         <td class="choosearmorchoose">
                             <span class="value">{{ localize "DEVASTRA.choosearmorchoose" }}</span>
                         </td>
-                        <td class="choosearmorxhoose">
+                        <td class="choosearmorchoose">
                             <div>
                                 <select class="armorchoose">
                                     {{#select armorchoose}}

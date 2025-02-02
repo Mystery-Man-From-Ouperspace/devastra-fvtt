@@ -251,6 +251,8 @@ Hooks.once("init", async function () {
 });
 
 
+/* -------------------------------------------- */
+
 async function modifyConfigurationSettings() {
   /**
    * Runtime configuration settings for Foundry VTT which exposes a large number of variables which determine how
@@ -433,8 +435,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _treatShaktiDialog (
         myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, shakti
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
       );
 
   
@@ -509,16 +511,16 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _treatSkillDiceRollDefenceNPCDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype, theShakti
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          selectedinventorypower, selectedinventorymagic, damage, damagetype, theShakti
         );
 
       } else {
 
         _treatSkillDiceRollDefenceDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype, theShakti
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          selectedinventorypower, selectedinventorymagic, damage, damagetype, theShakti
         );
 
       }
@@ -698,8 +700,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, shakti
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
         );
       
     });
@@ -770,8 +772,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-        selectedinventorymagic, damage, damagetype, defence, theShakti
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
         );
     });
   }
@@ -846,16 +848,16 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateShaktiInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype, theDefence, theShakti
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          selectedinventorypower, selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
       } else {
 
         _showCalculateAttacksInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-          selectedinventorymagic, damage, damagetype, theDefence, theShakti
+          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          selectedinventorypower, selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
       }
@@ -871,8 +873,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 async function _showCalculateShaktiInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-  selectedinventorymagic, damage, damagetype, defence, shakti
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
   // console.log("_showCalculateShaktiInChat");
@@ -939,16 +941,6 @@ async function _showCalculateShaktiInChat (
     totalresist: totalresist,
 
     youwin: youwin
-    /*
-    succes: d_successes,
-    d1: n.d6_1,
-    d2: n.d6_2,
-    d3: n.d6_3,
-    d4: n.d6_4,
-    d5: n.d6_5,
-    d6: n.d6_6,
-    dA: mySuccesAutoSupplem
-    */
   };
   // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
@@ -1014,7 +1006,6 @@ async function _showCalculateShaktiInChat (
 
   }
 
-
 }
 
 
@@ -1022,8 +1013,8 @@ async function _showCalculateShaktiInChat (
 
 async function _showCalculateAttacksInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-  selectedinventorymagic, damage, damagetype, defence, shakti
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
 
   let myDamage = 0;
@@ -1079,16 +1070,6 @@ async function _showCalculateAttacksInChat (
     sentence1: sentence1,
     sentence2: sentence2,
     sentence3: sentence3
-    /*
-    succes: d_successes,
-    d1: n.d6_1,
-    d2: n.d6_2,
-    d3: n.d6_3,
-    d4: n.d6_4,
-    d5: n.d6_5,
-    d6: n.d6_6,
-    dA: mySuccesAutoSupplem
-    */
   }
   // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
@@ -1254,6 +1235,7 @@ async function _showMessagesInChat (myActor, myTypeOfThrow, r, mySmartRTemplate,
 
 }
 
+
 /* -------------------------------------------- */
 
 async function _updateActorSheetWoundsJauge (myActor, wounds) {
@@ -1301,16 +1283,17 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 }
 
 
+/* -------------------------------------------- */
 
 async function _treatShaktiDialog(
   myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-  selectedinventorymagic, damage, damagetype, defence, shakti
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
   let myResultDialog = await _shaktiDialog(
     myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-    selectedinventorymagic, damage, damagetype, defence, shakti
+    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+    selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   );
 
 
@@ -1328,17 +1311,20 @@ async function _treatShaktiDialog(
 
   _showCalculateShaktiInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra, selectedinventorypower,
-    selectedinventorymagic, damage, damagetype, defence, theShakti
+    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+    selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
   );
 
 
 }
 
+
+/* -------------------------------------------- */
+
 async function _shaktiDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
   // Render modal dialog
@@ -1437,6 +1423,7 @@ async function _shaktiDialog(
     };
     return editedData;
   }
+  //////////////////////////////////////////////////////////////
 
 
 
@@ -1448,16 +1435,16 @@ async function _shaktiDialog(
 /* -------------------------------------------- */
 async function _treatSkillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   // console.log("Il s'agit d'un PJ")
 
 
   let myResultDialog = await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-    mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+    mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
   //////////////////////////////////////////////////////////////////
@@ -1473,8 +1460,8 @@ async function _treatSkillDiceRollDefenceDialog(
 
     myResultDialog = await _skillDiceRollDefenceDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
 
@@ -2038,8 +2025,8 @@ async function _treatSkillDiceRollDefenceDialog(
       };
       myResultDialog = await _skillEnterShaktiDefence (
         myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-        mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
+        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+        mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
       );
 
 
@@ -2054,8 +2041,8 @@ async function _treatSkillDiceRollDefenceDialog(
 
       _showCalculateShaktiInChat(
         myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-        mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
+        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+        mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
       );
   
     };
@@ -2065,10 +2052,12 @@ async function _treatSkillDiceRollDefenceDialog(
 }
 
 
+/* -------------------------------------------- */
+
 async function _skillEnterShaktiDefence(
   myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
   // Render modal dialog
@@ -2163,16 +2152,19 @@ async function _skillEnterShaktiDefence(
     };
     return editedData;
   }
+  //////////////////////////////////////////////////////////////
 
 
 
 }
   
 
+/* -------------------------------------------- */
+
 async function _skillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myShakti
   ) {
 
   // Render modal dialog
@@ -2373,14 +2365,20 @@ async function _skillDiceRollDefenceDialog(
       versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
     };
     return editedData;
+
   }
+  //////////////////////////////////////////////////////////////
+
   
 }
 
+
+/* -------------------------------------------- */
+
 async function _skillDiceRollDefenceDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
   // Render modal dialog
@@ -2582,20 +2580,23 @@ async function _skillDiceRollDefenceDialogDeblocked(
     };
     return editedData;
   }
+  //////////////////////////////////////////////////////////////
   
 }
 
 
+/* -------------------------------------------- */
+
 async function _treatSkillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   // console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog = await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-    mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+    mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
   //////////////////////////////////////////////////////////////////
@@ -2611,8 +2612,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     myResultDialog = await _skillDiceRollDefenceNPCDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
 
@@ -3170,8 +3171,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     };
     myResultDialog = await _skillEnterShaktiDefence(
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
     );
 
 
@@ -3186,8 +3187,8 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     _showCalculateShaktiInChat(
       myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-      mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
+      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
     );
 
     
@@ -3196,11 +3197,12 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 }
 
 
+/* -------------------------------------------- */
 
 async function _skillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
   // Render modal dialog
@@ -3397,13 +3399,17 @@ async function _skillDiceRollDefenceNPCDialog(
     };
     return editedData;
   }
-  
+  //////////////////////////////////////////////////////////////
+
 }
+
+
+/* -------------------------------------------- */
 
 async function _skillDiceRollDefenceNPCDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra, mySelectedinventorypower,
-  mySelectedinventorymagic, myDamage, myDamagetype
+  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype
   ) {
 
   // Render modal dialog
@@ -3600,5 +3606,6 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
     };
     return editedData;
   }
+  //////////////////////////////////////////////////////////////
   
 }

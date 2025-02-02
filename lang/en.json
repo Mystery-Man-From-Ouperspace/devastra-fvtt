@@ -295,30 +295,39 @@
 
   "DEVASTRA.LOpposantEstManquant": "Pas d’Opposant sélectionné",
 
-  "DEVASTRA.YouLose": "Votre opposant l’emporte !",
-  "DEVASTRA.YouWin": "Vous résistez à votre opposant !",
+  "DEVASTRA.YouLose": "Votre opposant·e l’emporte !",
+  "DEVASTRA.YouWin": "Vous résistez à votre opposant·e !",
 
   "DEVASTRA.YouReHit": "^0 vous a touché·e/atteint·e.",
   "DEVASTRA.YouArentHit": "Vous parez les coups assénés par ^0.",
 
-  "DEVASTRA.YouReWounded": "Vous encaissez ^0 points de coup.",
+  "DEVASTRA.YouReWounded": "Il·elle vous porte ^0 points de coup (votre total d’armure n'a pas encore été pris en compte).",
   "DEVASTRA.YouArentWounded":  "Vous n’encaissez aucun point de coup.",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
   "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
-  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant ou le MJ",
+  "DEVASTRA.OnlyCanOwner": "Applicable uniquement par la propriétaire du token/de la fiche de l’opposant·e ou le MJ",
 
-  "DEVASTRA.IfNoOtherDefence": "Si pas de Défense opposée :",
+  "DEVASTRA.IfNoDefence": "Si pas de Défense opposée :",
+  "DEVASTRA.IfNoOtherDefence": "Si pas d’autre Défense opposée :",
 
   "DEVASTRA.ThrowDefence": "Déterminer Défense [Opposant]",
-  "DEVASTRA.DamageComputing": "Calcul des Attaques",
+  "DEVASTRA.DamageComputing": "Détail des Dégâts",
+  "DEVASTRA.DefencesComputing": "Calcul des Défenses",
   "DEVASTRA.ThrowAttacks": "Déterminer Attaques infligées",
   "DEVASTRA.ThrowReceivedAttacks": "Déterminer Attaques encaissées",
   "DEVASTRA.ThrowOffReceivedAttacks": "Déterminer Attaques évitées",
   "DEVASTRA.ApplyWounds": "Appliquer les Blessures",
+  "DEVASTRA.ApplyDefences": "Appliquer les Défenses",
+  "DEVASTRA.DamageComputed": "Déterminer Dégâts encaissés",
+  "DEVASTRA.MakeDamage": "Déterminer Dégâts infligés",
+  "DEVASTRA.TotalDefence": "Défense totale opposée :",
+  "DEVASTRA.TotalAttack": "Attaque totale tirée :",
 
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
+  "DEVASTRA.AskYourGMApplyDefences": "Demandez à votre MJ d'appliquer manuellement votre Défense à l’Attaque de votre opposant·e.",
+  "DEVASTRA.AskYourGMApplyAttacks": "Demandez à votre MJ d'appliquer manuellement votre Attaque à l’ensemble de vos opposant·e·s.",
 
   "DEVASTRA.DefenderName": "Opposant : ",
 
@@ -449,6 +458,8 @@
 
   "DEVASTRA.Error7": "Impossible : l’opposant n’a pas été défini",
 
+  "DEVASTRA.Info8": "Total d’Armure mis à jour",
+
 
   "DEVASTRA.GMMANAGER.Title": "Rangs d′action Mandala",
   "DEVASTRA.PLAYERSMANAGER.Title": "Mandalas de vos joueuses connectées",
@@ -484,14 +495,14 @@
   "DEVASTRA.improvisedweapon": "Arme improvisée ou trouvée",
   "DEVASTRA.developedimprovisedweapon": "Sélectionnez les dégâts que vous pourriez infliger",
   "DEVASTRA.choosefrominventory": "Une arme dans votre inventaire",
-  "DEVASTRA.choosefrominventorydevastra": "Votre Devâstra en tant qu′arme (le cas échéant)",
-  "DEVASTRA.choosefrominventorypower": "Un pouvoir de votre Devâstra pour occasionner des dégâts",
+  "DEVASTRA.choosefrominventorydevastra": "Votre Âstra en tant qu′arme (le cas échéant)",
+  "DEVASTRA.choosefrominventorypower": "Un pouvoir de votre Âstra pour occasionner des dégâts",
   "DEVASTRA.choosefrominventorymagic": "Une magie pour occasionner des dégâts",
   "DEVASTRA.choosedamage": "Demandez à votre MJ les dégâts infligeables par cette arme",
   "DEVASTRA.choosewhicharmor": "Sélectionnez les armures qui vous protègent :",
   "DEVASTRA.choosearmor": "Une première protection — comme une armure",
   "DEVASTRA.chooseshield": "Une seconde protection — comme un bouclier (doit être différente de la première pour être prise en compte)",
-  "DEVASTRA.choosearmordevastra": "Votre Devâstra en tant que protection (le cas échéant)",
+  "DEVASTRA.choosearmordevastra": "Votre Âstra en tant que protection (le cas échéant)",
   "DEVASTRA.choosearmorchoose": "Bonus à votre protection — par exemple, une magie en cours",
   "DEVASTRA.barehands": "Mains nues ou affrontement verbal",
 

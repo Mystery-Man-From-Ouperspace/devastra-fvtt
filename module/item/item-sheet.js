@@ -27,8 +27,6 @@ export class DEVASTRAItemSheet extends ItemSheet {
     context.itemsubtypes = DEVASTRA.ITEMSUBTYPES
     context.isWeapon = this.item.isWeapon;
     context.isArmor = this.item.isArmor;
-    context.isAsurastra = this.item.isAsurastra;
-    context.isAryastra = this.item.isAryastra;
     context.isVehicle = this.item.isVehicle;
     context.isOther = this.item.isOther;
     context.techniqueHTML = await TextEditor.enrichHTML(this.item.system.technique, {

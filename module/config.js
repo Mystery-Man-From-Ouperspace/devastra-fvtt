@@ -9,12 +9,6 @@ DEVASTRA.ITEMSUBTYPES = {
     id: "weapon",
     label: "DEVASTRA.Weapon",
   },
-  asurastra : {
-  label: "DEVASTRA.Asurâstra",
-  },
-  aryastra : {
-    label: "DEVASTRA.Âryâstra",
-  },
   armor: {
     id: "armor",
     label: "DEVASTRA.Armor",
