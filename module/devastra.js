@@ -339,28 +339,159 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const attackscalculateButton1 = html[0].querySelector("[class='smart-blue-button attacks-calculate-click']");
   const attackscalculateButton2 = html[0].querySelector("[class='smart-blue-button attacks-auto-calculate-click']");
   const attackscalculateButton3 = html[0].querySelector("[class='smart-blue-button attacks-off-auto-calculate-click']");
-  const attacksapplyButton = html[0].querySelector("[class='smart-blue-button attacks-apply-click']");
-  const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-calculate-click']");
-  const woundsapplyButton = html[0].querySelector("[class='smart-blue-button wounds-apply-click']");
+  const damagebutton = html[0].querySelector("[class='smart-blue-button damage-calculate-click']");
+  const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-done-calculate-click']");
+  const damageapplybutton = html[0].querySelector("[class='smart-blue-button damage-apply-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
-  if (attacksapplyButton != undefined && attacksapplyButton != null) {
-    attacksapplyButton.addEventListener('click', () => {
 
-      // console.log("On est bien dans attacksapplyButton");
-
-
-    })
-  }
-
+  
   if (damagedoneButton != undefined && damagedoneButton != null) {
     damagedoneButton.addEventListener('click', () => {
 
-      // console.log("On est bien dans damagedoneButton");
+      console.log("On est bien dans damagedoneButton");
+
+      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque
+
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
+
+      /*
+      Ici on calcule les dommages infligés
+      */
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
+      };
+
+      let myActor = game.actors.get(myActorId);
+
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      _showCalculateDamageDoneInChat(
+        myActor, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+        );
+
+
+    })
+
+  }
+
+
+
+
+  if (damagebutton != undefined && damagebutton != null) {
+    damagebutton.addEventListener('click', () => {
+
+      console.log("On est bien dans damagebutton");
+
+      // La joueuse ou le PNJ calcule depuis le Tchat les dommages de l'attaque
+
+      // On récupère les datas de l'attaquant dans le Tchat
+      const nd = html[0].querySelector("span[class='nd']").textContent;
+      const total = html[0].querySelector("span[class='total']").textContent;
+      const attaquantficheId = html[0].querySelector("span[class='attaquantficheId']").textContent;
+      const opposantficheId = html[0].querySelector("span[class='opposantficheId']").textContent;
+      const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
+      const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
+      const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const power = html[0].querySelector("span[class='power']").textContent;
+      const magic = html[0].querySelector("span[class='magic']").textContent;
+
+      const selectedinventory = html[0].querySelector("span[class='selectedinventory']").textContent;
+      const selectedinventorydevastra = html[0].querySelector("span[class='selectedinventorydevastra']").textContent;
+      const selectedinventorypower = html[0].querySelector("span[class='selectedinventorypower']").textContent;
+      const selectedinventorymagic = html[0].querySelector("span[class='selectedinventorymagic']").textContent;
+      const damage = html[0].querySelector("span[class='damage']").textContent;
+      const damagetype = html[0].querySelector("span[class='damagetype']").textContent;
+
+      const defence = html[0].querySelector("span[class='defence']").textContent;
+
+      const shakti = html[0].querySelector("span[class='shakti']").textContent;
+
+      /*
+      Ici on calcule les dommages encaissés
+      */
+      let myActorId = "";
+      if (opposantficheId != "") {
+        myActorId = opposantficheId;
+      } else {
+        myActorId = attaquantficheId;
+      };
+
+      let myActor = game.actors.get(myActorId);
+
+      /*
+      if (myActor == undefined) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error7"));
+        return;
+      };
+      */
+
+      // On vérifie d'abord que c'est la bonne joueuse ou PNJ, sinon on ne fait rien
+      let myUserId = game.user.id;
+      let isOwner = (myActor.ownership[myUserId] == CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+
+      if (game.user.isGM) {
+        isOwner = true;
+      }
+
+      if (!(isOwner)) {
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error3"));
+        return;
+      };
+
+      _showCalculateDamageInChat(
+        myActor, nd, total, attaquantficheId, opposantficheId,
+        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+        );
 
 
     })
   }
+
 
   if (shakticalculateButton != undefined && shakticalculateButton != null) {
     shakticalculateButton.addEventListener('click', () => {
@@ -540,8 +671,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 
 
-  if (woundsapplyButton != undefined && woundsapplyButton != null) {
-    woundsapplyButton.addEventListener('click', () => {
+  if (damageapplybutton != undefined && damageapplybutton != null) {
+    damageapplybutton.addEventListener('click', () => {
 
       // La joueuse applique depuis le Tchat les blessures infligées à son P(N)J par le P(N)J attaquant
       // On vérifie d'abord que c'est la bonne joueuse, sinon on ne fait rien
@@ -867,6 +998,259 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   }
 
 })
+
+/* -------------------------------------------- */
+
+async function _showCalculateDamageDoneInChat (
+  myActor, nd, total, attaquantficheId, opposantficheId,
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+  ) {
+
+}
+
+
+/* -------------------------------------------- */
+
+async function _showCalculateDamageInChat (
+  myActor, nd, total, attaquantficheId, opposantficheId,
+  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+  ) {
+
+  // console.log("_showCalculateDamageInChat");
+
+  let myTotal = 0;
+  if (total != undefined) { myTotal = parseInt(total); };
+  let myDefence = 0;
+  if (defence != undefined) { myDefence = parseInt(defence); };
+  let myShakti = 0;
+  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
+
+  let myAttackant = game.actors.get(attaquantficheId);
+  let myOpponent = game.actors.get(opposantficheId);
+
+  let sentence1;
+  let sentence2;
+  let sentence3;
+
+  let pdc = 0;
+  let pdcMinusArmor = 0;
+
+    /*
+  if (opposantficheId != "") {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
+  }
+  */
+
+  // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
+  let item;
+  let myItem;
+
+  let myWeaponDamageBase = 0;
+  let myWeaponDamage = "";
+
+  let myDevastraDamageBase = 0;
+  let myDevastraDamage = "";
+
+  let myPowerDamageBase = 0;
+  let myPowerDamage = "";
+
+  let myMagicDamageBase = 0;
+  let myMagicDamage = "";
+
+
+  if (isinventory) {
+
+    if (weapon) {
+      myItem = undefined;
+      if (selectedinventory == "0" || selectedinventory == "-1") {
+        myWeaponDamageBase = 0;
+        myWeaponDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'item')) {
+          if (item._id == selectedinventory) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myWeaponDamageBase = parseInt(myItem.system.damage_base);
+          myWeaponDamage = myItem.system.damage;
+        }
+      }
+      pdc += myWeaponDamageBase;
+      pdc += computeDomain2Val(myWeaponDamage);
+    } else {
+      myItem = undefined;
+      if (selectedinventorydevastra == "0") {
+        myDevastraDamageBase = 0;
+        myDevastraDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'devastra')) {
+          if (item._id == selectedinventorydevastra) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myDevastraDamageBase = parseInt(myItem.system.damage_base);
+          myDevastraDamage = myItem.system.damage;
+        }
+      }
+      pdc += myDevastraDamageBase;
+      pdc += computeDomain2Val(myDevastraDamage);  
+    }
+
+    if (power) {
+      myItem = undefined;
+      if (selectedinventorypower == "0") {
+        myPowerDamageBase = 0;
+        myPowerDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'power')) {
+          if (item._id == selectedinventorypower) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myPowerDamageBase = parseInt(myItem.system.damage_base);
+          myPowerDamage = myItem.system.damage;
+        }
+      }
+      pdc += myPowerDamageBase;
+      pdc += computeDomain2Val(myPowerDamage);  
+    }
+
+    if (magic) {
+      myItem = undefined;
+      if (selectedinventorymagic == "0") {
+        myMagicDamageBase = 0;
+        myMagicDamage = "";
+      } else {
+        for (item of myActor.items.filter(item => item.type === 'magic')) {
+          if (item._id == selectedinventorymagic) {
+            myItem = item;
+          }
+        }
+        if (myItem != undefined) {
+          myMagicDamageBase = parseInt(myItem.system.damage_base);
+          myMagicDamage = myItem.system.damage;
+        }
+      }
+      pdc += myMagicDamageBase;
+      pdc += computeDomain2Val(myMagicDamage);  
+    }
+
+  } else {
+
+    myWeaponDamageBase = damage;
+    myWeaponDamage = damagetype;
+    pdc += myWeaponDamageBase;
+    pdc += computeDomain2Val(myWeaponDamage);  
+
+  }
+
+  async function computeDomain2Val (myDamage) {
+    let domainValue = 0;
+    switch (myDamage) {
+      case "@domains.dph":
+        domainValue = myAttackant.system.domains.dph.value;
+      break;
+      case "@domains.dma":
+        domainValue = myAttackant.system.domains.dma.value;
+      break;
+      case "@domains.din":
+        domainValue = myAttackant.system.domains.din.value;
+      break;
+      case "@domains.dso":
+        domainValue = myAttackant.system.domains.dso.value;
+      break;
+      case "@domains.dmy":
+        domainValue = myAttackant.system.domains.dmy.value;
+      break;
+      default: domainValue = 9999999999;
+    }
+  };
+
+  // Ici on calcul le total d'armure du défenseur
+  let totalArmor = 0;
+
+  if (consideropponentprotection) {
+    totalArmor = myOpponent.armure_total;
+  };
+  if (pdc - totalArmor > 0) {
+    pdcMinusArmor = pdc - totalArmor;
+  } else {
+    pdcMinusArmor = 0;
+  }
+
+  console.log("pdc = ", pdc);
+  console.log("pdcMinusArmor = ", pdcMinusArmor);
+
+  let totalresist = myDefence + myShakti;
+
+  const smartTemplate = 'systems/devastra/templates/form/result-damage-apply.html';
+
+  const smartData = {
+    nd: nd,
+
+    total: myTotal,
+
+    attaquantficheId: attaquantficheId,
+    opposantficheId: opposantficheId,
+    consideropponentprotection: consideropponentprotection,
+
+    isinventory: isinventory,
+    weapon: weapon,
+    power: power,
+    magic: magic,
+
+    selectedinventory: selectedinventory,
+    selectedinventorydevastra: selectedinventorydevastra,
+    selectedinventorypower: selectedinventorypower,
+    selectedinventorymagic: selectedinventorymagic,
+
+    damage: damage,
+    damagetype: damagetype,
+    
+    defence: myDefence,
+
+    shakti: myShakti,
+
+    sentence1: sentence1,
+    sentence2: sentence2,
+    sentence3: sentence3,
+
+    totalresist: totalresist,
+    pdc: pdc,
+    pdcMinusArmor: pdcMinusArmor,
+
+    youwin: youwin
+  };
+  // console.log("smartData avant retour func = ", smartData);
+  const smartHtml = await renderTemplate(smartTemplate, smartData);
+
+  const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+
+ 
+  
+  ChatMessage.create({
+    user: game.user.id,
+    // speaker: ChatMessage.getSpeaker({ token: this.actor }),
+    speaker: ChatMessage.getSpeaker({ actor: myActor }),
+    content: smartHtml,
+    rollMode: myTypeOfThrow
+  });
+
+};
 
 
 /* -------------------------------------------- */
