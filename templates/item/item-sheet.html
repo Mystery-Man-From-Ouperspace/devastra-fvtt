@@ -78,9 +78,13 @@
 				<label><b>{{localize "DEVASTRA.Protection"}}</b></label>
 				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Protection' }}" name="system.protection" value="{{systemData.protection}}" />
 			</div>
+			<div class="damage-base">
+				<label><b>{{localize "DEVASTRA.Damage_base"}}</b></label>
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage_base' }}" name="system.damage_base" value="{{systemData.damage_base}}" />
+			</div>
             <div class="damage">
 				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
-				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.DamageExample' }}" name="system.damage" value="{{systemData.damage}}" />
 			</div>
 			<div class="range">
 				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
@@ -92,7 +96,7 @@
             {{#if isWeapon}}
 			<div class="attack">
 				<label><b>{{localize "DEVASTRA.Attack"}}</b></label>
-				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Attack' }}" name="system.attack" value="{{systemData.attack}}" />
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.AttackExample' }}" name="system.attack" value="{{systemData.attack}}" />
 			</div>
 			<div class="attack-base">
 				<label><b>{{localize "DEVASTRA.Attack_base"}}</b></label>
@@ -104,7 +108,7 @@
 			</div>
 			<div class="damage">
 				<label><b>{{localize "DEVASTRA.Damage"}}</b></label>
-				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Damage' }}" name="system.damage" value="{{systemData.damage}}" />
+				<input class="input" type="text" placeholder="{{ localize 'DEVASTRA.DamageExample' }}" name="system.damage" value="{{systemData.damage}}" />
 			</div>
 			<div class="range">
 				<label><b>{{localize "DEVASTRA.Range"}}</b></label>
