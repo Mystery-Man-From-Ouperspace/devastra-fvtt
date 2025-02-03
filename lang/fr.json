@@ -544,8 +544,8 @@
   "DEVASTRA.SentenceIsPower": "Dégâts d′un pouvoir de l′attaquant·e (^0 + ^1)",
   "DEVASTRA.SentenceIsMagic": "Dégâts d′une magie de l′attaquant·e (^0 + ^1)",
 
-  "DEVASTRA.ArmorOff": "Votre total d′armure ne sera pas pris en compte",
-  "DEVASTRA.ArmorIn": "Votre total d′armure sera pris en compte",
+  "DEVASTRA.ArmorOff": "Votre total d′armure n′est pas pris en compte",
+  "DEVASTRA.ArmorIn": "Votre total d′armure sera pris en compte lors de l′application des dégâts",
   "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non décompté",
   "DEVASTRA.TotalDamageArmorIn": "Dégâts, total d′armure décompté",
 

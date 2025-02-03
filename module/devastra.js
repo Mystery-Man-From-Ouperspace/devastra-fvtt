@@ -3291,7 +3291,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
 
     var nd = myND;
-    var total = myTotal;
+    var oldTotal = myTotal;
     var attaquantficheId = myAttaquantficheId;
     var opposantficheId = myOpposantficheId;
     var consideropponentprotection = myConsideropponentprotection;
@@ -3752,6 +3752,10 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     defence = parseInt(n.myReussite) + parseInt(mySuccesAuto);
 
+
+    theDefence = defence;
+
+    
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
     // console.log("myTypeOfThrow", myTypeOfThrow);
 
