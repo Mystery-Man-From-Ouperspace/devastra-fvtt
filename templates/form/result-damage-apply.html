@@ -52,14 +52,24 @@
                 </tr>
             </table>
 
-            <table class="devastra-no-rich">
-                <tr class="devastra-no-rich"> 
-                    <td style="text-align: center;" title="{{ localize 'DEVASTRA.PCWoundedDeveloped' }}">
-                        {{sentence1}}<br>{{sentence2}}<br>{{sentence3}}
-                        <br><br><b style="font-size: 18px; width: 10%;">{{localize "DEVASTRA.TotalAttack" }}&nbsp;{{ total }}</b>
-                    </td>
-                </tr>
-            </table>
+            <div class="devastra-no-rich" style="text-align: center;">
+                <span>{{sentence1}}</span>
+                <br>
+                <span>{{sentence2}}</span>
+                <br>
+                <span>{{sentence3}}</span>
+                <br>
+                <span>{{sentence4}}</span>
+                <br>
+                <span>{{sentence5}}</span>
+                <br>
+                <span>{{sentence6}}</span>
+                <br>
+                <span>{{sentence7}}</span>
+
+                <br><br>
+                <span style="font-size: 18px; width: 10%;"><b>{{localize "DEVASTRA.TotalDamage" }}&nbsp;{{ pdc }}</b></span>
+            </div>
             {{#if youwin}}
             {{else}}
             <table style="border: 0px; background-color: transparent;">

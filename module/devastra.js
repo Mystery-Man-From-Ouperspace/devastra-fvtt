@@ -918,8 +918,11 @@ async function _showCalculateDamageInChat (
   let myAttackant = game.actors.get(attaquantficheId);
   let myOpponent = game.actors.get(opposantficheId);
 
+  
+  const optNone = game.i18n.localize("DEVASTRA.opt.none");
   let myDamage = parseInt(damage);
-  let myDamageType = "";
+  let myDamageType = optNone;
+
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -932,29 +935,28 @@ async function _showCalculateDamageInChat (
     break;
     case "5": myDamageType = "@domains.dmy";
     break;
-    default: myDamageType = "";
+    default: myDamageType = optNone;
   }
 
   let sentence1;
   let sentence2;
   let sentence3;
+  let sentence4;
+  let sentence5;
+  let sentence6;
+  let sentence7;
 
   let pdc = 0;
   let pdcMinusArmor = 0;
 
-    /*
-  if (opposantficheId != "") {
-    if (youwin) {
-      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
-      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
-    } else {
-      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
-      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
-    }
+  sentence6 = game.i18n.localize("DEVASTRA.TotalDamageArmorOff");
+  // sentence6 = game.i18n.localize("DEVASTRA.TotalDamageArmorIn");
+  if (consideropponentprotection === "true") {
+    sentence7 = game.i18n.localize("DEVASTRA.ArmorIn");
+  } else {
+    sentence7 = game.i18n.localize("DEVASTRA.ArmorOff");
   }
-  */
+
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
   let item;
@@ -979,7 +981,7 @@ async function _showCalculateDamageInChat (
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
-        myWeaponDamage = "";
+        myWeaponDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'item')) {
           if (item._id == selectedinventory) {
@@ -995,11 +997,14 @@ async function _showCalculateDamageInChat (
       pdc += await _computeDomain2Val(myWeaponDamage);
       console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       console.log("myWeaponDamage = ", myWeaponDamage);
+      sentence2 = game.i18n.localize("DEVASTRA.SentenceIsInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
+
     } else {
+
       myItem = undefined;
       if (selectedinventorydevastra == "0") {
         myDevastraDamageBase = 0;
-        myDevastraDamage = "";
+        myDevastraDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'devastra')) {
           if (item._id == selectedinventorydevastra) {
@@ -1015,13 +1020,14 @@ async function _showCalculateDamageInChat (
       pdc += await _computeDomain2Val(myDevastraDamage);
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
+      sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
     }
 
     if (power === "true") {
       myItem = undefined;
       if (selectedinventorypower == "0") {
         myPowerDamageBase = 0;
-        myPowerDamage = "";
+        myPowerDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
           if (item._id == selectedinventorypower) {
@@ -1030,20 +1036,21 @@ async function _showCalculateDamageInChat (
         }
         if (myItem != undefined) {
           myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = parseInt(myItem.system.damage);
+          myPowerDamage = myItem.system.damage;
         }
       }
       pdc += myPowerDamageBase;
       pdc += await _computeDomain2Val(myPowerDamage);
       console.log("myPowerDamageBase = ", myPowerDamageBase);
       console.log("myPowerDamage = ", myPowerDamage);
+      sentence4 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
     }
 
     if (magic === "true") {
       myItem = undefined;
       if (selectedinventorymagic == "0") {
         myMagicDamageBase = 0;
-        myMagicDamage = "";
+        myMagicDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'magie')) {
           if (item._id == selectedinventorymagic) {
@@ -1059,6 +1066,7 @@ async function _showCalculateDamageInChat (
       pdc += await _computeDomain2Val(myMagicDamage);
       console.log("myMagicDamageBase = ", myMagicDamageBase);
       console.log("myMagicDamage = ", myMagicDamage);
+      sentence5 = game.i18n.localize("DEVASTRA.SentenceIsMagic").replace("^0", myMagicDamageBase).replace("^1", myMagicDamage);
     }
 
   } else {
@@ -1069,6 +1077,7 @@ async function _showCalculateDamageInChat (
     pdc += await _computeDomain2Val(myWeaponDamage);  
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     console.log("myWeaponDamage = ", myWeaponDamage);
+    sentence1 = game.i18n.localize("DEVASTRA.SentenceIsNoInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
 
   }
 
@@ -1144,6 +1153,10 @@ async function _showCalculateDamageInChat (
     sentence1: sentence1,
     sentence2: sentence2,
     sentence3: sentence3,
+    sentence4: sentence4,
+    sentence5: sentence5,
+    sentence6: sentence6,
+    sentence7: sentence7,
 
     totalresist: totalresist,
     pdc: pdc,
@@ -1189,8 +1202,10 @@ async function _showCalculateShaktiInChat (
 
   let myAttackant = game.actors.get(attaquantficheId);
 
+  const optNone = game.i18n.localize("DEVASTRA.opt.none");
   let myDamage = parseInt(damage);
-  let myDamageType = "";
+  let myDamageType = optNone;
+
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -1203,28 +1218,21 @@ async function _showCalculateShaktiInChat (
     break;
     case "5": myDamageType =  "@domains.dmy";
     break;
-    default: myDamageType = "";
+    default: myDamageType = optNone;
   }
 
   let sentence1;
   let sentence2;
   let sentence3;
+  let sentence4;
+  let sentence5;
+  let sentence6;
+  let sentence7;
+  let sentence8;
+  let sentence9;
 
   let pdc = 0;
-
-    /*
-  if (opposantficheId != "") {
-    if (youwin) {
-      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
-      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
-    } else {
-      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
-      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
-    }
-  }
-  */
+  let pdcMinusArmor = 0;
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
   let item;
@@ -1249,7 +1257,7 @@ async function _showCalculateShaktiInChat (
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
-        myWeaponDamage = "";
+        myWeaponDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'item')) {
           if (item._id == selectedinventory) {
@@ -1269,7 +1277,7 @@ async function _showCalculateShaktiInChat (
       myItem = undefined;
       if (selectedinventorydevastra == "0") {
         myDevastraDamageBase = 0;
-        myDevastraDamage = "";
+        myDevastraDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'devastra')) {
           if (item._id == selectedinventorydevastra) {
@@ -1291,7 +1299,7 @@ async function _showCalculateShaktiInChat (
       myItem = undefined;
       if (selectedinventorypower == "0") {
         myPowerDamageBase = 0;
-        myPowerDamage = "";
+        myPowerDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
           if (item._id == selectedinventorypower) {
@@ -1313,7 +1321,7 @@ async function _showCalculateShaktiInChat (
       myItem = undefined;
       if (selectedinventorymagic == "0") {
         myMagicDamageBase = 0;
-        myMagicDamage = "";
+        myMagicDamage = optNone;
       } else {
         for (item of myAttackant.items.filter(item => item.type === 'magie')) {
           if (item._id == selectedinventorymagic) {
@@ -1502,8 +1510,10 @@ async function _showCalculateAttacksInChat (
   let myAttackant = game.actors.get(attaquantficheId);
   let myOpponent = game.actors.get(opposantficheId);
 
+  const optNone = game.i18n.localize("DEVASTRA.opt.none");
   let myDamage = parseInt(damage);
-  let myDamageType = "";
+  let myDamageType = optNone;
+  
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -1516,30 +1526,23 @@ async function _showCalculateAttacksInChat (
     break;
     case "5": myDamageType =  "@domains.dmy";
     break;
-    default: myDamageType = "";
+    default: myDamageType = optNone;
   }
 
   let sentence1;
   let sentence2;
   let sentence3;
+  let sentence4;
+  let sentence5;
+  let sentence6;
+  let sentence7;
+  let sentence8;
+  let sentence9;
 
   let pdc = 0;
   let pdcMinusArmor = 0;
 
-    /*
-  if (opposantficheId != "") {
-    if (youwin) {
-      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
-      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
-    } else {
-      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
-      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
-      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
-    }
-  }
-  */
-
+  
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
   let item;
   let myItem;
@@ -1559,7 +1562,7 @@ async function _showCalculateAttacksInChat (
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
 
-    if (parseInt(weapon)) {
+    if (weapon === "true") {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;

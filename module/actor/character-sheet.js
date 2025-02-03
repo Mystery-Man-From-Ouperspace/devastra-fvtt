@@ -2387,9 +2387,9 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
       isinventory: myHtml.find("input[value='isinventory']").is(':checked'),
-      weapon: myHtml.find("span[class='weapon']").is(':checked'),
-      power: myHtml.find("span[class='power']").is(':checked'),
-      magic: myHtml.find("span[class='magic']").is(':checked'),
+      weapon: myHtml.find("span[value='weapon']").is(':checked'),
+      power: myHtml.find("span[value='power']").is(':checked'),
+      magic: myHtml.find("span[value='magic']").is(':checked'),
 
       selectedinventory: myHtml.find("select[name='inventory']").val(),
       selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),

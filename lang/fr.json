@@ -324,8 +324,8 @@
   "DEVASTRA.TotalDefence": "Défense totale opposée :",
   "DEVASTRA.TotalAttack": "Attaque totale tirée :",
 
-  "DEVASTRA.DamageApplying": "Application des Dommages",
-  "DEVASTRA.ApplyDamage": "Appliquer Dommages",
+  "DEVASTRA.DamageApplying": "Application des Dégâts",
+  "DEVASTRA.ApplyDamage": "Appliquer Dégâts",
 
   "DEVASTRA.ApplyDefence": "Appliquer Défense",
   "DEVASTRA.AskYourGMApplyDefences": "Demandez à votre MJ d'appliquer manuellement votre Défense à l’Attaque de votre opposant·e.",
@@ -538,9 +538,21 @@
   "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
 
 
+  "DEVASTRA.SentenceIsNoInventory": "Dégâts de l′arme improvisée de l′attaquant·e (^0 + ^1)",
+  "DEVASTRA.SentenceIsInventory": "Dégâts d′une arme de l′inventaire de l′attaquant·e (^0 + ^1)",
+  "DEVASTRA.SentenceIsDevastra": "Dégâts de l′Âstra de l′attaquant·e (^0 + ^1)",
+  "DEVASTRA.SentenceIsPower": "Dégâts d′un pouvoir de l′attaquant·e (^0 + ^1)",
+  "DEVASTRA.SentenceIsMagic": "Dégâts d′une magie de l′attaquant·e (^0 + ^1)",
+
+  "DEVASTRA.ArmorOff": "Votre total d′armure ne sera pas pris en compte",
+  "DEVASTRA.ArmorIn": "Votre total d′armure sera pris en compte",
+  "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non décompté",
+  "DEVASTRA.TotalDamageArmorIn": "Dégâts, total d′armure décompté",
+
+  "DEVASTRA.TotalDamage": "Dégâts totaux :",
+
+
   
-
-
   "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",
   "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Point(s) de Shakti.",
   "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) v/ 3]<br>Soit ^0 Jeton(s) de Shakti initiale.",
