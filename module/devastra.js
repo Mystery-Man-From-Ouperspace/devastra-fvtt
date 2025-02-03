@@ -359,6 +359,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -407,7 +408,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateDamageDoneInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
         );
 
@@ -432,6 +433,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -480,7 +482,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateDamageInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
         );
 
@@ -505,6 +507,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -562,7 +565,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _treatShaktiDialog (
         myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
       );
 
@@ -585,6 +588,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -636,7 +640,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _treatSkillDiceRollDefenceNPCDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
           selectedinventorypower, selectedinventorymagic, damage, damagetype, theShakti
         );
 
@@ -644,7 +648,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _treatSkillDiceRollDefenceDialog(
           myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
           selectedinventorypower, selectedinventorymagic, damage, damagetype, theShakti
         );
 
@@ -670,6 +674,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -718,7 +723,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
         );
       
@@ -740,6 +745,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -790,7 +796,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
-        consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+        consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
         );
     });
@@ -812,6 +818,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const consideropponentprotection = html[0].querySelector("span[class='consideropponentprotection']").textContent;
       const isinventory = html[0].querySelector("span[class='isinventory']").textContent;
       const weapon = html[0].querySelector("span[class='weapon']").textContent;
+      const devastra = html[0].querySelector("span[class='devastra']").textContent;
       const power = html[0].querySelector("span[class='power']").textContent;
       const magic = html[0].querySelector("span[class='magic']").textContent;
 
@@ -866,7 +873,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateShaktiInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
           selectedinventorypower, selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
@@ -874,7 +881,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
         _showCalculateAttacksInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
-          consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+          consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
           selectedinventorypower, selectedinventorymagic, damage, damagetype, theDefence, theShakti
         );
 
@@ -890,7 +897,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 async function _showCalculateDamageDoneInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
@@ -901,7 +908,7 @@ async function _showCalculateDamageDoneInChat (
 
 async function _showCalculateDamageInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
@@ -937,13 +944,13 @@ async function _showCalculateDamageInChat (
     default: myDamageType = optNone;
   }
 
-  var sentence1;
-  var sentence2;
-  var sentence3;
-  var sentence4;
-  var sentence5;
-  var sentence6;
-  var sentence7;
+  var sentence1 = "";
+  var sentence2 = "";
+  var sentence3 = "";
+  var sentence4 = "";
+  var sentence5 = "";
+  var sentence6 = "";
+  var sentence7 = "";
 
   var pdc = 0;
   var pdcMinusArmor = 0;
@@ -976,7 +983,8 @@ async function _showCalculateDamageInChat (
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
 
-    if (weapon === "true") {
+    console.log("devastra = ", devastra);
+    if (devastra === "false") {
 
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
@@ -1021,9 +1029,12 @@ async function _showCalculateDamageInChat (
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
       sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
-    }
-  }
 
+    }
+    
+
+  }
+  console.log("power = ", power);
   if (isinventory === "true" && power === "true") {
     myItem = undefined;
     if (selectedinventorypower == "0") {
@@ -1047,6 +1058,7 @@ async function _showCalculateDamageInChat (
     sentence4 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
   }
 
+  console.log("magic = ", magic);
   if (isinventory === "true" && magic === "true") {
     myItem = undefined;
     if (selectedinventorymagic == "0") {
@@ -1072,7 +1084,6 @@ async function _showCalculateDamageInChat (
 
   
   if (isinventory === "false") {
-
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
@@ -1080,7 +1091,6 @@ async function _showCalculateDamageInChat (
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     console.log("myWeaponDamage = ", myWeaponDamage);
     sentence1 = game.i18n.localize("DEVASTRA.SentenceIsNoInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
-
   }
 
  async function _computeDomain2Val (myDamage) {
@@ -1137,6 +1147,7 @@ async function _showCalculateDamageInChat (
 
     isinventory: isinventory,
     weapon: weapon,
+    devastra: devastra,
     power: power,
     magic: magic,
 
@@ -1188,7 +1199,7 @@ async function _showCalculateDamageInChat (
 
 async function _showCalculateShaktiInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
@@ -1224,13 +1235,13 @@ async function _showCalculateShaktiInChat (
     default: myDamageType = optNone;
   }
 
-  var sentence1;
-  var sentence2;
-  var sentence3;
-  var sentence4;
-  var sentence5;
-  var sentence6;
-  var sentence7;
+  var sentence1 = "";
+  var sentence2 = "";
+  var sentence3 = "";
+  var sentence4 = "";
+  var sentence5 = "";
+  var sentence6 = "";
+  var sentence7 = "";
 
   var pdc = 0;
   var pdcMinusArmor = 0;
@@ -1254,7 +1265,8 @@ async function _showCalculateShaktiInChat (
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
 
-    if (weapon === "true") {
+    console.log("devastra = ", devastra);
+    if (devastra === "false") {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -1295,8 +1307,10 @@ async function _showCalculateShaktiInChat (
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
+
   }
 
+  console.log("power = ", power);
   if (isinventory === "true" && power === "true") {
     myItem = undefined;
     if (selectedinventorypower == "0") {
@@ -1319,6 +1333,7 @@ async function _showCalculateShaktiInChat (
     console.log("myPowerDamage = ", myPowerDamage);
   }
 
+  console.log("magic = ", magic);
   if (isinventory === "true" && magic === "true") {
     myItem = undefined;
     if (selectedinventorymagic == "0") {
@@ -1341,9 +1356,7 @@ async function _showCalculateShaktiInChat (
     console.log("myMagicDamage = ", myMagicDamage);
   }
 
-  
   if (isinventory === "false") {
-
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
@@ -1404,6 +1417,7 @@ async function _showCalculateShaktiInChat (
 
     isinventory: isinventory,
     weapon: weapon,
+    devastra: devastra,
     power: power,
     magic: magic,
 
@@ -1498,7 +1512,7 @@ async function _showCalculateShaktiInChat (
 
 async function _showCalculateAttacksInChat (
   myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
 
@@ -1532,13 +1546,13 @@ async function _showCalculateAttacksInChat (
     default: myDamageType = optNone;
   }
 
-  var sentence1;
-  var sentence2;
-  var sentence3;
-  var sentence4;
-  var sentence5;
-  var sentence6;
-  var sentence7;
+  var sentence1 = "";
+  var sentence2 = "";
+  var sentence3 = "";
+  var sentence4 = "";
+  var sentence5 = "";
+  var sentence6 = "";
+  var sentence7 = "";
 
   var pdc = 0;
   var pdcMinusArmor = 0;
@@ -1563,7 +1577,7 @@ async function _showCalculateAttacksInChat (
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
 
-    if (weapon === "true") {
+    if (devastra === "false") {
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -1604,6 +1618,7 @@ async function _showCalculateAttacksInChat (
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
+
   }
 
   if (isinventory === "true" && power === "true") {
@@ -1652,14 +1667,12 @@ async function _showCalculateAttacksInChat (
 
   
   if (isinventory === "false") {
-
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
     pdc += myWeaponDamageBase;
     pdc += await _computeDomain2Val(myWeaponDamage);  
     console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     console.log("myWeaponDamage = ", myWeaponDamage);
-
   }
 
   async function _computeDomain2Val (myDamage) {
@@ -1712,6 +1725,7 @@ async function _showCalculateAttacksInChat (
 
     isinventory: isinventory,
     weapon: weapon,
+    devastra: devastra,
     power: power,
     magic: magic,
 
@@ -1945,12 +1959,12 @@ async function _updateActorSheetWoundsJauge (myActor, wounds) {
 
 async function _treatShaktiDialog(
   myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
   let myResultDialog = await _shaktiDialog(
     myActor, template, myTitle, myDialogOptions, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+    consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
     selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   );
 
@@ -1969,7 +1983,7 @@ async function _treatShaktiDialog(
 
   _showCalculateShaktiInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
-    consideropponentprotection, isinventory, weapon, power, magic, selectedinventory, selectedinventorydevastra,
+    consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
     selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
   );
 
@@ -1981,7 +1995,7 @@ async function _treatShaktiDialog(
 
 async function _shaktiDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
    mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -1999,6 +2013,7 @@ async function _shaktiDialog(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -2025,6 +2040,7 @@ async function _shaktiDialog(
     consideropponentprotection: consideropponentprotection,
     isinventory: isinventory,
     weapon: weapon,
+    devastra: devastra,
     power: power,
     magic: magic,
 
@@ -2077,7 +2093,7 @@ async function _shaktiDialog(
   //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      defenseshakti: await myHtml.find("select[name='defenseshakti']").val(),
     };
     return editedData;
   }
@@ -2093,7 +2109,7 @@ async function _shaktiDialog(
 /* -------------------------------------------- */
 async function _treatSkillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   // console.log("Il s'agit d'un PJ")
@@ -2101,7 +2117,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
   let myResultDialog = await _skillDiceRollDefenceDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+    myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
     mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
@@ -2118,7 +2134,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
     myResultDialog = await _skillDiceRollDefenceDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
       mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
@@ -2138,6 +2154,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
     var weapon = myWeapon;
+    var devastra = myDevastra;
     var power = myPower;
     var magic = myMagic;
 
@@ -2207,6 +2224,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
     var weapon = myWeapon;
+    var devastra = myDevastra;
     var power = myPower;
     var magic = myMagic;
 
@@ -2621,6 +2639,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
         isinventory: isinventory,
         weapon: weapon,
+        devastra: devastra,
         power: power,
         magic: magic,
     
@@ -2667,7 +2686,7 @@ async function _treatSkillDiceRollDefenceDialog(
       };
       myResultDialog = await _skillEnterShaktiDefence (
         myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+        myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
         mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
       );
 
@@ -2683,7 +2702,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
       _showCalculateShaktiInChat(
         myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-        myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+        myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
         mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
       );
   
@@ -2698,7 +2717,7 @@ async function _treatSkillDiceRollDefenceDialog(
 
 async function _skillEnterShaktiDefence(
   myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -2716,6 +2735,7 @@ async function _skillEnterShaktiDefence(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -2740,6 +2760,7 @@ async function _skillEnterShaktiDefence(
     consideropponentprotection: consideropponentprotection,
     isinventory: isinventory,
     weapon: weapon,
+    devastra: devastra,
     power: power,
     magic: magic,
 
@@ -2790,7 +2811,7 @@ async function _skillEnterShaktiDefence(
   //////////////////////////////////////////////////////////////
   async function _computeResult(myActor, myDialogData, myHtml) {
     const editedData = {
-      defenseshakti: myHtml.find("select[name='defenseshakti']").val(),
+      defenseshakti: await myHtml.find("select[name='defenseshakti']").val(),
     };
     return editedData;
   }
@@ -2805,7 +2826,7 @@ async function _skillEnterShaktiDefence(
 
 async function _skillDiceRollDefenceDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myShakti
   ) {
 
@@ -2821,6 +2842,7 @@ async function _skillDiceRollDefenceDialog(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -2969,15 +2991,15 @@ async function _skillDiceRollDefenceDialog(
     const editedData = {
       nd: myDialogData.nd,
       
-      domains: myHtml.find("select[name='domains']").val(),
+      domains: await myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
-      defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
-      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
-      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
-      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
-      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      ouijet: await myHtml.find("input[value='ouijet']").is(':checked'),
+      defencend: await myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: await myHtml.find("input[value='ouishaktidefense']").is(':checked'),
+      bonusdomainecheck: await myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: await myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: await myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: await myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomainedph: myDialogData.nbrdedomainedph,
       nbrdedomainedma: myDialogData.nbrdedomainedma,
       nbrdedomainedin: myDialogData.nbrdedomainedin,
@@ -2994,17 +3016,17 @@ async function _skillDiceRollDefenceDialog(
       nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
       nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
       nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
-      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
-      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
-      malususapplique: myHtml.find("select[name='malususapplique']").val(),
-      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
-      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
-      succesauto: myHtml.find("select[name='succesauto']").val(),
-      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
-      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
-      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
-      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
-      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+      bonusapplique: await myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: await myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: await myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: await myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: await myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: await myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: await myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: await myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: await myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: await myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: await myHtml.find("input[name='versiondebloquee']").is(':checked')
     };
     return editedData;
 
@@ -3019,7 +3041,7 @@ async function _skillDiceRollDefenceDialog(
 
 async function _skillDiceRollDefenceDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -3035,6 +3057,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -3183,15 +3206,15 @@ async function _skillDiceRollDefenceDialogDeblocked(
     const editedData = {
       nd: myDialogData.nd,
       
-      domains: myHtml.find("select[name='domains']").val(),
+      domains: await myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
-      defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
-      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
-      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
-      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
-      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      ouijet: await myHtml.find("input[value='ouijet']").is(':checked'),
+      defencend: await myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: await myHtml.find("input[value='ouishaktidefense']").is(':checked'),
+      bonusdomainecheck: await myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: await myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: await myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: await myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomainedph: myDialogData.nbrdedomainedph,
       nbrdedomainedma: myDialogData.nbrdedomainedma,
       nbrdedomainedin: myDialogData.nbrdedomainedin,
@@ -3208,17 +3231,17 @@ async function _skillDiceRollDefenceDialogDeblocked(
       nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
       nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
       nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
-      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
-      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
-      malususapplique: myHtml.find("select[name='malususapplique']").val(),
-      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
-      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
-      succesauto: myHtml.find("select[name='succesauto']").val(),
-      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
-      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
-      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
-      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
-      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+      bonusapplique: await myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: await myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: await myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: await myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: await myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: await myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: await myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: await myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: await myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: await myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: await myHtml.find("input[name='versiondebloquee']").is(':checked')
     };
     return editedData;
   }
@@ -3231,13 +3254,13 @@ async function _skillDiceRollDefenceDialogDeblocked(
 
 async function _treatSkillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
 ) {
   // console.log("Il s'agit d'un PNJ ou d'un monstre")
   let myResultDialog = await _skillDiceRollDefenceNPCDialog(
     myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-    myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+    myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
     mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   );
 
@@ -3254,7 +3277,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     myResultDialog = await _skillDiceRollDefenceNPCDialogDeblocked (
       myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
       mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
     );
  
@@ -3274,6 +3297,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
     var weapon = myWeapon;
+    var devastra = myDevastra;
     var power = myPower;
     var magic = myMagic;
   
@@ -3344,6 +3368,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     var consideropponentprotection = myConsideropponentprotection;
     var isinventory = myIsinventory;
     var weapon = myWeapon;
+    var devastra = myDevastra;
     var power = myPower;
     var magic = myMagic;
   
@@ -3766,6 +3791,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
       isinventory: isinventory,
       weapon: weapon,
+      devastra: devastra,
       power: power,
       magic: magic,
   
@@ -3811,7 +3837,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     };
     myResultDialog = await _skillEnterShaktiDefence(
       myActor, shaktidefenceTemplate, shaktidefenceTitle, shaktidefenceDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
       mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, theShakti
     );
 
@@ -3827,7 +3853,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     _showCalculateShaktiInChat(
       myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-      myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+      myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
       mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
     );
 
@@ -3841,7 +3867,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
 async function _skillDiceRollDefenceNPCDialog(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype, myDefence, myShakti
   ) {
 
@@ -3857,6 +3883,7 @@ async function _skillDiceRollDefenceNPCDialog(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -4000,15 +4027,15 @@ async function _skillDiceRollDefenceNPCDialog(
     const editedData = {
       nd: myDialogData.nd,
       
-      domains: myHtml.find("select[name='domains']").val(),
+      domains: await myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
-      defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
-      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
-      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
-      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
-      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      ouijet: await myHtml.find("input[value='ouijet']").is(':checked'),
+      defencend: await myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: await myHtml.find("input[value='ouishaktidefense']").is(':checked'),
+      bonusdomainecheck: await myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: await myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: await myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: await myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomainedph: myDialogData.nbrdedomainedph,
       nbrdedomainedma: myDialogData.nbrdedomainedma,
       nbrdedomainedin: myDialogData.nbrdedomainedin,
@@ -4025,17 +4052,17 @@ async function _skillDiceRollDefenceNPCDialog(
       nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
       nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
       nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
-      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
-      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
-      malususapplique: myHtml.find("select[name='malususapplique']").val(),
-      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
-      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
-      succesauto: myHtml.find("select[name='succesauto']").val(),
-      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
-      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
-      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
-      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
-      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+      bonusapplique: await myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: await myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: await myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: await myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: await myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: await myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: await myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: await myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: await myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: await myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: await myHtml.find("input[name='versiondebloquee']").is(':checked')
     };
     return editedData;
   }
@@ -4048,7 +4075,7 @@ async function _skillDiceRollDefenceNPCDialog(
 
 async function _skillDiceRollDefenceNPCDialogDeblocked(
   myActor, template, myTitle, myDialogOptions, myND, myTotal, myAttaquantficheId, myOpposantficheId,
-  myConsideropponentprotection, myIsinventory, myWeapon, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
+  myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
   mySelectedinventorypower, mySelectedinventorymagic, myDamage, myDamagetype
   ) {
 
@@ -4064,6 +4091,7 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
   const consideropponentprotection = myConsideropponentprotection;
   const isinventory = myIsinventory;
   const weapon = myWeapon;
+  const devastra = myDevastra;
   const power = myPower;
   const magic = myMagic;
 
@@ -4207,15 +4235,15 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
     const editedData = {
       nd: myDialogData.nd,
       
-      domains: myHtml.find("select[name='domains']").val(),
+      domains: await myHtml.find("select[name='domains']").val(),
       throw: "defnc",
-      ouijet: myHtml.find("input[value='ouijet']").is(':checked'),
-      defencend: myHtml.find("select[name='defencend']").val(),
-      ouishaktidefense: myHtml.find("input[value='ouishaktidefense']").is(':checked'),
-      bonusdomainecheck: myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
-      specialitecheck: myHtml.find("input[name='specialitecheck']").is(':checked'),
-      malusblessurecheck: myHtml.find("input[value='malusblessurecheck']").is(':checked'),
-      malusstatutcheck: myHtml.find("input[value='malusstatutcheck']").is(':checked'),
+      ouijet: await myHtml.find("input[value='ouijet']").is(':checked'),
+      defencend: await myHtml.find("select[name='defencend']").val(),
+      ouishaktidefense: await myHtml.find("input[value='ouishaktidefense']").is(':checked'),
+      bonusdomainecheck: await myHtml.find("input[name='bonusdomainecheck']").is(':checked'),
+      specialitecheck: await myHtml.find("input[name='specialitecheck']").is(':checked'),
+      malusblessurecheck: await myHtml.find("input[value='malusblessurecheck']").is(':checked'),
+      malusstatutcheck: await myHtml.find("input[value='malusstatutcheck']").is(':checked'),
       nbrdedomainedph: myDialogData.nbrdedomainedph,
       nbrdedomainedma: myDialogData.nbrdedomainedma,
       nbrdedomainedin: myDialogData.nbrdedomainedin,
@@ -4232,17 +4260,17 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
       nbrdemalusstatutdso: myDialogData.nbrdemalusstatutdso,
       nbrdemalusstatutdmy: myDialogData.nbrdemalusstatutdmy,
       nbrdebonusspecialite: myDialogData.nbrdebonusspecialite,
-      bonusapplique: myHtml.find("select[name='bonusapplique']").val(),
-      plusdeuxdesdattaque: myHtml.find("select[name='plusdeuxdesdattaque']").val(),
-      malususapplique: myHtml.find("select[name='malususapplique']").val(),
-      ignoremalus: myHtml.find("select[name='ignoremalus']").val(),
-      malususaignorer: myHtml.find("select[name='malususaignorer']").val(),
-      succesauto: myHtml.find("select[name='succesauto']").val(),
-      plusunsuccesauto: myHtml.find("select[name='plusunsuccesauto']").val(),
-      sixexplo: myHtml.find("input[name='sixexplo']").is(':checked'),
-      cinqexplo: myHtml.find("input[name='cinqexplo']").is(':checked'),
-      desnonexplo: myHtml.find("select[name='desnonexplo']").val(),
-      versiondebloquee: myHtml.find("input[name='versiondebloquee']").is(':checked')
+      bonusapplique: await myHtml.find("select[name='bonusapplique']").val(),
+      plusdeuxdesdattaque: await myHtml.find("select[name='plusdeuxdesdattaque']").val(),
+      malususapplique: await myHtml.find("select[name='malususapplique']").val(),
+      ignoremalus: await myHtml.find("select[name='ignoremalus']").val(),
+      malususaignorer: await myHtml.find("select[name='malususaignorer']").val(),
+      succesauto: await myHtml.find("select[name='succesauto']").val(),
+      plusunsuccesauto: await myHtml.find("select[name='plusunsuccesauto']").val(),
+      sixexplo: await myHtml.find("input[name='sixexplo']").is(':checked'),
+      cinqexplo: await myHtml.find("input[name='cinqexplo']").is(':checked'),
+      desnonexplo: await myHtml.find("select[name='desnonexplo']").val(),
+      versiondebloquee: await myHtml.find("input[name='versiondebloquee']").is(':checked')
     };
     return editedData;
   }

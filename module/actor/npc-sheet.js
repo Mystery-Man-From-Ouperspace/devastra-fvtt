@@ -540,6 +540,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     myTitle = game.i18n.localize("DEVASTRA.WhichWeapon");
     let isInventory;
     let weapon;
+    let devastra;
     let power;
     let magic;
 
@@ -567,6 +568,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
       isInventory = myDamageData.isinventory;
       weapon = myDamageData.weapon;
+      devastra = myDamageData.devastra;
       power = myDamageData.power;
       magic = myDamageData.magic;
   
@@ -876,10 +878,8 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     // Smart Message
     let opponentActorId = "";
-    let opponentActorName = "";
     if (opponentActor) {
       opponentActorId = opponentActor.id;
-      opponentActorName = opponentActor.name;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -896,11 +896,11 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       total: rModif._total,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
-      opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
       weapon: weapon,
+      devastra: devastra,
       power: power,
       magic: magic,
   
@@ -1001,6 +1001,10 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
     domaine: myDomain,
     systemData: myActorID.system,
     isinventory: true,
+    weapon: true,
+    devastra: false,
+    power: false,
+    magic: false,
     inventorychoices: myItemWeapon,
     inventorydevastrachoices: myItemDevastra,
     inventorypowerchoices: myItemPower,
@@ -1052,17 +1056,18 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
   async function _computeResult(myActor, myHtml) {
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
-      isinventory: myHtml.find("input[value='isinventory']").is(':checked'),
-      weapon: myHtml.find("input[value='weapon']").is(':checked'),
-      power: myHtml.find("input[value='power']").is(':checked'),
-      magic: myHtml.find("input[value='magic']").is(':checked'),
+      isinventory: await myHtml.find("input[value='isinventory']").is(':checked'),
+      weapon: await myHtml.find("input[value='weapon']").is(':checked'),
+      devastra: await myHtml.find("input[value='devastra']").is(':checked'),
+      power: await myHtml.find("input[name='power']").is(':checked'),
+      magic: await myHtml.find("input[name='magic']").is(':checked'),
 
-      selectedinventory: myHtml.find("select[name='inventory']").val(),
-      selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),
-      selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),
-      selectedinventorymagic: myHtml.find("select[name='inventorymagic']").val(),
-      damage: parseInt(myHtml.find("select[name='damage']").val()),
-      damagetype: myHtml.find("select[name='damagetype']").val(),
+      selectedinventory: await myHtml.find("select[name='inventory']").val(),
+      selectedinventorydevastra: await myHtml.find("select[name='inventorydevastra']").val(),
+      selectedinventorypower: await myHtml.find("select[name='inventorypower']").val(),
+      selectedinventorymagic: await myHtml.find("select[name='inventorymagic']").val(),
+      damage: parseInt(await myHtml.find("select[name='damage']").val()),
+      damagetype: await myHtml.find("select[name='damagetype']").val(),
     };
     // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
     // console.log("myinventory = ", myinventory);

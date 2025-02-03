@@ -1853,6 +1853,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     myTitle = game.i18n.localize("DEVASTRA.WhichWeapon");
     let isInventory;
     let weapon;
+    let devastra;
     let power;
     let magic;
 
@@ -1860,6 +1861,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     let mySelectedInventoryDevastra;
     let mySelectedInventoryPower;
     let mySelectedInventoryMagic;
+
     let myDamage;
     let myDamageType;
 
@@ -1879,6 +1881,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       isInventory = myDamageData.isinventory;
       weapon = myDamageData.weapon;
+      devastra = myDamageData.devastra;
       power = myDamageData.power;
       magic = myDamageData.magic;
 
@@ -1886,6 +1889,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       mySelectedInventoryDevastra = myDamageData.selectedinventorydevastra;
       mySelectedInventoryPower = myDamageData.selectedinventorypower;
       mySelectedInventoryMagic = myDamageData.selectedinventorymagic;
+
       myDamage = myDamageData.damage;
       myDamageType = myDamageData.damagetype;      
 
@@ -1897,7 +1901,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       let myItem;
       if (isInventory) {
+
         if (weapon)  {
+
           if (mySelectedInventory == "0" || mySelectedInventory == "-1") {
             myWeaponDiceBonus = 0;
           } else {
@@ -1908,7 +1914,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
             }
             myWeaponDiceBonus = parseInt(myItem.system.attack_base);
           }
+
         } else {
+
           if (mySelectedInventoryDevastra == "0") {
             myWeaponDiceBonus = 0;
           } else {
@@ -1919,7 +1927,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
             }
             myWeaponDiceBonus = parseInt(myItem.system.attack_base);
           }
+
         }
+
       }
 
       // console.log("myWeaponDiceBonus = ", myWeaponDiceBonus);
@@ -2211,10 +2221,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     // Smart Message
     let opponentActorId = "";
-    let opponentActorName = "";
     if (opponentActor) {
       opponentActorId = opponentActor.id;
-      opponentActorName = opponentActor.name;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -2230,11 +2238,11 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       total: rModif._total,
       attaquantficheId: myActor.id,
       opposantficheId: opponentActorId,
-      opposant: opponentActorName,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
       weapon: weapon,
+      devastra: devastra,
       power: power,
       magic: magic,
   
@@ -2335,6 +2343,10 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
     domaine: myDomain,
     systemData: myActorID.system,
     isinventory: true,
+    weapon: true,
+    devastra: false,
+    power: false,
+    magic: false,
     inventorychoices: myItemWeapon,
     inventorydevastrachoices: myItemDevastra,
     inventorypowerchoices: myItemPower,
@@ -2386,20 +2398,25 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
   async function _computeResult(myActor, myHtml) {
     // console.log("I'm in _computeResult(myActor, myHtml)");
     const editedData = {
-      isinventory: myHtml.find("input[value='isinventory']").is(':checked'),
-      weapon: myHtml.find("span[value='weapon']").is(':checked'),
-      power: myHtml.find("span[value='power']").is(':checked'),
-      magic: myHtml.find("span[value='magic']").is(':checked'),
+      isinventory: await myHtml.find("input[value='isinventory']").is(':checked'),
+      weapon: await myHtml.find("input[value='weapon']").is(':checked'),
+      devastra: await myHtml.find("input[value='devastra']").is(':checked'),
+      power: await myHtml.find("input[name='power']").is(':checked'),
+      magic: await myHtml.find("input[name='magic']").is(':checked'),
 
-      selectedinventory: myHtml.find("select[name='inventory']").val(),
-      selectedinventorydevastra: myHtml.find("select[name='inventorydevastra']").val(),
-      selectedinventorypower: myHtml.find("select[name='inventorypower']").val(),
-      selectedinventorymagic: myHtml.find("select[name='inventorymagic']").val(),
-      damage: parseInt(myHtml.find("select[name='damage']").val()),
-      damagetype: myHtml.find("select[name='damagetype']").val(),
+      selectedinventory: await myHtml.find("select[name='inventory']").val(),
+      selectedinventorydevastra: await myHtml.find("select[name='inventorydevastra']").val(),
+      selectedinventorypower: await myHtml.find("select[name='inventorypower']").val(),
+      selectedinventorymagic: await myHtml.find("select[name='inventorymagic']").val(),
+      damage: parseInt(await myHtml.find("select[name='damage']").val()),
+      damagetype: await myHtml.find("select[name='damagetype']").val(),
     };
     // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
-    // console.log("myinventory = ", myinventory);
+    console.log("isinventory = ", editedData.isinventory);
+    console.log("weapon = ", editedData.weapon);
+    console.log("devastra = ", editedData.devastra);
+    console.log("power = ", editedData.power);
+    console.log("magic = ", editedData.magic);
     return editedData;
   }
 }
