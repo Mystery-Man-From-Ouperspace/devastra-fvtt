@@ -907,22 +907,21 @@ async function _showCalculateDamageInChat (
 
   // console.log("_showCalculateDamageInChat");
 
-  let myTotal = 0;
+  var myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
-  let myDefence = 0;
+  var myDefence = 0;
   if (defence != undefined) { myDefence = parseInt(defence); };
-  let myShakti = 0;
+  var myShakti = 0;
   if (shakti != undefined) { myShakti = parseInt(shakti); };
-  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
+  const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
-  let myAttackant = game.actors.get(attaquantficheId);
-  let myOpponent = game.actors.get(opposantficheId);
+  const myAttackant = game.actors.get(attaquantficheId);
+  const myOpponent = game.actors.get(opposantficheId);
 
-  
   const optNone = game.i18n.localize("DEVASTRA.opt.none");
-  let myDamage = parseInt(damage);
-  let myDamageType = optNone;
+  const myDamage = parseInt(damage);
 
+  var myDamageType = optNone;
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -938,16 +937,16 @@ async function _showCalculateDamageInChat (
     default: myDamageType = optNone;
   }
 
-  let sentence1;
-  let sentence2;
-  let sentence3;
-  let sentence4;
-  let sentence5;
-  let sentence6;
-  let sentence7;
+  var sentence1;
+  var sentence2;
+  var sentence3;
+  var sentence4;
+  var sentence5;
+  var sentence6;
+  var sentence7;
 
-  let pdc = 0;
-  let pdcMinusArmor = 0;
+  var pdc = 0;
+  var pdcMinusArmor = 0;
 
   sentence6 = game.i18n.localize("DEVASTRA.TotalDamageArmorOff");
   // sentence6 = game.i18n.localize("DEVASTRA.TotalDamageArmorIn");
@@ -959,25 +958,26 @@ async function _showCalculateDamageInChat (
 
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
-  let item;
-  let myItem;
+  var item;
+  var myItem;
 
-  let myWeaponDamageBase = 0;
-  let myWeaponDamage = "";
+  var myWeaponDamageBase = 0;
+  var myWeaponDamage = "";
 
-  let myDevastraDamageBase = 0;
-  let myDevastraDamage = "";
+  var myDevastraDamageBase = 0;
+  var myDevastraDamage = "";
 
-  let myPowerDamageBase = 0;
-  let myPowerDamage = "";
+  var myPowerDamageBase = 0;
+  var myPowerDamage = "";
 
-  let myMagicDamageBase = 0;
-  let myMagicDamage = "";
+  var myMagicDamageBase = 0;
+  var myMagicDamage = "";
 
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
 
     if (weapon === "true") {
+
       myItem = undefined;
       if (selectedinventory == "0" || selectedinventory == "-1") {
         myWeaponDamageBase = 0;
@@ -1022,54 +1022,56 @@ async function _showCalculateDamageInChat (
       console.log("myDevastraDamage = ", myDevastraDamage);
       sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
     }
+  }
 
-    if (power === "true") {
-      myItem = undefined;
-      if (selectedinventorypower == "0") {
-        myPowerDamageBase = 0;
-        myPowerDamage = optNone;
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
-          if (item._id == selectedinventorypower) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+  if (isinventory === "true" && power === "true") {
+    myItem = undefined;
+    if (selectedinventorypower == "0") {
+      myPowerDamageBase = 0;
+      myPowerDamage = optNone;
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
+        if (item._id == selectedinventorypower) {
+          myItem = item;
         }
       }
-      pdc += myPowerDamageBase;
-      pdc += await _computeDomain2Val(myPowerDamage);
-      console.log("myPowerDamageBase = ", myPowerDamageBase);
-      console.log("myPowerDamage = ", myPowerDamage);
-      sentence4 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
+      if (myItem != undefined) {
+        myPowerDamageBase = parseInt(myItem.system.damage_base);
+        myPowerDamage = myItem.system.damage;
+      }
     }
+    pdc += myPowerDamageBase;
+    pdc += await _computeDomain2Val(myPowerDamage);
+    console.log("myPowerDamageBase = ", myPowerDamageBase);
+    console.log("myPowerDamage = ", myPowerDamage);
+    sentence4 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
+  }
 
-    if (magic === "true") {
-      myItem = undefined;
-      if (selectedinventorymagic == "0") {
-        myMagicDamageBase = 0;
-        myMagicDamage = optNone;
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'magie')) {
-          if (item._id == selectedinventorymagic) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = parseInt(myItem.system.damage);
+  if (isinventory === "true" && magic === "true") {
+    myItem = undefined;
+    if (selectedinventorymagic == "0") {
+      myMagicDamageBase = 0;
+      myMagicDamage = optNone;
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'magie')) {
+        if (item._id == selectedinventorymagic) {
+          myItem = item;
         }
       }
-      pdc += myMagicDamageBase;
-      pdc += await _computeDomain2Val(myMagicDamage);
-      console.log("myMagicDamageBase = ", myMagicDamageBase);
-      console.log("myMagicDamage = ", myMagicDamage);
-      sentence5 = game.i18n.localize("DEVASTRA.SentenceIsMagic").replace("^0", myMagicDamageBase).replace("^1", myMagicDamage);
+      if (myItem != undefined) {
+        myMagicDamageBase = parseInt(myItem.system.damage_base);
+        myMagicDamage = parseInt(myItem.system.damage);
+      }
     }
+    pdc += myMagicDamageBase;
+    pdc += await _computeDomain2Val(myMagicDamage);
+    console.log("myMagicDamageBase = ", myMagicDamageBase);
+    console.log("myMagicDamage = ", myMagicDamage);
+    sentence5 = game.i18n.localize("DEVASTRA.SentenceIsMagic").replace("^0", myMagicDamageBase).replace("^1", myMagicDamage);
+  }
 
-  } else {
+  
+  if (isinventory === "false") {
 
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
@@ -1192,20 +1194,21 @@ async function _showCalculateShaktiInChat (
 
   // console.log("_showCalculateShaktiInChat");
 
-  let myTotal = 0;
+  var myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
-  let myDefence = 0;
+  var myDefence = 0;
   if (defence != undefined) { myDefence = parseInt(defence); };
-  let myShakti = 0;
+  var myShakti = 0;
   if (shakti != undefined) { myShakti = parseInt(shakti); };
-  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
+  const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
-  let myAttackant = game.actors.get(attaquantficheId);
+  const myAttackant = game.actors.get(attaquantficheId);
+  const myOpponent = game.actors.get(opposantficheId);
 
   const optNone = game.i18n.localize("DEVASTRA.opt.none");
-  let myDamage = parseInt(damage);
-  let myDamageType = optNone;
+  const myDamage = parseInt(damage);
 
+  var myDamageType = optNone;
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -1216,39 +1219,37 @@ async function _showCalculateShaktiInChat (
     break;
     case "4": myDamageType = "@domains.dso";
     break;
-    case "5": myDamageType =  "@domains.dmy";
+    case "5": myDamageType = "@domains.dmy";
     break;
     default: myDamageType = optNone;
   }
 
-  let sentence1;
-  let sentence2;
-  let sentence3;
-  let sentence4;
-  let sentence5;
-  let sentence6;
-  let sentence7;
-  let sentence8;
-  let sentence9;
+  var sentence1;
+  var sentence2;
+  var sentence3;
+  var sentence4;
+  var sentence5;
+  var sentence6;
+  var sentence7;
 
-  let pdc = 0;
-  let pdcMinusArmor = 0;
+  var pdc = 0;
+  var pdcMinusArmor = 0;
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
-  let item;
-  let myItem;
+  var item;
+  var myItem;
 
-  let myWeaponDamageBase = 0;
-  let myWeaponDamage = "";
+  var myWeaponDamageBase = 0;
+  var myWeaponDamage = "";
 
-  let myDevastraDamageBase = 0;
-  let myDevastraDamage = "";
+  var myDevastraDamageBase = 0;
+  var myDevastraDamage = "";
 
-  let myPowerDamageBase = 0;
-  let myPowerDamage = "";
+  var myPowerDamageBase = 0;
+  var myPowerDamage = "";
 
-  let myMagicDamageBase = 0;
-  let myMagicDamage = "";
+  var myMagicDamageBase = 0;
+  var myMagicDamage = "";
 
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
@@ -1294,52 +1295,54 @@ async function _showCalculateShaktiInChat (
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
+  }
 
-    if (power === "true") {
-      myItem = undefined;
-      if (selectedinventorypower == "0") {
-        myPowerDamageBase = 0;
-        myPowerDamage = optNone;
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
-          if (item._id == selectedinventorypower) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+  if (isinventory === "true" && power === "true") {
+    myItem = undefined;
+    if (selectedinventorypower == "0") {
+      myPowerDamageBase = 0;
+      myPowerDamage = optNone;
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
+        if (item._id == selectedinventorypower) {
+          myItem = item;
         }
       }
-      pdc += myPowerDamageBase;
-      pdc += await _computeDomain2Val(myPowerDamage);
-      console.log("myPowerDamageBase = ", myPowerDamageBase);
-      console.log("myPowerDamage = ", myPowerDamage);
+      if (myItem != undefined) {
+        myPowerDamageBase = parseInt(myItem.system.damage_base);
+        myPowerDamage = myItem.system.damage;
+      }
     }
+    pdc += myPowerDamageBase;
+    pdc += await _computeDomain2Val(myPowerDamage);
+    console.log("myPowerDamageBase = ", myPowerDamageBase);
+    console.log("myPowerDamage = ", myPowerDamage);
+  }
 
-    if (magic === "true") {
-      myItem = undefined;
-      if (selectedinventorymagic == "0") {
-        myMagicDamageBase = 0;
-        myMagicDamage = optNone;
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'magie')) {
-          if (item._id == selectedinventorymagic) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = myItem.system.damage;
+  if (isinventory === "true" && magic === "true") {
+    myItem = undefined;
+    if (selectedinventorymagic == "0") {
+      myMagicDamageBase = 0;
+      myMagicDamage = optNone;
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'magie')) {
+        if (item._id == selectedinventorymagic) {
+          myItem = item;
         }
       }
-      pdc += myMagicDamageBase;
-      pdc += await _computeDomain2Val(myMagicDamage);
-      console.log("myMagicDamageBase = ", myMagicDamageBase);
-      console.log("myMagicDamage = ", myMagicDamage);
+      if (myItem != undefined) {
+        myMagicDamageBase = parseInt(myItem.system.damage_base);
+        myMagicDamage = myItem.system.damage;
+      }
     }
+    pdc += myMagicDamageBase;
+    pdc += await _computeDomain2Val(myMagicDamage);
+    console.log("myMagicDamageBase = ", myMagicDamageBase);
+    console.log("myMagicDamage = ", myMagicDamage);
+  }
 
-  } else {
+  
+  if (isinventory === "false") {
 
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
@@ -1499,21 +1502,21 @@ async function _showCalculateAttacksInChat (
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
 ) {
 
-  let myTotal = 0;
+  var myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
-  let myDefence = 0;
+  var myDefence = 0;
   if (defence != undefined) { myDefence = parseInt(defence); };
-  let myShakti = 0;
+  var myShakti = 0;
   if (shakti != undefined) { myShakti = parseInt(shakti); };
-  let youwin = ((myTotal - (myDefence + myShakti)) <= 0);
+  const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
-  let myAttackant = game.actors.get(attaquantficheId);
-  let myOpponent = game.actors.get(opposantficheId);
+  const myAttackant = game.actors.get(attaquantficheId);
+  const myOpponent = game.actors.get(opposantficheId);
 
   const optNone = game.i18n.localize("DEVASTRA.opt.none");
-  let myDamage = parseInt(damage);
-  let myDamageType = optNone;
-  
+  const myDamage = parseInt(damage);
+
+  var myDamageType = optNone;
   const theDamageType = damagetype.toString();
   switch (theDamageType) {
     case "1": myDamageType = "@domains.dph";
@@ -1524,40 +1527,38 @@ async function _showCalculateAttacksInChat (
     break;
     case "4": myDamageType = "@domains.dso";
     break;
-    case "5": myDamageType =  "@domains.dmy";
+    case "5": myDamageType = "@domains.dmy";
     break;
     default: myDamageType = optNone;
   }
 
-  let sentence1;
-  let sentence2;
-  let sentence3;
-  let sentence4;
-  let sentence5;
-  let sentence6;
-  let sentence7;
-  let sentence8;
-  let sentence9;
+  var sentence1;
+  var sentence2;
+  var sentence3;
+  var sentence4;
+  var sentence5;
+  var sentence6;
+  var sentence7;
 
-  let pdc = 0;
-  let pdcMinusArmor = 0;
+  var pdc = 0;
+  var pdcMinusArmor = 0;
 
   
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
-  let item;
-  let myItem;
+  var item;
+  var myItem;
 
-  let myWeaponDamageBase = 0;
-  let myWeaponDamage = "";
+  var myWeaponDamageBase = 0;
+  var myWeaponDamage = "";
 
-  let myDevastraDamageBase = 0;
-  let myDevastraDamage = "";
+  var myDevastraDamageBase = 0;
+  var myDevastraDamage = "";
 
-  let myPowerDamageBase = 0;
-  let myPowerDamage = "";
+  var myPowerDamageBase = 0;
+  var myPowerDamage = "";
 
-  let myMagicDamageBase = 0;
-  let myMagicDamage = "";
+  var myMagicDamageBase = 0;
+  var myMagicDamage = "";
 
   console.log("isinventory = ", isinventory);
   if (isinventory === "true") {
@@ -1603,52 +1604,54 @@ async function _showCalculateAttacksInChat (
       console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       console.log("myDevastraDamage = ", myDevastraDamage);
     }
+  }
 
-    if (power === "true") {
-      myItem = undefined;
-      if (selectedinventorypower == "0") {
-        myPowerDamageBase = 0;
-        myPowerDamage = "";
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
-          if (item._id == selectedinventorypower) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myPowerDamageBase = parseInt(myItem.system.damage_base);
-          myPowerDamage = myItem.system.damage;
+  if (isinventory === "true" && power === "true") {
+    myItem = undefined;
+    if (selectedinventorypower == "0") {
+      myPowerDamageBase = 0;
+      myPowerDamage = "";
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'pouvoir')) {
+        if (item._id == selectedinventorypower) {
+          myItem = item;
         }
       }
-      pdc += myPowerDamageBase;
-      pdc += await _computeDomain2Val(myPowerDamage);
-      console.log("myPowerDamageBase = ", myPowerDamageBase);
-      console.log("myPowerDamage = ", myPowerDamage);
+      if (myItem != undefined) {
+        myPowerDamageBase = parseInt(myItem.system.damage_base);
+        myPowerDamage = myItem.system.damage;
+      }
     }
+    pdc += myPowerDamageBase;
+    pdc += await _computeDomain2Val(myPowerDamage);
+    console.log("myPowerDamageBase = ", myPowerDamageBase);
+    console.log("myPowerDamage = ", myPowerDamage);
+  }
 
-    if (magic === "true") {
-      myItem = undefined;
-      if (selectedinventorymagic == "0") {
-        myMagicDamageBase = 0;
-        myMagicDamage = "";
-      } else {
-        for (item of myAttackant.items.filter(item => item.type === 'magie')) {
-          if (item._id == selectedinventorymagic) {
-            myItem = item;
-          }
-        }
-        if (myItem != undefined) {
-          myMagicDamageBase = parseInt(myItem.system.damage_base);
-          myMagicDamage = myItem.system.damage;
+  if (isinventory === "true" && magic === "true") {
+    myItem = undefined;
+    if (selectedinventorymagic == "0") {
+      myMagicDamageBase = 0;
+      myMagicDamage = "";
+    } else {
+      for (item of myAttackant.items.filter(item => item.type === 'magie')) {
+        if (item._id == selectedinventorymagic) {
+          myItem = item;
         }
       }
-      pdc += myMagicDamageBase;
-      pdc += await _computeDomain2Val(myMagicDamage);
-      console.log("myMagicDamageBase = ", myPowerDamageBase);
-      console.log("myMagicDamage = ", myMagicDamage);
+      if (myItem != undefined) {
+        myMagicDamageBase = parseInt(myItem.system.damage_base);
+        myMagicDamage = myItem.system.damage;
+      }
     }
+    pdc += myMagicDamageBase;
+    pdc += await _computeDomain2Val(myMagicDamage);
+    console.log("myMagicDamageBase = ", myPowerDamageBase);
+    console.log("myMagicDamage = ", myMagicDamage);
+  }
 
-  } else {
+  
+  if (isinventory === "false") {
 
     myWeaponDamageBase = myDamage;
     myWeaponDamage = myDamageType;
