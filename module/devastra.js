@@ -406,7 +406,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      _showCalculateDamageDoneInChat(
+      _showCalculateDamageInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
         selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
@@ -893,16 +893,6 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 })
 
-/* -------------------------------------------- */
-
-async function _showCalculateDamageDoneInChat (
-  myActor, nd, total, attaquantficheId, opposantficheId,
-  consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
-  selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
-  ) {
-
-}
-
 
 /* -------------------------------------------- */
 
@@ -913,6 +903,7 @@ async function _showCalculateDamageInChat (
   ) {
 
   // console.log("_showCalculateDamageInChat");
+  // Ici on calcule les dégâts individuels reçus ou bien les dégâts collectifs infligés
 
   var myTotal = 0;
   if (total != undefined) { myTotal = parseInt(total); };
@@ -1120,7 +1111,7 @@ async function _showCalculateDamageInChat (
   // Ici on calcul le total d'armure du défenseur
   let totalArmor = 0;
 
-  if (consideropponentprotection) {
+  if (consideropponentprotection && opposantficheId != "") {
     totalArmor = myOpponent.armure_total;
   };
   if (pdc - totalArmor > 0) {
@@ -3755,7 +3746,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
 
     theDefence = defence;
 
-    
+
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
     // console.log("myTypeOfThrow", myTypeOfThrow);
 
