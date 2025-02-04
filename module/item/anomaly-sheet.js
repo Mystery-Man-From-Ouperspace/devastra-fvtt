@@ -35,7 +35,8 @@ export class DEVASTRAAnomalySheet extends ItemSheet {
       async: true,
     });
 
-    context.playersEditItems = game.settings.get("devastra", "playersEditItems");
+    context.playersEditItems = true;
+    // context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
 
     context.isGM = game.user.isGM;
     // context.isGM = false;

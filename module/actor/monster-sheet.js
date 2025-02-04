@@ -55,7 +55,8 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     context.npctype = await this.actor.system.npcType;
 
-    context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
+    context.playersEditItems = true;
+    // context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
     context.sonorizedMandalaInterface = await game.settings.get("devastra", "sonorizedMandalaInterface");
 
   

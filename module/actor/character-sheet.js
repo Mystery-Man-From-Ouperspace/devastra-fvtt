@@ -35,7 +35,8 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     context.notes = context.items.filter(item => item.type === "note");
     context.blessuresoustatuts = context.items.filter(item => item.type === "blessureoustatut");
 
-    context.playersEditItems = game.settings.get("devastra", "playersEditItems");
+    context.playersEditItems = true;
+    // context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
     context.sonorizedMandalaInterface = game.settings.get("devastra", "sonorizedMandalaInterface");
 
     context.conviction = await this.actor.system.conviction.piledejetons;
@@ -113,6 +114,12 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     html.find(".clickonlock").click(this._onClickLock.bind(this));
     html.find(".clickplutotjeton").click(this._onClickPlutotJeton.bind(this));
     html.find(".clickplutotprompt").click(this._onClickPlutotPrompt.bind(this));
+    html.find(".clickplutotattaque").click(this._onClickPlutotAttaque.bind(this));
+
+    html.find(".clickobtenirdmashakti").click(this._onClickObtainShaktiFromConviction.bind(this));
+    html.find(".clickrecupererdmypluschakraatman").click(this._onClickGetBackAtmanFromConviction.bind(this));
+    html.find(".clickrecupererdphpluschakraprana").click(this._onClickGetBackPranaFromConviction.bind(this));
+
     html.find(".clickonchakra").click(this._onClickChakraJaugeCheck.bind(this));
     html.find(".clickdownaction").click(this._onClickDownAction.bind(this));
     html.find(".clickonarmure").click(this._onClickArmor.bind(this));
@@ -286,25 +293,32 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       };
     //////////////////////////////////////////////////////////////////
     
+
+
+
+
+
+
+
+
+
     // Lancer de dés
+    let gain = await _throwDiceConcentrationOrShakti (myActor);
 
 
-
-
-
-
-
-
+    // si niveau vaillant, gain += dma jetons de shakti
 
     
+
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
       audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
       audio.play();
     }
 
+    
+    gain = 7; // A supprimer
 
-    let gain = 5;
 
     let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la concentration").replace("^0", gain.toString());
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
@@ -314,6 +328,10 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       content: myMessage2Chat,
       rollMode: myTypeOfThrow
     });
+
+
+    // Ici on met à jour la fiche
+
   }
 
   /**
@@ -374,7 +392,15 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       return;
       };
     //////////////////////////////////////////////////////////////////
-      
+    
+
+
+
+
+
+
+
+    
       
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
@@ -394,12 +420,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     await myActor.update({ "system.action.piledejetons": 0 });
 
     // Lancer de dés
-
-
-
-
-
-
+    let remplace = await _throwDiceConcentrationOrShakti (myActor);
 
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
@@ -409,7 +430,8 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     }
 
 
-    let remplace = 5;
+    remplace = 5; // A supprimer
+
 
     let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré la shakti").replace("^0", remplace.toString());
     const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
@@ -419,6 +441,11 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       content: myMessage2Chat,
       rollMode: myTypeOfThrow
     });
+
+
+
+    // Ici on met à jour
+
 
   }
 
@@ -1658,6 +1685,183 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   async _onClickPlutotPrompt(event) {
     ui.notifications.warn(game.i18n.localize("DEVASTRA.PlutôtPrompt"));
   }
+
+    /**
+  * Listen for click on Plutot Attaque.
+  * @param {MouseEvent} event    The originating left click event
+  */
+
+  async _onClickPlutotAttaque(event) {
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.PlutôtAttaque"));
+  }
+
+
+
+
+
+    /**
+  * Listen for clicks on.
+  * @param {MouseEvent} event    The originating left click event
+  */
+  async _onClickObtainShaktiFromConviction(event) {
+    ui.notifications.info("Je suis dans _onClickObtainShaktiFromConviction");
+    let myActor = this.actor;
+
+    if (myActor.system.conviction.piledejetons) {
+
+      let myTitle = game.i18n.localize("DEVASTRA.Obtenir DMa jetons de Shakti pour un Jeton Conviction");
+      let myMessage = game.i18n.localize("DEVASTRA.On obtient DMa jetons Shakti via Conviction");
+      let myDialogOptions = {
+      classes: ["devastra", "sheet"]
+      };
+      let template = "";
+      var alertData = await _alertMessage (
+      myActor, template, myTitle, myDialogOptions, myMessage
+      );
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(alertData)) {
+        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+
+    
+      if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+        var audio;
+        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio.play();
+      }
+      await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
+
+      await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + myActor.system.domains.dma.value });
+
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a gagné DMa jetons de Shakti");
+      const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: myMessage2Chat,
+        rollMode: myTypeOfThrow
+      });
+  
+    } else {
+      //////////////////////////////////////////////////////////////////
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction"));
+      //////////////////////////////////////////////////////////////////
+      
+    }        
+  }
+  async _onClickGetBackAtmanFromConviction(event) {
+    ui.notifications.info("Je suis dans _onClickGetBackAtmanFromConviction");
+
+    let myActor = this.actor;
+
+    if (myActor.system.conviction.piledejetons) {
+
+      let myTitle = game.i18n.localize("DEVASTRA.Récupérer (DMy + Chakra) points d'Âtman pour un Jeton Conviction");
+      let myMessage = game.i18n.localize("DEVASTRA.On récupère (DMy + Chakra) points d'Âtman via Conviction");
+      let myDialogOptions = {
+      classes: ["devastra", "sheet"]
+      };
+      let template = "";
+      var alertData = await _alertMessage (
+      myActor, template, myTitle, myDialogOptions, myMessage
+      );
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(alertData)) {
+        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+
+    
+      if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+        var audio;
+        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio.play();
+      }
+      await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
+
+      await myActor.update({ "system.atman.piledejetons": myActor.system.atman.piledejetons + myActor.system.domains.dmy.value + myActor.system.chakra.value });
+
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman");
+      const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: myMessage2Chat,
+        rollMode: myTypeOfThrow
+      });
+  
+    } else {
+      //////////////////////////////////////////////////////////////////
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction"));
+      //////////////////////////////////////////////////////////////////
+      
+    }        
+
+  }
+  async _onClickGetBackPranaFromConviction(event) {
+    ui.notifications.info("Je suis dans _onClickGetBackPranaFromConviction");
+
+    let myActor = this.actor;
+
+    if (myActor.system.conviction.piledejetons && myActor.system.prana.value <= myActor.system.prana.vulnerable) {
+
+      let myTitle = game.i18n.localize("DEVASTRA.Récupérer (DPy + Chakra) points de Prana pour un Jeton Conviction");
+      let myMessage = game.i18n.localize("DEVASTRA.On récupère (DMy + Chakra) points de prana via Conviction");
+      let myDialogOptions = {
+      classes: ["devastra", "sheet"]
+      };
+      let template = "";
+      var alertData = await _alertMessage (
+      myActor, template, myTitle, myDialogOptions, myMessage
+      );
+
+
+      //////////////////////////////////////////////////////////////////
+      if (!(alertData)) {
+        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        return;
+        };
+      //////////////////////////////////////////////////////////////////
+
+    
+      if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+        var audio;
+        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio.play();
+      }
+      await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
+
+      await myActor.update({ "system.prana.value": myActor.system.prana.value + myActor.system.domains.dmy.value + myActor.system.chakra.value });
+
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré (DMy + Chakra) points de Prana");
+      const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: myMessage2Chat,
+        rollMode: myTypeOfThrow
+      });
+  
+    } else {
+      //////////////////////////////////////////////////////////////////
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction ou alors pas en état 'vulnérable'"));
+      //////////////////////////////////////////////////////////////////
+      
+    };
+  }
+
+
+
+
+
+
 
   /**
    * Listen for click button on Lock.
@@ -2968,6 +3172,15 @@ async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMes
   return true;
   }
 
+}
+
+/* -------------------------------------------- */
+/* lancer de dés Concentration ou bien Shakti   */
+/* -------------------------------------------- */
+
+async function _throwDiceConcentrationOrShakti (myActor) {
+
+  return 0; // A supprimer ou modifier
 }
 
 /* -------------------------------------------- */

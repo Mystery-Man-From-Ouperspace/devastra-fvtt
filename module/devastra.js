@@ -162,7 +162,7 @@ Hooks.once("init", async function () {
   game.settings.register("devastra", "sonorizedMandalaInterface", {
     name: game.i18n.localize("DEVASTRA.Sonoriser l'interface du Mandala"),
     hint: game.i18n.localize("DEVASTRA.Décocher cette option rendra l'interface silencieuse"),
-    scope: "world",
+    scope: "client",
     config: true,
     default: true,
     type: Boolean,
@@ -170,7 +170,7 @@ Hooks.once("init", async function () {
   });
   
 
-
+/*
   game.settings.register("devastra", "playersEditItems", {
     name: game.i18n.localize("DEVASTRA.Autoriser les joueuses à modifer les items"),
     hint: game.i18n.localize("DEVASTRA.Cocher cette option autorisera les joueuses"),
@@ -180,6 +180,22 @@ Hooks.once("init", async function () {
     type: Boolean,
     onChange: delayedReload
   });
+*/
+
+
+  game.settings.register("devastra", "chakra", {
+    name: game.i18n.localize("DEVASTRA.ChakraWheel"),
+    hint: game.i18n.localize("DEVASTRA.Checking this option enables Chakra wheel instead of Deva's face wheel"),
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean,
+    onChange: delayedReload
+  });
+
+  const chakra = game.settings.get("devastra", "chakra");
+  document.body.classList.add(chakra ? "chakra" : "deva-face");  
+
 
 
    /**

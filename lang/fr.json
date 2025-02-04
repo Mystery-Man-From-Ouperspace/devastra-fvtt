@@ -1,10 +1,14 @@
 {
   "DEVASTRA.Autoriser les joueuses à modifer les items": "Les Joueuses modifent les items",
   "DEVASTRA.Cocher cette option autorisera les joueuses": 
-  "Cocher cette option autorisera les Joueuses à modifier les données (zones de descriptifs et paramètres) de leurs items tels que : Anomalies, Aspects et Attributs.",
+  "Cocher cette option autorisera les Joueuses à modifier les données (zones de descriptifs et paramètres) de leurs items tels que : Devâstras, pouvoirs, magies, dharmas, karmas, enseignements, statuts et équipements.",
 
   "DEVASTRA.Sonoriser l'interface du Mandala": "Sonoriser l′interface du Mandala",
-  "DEVASTRA.Décocher cette option rendra l'interface silencieuse": "Décocher cette option rendra l′interface silencieuse",
+  "DEVASTRA.Décocher cette option rendra l'interface silencieuse": "Décocher cette option rendra l′interface du Mandala  silencieuse (aucun effet sonore)",
+
+  "DEVASTRA.Checking this option enables Chakra wheel instead of Deva's face wheel":
+  "Cocher cette option affiche la roue 'Chakras' en lieu et place de la roue 'Face de Deva'",
+  "DEVASTRA.ChakraWheel": "Activer plutôt la roue de pause Chakras",
 
   "DEVASTRA.Tenir automatiquement le décompte des blessures": "Décompte auto. des Blessures",
   "DEVASTRA.Cocher cette option auto":
@@ -91,8 +95,8 @@
   "DEVASTRA.+ 2D d’attaque sur un jet": "+ 2D d’attaque sur un jet",
   "DEVASTRA.défensif - 1 Succès": "défensif - 1 Succès",
 
-  "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
-  "DEVASTRA.Jet de concentration-npc": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires",
+  "DEVASTRA.Jet de concentration": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) vs/ 3) et regagner des Jetons de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires",
+  "DEVASTRA.Jet de concentration-npc": "Cliquez ici pour déterminer votre concentration (DIn (Initiative) vs/ 3) et regagner des Points de Shakti - si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires",
   "DEVASTRA.Jet de shakti": "Cliquez ici (en début de conflit) pour déterminer votre réserve de Shakti initiale",
   "DEVASTRA.Clic de jeton d’action": "Cliquez ici (en début de tour) pour obtenir 1 Jeton d’Action",
 
@@ -100,7 +104,7 @@
   "DEVASTRA.TokenBonusInitiativePile": "Pile de Jetons de bonus d′initiative",
   "DEVASTRA.TokenConvictionPile": "Pile de Jetons de conviction",
 
-  "DEVASTRA.TokenPileShakti": "Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3",
+  "DEVASTRA.TokenPileShakti": "Shakti initiale – DMa + jet de concentration DIn (Initiative) vs/ 3",
 
   "DEVASTRA.Effet": "Effet :",
 
@@ -303,8 +307,8 @@
   "DEVASTRA.YouReHit": "^0 vous a touché·e/atteint·e.",
   "DEVASTRA.YouArentHit": "Vous parez les coups assénés par ^0.",
 
-  "DEVASTRA.YouReWounded": "Il·elle vous porte ^0 points de coup (votre total d’armure n'a pas encore été pris en compte).",
-  "DEVASTRA.YouArentWounded":  "Vous n’encaissez aucun point de coup.",
+  "DEVASTRA.YouReWounded": "Il·elle vous porte ^0 points de dégât (votre total d’armure n'a pas encore été pris en compte).",
+  "DEVASTRA.YouArentWounded":  "Vous n’encaissez aucun point de dégât.",
 
   "DEVASTRA.OnlyCanDM": "Applicable uniquement par le MJ",
   "DEVASTRA.OnlyCanYou": "Applicable uniquement par vous ou le MJ",
@@ -383,11 +387,11 @@
   "DEVASTRA.DEBRIDE_Dés non-explosifs": "(À vous de décocher les dés non-explosifs, s′il y a lieu)",
   "DEVASTRA.Dés non-explosifs": "Niveaux de dés non-explosifs :",
 
-  "DEVASTRA.Exceller": "Exceller",
-  "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner", 
-  "DEVASTRA.Garder le rythme": "Garder le rythme", 
-  "DEVASTRA.Recentrer ses Chakras": "Recentrer ses Chakras",
-  "DEVASTRA.Reprendre son souffle": "Reprendre son souffle",
+  "DEVASTRA.Exceller": "Exceller [activation Libre]",
+  "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner [activation Libre]", 
+  "DEVASTRA.Garder le rythme": "Garder le rythme [activation Gratuite]", 
+  "DEVASTRA.Recentrer ses Chakras": "Recentrer ses Chakras [activation Action]",
+  "DEVASTRA.Reprendre son souffle": "Reprendre son souffle [activation Action]",
 
   "DEVASTRA.Conviction pour Succès": "Peut utiliser de la Conviction pour obtenir des Succès aux jets",
   "DEVASTRA.Dispose Bonus explosif": "Dispose du bonus 6 explosif",
@@ -414,6 +418,8 @@
 
   "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en faisant glisser-déposer un Jeton",
   "DEVASTRA.PlutôtPrompt": "Cette opération s′effectue plutôt en renseignant un prompt de Jet de dés",
+
+  "DEVASTRA.PlutôtAttaque": "Cette opération vous sera proposée plutôt lorsque vous subirez une Attaque ou ferez un Jet de Défense",
 
   "DEVASTRA.Version débloquée": "Tout recommencer mais en utilisant plutôt la version non-bridée du prompt",
   "DEVASTRA.Attention Version débridée": "ATTENTION ! VERSION DÉBRIDÉE : PROCÉDEZ AVEC PRUDENCE",
@@ -526,11 +532,11 @@
 
   "DEVASTRA.InitSpecial": "Vous possédez bien la spécialité Initiative…?",
 
-  "DEVASTRA.On tire la concentration": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Jetons de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires.",
-  "DEVASTRA.On tire la concentration-npc": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) v/ 3) et regagner des Points de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires.",
+  "DEVASTRA.On tire la concentration": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) vs/ 3) et regagner des Jetons de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Jetons de Shakti supplémentaires.",
+  "DEVASTRA.On tire la concentration-npc": "Désirez-vous vraiment déterminer votre concentration (DIn (Initiative) vs/ 3) et regagner des Points de Shakti&nbsp;?<br><br><i class='fas fa-square-info'></i> Si vous êtes au niveau de Prana vaillant, vous gagnez DMa Points de Shakti supplémentaires.",
 
   
-  "DEVASTRA.On tire la shakti": "Désirez-vous vraiment déterminer votre réserve de Shakti initiale&nbsp;?<br>Shakti initiale – DMa + jet de concentration DIn (Initiative) v/ 3.<br>Tous vos anciens Jetons seront défaussés…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de conflit et est irréversible.",
+  "DEVASTRA.On tire la shakti": "Désirez-vous vraiment déterminer votre réserve de Shakti initiale&nbsp;?<br>Shakti initiale – DMa + jet de concentration DIn (Initiative) vs/ 3.<br>Tous vos anciens Jetons seront défaussés…<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de conflit et est irréversible.",
 
   
   "DEVASTRA.On tire un jeton Action": "Désirez-vous vraiment tirer un Jeton Action&nbsp;?<br><br><i class='fas fa-triangle-exclamation'></i> Cette action s′effectue uniquement en début de tour.",
@@ -540,7 +546,6 @@
 
   "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
 
-
   "DEVASTRA.SentenceIsNoInventory": "Dégâts de l′arme improvisée de l′attaquant·e (^0 + ^1)",
   "DEVASTRA.SentenceIsInventory": "Dégâts d′une arme de l′inventaire de l′attaquant·e (^0 + ^1)",
   "DEVASTRA.SentenceIsDevastra": "Dégâts de l′Âstra de l′attaquant·e (^0 + ^1)",
@@ -549,17 +554,23 @@
 
   "DEVASTRA.ArmorOff": "Votre total d′armure n′est pas pris en compte",
   "DEVASTRA.ArmorIn": "Votre total d′armure sera pris en compte lors de l′application des dégâts",
-  "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non décompté",
+  "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non-décompté",
   "DEVASTRA.TotalDamageArmorIn": "Dégâts, total d′armure décompté",
 
   "DEVASTRA.TotalDamage": "Dégâts totaux :",
 
+  "DEVASTRA.SentenceZeroPrana": "Un PJ ou PNJ dont le Prana tombe à zéro perd le conflit en cours. Il doit immédiatement cesser l’affrontement et subit un Statut (ou une Blessure) comme chaque fois qu’il est touché en étant vulnérable",
+  "DEVASTRA.SentenceHitWhenVulnerable": "Rappel : un PJ ou PNJ subit un Statut (ou une Blessure) à chaque fois qu’il est touché en étant vulnérable",
 
-  
-  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Jeton(s) de Shakti.",
-  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) v/ 3) et regagné ^0 Point(s) de Shakti.",
-  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) v/ 3]<br>Soit ^0 Jeton(s) de Shakti initiale.",
+
+  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Jeton(s) de Shakti.<br>Si son état était 'vaillant', DMa Jetons de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Point(s) de Shakti.<br>Si son état était 'vaillant', DMa Points de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) vs/ 3].<br>Soit ^0 Jeton(s) de Shakti initiale.",
   "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
+
+
+
+
 
   "TYPES": {
     "Actor": {

@@ -1738,8 +1738,26 @@ h1, h2, h3, h4, h5, h6 {
   top: calc(50% - 96px);
 }
 
+/*
 #pause > img {
   content: url("/systems/devastra/images/ui/Wheel.webp");
+  height: 192px;
+  width: 192px;
+  top: -45px;
+  left: calc(50% - 96px);
+}
+*/
+
+body.chakra #pause > img {
+  content: url("/systems/devastra/images/ui/WheelChakra.webp");
+  height: 192px;
+  width: 192px;
+  top: -45px;
+  left: calc(50% - 96px);
+}
+
+body.deva-face #pause > img {
+  content: url("/systems/devastra/images/ui/WheelDeva.webp");
   height: 192px;
   width: 192px;
   top: -45px;
