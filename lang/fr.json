@@ -584,6 +584,10 @@
   "DEVASTRA.On récupère (DPh + Chakra) points de prana via Conviction": "Désirez-vous vraiment récupérer (DPh + Chakra) Points de Prana&nbsp;?<br>Ces Points seront directement ajoutés au Prana. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <strong>[A]</strong>ction",
   "DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana": "…a récupéré (DPh[^0] + Chakra[^1]) Points de Prana.",
 
+  "DEVASTRA.DamageApplied": "Dégâts appliqués",
+  "DEVASTRA.TotalDamageApplied": "Dégâts totaux appliqués :",
+
+  
 
   "TYPES": {
     "Actor": {

@@ -8,91 +8,24 @@
 
         {{!-- Frame --}}
         <div class="devastra-result-window">
-            <div style="display: none;">
-                <span class="nd">{{ nd }}</span>
-                <span class="total">{{ total }}</span>
-                <span class="attaquantficheId">{{ attaquantficheId }}</span>
-                <span class="opposantficheId">{{ opposantficheId }}</span>
-                <span class="consideropponentprotection">{{ consideropponentprotection }}</span>
-                <span class="isinventory">{{ isinventory }}</span>
-                <span class="weapon">{{ weapon }}</span>
-                <span class="devastra">{{ devastra }}</span>
-                <span class="power">{{ power }}</span>
-                <span class="magic">{{ magic }}</span>
-
-                <span class="selectedinventory">{{ selectedinventory }}</span>
-                <span class="selectedinventorydevastra">{{ selectedinventorydevastra }}</span>
-                <span class="selectedinventorypower">{{ selectedinventorypower }}</span>
-                <span class="selectedinventorymagic">{{ selectedinventorymagic }}</span>
-                <span class="damage">{{ damage }}</span>
-                <span class="damagetype">{{ damagetype }}</span>
-
-                <span class="defence">{{ defence }}</span>
-
-                <span class="shakti">{{ shakti }}</span>
-            </div>
-
-            <div class="typeofthrow" style="display: none;">{{typeofthrow}}</div>
-
-            <div class="youwin" style="display: none;">{{youwin}}</div>
-            <div class="egality" style="display: none;">{{egality}}</div>
-            <div class="yourplayerid" style="display: none;">{{yourplayerid}}</div>
-            <div class="youractorid" style="display: none;">{{youractorid}}</div>
-            <div class="yourdamage" style="display: none;">{{yourdamage}}</div>
-            <div class="yourprotection" style="display: none;">{{yourprotection}}</div>
-            <div class="youropponent" style="display: none;">{{youropponent}}</div>
-            <div class="youropponentid" style="display: none;">{{youropponentid}}</div>
-            <div class="youropponentdamage" style="display: none;">{{youropponentdamage}}</div>
-            <div class="youropponentprotection" style="display: none;">{{youropponentprotection}}</div>
 
             <table class="devastra-no-rich">
                 <tr class="devastra-no-rich">
                     <th  style="text-align: center;">
-                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.DamageComputing" }}</span></p>
+                        <p><span style="color: rgb(0, 103, 146);"></b>{{ localize "DEVASTRA.DamageApplied" }}</span></p>
                     </th>
                 </tr>
             </table>
 
             <div class="devastra-no-rich" style="text-align: center;">
+                {{#if consideropponentprotection}}
                 <span>{{sentence1}}</span>
-                <br>
-                <span>{{sentence2}}</span>
-                <br>
-                <span>{{sentence3}}</span>
-                <br>
-                <span>{{sentence4}}</span>
-                <br>
-                <span>{{sentence5}}</span>
-                {{#if (eq opposantficheId "")}}
                 {{else}}
-                <br>
-                <span>{{sentence6}}</span>
-                <br>
-                <span>{{sentence7}}</span>
+                <span>{{sentence2}}</span>
                 {{/if}}
                 <br><br>
-                <span style="font-size: 18px; width: 10%;"><b>{{localize "DEVASTRA.TotalDamage" }}&nbsp;{{ pdc }}</b></span>
+                <span style="font-size: 18px; width: 10%;"><b>{{localize "DEVASTRA.TotalDamageApplied" }}&nbsp;{{ pdcminusarmor }}</b></span>
             </div>
-            <table style="border: 0px; background-color: transparent;">
-                {{#if (eq opposantficheId "")}}
-                <tr>
-                    <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.AskYourGMApplyDamage" }}</b></span></p>
-                    </td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td style="text-align: center;">
-                        <p><span><b style="color: rgb(0, 103, 146);">{{ localize "DEVASTRA.DamageApplying" }}</b></span></p>
-                    </td>
-                </tr>
-                <tr style="background-color: transparent;">
-                    <td class="blue-buttons">
-                        <p><span title="{{ localize 'DEVASTRA.OnlyCanYou' }}" class="smart-blue-button damage-apply-click">{{ localize "DEVASTRA.ApplyDamage" }}</span></p>
-                    </td>
-                </tr>
-            </table>
-            {{/if}}
         </div>	
     </section>
 </form>
