@@ -484,7 +484,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-             if (n.myCinqExplo && 5 >= n.myND) {
+             if (n.myCinqExplo && 5 >= n.myND) { // les 5 ne peuvent être explosifs que si ce sont des réussites
               n.nbrRelance += d6_5;
             }
           }
@@ -1228,7 +1228,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-             if (n.myCinqExplo && 5 >= n.myND) {
+             if (n.myCinqExplo && 5 >= n.myND) { // les 5 ne peuvent être explosifs que si ce sont des réussites
               n.nbrRelance += d6_5;
             }
           }
