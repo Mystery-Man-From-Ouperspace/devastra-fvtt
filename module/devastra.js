@@ -359,6 +359,22 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
   const damagedoneButton = html[0].querySelector("[class='smart-blue-button damage-done-calculate-click']");
   const shakticalculateButton = html[0].querySelector("[class='smart-blue-button shakti-defence-calculate-click']");
 
+  const damageapply = html[0].querySelector("[class='smart-blue-button damage-apply-click']");
+
+
+  if (damageapply != undefined && damageapply != null) {
+    damageapply.addEventListener('click', () => {
+
+      if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+        var audio;
+        audio = new Audio("systems/devastra/images/sounds/sword.wav");
+        audio.play();
+      }
+
+    })
+  };
+
+  
   
   if (damagedoneButton != undefined && damagedoneButton != null) {
     damagedoneButton.addEventListener('click', () => {
@@ -2573,7 +2589,7 @@ async function _treatSkillDiceRollDefenceDialog(
             n.nbrRelance = 0;
             if (n.mySixExplo) {
               n.nbrRelance += d6_6;
-              if (n.myCinqExplo) {
+               if (n.myCinqExplo && 5 >= n.myND) {
                 n.nbrRelance += d6_5;
               }
             }
@@ -3720,7 +3736,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-            if (n.myCinqExplo) {
+             if (n.myCinqExplo && 5 >= n.myND) {
               n.nbrRelance += d6_5;
             }
           }

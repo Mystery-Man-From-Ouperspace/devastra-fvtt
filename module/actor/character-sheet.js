@@ -572,7 +572,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-            if (n.myCinqExplo) {
+             if (n.myCinqExplo && 5 >= n.myND) {
               n.nbrRelance += d6_5;
             }
           }
@@ -1032,7 +1032,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-            if (n.myCinqExplo) {
+             if (n.myCinqExplo && 5 >= n.myND) {
               n.nbrRelance += d6_5;
             }
           }
@@ -3063,7 +3063,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           n.nbrRelance = 0;
           if (n.mySixExplo) {
             n.nbrRelance += d6_6;
-            if (n.myCinqExplo) {
+             if (n.myCinqExplo && 5 >= n.myND) {
               n.nbrRelance += d6_5;
             }
           }
