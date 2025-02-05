@@ -453,7 +453,7 @@
   "DEVASTRA.Cout en Atman": "Coût en Âtman",
 
 
-  "DEVASTRA.Error2": "Jet annulé par l′utilisateur",
+  "DEVASTRA.Error2": "Jet ou action annulé par l′utilisateur",
   "DEVASTRA.Error1": "Jet annulé : aucun dé à lancer",
   "DEVASTRA.Info4": "Jetons soustraits à la pile Shakti",
   "DEVASTRA.Error4": "Jet annulé : pas assez de Jetons dans la pile Shakti",
@@ -568,8 +568,20 @@
   "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) vs/ 3].<br>Soit ^0 Jeton(s) de Shakti initiale.",
   "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
 
+  "DEVASTRA.Obtenir DMa jetons de Shakti pour un Jeton Conviction": "Obtenir des Jetons de Shakti via Conviction",
+  "DEVASTRA.SentenceZeroPrana": "Un PJ ou PNJ dont le Prana tombe à zéro perd le conflit en cours. Il doit immédiatement cesser l’affrontement et subit un Statut (ou une Blessure) comme chaque fois qu’il est touché en étant vulnérable",
+  "DEVASTRA.On obtient DMa jetons Shakti via Conviction": "Désirez-vous vraiment obtenir DMa Jetons de Shakti&nbsp;?<br>Ces Jetons iront directement à la pile de Shakti. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-square-info'></i> L’activation est <b>[G]</b>ratuite.",
+  "DEVASTRA.Untel a obtenue DMa jetons de Shakti": "…a obtenu DMa[^0] Jetons de Skakti.",
+  "DEVASTRA.Error9-Plus de Jetons de Conviction": "Plus de Jetons de Conviction",
 
+  "DEVASTRA.Récupérer (DMy + Chakra) points d'Âtman pour un Jeton Conviction": "Récupérer des Points d’Âtman via Conviction",
+  "DEVASTRA.On récupère (DMy + Chakra) points d'Âtman via Conviction": "Désirez-vous vraiment récupérer (DMy + Chakra) Points d’Âtman&nbsp;?<br>Ces Points seront directement ajoutés à l’Âtman. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <b>[A]</b>ction.",
+  "DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman": "…a récupéré (DMy[^0] + Chakra[^1]) Points d’Âtman.",
 
+  "DEVASTRA.Récupérer (DPh + Chakra) points de Prana pour un Jeton Conviction": "Récupérer des Points de Prana via Conviction",
+  "DEVASTRA.On récupère (DPh + Chakra) points de prana via Conviction": "Désirez-vous vraiment récupérer (DPh + Chakra) Points de Prana&nbsp;?<br>Ces Points seront directement ajoutés au Prana. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <b>[A]</b>ction",
+  "DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana": "…a récupéré (DPy[^0] + Chakra[^1]) Points de Prana.",
+  "DEVASTRA.Error10-Plus de Jetons de Conviction ou alors pas en état 'vulnérable'": "Vous n'êtes pas en état 'vulnérable' ou alors plus de Jetons de Conviction",
 
 
   "TYPES": {

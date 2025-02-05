@@ -1722,7 +1722,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       //////////////////////////////////////////////////////////////////
       if (!(alertData)) {
-        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
         return;
         };
       //////////////////////////////////////////////////////////////////
@@ -1737,7 +1737,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + myActor.system.domains.dma.value });
 
-      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a gagné DMa jetons de Shakti");
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a obtenu DMa jetons de Shakti").replace("^0", myActor.system.domains.dma.value.toString());
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       ChatMessage.create({
         user: game.user.id,
@@ -1748,7 +1748,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   
     } else {
       //////////////////////////////////////////////////////////////////
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error9-Plus de Jetons de Conviction"));
       //////////////////////////////////////////////////////////////////
       
     }        
@@ -1773,7 +1773,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       //////////////////////////////////////////////////////////////////
       if (!(alertData)) {
-        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
         return;
         };
       //////////////////////////////////////////////////////////////////
@@ -1786,9 +1786,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       }
       await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
 
-      await myActor.update({ "system.atman.piledejetons": myActor.system.atman.piledejetons + myActor.system.domains.dmy.value + myActor.system.chakra.value });
+      await myActor.update({ "system.atman.value": myActor.system.atman.value + myActor.system.domains.dmy.value + myActor.system.chakra.value });
 
-      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman");
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman").replace("^0", myActor.system.domains.dmy.value.toString());
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       ChatMessage.create({
         user: game.user.id,
@@ -1799,7 +1799,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   
     } else {
       //////////////////////////////////////////////////////////////////
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error9-Plus de Jetons de Conviction"));
       //////////////////////////////////////////////////////////////////
       
     }        
@@ -1812,8 +1812,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     if (myActor.system.conviction.piledejetons && myActor.system.prana.value <= myActor.system.prana.vulnerable) {
 
-      let myTitle = game.i18n.localize("DEVASTRA.Récupérer (DPy + Chakra) points de Prana pour un Jeton Conviction");
-      let myMessage = game.i18n.localize("DEVASTRA.On récupère (DMy + Chakra) points de prana via Conviction");
+      let myTitle = game.i18n.localize("DEVASTRA.Récupérer (DPh + Chakra) points de Prana pour un Jeton Conviction");
+      let myMessage = game.i18n.localize("DEVASTRA.On récupère (DPh + Chakra) points de prana via Conviction");
       let myDialogOptions = {
       classes: ["devastra", "sheet"]
       };
@@ -1825,7 +1825,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       //////////////////////////////////////////////////////////////////
       if (!(alertData)) {
-        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
         return;
         };
       //////////////////////////////////////////////////////////////////
@@ -1838,9 +1838,9 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       }
       await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
 
-      await myActor.update({ "system.prana.value": myActor.system.prana.value + myActor.system.domains.dmy.value + myActor.system.chakra.value });
+      await myActor.update({ "system.prana.value": myActor.system.prana.value + myActor.system.domains.dph.value + myActor.system.chakra.value });
 
-      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a tiré (DMy + Chakra) points de Prana");
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana").replace("^0", myActor.system.domains.dph.value.toString()).replace("^0", myActor.system.chakra.value.toString());;
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       ChatMessage.create({
         user: game.user.id,
@@ -1851,7 +1851,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   
     } else {
       //////////////////////////////////////////////////////////////////
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Plus de Jetons de Conviction ou alors pas en état 'vulnérable'"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error10-Plus de Jetons de Conviction ou alors pas en état 'vulnérable'"));
       //////////////////////////////////////////////////////////////////
       
     };
