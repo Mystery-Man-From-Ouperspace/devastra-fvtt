@@ -202,7 +202,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
       // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
-      var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
+      // var myShaktiSuffisanteFlag = (myPlusDeuxDesDAttaque <= myActor.system.shakti_initiale.value); // s'il reste assez de jetons de Shakti
       // var myconvictionSuffisanteFlag = ((myIgnoreMalus + myPlusUnSuccesAuto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
 
     } else {
