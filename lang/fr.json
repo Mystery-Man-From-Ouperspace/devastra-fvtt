@@ -453,7 +453,7 @@
   "DEVASTRA.Cout en Atman": "Coût en Âtman",
 
 
-  "DEVASTRA.Error2": "Jet ou action annulé par l′utilisateur",
+  "DEVASTRA.Error2": "Jet ou opération annulé par l′utilisateur",
   "DEVASTRA.Error1": "Jet annulé : aucun dé à lancer",
   "DEVASTRA.Info4": "Jetons soustraits à la pile Shakti",
   "DEVASTRA.Error4": "Jet annulé : pas assez de Jetons dans la pile Shakti",
@@ -579,7 +579,7 @@
 
   "DEVASTRA.Récupérer (DPh + Chakra) points de Prana pour un Jeton Conviction": "Récupérer des Points de Prana via Conviction",
   "DEVASTRA.On récupère (DPh + Chakra) points de prana via Conviction": "Désirez-vous vraiment récupérer (DPh + Chakra) Points de Prana&nbsp;?<br>Ces Points seront directement ajoutés au Prana. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <b>[A]</b>ction",
-  "DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana": "…a récupéré (DPy[^0] + Chakra[^1]) Points de Prana.",
+  "DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana": "…a récupéré (DPh[^0] + Chakra[^1]) Points de Prana.",
   "DEVASTRA.Error10-Plus de Jetons de Conviction ou alors pas en état 'vulnérable'": "Vous n'êtes pas en état 'vulnérable' ou alors plus de Jetons de Conviction",
 
 

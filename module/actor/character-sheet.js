@@ -470,7 +470,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     //////////////////////////////////////////////////////////////////
     if (!(alertData)) {
-    // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+    ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
     return;
     };
     //////////////////////////////////////////////////////////////////
@@ -1519,7 +1519,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       //////////////////////////////////////////////////////////////////
       if (!(alertData)) {
-        // ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
+        ui.notifications.warn(game.i18n.localize("DEVASTRA.Error2"));
         return;
         };
       //////////////////////////////////////////////////////////////////
@@ -1704,7 +1704,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   * @param {MouseEvent} event    The originating left click event
   */
   async _onClickObtainShaktiFromConviction(event) {
-    ui.notifications.info("Je suis dans _onClickObtainShaktiFromConviction");
     let myActor = this.actor;
 
     if (myActor.system.conviction.piledejetons) {
@@ -1754,8 +1753,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     }        
   }
   async _onClickGetBackAtmanFromConviction(event) {
-    ui.notifications.info("Je suis dans _onClickGetBackAtmanFromConviction");
-
     let myActor = this.actor;
 
     if (myActor.system.conviction.piledejetons) {
@@ -1806,8 +1803,6 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
   }
   async _onClickGetBackPranaFromConviction(event) {
-    ui.notifications.info("Je suis dans _onClickGetBackPranaFromConviction");
-
     let myActor = this.actor;
 
     if (myActor.system.conviction.piledejetons && myActor.system.prana.value <= myActor.system.prana.vulnerable) {
