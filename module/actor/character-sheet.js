@@ -418,11 +418,6 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     // Application des bonus valides et des malus
 
-    // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
-    if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
-      myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
-    }
-
     // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
     // et mySuccesAuto, ceux de myPlusUnSuccesAuto
     if (myconvictionSuffisanteFlag && !(myVersionDebloqueeFlag)) {
@@ -484,15 +479,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     // Soustraction des jetons si en nombre suffisant, sinon "return"
     let myErrorTokenNbr = 0;
-    if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
-      if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
-        ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
-      } else {
-        ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
-        myErrorTokenNbr++;
-      }
-    }
+
     if (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto)) {
       if (myconvictionSuffisanteFlag) {
         await myActor.update({ "system.conviction.piledejetons":  parseInt(myActor.system.conviction.piledejetons - (parseInt(myIgnoreMalus) + parseInt(myPlusUnSuccesAuto))) });
@@ -878,9 +865,11 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     // Application des bonus valides et des malus
 
     // Si c'est via le prompt débridé, myBonusApplique comptabilise déjà les points de myPlusDeuxDesDAttaque
+    /*
     if (myShaktiSuffisanteFlag && jetLibel == "attck" && !(myVersionDebloqueeFlag)) {
       myBonusSupplem += 2 * parseInt(myPlusDeuxDesDAttaque);
     }
+    */
 
     // Si c'est via le prompt débridé, myMalusApplique comptabilise déjà les points de myIgnoreMalus
     // et mySuccesAuto, ceux de myPlusUnSuccesAuto
@@ -3874,75 +3863,3 @@ async function _alertMessage (myActor, template, myTitle, myDialogOptions, myMes
   }
 
 }
-
-/* -------------------------------------------- */
-/* lancer de dés Concentration ou bien Shakti   */
-/* -------------------------------------------- */
-
-async function _throwDiceConcentrationOrShakti (myActor) {
-
-  return 0; // A supprimer ou modifier
-}
-
-/* -------------------------------------------- */
-/*  Dialogue d'alerte Inititiative              */
-/* -------------------------------------------- */
-/*
-async function _alertInitiativeMessage (myActor, template, myTitle, myDialogOptions, myMessage) {
-  // Render modal dialog
-  const myActorID = myActor;
-  template = template || 'systems/devastra/templates/form/type-alert-initiative-prompt.html';
-  const title = myTitle;
-  let dialogOptions = myDialogOptions;
-
-  var dialogData = {
-    systemData: myActorID.system,
-    messg: myMessage
-  };
-
-  const html = await renderTemplate(template, dialogData);
-
-  // Create the Dialog window
-  let prompt = await new Promise((resolve) => {
-    new ModifiedDialog(
-    // new Dialog(
-      {
-        title: title,
-        content: html,
-        buttons: {
-          validateBtn: {
-            icon: `<div class="tooltip"><i class="fas fa-check"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Validate')}</span></div>`,
-            callback: (html) => resolve( dialogData = _computeResult(myActor, html) )
-          },
-          cancelBtn: {
-            icon: `<div class="tooltip"><i class="fas fa-cancel"></i>&nbsp;<span class="tooltiptextleft">${game.i18n.localize('DEVASTRA.Cancel')}</span></div>`,
-            callback: (html) => resolve(null)
-          }
-        },
-        default: 'cancelBtn',
-        close: () => resolve(null)
-      },
-      dialogOptions
-    ).render(true, {
-      width: 350,
-      height: "auto"
-    });
-  });
-
-  if (prompt == null) {
-    return prompt
-  } else {
-  return dialogData;
-  }
-
-  async function _computeResult(myActor, myHtml) {
-    // console.log("I'm in _computeResult(myActor, myHtml)");
-    const editedData = {
-      initiativeSpecial: myHtml.find("select[name='initspecial']").val(),
-
-    };
-    return editedData;
-  }
-
-
-} */
