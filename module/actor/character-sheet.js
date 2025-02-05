@@ -1747,7 +1747,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   
     } else {
       //////////////////////////////////////////////////////////////////
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error9-Plus de Jetons de Conviction"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error9"));
       //////////////////////////////////////////////////////////////////
       
     }        
@@ -1846,7 +1846,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
   
     } else {
       //////////////////////////////////////////////////////////////////
-      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error10-Plus de Jetons de Conviction ou alors pas en état 'vulnérable'"));
+      ui.notifications.warn(game.i18n.localize("DEVASTRA.Error10"));
       //////////////////////////////////////////////////////////////////
       
     };
