@@ -569,6 +569,17 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       gain += myActor.system.domains.dma.value
     }
 
+    // Ici on met à jour la fiche
+    await myActor.update({ "system.initiative.concentration": gain });
+
+
+    if (myActor.system.prana.value > myActor.system.prana.tenace) {
+      gain += myActor.system.domains.dma.value
+    }
+    
+    // Ici aussi on met à jour la fiche
+    await myActor.update({ "system.shakti_initiale.value": myActor.system.shakti_initiale.value + gain });
+
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
@@ -584,10 +595,6 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       content: myMessage2Chat,
       rollMode: myTypeOfThrow
     });
-
-
-    // Ici aussi on met à jour la fiche
-    await myActor.update({ "system.shakti_initiale.value": myActor.system.shakti_initiale.value + gain });
 
 
   }

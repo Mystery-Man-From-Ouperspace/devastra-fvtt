@@ -646,7 +646,6 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     });
   
 
-    // Lancer de dés
     let gain = d_successes;
 
     // Ici on met à jour la fiche
@@ -656,6 +655,10 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     if (myActor.system.prana.value > myActor.system.prana.tenace) {
       gain += myActor.system.domains.dma.value
     }
+
+
+    // Ici aussi on met à jour la fiche
+    await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + gain });
 
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
@@ -672,10 +675,6 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
       content: myMessage2Chat,
       rollMode: myTypeOfThrow
     });
-
-
-    // Ici aussi on met à jour la fiche
-    await myActor.update({ "system.shakti.piledejetons": myActor.system.shakti.piledejetons + gain });
 
 
   }
