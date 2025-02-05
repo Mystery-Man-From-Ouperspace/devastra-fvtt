@@ -567,8 +567,8 @@
   "DEVASTRA.SentenceHitWhenVulnerable": "Rappel : un PJ ou PNJ subit un Statut (ou une Blessure) à chaque fois qu’il est touché en étant vulnérable",
 
 
-  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Jeton(s) de Shakti.<br>Si son état était 'vaillant', DMa Jetons de Shakti ont été ajoutés pour obtenir ce résultat.",
-  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Point(s) de Shakti.<br>Si son état était 'vaillant', DMa Points de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et récupéré ^0 Jeton(s) de Shakti.<br>Si son état était 'vaillant', DMa Jetons de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et récupéré ^0 Point(s) de Shakti.<br>Si son état était 'vaillant', DMa Points de Shakti ont été ajoutés pour obtenir ce résultat.",
   "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) vs/ 3].<br>Soit ^0 Jeton(s) de Shakti initiale.",
   "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
 

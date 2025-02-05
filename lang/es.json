@@ -387,11 +387,11 @@
   "DEVASTRA.DEBRIDE_Dés non-explosifs": "(À vous de décocher les dés non-explosifs, s′il y a lieu)",
   "DEVASTRA.Dés non-explosifs": "Niveaux de dés non-explosifs :",
 
-  "DEVASTRA.Exceller": "Exceller",
-  "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner", 
-  "DEVASTRA.Garder le rythme": "Garder le rythme", 
-  "DEVASTRA.Recentrer ses Chakras": "Recentrer ses Chakras",
-  "DEVASTRA.Reprendre son souffle": "Reprendre son souffle",
+  "DEVASTRA.Exceller": "Exceller [activation Libre]",
+  "DEVASTRA.Ne pas abandonner" : "Ne pas abandonner [activation Libre]", 
+  "DEVASTRA.Garder le rythme": "Garder le rythme [activation Gratuite]", 
+  "DEVASTRA.Recentrer ses Chakras": "Recentrer ses Chakras [activation Action]",
+  "DEVASTRA.Reprendre son souffle": "Reprendre son souffle [activation Action]",
 
   "DEVASTRA.Conviction pour Succès": "Peut utiliser de la Conviction pour obtenir des Succès aux jets",
   "DEVASTRA.Dispose Bonus explosif": "Dispose du bonus 6 explosif",
@@ -416,8 +416,10 @@
   "DEVASTRA.trash": "Déposez un jeton ici pour le défausser",
   "DEVASTRA.Alltrash": "Cliquez ici pour défausser tous les jetons présents sur le Mandala des 7 rangs d′action et sur la pile bonus d′initiative",
 
-  "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en faisant glisser-déposer un Jeton",
+  "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en procédant à un glisser-déposer de Jeton",
   "DEVASTRA.PlutôtPrompt": "Cette opération s′effectue plutôt en renseignant un prompt de Jet de dés",
+
+  "DEVASTRA.PlutôtAttaque": "Cette opération vous sera proposée plutôt lorsque vous subirez une Attaque ou ferez un Jet de Défense",
 
   "DEVASTRA.Version débloquée": "Tout recommencer mais en utilisant plutôt la version non-bridée du prompt",
   "DEVASTRA.Attention Version débridée": "ATTENTION ! VERSION DÉBRIDÉE : PROCÉDEZ AVEC PRUDENCE",
@@ -451,17 +453,21 @@
   "DEVASTRA.Cout en Atman": "Coût en Âtman",
 
 
-  "DEVASTRA.Error2": "Jet annulé par l′utilisateur",
+  "DEVASTRA.Error2": "Jet ou opération annulé par l′utilisateur",
   "DEVASTRA.Error1": "Jet annulé : aucun dé à lancer",
   "DEVASTRA.Info4": "Jetons soustraits à la pile Shakti",
-  "DEVASTRA.Error4": "Jet annulé : pas assez de Jetons dans la pile Shakti",
+  "DEVASTRA.Error4": "Jet ou opération avorté : pas assez de Jetons dans la pile Shakti",
   "DEVASTRA.Info5": "Jetons soustraits à la pile Conviction",
-  "DEVASTRA.Error5": "Jet annulé : pas assez de Jetons dans la pile Conviction",
+  "DEVASTRA.Error5": "Jet ou opération avorté : pas assez de Jetons dans la pile Conviction",
+
+  "DEVASTRA.Error9": "Jet ou opération avorté : plus de Jetons de Conviction",
+  "DEVASTRA.Error10": "Jet ou opération avorté : vous n'êtes pas en état 'vulnérable' ou alors plus de Jetons de Conviction",
+
 
   "DEVASTRA.Info4-npc": "Points soustraits au total de Shakti",
-  "DEVASTRA.Error4-npc": "Jet annulé : pas assez de Points de Shakti",
+  "DEVASTRA.Error4-npc": "Jet ou opération avorté : pas assez de Points de Shakti",
   "DEVASTRA.Info5-npc": "Points soustraits au total de Conviction",
-  "DEVASTRA.Error5-npc": "Jet annulé : pas assez de Points de Conviction",
+  "DEVASTRA.Error5-npc": "Jet ou opération avorté : pas assez de Points de Conviction",
 
   "DEVASTRA.Error3": "Impossible : vous n’êtes pas propriétaire",
 
@@ -544,9 +550,6 @@
 
   "DEVASTRA.Tirage de jetons pour Action": "Tirage d′un jeton Action",
 
-  "DEVASTRA.SentenceZeroPrana": "Un PJ ou PNJ dont le Prana tombe à zéro perd le conflit en cours. Il doit immédiatement cesser l’affrontement (et subit un Statut ou une Blessure comme chaque fois qu’il est touché en étant vulnérable)",
-  "DEVASTRA.SentenceHitWhenVulnerable": "Rappel : un PJ ou PNJ subit un Statut ou une Blessure à chaque fois qu’il est touché en étant vulnérable",
-
   "DEVASTRA.SentenceIsNoInventory": "Dégâts de l′arme improvisée de l′attaquant·e (^0 + ^1)",
   "DEVASTRA.SentenceIsInventory": "Dégâts d′une arme de l′inventaire de l′attaquant·e (^0 + ^1)",
   "DEVASTRA.SentenceIsDevastra": "Dégâts de l′Âstra de l′attaquant·e (^0 + ^1)",
@@ -555,15 +558,32 @@
 
   "DEVASTRA.ArmorOff": "Votre total d′armure n′est pas pris en compte",
   "DEVASTRA.ArmorIn": "Votre total d′armure sera pris en compte lors de l′application des dégâts",
-  "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non décompté",
+  "DEVASTRA.TotalDamageArmorOff": "Dégâts, total d′armure non-décompté",
   "DEVASTRA.TotalDamageArmorIn": "Dégâts, total d′armure décompté",
 
   "DEVASTRA.TotalDamage": "Dégâts totaux :",
 
-  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Jeton(s) de Shakti.",
-  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et regagné ^0 Point(s) de Shakti.",
-  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) vs/ 3]<br>Soit ^0 Jeton(s) de Shakti initiale.",
+  "DEVASTRA.SentenceZeroPrana": "Un PJ ou PNJ dont le Prana tombe à zéro perd le conflit en cours. Il doit immédiatement cesser l’affrontement et subit un Statut (ou une Blessure) comme chaque fois qu’il est touché en étant vulnérable",
+  "DEVASTRA.SentenceHitWhenVulnerable": "Rappel : un PJ ou PNJ subit un Statut (ou une Blessure) à chaque fois qu’il est touché en étant vulnérable",
+
+
+  "DEVASTRA.Untel a tiré la concentration": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et récupéré ^0 Jeton(s) de Shakti.<br>Si son état était 'vaillant', DMa Jetons de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la concentration-npc": "…a déterminé sa concentration (DIn (Initiative) vs/ 3) et récupéré ^0 Point(s) de Shakti.<br>Si son état était 'vaillant', DMa Points de Shakti ont été ajoutés pour obtenir ce résultat.",
+  "DEVASTRA.Untel a tiré la shakti": "…a déterminé sa réserve de Shakti initiale [DMa + jet de concentration DIn (Initiative) vs/ 3].<br>Soit ^0 Jeton(s) de Shakti initiale.",
   "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
+
+  "DEVASTRA.Obtenir DMa jetons de Shakti pour un Jeton Conviction": "Obtenir des Jetons de Shakti via Conviction",
+  "DEVASTRA.On obtient DMa jetons Shakti via Conviction": "Désirez-vous vraiment obtenir DMa Jetons de Shakti&nbsp;?<br>Ces Jetons iront directement à la pile de Shakti. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-square-info'></i> L’activation est <b>[G]</b>ratuite.",
+  "DEVASTRA.Untel a obtenu DMa jetons de Shakti": "…a obtenu DMa[^0] Jetons de Skakti.",
+
+  "DEVASTRA.Récupérer (DMy + Chakra) points d'Âtman pour un Jeton Conviction": "Récupérer des Points d’Âtman via Conviction",
+  "DEVASTRA.On récupère (DMy + Chakra) points d'Âtman via Conviction": "Désirez-vous vraiment récupérer (DMy + Chakra) Points d’Âtman&nbsp;?<br>Ces Points seront directement ajoutés à l’Âtman. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <b>[A]</b>ction.",
+  "DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman": "…a récupéré (DMy[^0] + Chakra[^1]) Points d’Âtman.",
+
+  "DEVASTRA.Récupérer (DPh + Chakra) points de Prana pour un Jeton Conviction": "Récupérer des Points de Prana via Conviction",
+  "DEVASTRA.On récupère (DPh + Chakra) points de prana via Conviction": "Désirez-vous vraiment récupérer (DPh + Chakra) Points de Prana&nbsp;?<br>Ces Points seront directement ajoutés au Prana. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-triangle-exclamation'></i> L’activation nécessite l’emploi d’une <b>[A]</b>ction",
+  "DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana": "…a récupéré (DPh[^0] + Chakra[^1]) Points de Prana.",
+
 
   "TYPES": {
     "Actor": {

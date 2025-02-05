@@ -561,13 +561,6 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     // Lancer de dés
     let gain = d_successes;
 
-    // Ici on met à jour la fiche
-    // await myActor.update({ "system.initiative.concentration": gain });
-
-
-    if (myActor.system.prana.value > myActor.system.prana.tenace) {
-      gain += myActor.system.domains.dma.value
-    }
 
     // Ici on met à jour la fiche
     await myActor.update({ "system.initiative.concentration": gain });
