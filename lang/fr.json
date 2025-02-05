@@ -416,7 +416,7 @@
   "DEVASTRA.trash": "Déposez un jeton ici pour le défausser",
   "DEVASTRA.Alltrash": "Cliquez ici pour défausser tous les jetons présents sur le Mandala des 7 rangs d′action et sur la pile bonus d′initiative",
 
-  "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en faisant glisser-déposer un Jeton",
+  "DEVASTRA.PlutôtJeton": "Cette opération s′effectue plutôt en procédant à un glisser-déposer de Jeton",
   "DEVASTRA.PlutôtPrompt": "Cette opération s′effectue plutôt en renseignant un prompt de Jet de dés",
 
   "DEVASTRA.PlutôtAttaque": "Cette opération vous sera proposée plutôt lorsque vous subirez une Attaque ou ferez un Jet de Défense",
@@ -569,9 +569,8 @@
   "DEVASTRA.Untel a tiré action": "…a tiré un Jeton Action.",
 
   "DEVASTRA.Obtenir DMa jetons de Shakti pour un Jeton Conviction": "Obtenir des Jetons de Shakti via Conviction",
-  "DEVASTRA.SentenceZeroPrana": "Un PJ ou PNJ dont le Prana tombe à zéro perd le conflit en cours. Il doit immédiatement cesser l’affrontement et subit un Statut (ou une Blessure) comme chaque fois qu’il est touché en étant vulnérable",
   "DEVASTRA.On obtient DMa jetons Shakti via Conviction": "Désirez-vous vraiment obtenir DMa Jetons de Shakti&nbsp;?<br>Ces Jetons iront directement à la pile de Shakti. Un Jeton sera retiré de la pile de Conviction.<br><br><i class='fas fa-square-info'></i> L’activation est <b>[G]</b>ratuite.",
-  "DEVASTRA.Untel a obtenue DMa jetons de Shakti": "…a obtenu DMa[^0] Jetons de Skakti.",
+  "DEVASTRA.Untel a obtenu DMa jetons de Shakti": "…a obtenu DMa[^0] Jetons de Skakti.",
   "DEVASTRA.Error9-Plus de Jetons de Conviction": "Plus de Jetons de Conviction",
 
   "DEVASTRA.Récupérer (DMy + Chakra) points d'Âtman pour un Jeton Conviction": "Récupérer des Points d’Âtman via Conviction",

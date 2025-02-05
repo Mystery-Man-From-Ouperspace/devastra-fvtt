@@ -1788,7 +1788,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       await myActor.update({ "system.atman.value": myActor.system.atman.value + myActor.system.domains.dmy.value + myActor.system.chakra.value });
 
-      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman").replace("^0", myActor.system.domains.dmy.value.toString());
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DMy + Chakra) points d'Âtman").replace("^0", myActor.system.domains.dmy.value.toString()).replace("^1", myActor.system.chakra.value.toString());
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       ChatMessage.create({
         user: game.user.id,
@@ -1840,7 +1840,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
       await myActor.update({ "system.prana.value": myActor.system.prana.value + myActor.system.domains.dph.value + myActor.system.chakra.value });
 
-      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana").replace("^0", myActor.system.domains.dph.value.toString()).replace("^0", myActor.system.chakra.value.toString());;
+      let myMessage2Chat = game.i18n.localize("DEVASTRA.Untel a récupéré (DPh + Chakra) points de Prana").replace("^0", myActor.system.domains.dph.value.toString()).replace("^1", myActor.system.chakra.value.toString());
       const myTypeOfThrow = game.settings.get("core", "rollMode"); // Type de Lancer
       ChatMessage.create({
         user: game.user.id,

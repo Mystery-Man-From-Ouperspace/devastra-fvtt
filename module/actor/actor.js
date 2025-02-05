@@ -76,6 +76,9 @@ export class DEVASTRAActor extends Actor {
       if (this.system.conviction.piledejetons > this.system.conviction.value) {
         this.system.conviction.piledejetons = this.system.conviction.value;
       };
+      if (this.system.atman.value > this.system.atman.max) {
+        this.system.atman.value = this.system.atman.max;
+      };
 
     }
 
