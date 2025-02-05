@@ -38,7 +38,7 @@ export class DEVASTRAAttributeSheet extends ItemSheet {
     /*
     context.playersEditItems = true;
     // context.playersEditItems = await game.settings.get("devastra", "playersEditItems");
-*/
+    */
 
     context.isGM = game.user.isGM;
     // context.isGM = false;
