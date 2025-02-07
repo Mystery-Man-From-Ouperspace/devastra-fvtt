@@ -3115,7 +3115,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     // Smart Message
     let opponentActorId = "";
     if (opponentActor) {
-      opponentActorId = opponentActor.id;
+      opponentActorId = opponentActor._id;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -3126,10 +3126,13 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     let myShakti = 0;
 
+    console.log("myActor = ", myActor);
+    console.log("myActor._id = ", myActor._id);
+
     const smartData = {
       nd: myND,
       total: rModif._total,
-      attaquantficheId: myActor.id,
+      attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
       consideropponentprotection: considerOpponentProtection,
 
@@ -3204,28 +3207,28 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
 
   myItemWeapon["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
   myItemWeapon["-1"] = new myObject("-1", game.i18n.localize("DEVASTRA.barehands"));
-  for (let item of myActor.items.filter(item => item.type === 'item')) {
+  for (let item of myActorID.items.filter(item => item.type === 'item')) {
     if (item.system.subtype == "weapon") {
     myItemWeapon[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+"+"+item.system.damage.toString()+"]");
     };
   };
 
   myItemDevastra["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  for (let item of myActor.items.filter(item => item.type === 'devastra')) {
+  for (let item of myActorID.items.filter(item => item.type === 'devastra')) {
     if (item.system.attack != "") {
     myItemDevastra[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+"+"+item.system.damage.toString()+"]");
     };
   };
 
   myItemPower["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  for (let item of myActor.items.filter(item => item.type === 'pouvoir')) {
+  for (let item of myActorID.items.filter(item => item.type === 'pouvoir')) {
     if (item.system.attack != "") {
     myItemPower[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+"+"+item.system.damage.toString()+"]");
     };
   };
 
   myItemMagic["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  for (let item of myActor.items.filter(item => item.type === 'magie')) {
+  for (let item of myActorID.items.filter(item => item.type === 'magie')) {
     if (item.system.attack != "") {
     myItemMagic[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+"+"+item.system.damage.toString()+"]");
     };

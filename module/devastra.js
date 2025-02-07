@@ -396,7 +396,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       Ici on calcule les dommages infligés
       */
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
@@ -468,12 +468,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       /*
       Ici on calcule les dommages infligés
       */
+     /*
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != 0") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
       };
+      */
+      let myActorId = attaquantficheId;
 
       let myActor = game.actors.get(myActorId);
 
@@ -542,12 +545,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       /*
       Ici on calcule les dommages encaissés
       */
+      /*
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
       };
+      */
+      let myActorId = opposantficheId;
 
       let myActor = game.actors.get(myActorId);
 
@@ -617,7 +623,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       // Ici on fait remplir les paramètres de shakti por le défenseur
 
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
@@ -783,12 +789,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       /*
       Ici on calcule les blessures évitées
       */
+     /*
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
       };
+      */
+      let myActorId = attaquantficheId;
 
       let myActor = game.actors.get(myActorId);
 
@@ -854,12 +863,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       /*
       Ici on calcule les blessures reçues
       */
+      /*
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
       };
+      */
+      let myActorId = opposantficheId;
 
       let myActor = game.actors.get(myActorId);
 
@@ -928,12 +940,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       /*
       Ici on calcule les blessures infligées
       */
+      /*
       let myActorId = "";
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
         myActorId = opposantficheId;
       } else {
         myActorId = attaquantficheId;
       };
+      */
+      let myActorId = attaquantficheId;
 
       let myActor = game.actors.get(myActorId);
 
@@ -960,7 +975,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       let theDefence = 0;
       let theShakti = 0;
 
-      if (opposantficheId != "") {
+      if (opposantficheId != "0" && opposantficheId != "") {
 
         _showCalculateShaktiInChat(
           myActor, nd, total, attaquantficheId, opposantficheId,
@@ -1202,20 +1217,24 @@ async function _showCalculateDamageInChat (
   // Ici on calcul le total d'armure du défenseur
   let totalArmor = 0;
 
-  console.log("consideropponentprotection = ", consideropponentprotection);
-  console.log("opposantficheId = ", opposantficheId);
-  if (consideropponentprotection = "true") {
-    totalArmor = myOpponent.system.armure_total;
-  };
-  console.log("totalArmor = ", totalArmor);
-  if ((pdc - totalArmor) > 0) {
-    pdcMinusArmor = pdc - totalArmor;
-  } else {
-    pdcMinusArmor = 0;
-  }
+  if (opposantficheId != "0" && opposantficheId != "") {
 
-  console.log("pdc = ", pdc);
-  console.log("pdcMinusArmor = ", pdcMinusArmor);
+    console.log("consideropponentprotection = ", consideropponentprotection);
+    console.log("opposantficheId = ", opposantficheId);
+    if (consideropponentprotection = "true") {
+      totalArmor = myOpponent.system.armure_total;
+    };
+    console.log("totalArmor = ", totalArmor);
+    if ((pdc - totalArmor) > 0) {
+      pdcMinusArmor = pdc - totalArmor;
+    } else {
+      pdcMinusArmor = 0;
+    }
+
+    console.log("pdc = ", pdc);
+    console.log("pdcMinusArmor = ", pdcMinusArmor);
+
+  };
 
   let totalresist = myDefence + myShakti;
 
@@ -1476,7 +1495,7 @@ async function _showCalculateShaktiInChat (
 
   console.log("pdc = ", pdc);
 
-  if (opposantficheId != "") {
+  if (opposantficheId != "0" && opposantficheId != "") {
     if (youwin) {
       sentence1 = game.i18n.localize("DEVASTRA.YouWin");
       sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
@@ -1533,16 +1552,21 @@ async function _showCalculateShaktiInChat (
 
  
   let theActorId = "";
-  if (opposantficheId != "") {
+  if (opposantficheId != "0" && opposantficheId != "" && opposantficheId != "") {
     theActorId = opposantficheId;
   } else {
     theActorId = attaquantficheId;
   };
+  console.log("opposantficheId = ", opposantficheId);
+  console.log("attaquantficheId = ", attaquantficheId);
+  console.log("theActorId = ", theActorId);
 
-  var theActiveActor = await game.actors.get(theActorId);
+  let theActiveActor = await game.actors.get(theActorId);
+
+  console.log("theActiveActor = ", theActiveActor);
 
 
-  var piledejetonsShakti = -999;
+  let piledejetonsShakti = -999;
   // console.log("myActor.type = ", theActiveActor.type);
   if (theActiveActor.type === "character") {
     piledejetonsShakti = parseInt(await theActiveActor.system.shakti.piledejetons);
@@ -1786,7 +1810,7 @@ async function _showCalculateAttacksInChat (
 
   console.log("pdc = ", pdc);
 
-  if (opposantficheId != "") {
+  if (opposantficheId != "0" && opposantficheId != "") {
     if (youwin) {
       sentence1 = game.i18n.localize("DEVASTRA.YouWin");
       sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
@@ -2707,7 +2731,7 @@ async function _treatSkillDiceRollDefenceDialog(
       let opponentActorId = "";
       let opponentActorName = "";
       if (opponentActor) {
-        opponentActorId = opponentActor.id;
+        opponentActorId = opponentActor._id;
         opponentActorName = opponentActor.name;
       };
       */
@@ -3858,7 +3882,7 @@ async function _treatSkillDiceRollDefenceNPCDialog(
     let opponentActorId = "";
     let opponentActorName = "";
     if (opponentActor) {
-      opponentActorId = opponentActor.id;
+      opponentActorId = opponentActor._id;
       opponentActorName = opponentActor.name;
     };
     */

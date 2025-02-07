@@ -41,8 +41,8 @@ export class PlayersManager extends Application {
       classes: ["devastra", "players-manager"],
       title: game.i18n.localize("DEVASTRA.PLAYERSMANAGER.Title"),
       top: window.innerHeight -220,
-      left: window.innerWidth -1045,
-      width: 745,
+      left: window.innerWidth -1055,
+      width: 750,
       height: 220,
       resizable: false,
     })
@@ -107,7 +107,7 @@ export class PlayersManager extends Application {
     } else {
       this.userId = myuserId
       let myActor = game.users.get(myuserId).character
-      this.characterId = myActor.id
+      this.characterId = myActor._id
     }
     game.devastra.playersManager.render(false)
   }

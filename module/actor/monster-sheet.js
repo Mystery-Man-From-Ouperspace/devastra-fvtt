@@ -1264,7 +1264,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     // Smart Message
     let opponentActorId = "";
     if (opponentActor) {
-      opponentActorId = opponentActor.id;
+      opponentActorId = opponentActor._id;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -1278,7 +1278,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     const smartData = {
       nd: myND,
       total: rModif._total,
-      attaquantficheId: myActor.id,
+      attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
       consideropponentprotection: considerOpponentProtection,
 
