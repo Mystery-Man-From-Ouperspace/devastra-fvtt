@@ -3126,8 +3126,8 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     let myShakti = 0;
 
-    console.log("myActor = ", myActor);
-    console.log("myActor._id = ", myActor._id);
+    // console.log("myActor = ", myActor);
+    // console.log("myActor._id = ", myActor._id);
 
     const smartData = {
       nd: myND,
@@ -3308,11 +3308,11 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
       damagetype: await myHtml.find("select[name='damagetype']").val(),
     };
     // myActor.update({ "system.prefs.lastweaponusedid": editedData.selectedinventory, "system.prefs.improviseddamage": editedData.damage.toString() });
-    console.log("isinventory = ", editedData.isinventory);
-    console.log("weapon = ", editedData.weapon);
-    console.log("devastra = ", editedData.devastra);
-    console.log("power = ", editedData.power);
-    console.log("magic = ", editedData.magic);
+    // console.log("isinventory = ", editedData.isinventory);
+    // console.log("weapon = ", editedData.weapon);
+    // console.log("devastra = ", editedData.devastra);
+    // console.log("power = ", editedData.power);
+    // console.log("magic = ", editedData.magic);
     return editedData;
   }
 }
