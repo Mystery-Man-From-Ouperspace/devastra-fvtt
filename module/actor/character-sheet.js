@@ -3540,7 +3540,7 @@ async function _skillDiceRollDialog(
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });
@@ -3668,7 +3668,7 @@ async function _skillDiceRollDialogDeblocked (
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });

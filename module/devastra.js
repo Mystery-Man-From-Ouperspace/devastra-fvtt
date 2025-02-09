@@ -3084,7 +3084,7 @@ async function _skillDiceRollDefenceDialog(
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });
@@ -3299,7 +3299,7 @@ async function _skillDiceRollDefenceDialogDeblocked(
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });
@@ -4124,7 +4124,7 @@ async function _skillDiceRollDefenceNPCDialog(
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });
@@ -4332,7 +4332,7 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
     },
     dialogOptions
     ).render(true, {
-      width: 500,
+      width: 1000,
       height: "auto"
     });
   });
@@ -4641,7 +4641,7 @@ async function _showAppliedDamageInChat(
   });
 
 
-  if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
+  if (game.settings.get("devastra", "sonorizedMandalaInterface") && (pdcMinusArmor > 0)) {
     var audio;
     audio = new Audio("systems/devastra/images/sounds/sword.wav");
     audio.play();

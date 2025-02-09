@@ -56,10 +56,16 @@ export class ModifiedDialog extends Dialog {
   _onThrowDefenceClick(event) {
     let cadre = this.element.find('div[class="cadre"]');
     cadre.show();
+    cadre = this.element.find('div[class="cadre left"]');
+    cadre.show();
+
   }
   _onShaktiDefenceClick(event) {
     let cadre = this.element.find('div[class="cadre"]');
     cadre.hide();
+    cadre = this.element.find('div[class="cadre left"]');
+    cadre.hide();
+
   }
 
 

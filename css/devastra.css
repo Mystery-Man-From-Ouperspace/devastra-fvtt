@@ -554,6 +554,17 @@
 
 
 /* Concerne les prompts */
+.devastra .form-body .flex {
+  display: flex;
+}
+
+.devastra .form-body .flex .cadre {
+  width: 50%;
+}
+
+.devastra .form-body .left {
+  float: left;
+}
 
 .devastra .form-body .frame div.cadre {
   outline-offset: 2px;
