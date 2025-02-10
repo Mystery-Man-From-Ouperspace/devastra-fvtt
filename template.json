@@ -108,7 +108,8 @@
       "shakti": {
         "piledejetons": 0,
         "typejetonbonus": 0,
-        "max": 0
+        "max": 0,
+        "value": 0
       },
       "action": {
         "piledejetons": 0,
@@ -222,9 +223,11 @@
         }
       },
       "atman": {
+        "max": 0,
         "value": 0
       },
       "shakti_initiale": {
+        "max": 0,
         "value": 0,
         "notes": ""
       },
@@ -320,9 +323,11 @@
         }
       },
       "atman": {
+        "max": 0,
         "value": 0
       },
       "shakti_initiale": {
+        "max": 0,
         "value": 0,
         "notes": ""
       },

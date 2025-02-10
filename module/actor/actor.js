@@ -54,6 +54,8 @@ export class DEVASTRAActor extends Actor {
       this.system.atman.max += this.system.domains.dmy.value;
       this.system.atman.max += this.system.atman.bonus;
 
+      this.system.shakti.value = this.system.shakti.piledejetons;
+
       this.system.shakti.max = 2 * this.system.chakra.value;
       let theMaxD = this.system.domains.dph.value;
       if (this.system.domains.dma.value > theMaxD) {
@@ -82,15 +84,39 @@ export class DEVASTRAActor extends Actor {
 
     }
 
-    if (this.type === "npc") {
+    if (this.type === "npc" || this.type === "monster") {
       this.system.initiative_totale = this.system.initiative.value;
+
+      this.system.prana.max = 10 * this.system.chakra.value;
+      this.system.prana.max += this.system.domains.dph.value;
+      this.system.prana.max += this.system.domains.dma.value;
+      this.system.prana.max += this.system.domains.din.value;
+      this.system.prana.max += this.system.domains.dso.value;
+      this.system.prana.max += this.system.domains.dmy.value;
+
+      this.system.atman.max = 5 * this.system.chakra.value;
+      this.system.atman.max += this.system.domains.dmy.value;
+      // this.system.atman.max += this.system.atman.bonus;
+
+      this.system.shakti_initiale.max = 2 * this.system.chakra.value;
+      let theMaxD = this.system.domains.dph.value;
+      if (this.system.domains.dma.value > theMaxD) {
+        theMaxD = this.system.domains.dma.value;
+      };
+      if (this.system.domains.din.value > theMaxD) {
+        theMaxD = this.system.domains.din.value;
+      };
+      if (this.system.domains.dso.value > theMaxD) {
+        theMaxD = this.system.domains.dso.value;
+      };
+      if (this.system.domains.dma.value > theMaxD) {
+        theMaxD = this.system.domains.dmy.value;
+      };
+      this.system.shakti_initiale.max += (2 * theMaxD);
+
     }
 
-    if (this.type === "monster") {
-      this.system.initiative_totale = this.system.initiative.value;
-    }
-
-
+    
   }
 
 }
