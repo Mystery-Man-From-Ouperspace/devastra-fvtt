@@ -35,6 +35,18 @@
     }
   ],
   "packs": [
+    {
+      "name": "fr-resume-utilisation",
+      "label": "FR - Résumé Utilisation",
+      "system": "devastra",
+      "path": "packs/fr-resume-utilisation",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
   ],
   "compatibility": {
     "minimum": "11",

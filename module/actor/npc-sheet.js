@@ -576,7 +576,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
       audio.play();
     }
 
@@ -697,7 +697,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     if (!(myActor.system.action.piledejetons)) {
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.action.piledejetons": 1 });

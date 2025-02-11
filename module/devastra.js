@@ -4643,7 +4643,7 @@ async function _showAppliedDamageInChat(
 
   if (game.settings.get("devastra", "sonorizedMandalaInterface") && (pdcMinusArmor > 0)) {
     var audio;
-    audio = new Audio("systems/devastra/images/sounds/sword.wav");
+    audio = new Audio("systems/devastra/sounds/sword.wav");
     audio.play();
   }
 

@@ -663,7 +663,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
       audio.play();
     }
 
@@ -1127,7 +1127,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
         
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/defausse_jeton.wav");
       audio.play();
     }
 
@@ -1180,7 +1180,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/defausse_jeton.wav");
       audio.play();
     }
 
@@ -1620,7 +1620,7 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     }
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/defausse_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/defausse_jeton.wav");
       audio.play();
     }
 }
@@ -2221,7 +2221,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.action.piledejetons": 1 });
@@ -2423,7 +2423,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
@@ -2472,7 +2472,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
@@ -2522,7 +2522,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.conviction.piledejetons": myActor.system.conviction.piledejetons - 1 });
