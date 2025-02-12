@@ -385,7 +385,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     let myErrorTokenNbr = 0;
     if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
       if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        await myActor.update({ "system.shakti_initiale.value":  parseInt(myActor.system.shakti_initiale.value) - parseInt(myPlusDeuxDesDAttaque) });
         ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
       } else {
         ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
@@ -1584,7 +1584,7 @@ myActor, template, myTitle, myDialogOptions, domainLibel, pureDomOrSpeLibel, myI
 
   const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
-  const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
+  const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
 
   const tabDomainLibel = [
     "_",

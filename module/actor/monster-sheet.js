@@ -377,7 +377,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     let myErrorTokenNbr = 0;
     if ((jetLibel == "attck") && parseInt(myPlusDeuxDesDAttaque)) {
       if (myShaktiSuffisanteFlag) {
-        await myActor.update({ "system.shakti.piledejetons":  parseInt(myActor.system.shakti.piledejetons) - parseInt(myPlusDeuxDesDAttaque) });
+        await myActor.update({ "system.shakti_initiale.value":  parseInt(myActor.system.shakti_initiale.value) - parseInt(myPlusDeuxDesDAttaque) });
         ui.notifications.info(game.i18n.localize("DEVASTRA.Info4"));
       } else {
         ui.notifications.error(game.i18n.localize("DEVASTRA.Error4"));
@@ -563,12 +563,12 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     }
 
     // Ici aussi on met à jour la fiche
-    await myActor.update({ "system.shakti_initiale.value": myActor.system.shakti.shakti_initiale.value + gain });
+    await myActor.update({ "system.shakti_initiale.value": myActor.system.shakti_initiale.value + gain });
     
 
     if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
       var audio;
-      audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+      audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
       audio.play();
     }
 
@@ -690,7 +690,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     if (!(myActor.system.action.piledejetons)) {
       if (game.settings.get("devastra", "sonorizedMandalaInterface")) {
         var audio;
-        audio = new Audio("systems/devastra/images/sounds/tire_jeton.wav");
+        audio = new Audio("systems/devastra/sounds/tire_jeton.wav");
         audio.play();
       }
       await myActor.update({ "system.action.piledejetons": 1 });
@@ -1736,7 +1736,7 @@ async function _skillDiceRollDialogDeblocked (
   
     const mySpecialiteCheck = (pureDomOrSpeLibel === "special");
     const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
-    // const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
+    // const myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value); // s'il reste des points de Shakti
   
     switch (myDomainLibel) {
       case "dph": 
