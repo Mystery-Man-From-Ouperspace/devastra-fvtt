@@ -471,7 +471,7 @@
 
   "DEVASTRA.Error3": "Impossible : vous n’êtes pas propriétaire",
 
-  "DEVASTRA.Error7": "Impossible : l’opposant n’a pas été défini",
+  "DEVASTRA.Error7": "Impossible : l’opposant n’a pas été défini ou est multiple",
 
   "DEVASTRA.Info8": "Total d’Armure mis à jour",
 

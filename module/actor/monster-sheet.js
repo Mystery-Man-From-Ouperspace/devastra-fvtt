@@ -1263,8 +1263,11 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
 
     // Smart Message
     let opponentActorId = "";
+    const optNone = game.i18n.localize("DEVASTRA.opt.none");
+    let opposant = optNone;
     if (opponentActor) {
       opponentActorId = opponentActor._id;
+      opposant = opponentActor.name;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -1280,6 +1283,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       total: rModif._total,
       attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
+      opposant: opposant,
       consideropponentprotection: considerOpponentProtection,
 
       isinventory: isInventory,
@@ -1353,7 +1357,7 @@ async function _whichTypeOfDamage (myActor, template, myTitle, myDialogOptions, 
 
 
   myItemWeapon["0"] = new myObject("0", game.i18n.localize("DEVASTRA.opt.none"));
-  myItemWeapon["-1"] = new myObject("-1", game.i18n.localize("DEVASTRA.barehands"));
+  // myItemWeapon["-1"] = new myObject("-1", game.i18n.localize("DEVASTRA.barehands"));
   for (let item of myActor.items.filter(item => item.type === 'item')) {
     if (item.system.subtype == "weapon") {
     myItemWeapon[item.id.toString()] = new myObject(item.id.toString(), item.name.toString()+" ["+item.system.damage_base.toString()+"+"+item.system.damage.toString()+"]");
