@@ -61,6 +61,6 @@
   "socket": true,
   "primaryTokenAttribute": "prana",
   "secondaryTokenAttribute": "atman",
-  "manifest": "http://serveurdavid.fr/download/foundry/devastra/system.json",
-  "download": "http://serveurdavid.fr/download/foundry/devastra/release-013.zip"
+  "manifest": "https://serveurdavid.fr/download/foundry/devastra/system.json",
+  "download": "https://serveurdavid.fr/download/foundry/devastra/release-013.zip"
 }
