@@ -492,37 +492,8 @@
   max-height: 900px;
 }
 
-.devastra.sheet.item,
-.devastra.sheet.enseignement,
-.devastra.sheet.devastra,
-.devastra.sheet.pouvoir,
-.devastra.sheet.magie,
-.devastra.sheet.dharma,
-.devastra.sheet.karma {
-  min-width: 460px;
-  min-height: 400px;
-}
 
-.devastra.sheet.item .sheet-body,
-.devastra.sheet.enseignement .sheet-body,
-.devastra.sheet.devastra .sheet-body,
-.devastra.sheet.pouvoir .sheet-body,
-.devastra.sheet.magie .sheet-body,
-.devastra.sheet.dharma .sheet-body,
-.devastra.sheet.karma .sheet-body,
-.devastra.sheet.tab.sheet-body {
-  overflow-y: auto;
-}
 
-.devastra.sheet.item .profile-img,
-.devastra.sheet.enseignement .profile-img,
-.devastra.sheet.devastra .profile-img,
-.devastra.sheet.pouvoir .profile-img,
-.devastra.sheet.magie .profile-img,
-.devastra.sheet.dharma .profile-img,
-.devastra.sheet.karma .profile-img {
-  background-color: lightgrey;
-}
 
 
 /* concerne la fiche npc-sheet */
@@ -1814,3 +1785,84 @@ body.deva-face #pause > img {
   text-transform: uppercase;
   color:rgb(0, 103, 146);
 }
+
+.devastra.sheet.itemsheet,
+.devastra.sheet.enseignementsheet,
+.devastra.sheet.devastrasheet,
+.devastra.sheet.pouvoirsheet,
+.devastra.sheet.magiesheet,
+.devastra.sheet.dharmasheet,
+.devastra.sheet.karmasheet {
+  min-width: 460px;
+  min-height: 400px;
+}
+
+.devastra.sheet.item .sheet-body,
+.devastra.sheet.enseignement .sheet-body,
+.devastra.sheet.devastra .sheet-body,
+.devastra.sheet.pouvoir .sheet-body,
+.devastra.sheet.magie .sheet-body,
+.devastra.sheet.dharma .sheet-body,
+.devastra.sheet.karma .sheet-body,
+.devastra.sheet.tab.sheet-body {
+  overflow-y: auto;
+}
+
+.devastra.sheet.itemsheet .profile-img,
+.devastra.sheet.enseignementsheet .profile-img,
+.devastra.sheet.devastrasheet .profile-img,
+.devastra.sheet.pouvoirsheet .profile-img,
+.devastra.sheet.magiesheet .profile-img,
+.devastra.sheet.dharmasheet .profile-img,
+.devastra.sheet.karmasheet .profile-img {
+  background-color: lightgrey;
+}
+
+.devastra.sheet.blessureoustatutsheet .sheet-header,
+.devastra.sheet.devastrasheet .sheet-header,
+.devastra.sheet.dharmasheet .sheet-header,
+.devastra.sheet.enseignementsheet .sheet-header,
+.devastra.sheet.itemsheet .sheet-header,
+.devastra.sheet.karmasheet .sheet-header,
+.devastra.sheet.magiesheet .sheet-header,
+.devastra.sheet.notesheet .sheet-header,
+.devastra.sheet.pouvoirsheet .sheet-header,
+.devastra.sheet.blessureoustatutsheet .sheet-tabs,
+.devastra.sheet.devastrasheet .sheet-tabs,
+.devastra.sheet.dharmasheet .sheet-tabs,
+.devastra.sheet.enseignementsheet .sheet-tabs,
+.devastra.sheet.itemsheet .sheet-tabs,
+.devastra.sheet.karmasheet .sheet-tabs,
+.devastra.sheet.magiesheet .sheet-tabs,
+.devastra.sheet.notesheet .sheet-tabs,
+.devastra.sheet.pouvoirsheet .sheet-tabs {
+  background-color: white;
+  opacity: 0.55;
+}
+
+.devastra.sheet.blessureoustatutsheet .tab,
+.devastra.sheet.devastrasheet .tab,
+.devastra.sheet.dharmasheet .tab,
+.devastra.sheet.enseignementsheet .tab,
+.devastra.sheet.itemsheet .tab,
+.devastra.sheet.karmasheet .tab,
+.devastra.sheet.magiesheet .tab,
+.devastra.sheet.notesheet .tab {
+  background-color: transparent;
+}
+
+.devastra.sheet.blessureoustatutsheet .window-content,
+.devastra.sheet.devastrasheet .window-content,
+.devastra.sheet.dharmasheet .window-content,
+.devastra.sheet.enseignementsheet .window-content,
+.devastra.sheet.itemsheet .window-content,
+.devastra.sheet.karmasheet .window-content,
+.devastra.sheet.magiesheet .window-content,
+.devastra.sheet.notesheet .window-content,
+.devastra.sheet.pouvoirsheet .window-content {
+  background-color: transparent;
+  background-image: url("/systems/devastra/images/background/fond.png");
+}
+
+
+

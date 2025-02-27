@@ -6,7 +6,7 @@ export class DEVASTRADevastraSheet extends ItemSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["devastra", "sheet"],
+      classes: ["devastra", "sheet", "devastrasheet"],
       template: "systems/devastra/templates/item/devastra-sheet.html",
       width: 450,
       height: 520,
