@@ -1847,7 +1847,8 @@ body.deva-face #pause > img {
 .devastra.sheet.itemsheet .tab,
 .devastra.sheet.karmasheet .tab,
 .devastra.sheet.magiesheet .tab,
-.devastra.sheet.notesheet .tab {
+.devastra.sheet.notesheet .tab,
+.devastra.sheet.pouvoirsheet .tab {
   background-color: transparent;
 }
 
