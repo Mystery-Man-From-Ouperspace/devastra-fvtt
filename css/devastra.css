@@ -1786,13 +1786,18 @@ body.deva-face #pause > img {
   color:rgb(0, 103, 146);
 }
 
+
+
+
+
 .devastra.sheet.itemsheet,
 .devastra.sheet.enseignementsheet,
 .devastra.sheet.devastrasheet,
 .devastra.sheet.pouvoirsheet,
 .devastra.sheet.magiesheet,
 .devastra.sheet.dharmasheet,
-.devastra.sheet.karmasheet {
+.devastra.sheet.karmasheet,
+.devastra.sheet.notesheet {
   min-width: 460px;
   min-height: 400px;
 }
