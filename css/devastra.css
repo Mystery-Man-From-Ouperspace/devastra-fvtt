@@ -1797,13 +1797,14 @@ body.deva-face #pause > img {
   min-height: 400px;
 }
 
-.devastra.sheet.item .sheet-body,
-.devastra.sheet.enseignement .sheet-body,
-.devastra.sheet.devastra .sheet-body,
-.devastra.sheet.pouvoir .sheet-body,
-.devastra.sheet.magie .sheet-body,
-.devastra.sheet.dharma .sheet-body,
-.devastra.sheet.karma .sheet-body,
+.devastra.sheet.itemsheet .sheet-body,
+.devastra.sheet.enseignementsheet .sheet-body,
+.devastra.sheet.devastrasheet .sheet-body,
+.devastra.sheet.pouvoirsheet .sheet-body,
+.devastra.sheet.magiesheet .sheet-body,
+.devastra.sheet.dharmasheet .sheet-body,
+.devastra.sheet.karmasheet .sheet-body,
+.devastra.sheet.notesheet .sheet-body,
 .devastra.sheet.tab.sheet-body {
   overflow-y: auto;
 }
@@ -1814,7 +1815,8 @@ body.deva-face #pause > img {
 .devastra.sheet.pouvoirsheet .profile-img,
 .devastra.sheet.magiesheet .profile-img,
 .devastra.sheet.dharmasheet .profile-img,
-.devastra.sheet.karmasheet .profile-img {
+.devastra.sheet.karmasheet .profile-img,
+.devastra.sheet.notesheet .profile-img {
   background-color: lightgrey;
 }
 
