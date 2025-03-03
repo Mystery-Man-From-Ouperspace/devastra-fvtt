@@ -10,7 +10,7 @@
 .devastra .window-content {
   height: 100%;
   padding: 5px;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .devastra form {
   height: 100%;
@@ -35,7 +35,7 @@
   display: flex;
   column-gap: 10px;
   /* overflow-y: auto; */
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .devastra .side-sheet {
@@ -1818,7 +1818,8 @@ body.deva-face #pause > img {
 .devastra.sheet.karmasheet .sheet-body,
 .devastra.sheet.notesheet .sheet-body,
 .devastra.sheet.tab.sheet-body {
-  overflow-y: auto;
+  width: 100%;
+  overflow: auto;
 }
 
 .devastra.sheet.itemsheet .profile-img,
@@ -1864,6 +1865,7 @@ body.deva-face #pause > img {
 .devastra.sheet.notesheet .tab,
 .devastra.sheet.pouvoirsheet .tab {
   background-color: transparent;
+  white-space: wrap;
 }
 
 .devastra.sheet.blessureoustatutsheet .window-content,
@@ -1877,4 +1879,7 @@ body.deva-face #pause > img {
 .devastra.sheet.pouvoirsheet .window-content {
   background-color: transparent;
   background-image: url("/systems/devastra/images/background/fond.png");
+  height: 100%;
+  padding: 5px;
+  overflow: auto;
 }
