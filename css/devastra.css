@@ -1157,11 +1157,11 @@ flex-wrap: wrap;
 }
 .devastra.sheet.actor.npc .body-sheet,
 .devastra.sheet.actor.monster .body-sheet {
-  height: 3000px;
   width: 1100px;
 }
 .devastra.sheet.actor.npc .body-sheet .sheet-body .tab,
 .devastra.sheet.actor.monster .body-sheet .sheet-body .tab {
+  white-space: wrap;
   height: 3000px;
   width: 1100px;
 }
