@@ -1818,7 +1818,7 @@ body.deva-face #pause > img {
 .devastra.sheet.karmasheet .sheet-body,
 .devastra.sheet.notesheet .sheet-body,
 .devastra.sheet.tab.sheet-body {
-  width: 100%;
+  width: auto;
   overflow: auto;
 }
 
