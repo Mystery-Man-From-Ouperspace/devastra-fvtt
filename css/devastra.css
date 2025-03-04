@@ -1807,6 +1807,7 @@ body.deva-face #pause > img {
 .devastra.sheet.notesheet {
   min-width: 460px;
   min-height: 400px;
+  overflow: hidden;
 }
 
 .devastra.sheet.itemsheet .sheet-body,
@@ -1818,8 +1819,7 @@ body.deva-face #pause > img {
 .devastra.sheet.karmasheet .sheet-body,
 .devastra.sheet.notesheet .sheet-body,
 .devastra.sheet.tab.sheet-body {
-  width: auto;
-  overflow: auto;
+  white-space: wrap;
 }
 
 .devastra.sheet.itemsheet .profile-img,
@@ -1865,7 +1865,18 @@ body.deva-face #pause > img {
 .devastra.sheet.notesheet .tab,
 .devastra.sheet.pouvoirsheet .tab {
   background-color: transparent;
-  white-space: wrap;
+  width: auto;
+}
+
+.devastra.sheet.blessureoustatutsheet .sheet-display,
+.devastra.sheet.devastrasheet .sheet-display,
+.devastra.sheet.dharmasheet .sheet-display,
+.devastra.sheet.enseignementsheet .sheet-display,
+.devastra.sheet.itemsheet .sheet-display,
+.devastra.sheet.karmasheet .sheet-display,
+.devastra.sheet.magiesheet .sheet-display,
+.devastra.sheet.notesheet .sheet-display,
+.devastra.sheet.pouvoirsheet .sheet-display {
 }
 
 .devastra.sheet.blessureoustatutsheet .window-content,
@@ -1881,5 +1892,4 @@ body.deva-face #pause > img {
   background-image: url("/systems/devastra/images/background/fond.png");
   height: 100%;
   padding: 5px;
-  overflow: auto;
 }
