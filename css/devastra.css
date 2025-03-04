@@ -1866,6 +1866,7 @@ body.deva-face #pause > img {
 .devastra.sheet.pouvoirsheet .tab {
   background-color: transparent;
   width: auto;
+  height: auto;
 }
 
 .devastra.sheet.blessureoustatutsheet .sheet-display,
