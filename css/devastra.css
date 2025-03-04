@@ -135,6 +135,7 @@
   white-space: wrap;
   /* height: 100%; */
   min-height: 1500px;
+  height: 100%;
   width: 710px;
   padding: 2px;
   background-color: white;
