@@ -133,13 +133,20 @@
 
 .devastra .sheet-body .tab {
   white-space: wrap;
-  height: 100%;
-  height: 2500px;
+  /* height: 100%; */
+  min-height: 1500px;
   width: 710px;
   padding: 2px;
   background-color: white;
   background-position: bottom left; 
 }
+
+/*
+.devastra.sheet.character .sheet-body .tab .chakra,
+.devastra.sheet.character .sheet-body .tab .mandala {
+  height: 1500px;
+}
+*/
 
 .devastra .side-sheet .NPCtype {
   text-align: center;
