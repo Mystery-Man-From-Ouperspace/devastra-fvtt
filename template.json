@@ -128,11 +128,11 @@
           "un": true
         },
         "totalevolution": 0,
-        "perestant": 0,
-        "initiative_totale": 0
+        "perestant": 0
       },
       "srcJeton": "",
-      "armure_total": 0
+      "armure_total": 0,
+      "initiative_totale": 0
 
     },
 
@@ -234,7 +234,8 @@
       "chakra": {
         "value": 0
       },
-      "armure_total": 0
+      "armure_total": 0,
+      "initiative_totale": 0
     },
     "monster": {
       "locked": true,
@@ -334,7 +335,8 @@
       "chakra": {
         "value": 0
       },
-      "armure_total": 0
+      "armure_total": 0,
+      "initiative_totale": 0
     }
   },
 

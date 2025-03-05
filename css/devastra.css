@@ -1324,12 +1324,12 @@ flex-wrap: wrap;
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
   .devastra.sheet.actor.character .body-sheet img.viseur {
-    width: 68px;
+    width: 70.35px;
   }
 }
 @supports (-moz-appearance:none) {
   .devastra.sheet.actor.character .body-sheet img.viseur {
-    width: 69.75px;
+    width: 69.9px;
   }
 }
 
@@ -1350,12 +1350,12 @@ and (min-resolution:.001dpcm) {
 @media screen and (-webkit-min-device-pixel-ratio:0)
 and (min-resolution:.001dpcm) {
   .devastra.sheet.actor.character .body-sheet span.mandala-decale {
-    width: 68px;
+    width: 70.35px;
   }
 }
 @supports (-moz-appearance:none) {
   .devastra.sheet.actor.character .body-sheet span.mandala-decale {
-    width: 70px;
+    width: 70.0px;
   }
 }
 
@@ -1663,7 +1663,7 @@ and (min-resolution:.001dpcm) {
 }
 @supports (-moz-appearance:none) {
   .devastra.players-manager .mandala_wrap div.viseur_decale {
-    margin-top: 50px;
+    margin-top: 51px;
     margin-left: 225px;
   }
 }

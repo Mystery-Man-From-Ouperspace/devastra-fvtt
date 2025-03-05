@@ -725,51 +725,51 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     switch (mandalaNumber) {
       case "1":
         if (myActor.system.mandala.un.selected) {
-          myActor.update({ "system.mandala.un.selected": false });
+          await myActor.update({ "system.mandala.un.selected": false });
         } else {
-          myActor.update({ "system.mandala.un.selected": true });
+          await myActor.update({ "system.mandala.un.selected": true });
         }
       break;
       case "2":
         if (myActor.system.mandala.deux.selected) {
-          myActor.update({ "system.mandala.deux.selected": false });
+          await myActor.update({ "system.mandala.deux.selected": false });
         } else {
-          myActor.update({ "system.mandala.deux.selected": true });
+          await myActor.update({ "system.mandala.deux.selected": true });
         }
         break;
       case "3":
         if (myActor.system.mandala.trois.selected) {
-          myActor.update({ "system.mandala.trois.selected": false });
+          await myActor.update({ "system.mandala.trois.selected": false });
         } else {
-          myActor.update({ "system.mandala.trois.selected": true });
+          await myActor.update({ "system.mandala.trois.selected": true });
         }
         break;
       case "4":
         if (myActor.system.mandala.quatre.selected) {
-          myActor.update({ "system.mandala.quatre.selected": false });
+          await myActor.update({ "system.mandala.quatre.selected": false });
         } else {
-          myActor.update({ "system.mandala.quatre.selected": true });
+          await myActor.update({ "system.mandala.quatre.selected": true });
         }
         break;
       case "5":
         if (myActor.system.mandala.cinq.selected) {
-          myActor.update({ "system.mandala.cinq.selected": false });
+          await myActor.update({ "system.mandala.cinq.selected": false });
         } else {
-          myActor.update({ "system.mandala.cinq.selected": true });
+          await myActor.update({ "system.mandala.cinq.selected": true });
         }
         break;
       case "6":
         if (myActor.system.mandala.six.selected) {
-          myActor.update({ "system.mandala.six.selected": false });
+          await myActor.update({ "system.mandala.six.selected": false });
         } else {
-          myActor.update({ "system.mandala.six.selected": true });
+          await myActor.update({ "system.mandala.six.selected": true });
         }
         break;
       case "7":
         if (myActor.system.mandala.sept.selected) {
-          myActor.update({ "system.mandala.sept.selected": false });
+          await myActor.update({ "system.mandala.sept.selected": false });
         } else {
-          myActor.update({ "system.mandala.sept.selected": true });
+          await myActor.update({ "system.mandala.sept.selected": true });
         }
         break;
       default:
