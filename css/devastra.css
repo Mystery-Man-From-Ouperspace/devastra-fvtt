@@ -1762,6 +1762,13 @@ body.deva-face #pause > img {
 }
 
 .window-title,
+.encounter-title,
+.document-name a,
+.token-name h4,
+.playlist-header h4,
+.sound h4,
+.settings-sidebar h2,
+.compendium-name,
 #players h3 {
   color: #7ed0f6;
 }
