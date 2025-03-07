@@ -1761,6 +1761,10 @@ body.deva-face #pause > img {
   left: calc(50% - 96px);
 }
 
+.window-title,
+#players h3 {
+  color: #7ed0f6;
+}
 
 /* concerne les préférences */
 
