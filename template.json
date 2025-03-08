@@ -15,7 +15,9 @@
           "label": "DEVASTRA.Physical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -23,7 +25,9 @@
           "label": "DEVASTRA.Martial",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -31,7 +35,9 @@
           "label": "DEVASTRA.Intellect",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -39,7 +45,9 @@
           "label": "DEVASTRA.Social",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -47,7 +55,9 @@
           "label": "DEVASTRA.Mystical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         }
       },
       "prana": {
@@ -151,7 +161,9 @@
           "label": "DEVASTRA.npcPhysical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -159,7 +171,9 @@
           "label": "DEVASTRA.npcMartial",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -167,7 +181,9 @@
           "label": "DEVASTRA.npcIntellect",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -175,7 +191,9 @@
           "label": "DEVASTRA.npcSocial",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -183,7 +201,9 @@
           "label": "DEVASTRA.npcMystical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         }
       },
       "prana": {
@@ -252,7 +272,9 @@
           "label": "DEVASTRA.npcPhysical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -260,7 +282,9 @@
           "label": "DEVASTRA.npcMartial",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -268,7 +292,8 @@
           "label": "DEVASTRA.npcIntellect",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bless": "",
+          "blessed": true
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -276,7 +301,9 @@
           "label": "DEVASTRA.npcSocial",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -284,7 +311,9 @@
           "label": "DEVASTRA.npcMystical",
           "specialities": "",
           "value": 0,
-          "bonusdice": 0
+          "bonusdice": 0,
+          "bless": "",
+          "blessed": true
         }
       },
       "prana": {

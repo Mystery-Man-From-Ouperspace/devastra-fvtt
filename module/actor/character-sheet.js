@@ -81,6 +81,29 @@ export class DEVASTRACharacterSheet extends DEVASTRAActorSheet {
     context.isGM = game.user.isGM;
     // context.isGM = false; // Pour tester la fonction
 
+    
+    context.systemData.domains.dph.blessed = await this.actor.system.domains.dph.blessed;
+    context.systemData.domains.dma.blessed = await this.actor.system.domains.dma.blessed;
+    context.systemData.domains.din.blessed = await this.actor.system.domains.din.blessed;
+    context.systemData.domains.dso.blessed = await this.actor.system.domains.dso.blessed;
+    context.systemData.domains.dmy.blessed = await this.actor.system.domains.dmy.blessed;
+
+    
+    /*
+    context.whichRadioDPh = radioBoxes({name: groupNameDPh, choices: choices, options: {chosen: chosenDPh, loc: true}});
+    context.whichRadioDMa = radioBoxes({name: groupNameDMa, choices: choices, options: {chosen: chosenDMa, loc: true}});
+    context.whichRadioDIn = radioBoxes({name: groupNameDIn, choices: choices, options: {chosen: chosenDIn, loc: true}});
+    context.whichRadioDSo = radioBoxes({name: groupNameDSo, choices: choices, options: {chosen: chosenDSo, loc: true}});
+    context.whichRadioDMy = radioBoxes({name: groupNameDMy, choices: choices, options: {chosen: chosenDMy, loc: true}});
+    */
+
+    context.whichRadioDPh = radioBoxes(groupNameDPh, choices, {chosen: chosenDPh, loc: true});
+    context.whichRadioDMa = radioBoxes(groupNameDMa, choices, {chosen: chosenDMa, loc: true});
+    context.whichRadioDIn = radioBoxes(groupNameDIn, choices, {chosen: chosenDIn, loc: true});
+    context.whichRadioDSo = radioBoxes(groupNameDSo, choices, {chosen: chosenDSo, loc: true});
+    context.whichRadioDMy = radioBoxes(groupNameDMy, choices, {chosen: chosenDMy, loc: true});
+
+
     context.DEVASTRA = DEVASTRA;
     return context;
   }

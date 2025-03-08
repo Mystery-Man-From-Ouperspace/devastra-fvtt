@@ -210,6 +210,16 @@
   margin-left: -3px;
 }
 
+.devastra .sheet-body .statistiques table.domain-table .bless {
+  width: 65px;
+  font-size: small;
+}
+
+.devastra .sheet-body .statistiques table.domain-table .label {
+  width: 120px;
+}
+
+
 /*
 .devastra .sheet-body .statistiques table.domain-table tr:nth-child(odd) {
   background-color: transparent;
@@ -1722,6 +1732,28 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
+.window-title,
+/* .encounter, */
+.encounter-title,
+.token-name h4,
+.document-name a,
+.compendium-name,
+.playlist-header h4,
+.sound h4,
+.toolclip h4,
+.settings-sidebar h2,
+#players h3,
+#menu #menu-items li h4 {
+  color: #7ed0f6;
+}
+
+/*
+.encounter-controls h3 {
+  font-size: 24px;
+}
+*/
+
+
 
 #logo {
   content: url("/systems/devastra/images/ui/logo_jeu.png");
@@ -1761,19 +1793,6 @@ body.deva-face #pause > img {
   left: calc(50% - 96px);
 }
 
-.window-title,
-.encounter-title,
-.toolclip h4,
-.document-name a,
-.token-name h4,
-.playlist-header h4,
-.sound h4,
-.settings-sidebar h2,
-.compendium-name,
-#players h3,
-#menu #menu-items li h4 {
-  color: #7ed0f6;
-}
 
 /* concerne les préférences */
 

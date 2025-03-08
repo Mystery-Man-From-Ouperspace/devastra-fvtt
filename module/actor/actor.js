@@ -82,6 +82,7 @@ export class DEVASTRAActor extends Actor {
         this.system.atman.value = this.system.atman.max;
       };
 
+    
     }
 
     if (this.type === "npc" || this.type === "monster") {

@@ -587,7 +587,9 @@
   "DEVASTRA.DamageApplied": "Dégâts appliqués",
   "DEVASTRA.TotalDamageApplied": "Dégâts totaux appliqués :",
 
-  
+  "DEVASTRA.béni": "béni",
+  "DEVASTRA.maudit": "maudit",
+
 
   "TYPES": {
     "Actor": {

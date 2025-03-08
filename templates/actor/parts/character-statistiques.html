@@ -9,6 +9,15 @@
       <img src="{{domain.icon}}" title="{{ localize 'DEVASTRA.Icon' }}{{ localize domain.label }}" alt="Icon" />
     </td>
     <td class="label"><b>&nbsp;{{ localize domain.label }}</b></td>
+
+    <td class="bless updatebless">
+
+      <td class="bless updatebless" data-libel-id="{{key}}-bless">
+        <input type="radio" name="system.domains.{{@key}}.bless" {{checked domain.blessed}} />{{ localize "DEVASTRA.béni" }}
+        <br>
+        <input type="radio" name="system.domains.{{@key}}.bless" {{checked domain.cursed}} />{{ localize "DEVASTRA.maudit" }}
+
+    </td>
     <td class="valuedice imageb">
     <!--  <img src="systems/devastra/images/ui/cercle.png" />
       <div class="stick">&nbsp;</div> -->
