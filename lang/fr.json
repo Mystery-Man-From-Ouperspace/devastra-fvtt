@@ -590,6 +590,10 @@
   "DEVASTRA.béni": "béni",
   "DEVASTRA.maudit": "maudit",
 
+  "DEVASTRA.humain/avatar": "Humain/Avatar",
+  "DEVASTRA.asura": "Asura",
+
+
 
   "TYPES": {
     "Actor": {

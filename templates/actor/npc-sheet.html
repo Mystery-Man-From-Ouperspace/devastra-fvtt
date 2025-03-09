@@ -68,6 +68,13 @@
               </h1>
             </td>
           </tr>
+          <tr class="type">
+            <td>
+              <input type="radio" name="system.type" value="human" {{ checked (eq systemData.type 'human') }}/>{{ localize "DEVASTRA.humain/avatar" }}
+              &nbsp;
+              <input type="radio" name="system.type" value="asura" {{ checked (eq systemData.type 'asura') }}/>{{ localize "DEVASTRA.asura" }}
+            </td>
+          </tr>
         </table>
         <table class="concept">
           <tr>
