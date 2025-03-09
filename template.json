@@ -16,8 +16,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -26,8 +25,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -36,8 +34,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -46,8 +43,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -56,8 +52,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         }
       },
       "prana": {
@@ -162,8 +157,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -172,8 +166,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -182,8 +175,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -192,8 +184,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -202,8 +193,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         }
       },
       "prana": {
@@ -273,8 +263,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dma": {
           "icon": "systems/devastra/images/ui/icons/DMa.png",
@@ -283,8 +272,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "din": {
           "icon": "systems/devastra/images/ui/icons/DIn.png",
@@ -292,8 +280,7 @@
           "label": "DEVASTRA.npcIntellect",
           "specialities": "",
           "value": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dso": {
           "icon": "systems/devastra/images/ui/icons/DSo.png",
@@ -302,8 +289,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         },
         "dmy": {
           "icon": "systems/devastra/images/ui/icons/DMy.png",
@@ -312,8 +298,7 @@
           "specialities": "",
           "value": 0,
           "bonusdice": 0,
-          "bless": "",
-          "blessed": true
+          "bless": "blessed"
         }
       },
       "prana": {

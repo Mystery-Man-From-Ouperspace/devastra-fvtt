@@ -210,13 +210,27 @@
   margin-left: -3px;
 }
 
-.devastra .sheet-body .statistiques table.domain-table .bless {
+.devastra .sheet-body .statistiques table.domain-table .blessavatar {
   width: 65px;
-  font-size: small;
+  font-size: 11px;
 }
 
+.devastra .sheet-body .statistiques table.domain-table-npc .blessnpc,
+.devastra .sheet-body .statistiques table.domain-table-npc .blessmonster {
+  font-size: 11px;
+  text-align: center;
+}
+
+
 .devastra .sheet-body .statistiques table.domain-table .label {
-  width: 120px;
+  width: 110px;
+  text-align: center;
+}
+.devastra .sheet-body .statistiques table.domain-table .specialities {
+  width: 350px;
+}
+.devastra .sheet-body .statistiques table.domain-table .nbre {
+  width: 20px;
 }
 
 
@@ -230,8 +244,10 @@
 }
 */
 
-.devastra .sheet-body .statistiques td.specialities input {
+.devastra .sheet-body .statistiques td.specialities input,
+.devastra .sheet-body .statistiques div.specialities input {
   font-size: 11px;
+  height: 20px;
 }
 
 .devastra .sheet-body .statistiques div.enseignements,
@@ -1272,6 +1288,7 @@ flex-wrap: wrap;
 .devastra.sheet.actor.npc .body-sheet div.minitext input,
 .devastra.sheet.actor.monster .body-sheet div.minitext input {
   font-size: 11px;
+  height: 20px;
 }
 
 .devastra.sheet.actor.npc .body-sheet .sheet-nav-container details > summary,

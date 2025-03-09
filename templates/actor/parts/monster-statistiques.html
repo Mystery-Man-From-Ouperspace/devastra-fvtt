@@ -2,7 +2,8 @@
 <div style="width: 100%; display: flex;">
   <div style="display: table; width: 20%;">
     {{#each systemData.domains as |domain key|}}
-    <div class="domain-div" style="display: flex;">
+    <div class="domain-div">
+      <div style="display: flex;">
       <table class="domain-table-npc" style="display: table; width: 35%;">
         <tr>
           <td class="click clickondie" data-libel-id="{{key}}-puredomain">
@@ -23,11 +24,17 @@
           </td>
         </tr>
         <tr>
-          <td class="specialities">
-            <input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Specialities' }}…" name="system.domains.{{@key}}.specialities" value="{{domain.specialities}}" />
+          <td class="blessmonster">
+            <input type="radio" name="system.domains.{{@key}}.bless" value="blessed" {{ checked (eq domain.bless 'blessed') }}/>{{ localize "DEVASTRA.béni" }}
+            &nbsp;
+            <input type="radio" name="system.domains.{{@key}}.bless" value="cursed" {{ checked (eq domain.bless 'cursed') }}/>{{ localize "DEVASTRA.maudit" }}
           </td>
         </tr>
       </table>
+      </div>
+      <div class="specialities">
+        <input class="input" type="text" placeholder="{{ localize 'DEVASTRA.Specialities' }}…" name="system.domains.{{@key}}.specialities" value="{{domain.specialities}}" />
+      </div>
     </div>
     {{/each}}
   </div>
