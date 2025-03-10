@@ -1,6 +1,6 @@
 {
   "id": "devastra",
-  "version": "0.1.10beta",
+  "version": "0.2.0beta",
   "title": "Devâstra (Unofficial)",
   "url": "https://serveurdavid.fr/devastra.html",
   "description": "Unofficial game system for Devâstra.",
@@ -62,5 +62,5 @@
   "primaryTokenAttribute": "prana",
   "secondaryTokenAttribute": "atman",
   "manifest": "https://serveurdavid.fr/download/foundry/devastra/system.json",
-  "download": "https://serveurdavid.fr/download/foundry/devastra/release-0110.zip"
+  "download": "https://serveurdavid.fr/download/foundry/devastra/release-020.zip"
 }
