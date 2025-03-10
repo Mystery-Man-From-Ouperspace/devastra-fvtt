@@ -61,18 +61,18 @@
       </div>
       <div style="margin-top: 300px;">
         <table>
-          <tr>
-            <td>
-              <h1 class="charname">
-                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DEVASTRA.PCName' }}" />
-              </h1>
-            </td>
-          </tr>
           <tr class="type">
             <td>
               <input type="radio" name="system.type" value="human" {{ checked (eq systemData.type 'human') }}/>{{ localize "DEVASTRA.humain/avatar" }}
               &nbsp;
               <input type="radio" name="system.type" value="asura" {{ checked (eq systemData.type 'asura') }}/>{{ localize "DEVASTRA.asura" }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h1 class="charname">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DEVASTRA.PCName' }}" />
+              </h1>
             </td>
           </tr>
         </table>
