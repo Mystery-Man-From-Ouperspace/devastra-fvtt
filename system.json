@@ -34,6 +34,18 @@
       "path": "lang/es.json"
     }
   ],
+  "packFolders": [
+    {
+      "name": "FR - Système",
+      "sorting": "a",
+      "color": "#ffa500",
+      "packs": [
+        "fr-resume-utilisation",
+        "landing-page"
+      ],
+      "folders": []
+    }
+  ],
   "packs": [
     {
       "name": "fr-resume-utilisation",
@@ -41,6 +53,18 @@
       "system": "devastra",
       "path": "packs/fr-resume-utilisation",
       "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "landing-page",
+      "label": "Landing Page",
+      "system": "devastra",
+      "path": "packs/landing-page",
+      "type": "Scene",
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"

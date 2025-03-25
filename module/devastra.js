@@ -1049,7 +1049,8 @@ async function _showCalculateDamageInChat (
   var sentence6 = "";
   var sentence7 = "";
 
-  var pdc = 0;
+  // var pdc = 0; // J'avais oublié de calculer ça ! :
+  var pdc = myTotal - (myDefence + myShakti);
   var pdcMinusArmor = 0;
 
   sentence6 = game.i18n.localize("DEVASTRA.TotalDamageArmorOff");
@@ -1403,7 +1404,8 @@ async function _showCalculateShaktiInChat (
   var sentence6 = "";
   var sentence7 = "";
 
-  var pdc = 0;
+  // var pdc = 0; // J'avais oublié de calculer ça ! :
+  var pdc = myTotal - (myDefence + myShakti);
   var pdcMinusArmor = 0;
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
@@ -1789,7 +1791,8 @@ async function _showCalculateAttacksInChat (
   var sentence6 = "";
   var sentence7 = "";
 
-  var pdc = 0;
+  // var pdc = 0; // J'avais oublié de calculer ça ! :
+  var pdc = myTotal - (myDefence + myShakti);
   var pdcMinusArmor = 0;
 
   
@@ -4620,7 +4623,8 @@ async function _showAppliedDamageInChat(
   var sentence1 = "";
   var sentence2 = "";
 
-  var pdc = 0;
+  // var pdc = 0; // J'avais oublié de calculer ça ! :
+  var pdc = myTotal - (myDefence + myShakti);
   var pdcMinusArmor = 0;
 
 
