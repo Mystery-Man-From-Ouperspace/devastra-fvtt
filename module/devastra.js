@@ -500,10 +500,16 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
+      let myDefence = "0";
+      if (defence != "") myDefence = defence;
+      let myShakti = "0";
+      if (shakti != "") myShakti = shakti;
+
+
       _showCalculateDamageInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
-        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, myDefence, myShakti
         );
 
 
@@ -1105,16 +1111,14 @@ async function _showCalculateDamageInChat (
   
           myWeaponDamageTab = myNewWeaponDamage.split("+");
           // console.log("myWeaponDamageTab = ", myWeaponDamageTab);
-  
+
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
             pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
-  
         }
       }
-
       pdc += myWeaponDamageBase;
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       // console.log("myWeaponDamage = ", myWeaponDamage);
@@ -1140,7 +1144,7 @@ async function _showCalculateDamageInChat (
           let myNewDevastraDamage = myDevastraDamage.replaceAll(" ", "");
   
           myDevastraDamageTab = myNewDevastraDamage.split("+");
-  
+
           for (let theDevastraDamage in myDevastraDamageTab) {
             pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
           }
@@ -1485,7 +1489,7 @@ async function _showCalculateShaktiInChat (
           myDevastraDamageBase = parseInt(myItem.system.damage_base);
           myDevastraDamage = myItem.system.damage;
 
-          let myNewDevastraDamage = myNewDevastraDamage.replaceAll(" ", "");
+          let myNewDevastraDamage = myDevastraDamage.replaceAll(" ", "");
 
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
@@ -1839,7 +1843,7 @@ async function _showCalculateAttacksInChat (
   
           myWeaponDamageTab = myNewWeaponDamage.split("+");
           // console.log("myWeaponDamageTab = ", myWeaponDamageTab);
-  
+
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
             pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
@@ -1872,7 +1876,7 @@ async function _showCalculateAttacksInChat (
           let myNewDevastraDamage = myDevastraDamage.replaceAll(" ", "");
   
           myDevastraDamageTab = myNewDevastraDamage.split("+");
-  
+
           for (let theDevastraDamage in myDevastraDamageTab) {
             pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
           }
@@ -4675,7 +4679,7 @@ async function _showAppliedDamageInChat(
   
           myWeaponDamageTab = myNewWeaponDamage.split("+");
           // console.log("myWeaponDamageTab = ", myWeaponDamageTab);
-  
+
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
             pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
@@ -4684,7 +4688,6 @@ async function _showAppliedDamageInChat(
   
         }
       }
-
       pdc += myWeaponDamageBase;
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       // console.log("myWeaponDamage = ", myWeaponDamage);
@@ -4710,7 +4713,7 @@ async function _showAppliedDamageInChat(
           let myNewDevastraDamage = myDevastraDamage.replaceAll(" ", "");
   
           myDevastraDamageTab = myNewDevastraDamage.split("+");
-  
+
           for (let theDevastraDamage in myDevastraDamageTab) {
             pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
           }
