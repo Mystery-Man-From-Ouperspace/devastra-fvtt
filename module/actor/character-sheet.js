@@ -2734,10 +2734,14 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
         };
       //////////////////////////////////////////////////////////////////
 
+      var myTargetedToken;
+
       if (game.user.targets.size != 0) {
         for (let targetedtoken of game.user.targets) {
           if (targetedtoken.id == myTarget.selectedtarget) {
             opponentActor = targetedtoken.actor;
+            myTargetedToken = targetedtoken;
+            console.log("targetedtoken =", targetedtoken);
           };
         };
       };
@@ -3006,7 +3010,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     };
 
 
-     if (suite.length >= 2) {
+    if (suite.length >= 2) {
       suite += "%";
       suite = suite.replace(', %', ']');
     } else {
@@ -3122,12 +3126,17 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
 
     // Smart Message
     let opponentActorId = "";
+    let opponentTokenId = "";
     const optNone = game.i18n.localize("DEVASTRA.opt.none");
     let opposant = optNone;
     if (opponentActor) {
+      console.log("opponentActor = ", opponentActor);
       opponentActorId = opponentActor._id;
+      opponentTokenId = myTargetedToken.document._id;
+
       opposant = opponentActor.name;
     };
+
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
       smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
@@ -3145,6 +3154,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       total: rModif._total,
       attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
+      opposanttokenId: opponentTokenId,
       opposant: opposant,
       consideropponentprotection: considerOpponentProtection,
 
