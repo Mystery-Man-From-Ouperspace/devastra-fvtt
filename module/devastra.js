@@ -500,16 +500,17 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      let myDefence = "0";
-      if (defence != "") myDefence = defence;
-      let myShakti = "0";
-      if (shakti != "") myShakti = shakti;
-
+      /*
+      let myDefence = 0;
+      if (defence != "") myDefence = parseInt(defence);
+      let myShakti = 0;
+      if (shakti != "") myShakti = parseInt(shakti);
+      */
 
       _showCalculateDamageInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
-        selectedinventorypower, selectedinventorymagic, damage, damagetype, myDefence, myShakti
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
         );
 
 
@@ -737,7 +738,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       };
       let template = "";
 
-      let theShakti = 0;
+      let theShakti = "0";
 
       if (myActor.type == 'npc' || myActor.type == 'monster') {
 
@@ -827,10 +828,13 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
+      let theShakti = "0";
+      if (shakti != "") theShakti = shakti;
+
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
         consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
-        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
+        selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
         );
       
     });
@@ -901,7 +905,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      let theShakti = 0;
+      let theShakti = "0";
 
       _showCalculateShaktiInChat(
         myActor, nd, total, attaquantficheId, opposantficheId,
@@ -978,8 +982,8 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
         return;
       };
 
-      let theDefence = 0;
-      let theShakti = 0;
+      let theDefence = "0";
+      let theShakti = "0";
 
       if (opposantficheId != "0" && opposantficheId != "") {
 
@@ -1018,11 +1022,11 @@ async function _showCalculateDamageInChat (
   // Ici on calcule les dégâts individuels reçus ou bien les dégâts collectifs infligés
 
   var myTotal = 0;
-  if (total != undefined) { myTotal = parseInt(total); };
+  if (total != "") { myTotal = parseInt(total); };
   var myDefence = 0;
-  if (defence != undefined) { myDefence = parseInt(defence); };
+  if (defence != "") { myDefence = parseInt(defence); };
   var myShakti = 0;
-  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  if (shakti != "") { myShakti = parseInt(shakti); };
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   const myAttackant = game.actors.get(attaquantficheId);
@@ -1371,11 +1375,11 @@ async function _showCalculateShaktiInChat (
   // console.log("_showCalculateShaktiInChat");
 
   var myTotal = 0;
-  if (total != undefined) { myTotal = parseInt(total); };
+  if (total != "") { myTotal = parseInt(total); };
   var myDefence = 0;
-  if (defence != undefined) { myDefence = parseInt(defence); };
+  if (defence != "") { myDefence = parseInt(defence); };
   var myShakti = 0;
-  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  if (shakti != "") { myShakti = parseInt(shakti); };
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   const myAttackant = game.actors.get(attaquantficheId);
@@ -1645,7 +1649,7 @@ async function _showCalculateShaktiInChat (
   const smartData = {
     nd: nd,
 
-    total: total,
+    total: myTotal,
 
     attaquantficheId: attaquantficheId,
     opposantficheId: opposantficheId,
@@ -1665,9 +1669,9 @@ async function _showCalculateShaktiInChat (
     damage: damage,
     damagetype: damagetype,
     
-    defence: defence,
+    defence: myDefence,
 
-    shakti: shakti,
+    shakti: myShakti,
 
     sentence1: sentence1,
     sentence2: sentence2,
@@ -1758,11 +1762,11 @@ async function _showCalculateAttacksInChat (
 ) {
 
   var myTotal = 0;
-  if (total != undefined) { myTotal = parseInt(total); };
+  if (total != "") { myTotal = parseInt(total); };
   var myDefence = 0;
-  if (defence != undefined) { myDefence = parseInt(defence); };
+  if (defence != "") { myDefence = parseInt(defence); };
   var myShakti = 0;
-  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  if (shakti != undefined) { myShakti = shakti; };
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   const myAttackant = game.actors.get(attaquantficheId);
@@ -2023,7 +2027,7 @@ async function _showCalculateAttacksInChat (
   const smartData = {
     nd: nd,
 
-    total: total,
+    total: myTotal,
 
     attaquantficheId: attaquantficheId,
     opposantficheId: opposantficheId,
@@ -2042,7 +2046,8 @@ async function _showCalculateAttacksInChat (
     damage: damage,
     damagetype: damagetype,
     
-    defence: defence,
+    defence: myDefence,
+    shakti: myShakti,
     pdc: pdc,
 
     sentence1: sentence1,
@@ -2286,10 +2291,12 @@ async function _treatShaktiDialog(
 
   var theShakti = myResultDialog.defenseshakti;
 
+  const theDefence = defence.toString();
+
   _showCalculateShaktiInChat(
     myActor, nd, total, attaquantficheId, opposantficheId,
     consideropponentprotection, isinventory, weapon, devastra, power, magic, selectedinventory, selectedinventorydevastra,
-    selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, theShakti
+    selectedinventorypower, selectedinventorymagic, damage, damagetype, theDefence, theShakti
   );
 
 
@@ -2329,9 +2336,9 @@ async function _shaktiDialog(
   const damage = myDamage;
   const damagetype = myDamagetype;
 
-  const defence = myDefence;
+  const defence = parseInt(myDefence);
 
-  const shakti = myShakti;
+  const shakti = parseInt(myShakti);
 
 
   var dialogData = {
@@ -2467,7 +2474,7 @@ async function _treatSkillDiceRollDefenceDialog(
     var selectedinventorydevastra = mySelectedinventorydevastra;
     var selectedinventorypower = mySelectedinventorypower;
     var selectedinventorymagic = mySelectedinventorymagic;
-    var damage =myDamage;
+    var damage = myDamage;
     var damagetype = myDamagetype;
     var defence;
     var shakti = myShakti;
@@ -2517,7 +2524,11 @@ async function _treatSkillDiceRollDefenceDialog(
     // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
     // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
-    var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    if (myActor.type == 'character') {
+      var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakticonst myShaktiRestanteFlag = (myActor.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+    } else {
+      var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti_initiale.piledejetons); // s'il reste assez de jetons de Shakti
+    };
     var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
 
   } else {
@@ -2589,7 +2600,11 @@ async function _treatSkillDiceRollDefenceDialog(
     // console.log("myPlusUnSuccesAuto", myPlusUnSuccesAuto);
     // console.log("myActor.system.conviction.piledejetons", myActor.system.conviction.piledejetons);
 
-    var shaktisuffisanteflag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakti
+    if (myActor.type == 'character') {
+      var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti.piledejetons); // s'il reste assez de jetons de Shakticonst myShaktiRestanteFlag = (myActor.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+    } else {
+      var shaktisuffisanteFlag = (plusdeuxdesdattaque <= myActor.system.shakti_initiale.piledejetons); // s'il reste assez de jetons de Shakti
+    };
     var convictionsuffisanteflag = ((ignoremalus + plusunsuccesauto) <= myActor.system.conviction.piledejetons); // s'il reste assez de jetons de Conviction
   
 
@@ -3003,12 +3018,13 @@ async function _treatSkillDiceRollDefenceDialog(
         };
       //////////////////////////////////////////////////////////////////
 
-      var thisistheShakti = myResultDialog.defenseshakti;
+      const thisistheShakti = myResultDialog.defenseshakti;
+      const thiistheDefence = myDefence.toString();
 
       _showCalculateShaktiInChat(
         myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
         myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
-        mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
+        mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, thiistheDefence, thisistheShakti
       );
   
     };
@@ -3076,7 +3092,7 @@ async function _skillEnterShaktiDefence(
     damage: damage,
     damagetype: damagetype,
 
-    defence: defence,
+    defence: parseInt(defence),
   
   }
 
@@ -3102,7 +3118,7 @@ async function _skillEnterShaktiDefence(
     },
     dialogOptions
     ).render(true, {
-      width: 300,
+      width: 450,
       height: "auto"
     });
   });
@@ -3163,7 +3179,11 @@ async function _skillDiceRollDefenceDialog(
   const myBonusDomaineCheck = true;
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  if (myActorID.type == 'character') {
+    var myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  } else {
+    var myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value);
+  };
   const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
 
   const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
@@ -3378,7 +3398,11 @@ async function _skillDiceRollDefenceDialogDeblocked(
   const myBonusDomaineCheck = true;
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  const myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  if (myActorID.type == 'character') {
+    var myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  } else {
+    var myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value);
+  };
   const myconvictionRestanteFlag = (myActorID.system.conviction.piledejetons); // s'il reste des jetons de Conviction
 
   const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
@@ -4158,12 +4182,13 @@ async function _treatSkillDiceRollDefenceNPCDialog(
       };
     //////////////////////////////////////////////////////////////////
 
-    var thisistheShakti = myResultDialog.defenseshakti;
+    const thisistheShakti = myResultDialog.defenseshakti;
+    const thiistheDefence = theDefence.toString();
 
     _showCalculateShaktiInChat(
       myActor, myND, myTotal, myAttaquantficheId, myOpposantficheId,
       myConsideropponentprotection, myIsinventory, myWeapon, myDevastra, myPower, myMagic, mySelectedinventory, mySelectedinventorydevastra,
-      mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, theDefence, thisistheShakti
+      mySelectedinventorypower, mySelectedinventorymagic, theDamage, theDamagetype, thiistheDefence, thisistheShakti
     );
 
     
@@ -4208,8 +4233,11 @@ async function _skillDiceRollDefenceNPCDialog(
   const myBonusDomaineCheck = true;
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
-
+  if (myActorID.type == 'character') {
+    var myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  } else {
+    var myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value);
+  };
   const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
 
   const myNbrDeDomaineDMa = myActorID.system.domains.dma.value;
@@ -4416,8 +4444,11 @@ async function _skillDiceRollDefenceNPCDialogDeblocked(
   const myBonusDomaineCheck = true;
   const mySixExploFlag = (myActorID.system.prana.value <= myActorID.system.prana.tenace); // si Tenace ou moins
   const myPlus1SuccesAutoFlag = (myActorID.system.prana.value > myActorID.system.prana.tenace); // si Vaillant
-  const myShaktiRestanteFlag = (myActorID.system.shakti.value); // s'il reste des points de Shakti
-
+  if (myActorID.type == 'character') {
+    var myShaktiRestanteFlag = (myActorID.system.shakti.piledejetons); // s'il reste des jetons de Shakti
+  } else {
+    var myShaktiRestanteFlag = (myActorID.system.shakti_initiale.value);
+  };
   const myNbrDeDomaineDPh = myActorID.system.domains.dph.value;
 
   const myNbrDeDomaineDMa = myActorID.system.domains.dma.value;
@@ -4595,11 +4626,11 @@ async function _showAppliedDamageInChat(
 // Ici on applique les dégâts individuels reçus
 
   var myTotal = 0;
-  if (total != undefined) { myTotal = parseInt(total); };
+  if (total != "") { myTotal = parseInt(total); };
   var myDefence = 0;
-  if (defence != undefined) { myDefence = parseInt(defence); };
+  if (defence != "") { myDefence = parseInt(defence); };
   var myShakti = 0;
-  if (shakti != undefined) { myShakti = parseInt(shakti); };
+  if (shakti != "") { myShakti = parseInt(shakti); };
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   const myAttackant = game.actors.get(attaquantficheId);
