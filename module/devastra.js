@@ -1385,24 +1385,24 @@ async function _showCalculateDamageInChat (
     // console.log("myWeaponDamage = ", myWeaponDamage);
   }
 
-  async function _computeDomain2Val (myActor, myDamage) {
+  async function _computeDomain2Val (theActor, myDamage) {
     let domainValue = 0;
     const theDamage = myDamage;
     switch (theDamage) {
       case "@domains.dph":
-        domainValue = parseInt(myActor.system.domains.dph.value);
+        domainValue = parseInt(theActor.system.domains.dph.value);
       break;
       case "@domains.dma":
-        domainValue = parseInt(myActor.system.domains.dma.value);
+        domainValue = parseInt(theActor.system.domains.dma.value);
       break;
       case "@domains.din":
-        domainValue = parseInt(myActor.system.domains.din.value);
+        domainValue = parseInt(theActor.system.domains.din.value);
       break;
       case "@domains.dso":
-        domainValue = parseInt(myActor.system.domains.dso.value);
+        domainValue = parseInt(theActor.system.domains.dso.value);
       break;
       case "@domains.dmy":
-        domainValue = parseInt(myActor.system.domains.dmy.value);
+        domainValue = parseInt(theActor.system.domains.dmy.value);
       break;
       default: domainValue = 0;
     }
@@ -1767,19 +1767,19 @@ async function _showCalculateShaktiInChat (
     const theDamage = myDamage;
     switch (theDamage) {
       case "@domains.dph":
-        domainValue = parseInt(myActor.system.domains.dph.value);
+        domainValue = parseInt(theActor.system.domains.dph.value);
       break;
       case "@domains.dma":
-        domainValue = parseInt(myActor.system.domains.dma.value);
+        domainValue = parseInt(theActor.system.domains.dma.value);
       break;
       case "@domains.din":
-        domainValue = parseInt(myActor.system.domains.din.value);
+        domainValue = parseInt(theActor.system.domains.din.value);
       break;
       case "@domains.dso":
-        domainValue = parseInt(myActor.system.domains.dso.value);
+        domainValue = parseInt(theActor.system.domains.dso.value);
       break;
       case "@domains.dmy":
-        domainValue = parseInt(myActor.system.domains.dmy.value);
+        domainValue = parseInt(theActor.system.domains.dmy.value);
       break;
       default: domainValue = 0;
     }
@@ -1937,7 +1937,7 @@ async function _showCalculateAttacksInChat (
         myToken = thatToken;     
       };
     }; 
-    const myOpponent = myToken.actor;
+    var myOpponent = myToken.actor;
   } 
   //// const myOpponent = game.actors.get(opposantficheId);
 
@@ -2147,7 +2147,7 @@ async function _showCalculateAttacksInChat (
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(myAttackant, myWeaponDamageTab[theWeaponDamage]);
+      pdc += await _computeDomain2Val(theActor , myWeaponDamageTab[theWeaponDamage]);
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -4836,10 +4836,10 @@ async function _showAppliedDamageInChat(
         myToken = thatToken;     
       };
     }; 
-    const myOpponent = myToken.actor;
+    var myOpponent = myToken.actor;
   }
   
-  const myAttackant = game.actors.get(attaquantficheId);
+  var myAttackant = game.actors.get(attaquantficheId);
 
   //// const myOpponent = game.actors.get(opposantficheId);
 
@@ -5059,24 +5059,24 @@ async function _showAppliedDamageInChat(
     // console.log("myWeaponDamage = ", myWeaponDamage);
   }
 
-  async function _computeDomain2Val (myDamage) {
+  async function _computeDomain2Val (theActor, myDamage) {
     let domainValue = 0;
     const theDamage = myDamage;
     switch (theDamage) {
       case "@domains.dph":
-        domainValue = parseInt(myAttackant.system.domains.dph.value);
+        domainValue = parseInt(theActor.system.domains.dph.value);
       break;
       case "@domains.dma":
-        domainValue = parseInt(myAttackant.system.domains.dma.value);
+        domainValue = parseInt(theActor.system.domains.dma.value);
       break;
       case "@domains.din":
-        domainValue = parseInt(myAttackant.system.domains.din.value);
+        domainValue = parseInt(theActor.system.domains.din.value);
       break;
       case "@domains.dso":
-        domainValue = parseInt(myAttackant.system.domains.dso.value);
+        domainValue = parseInt(theActor.system.domains.dso.value);
       break;
       case "@domains.dmy":
-        domainValue = parseInt(myAttackant.system.domains.dmy.value);
+        domainValue = parseInt(theActor.system.domains.dmy.value);
       break;
       default: domainValue = 0;
     }
