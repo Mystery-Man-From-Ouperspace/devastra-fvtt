@@ -1263,7 +1263,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     });
 
       
-    const d_successes  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
+    const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     // Smart Message
     let opponentActorId = "";
@@ -1274,6 +1274,8 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       console.log("opponentActor = ", opponentActor);
       opponentActorId = opponentActor._id;
       opponentTokenId = myTargetedToken.document._id;
+      
+      opposant = opponentActor.name;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
@@ -1289,7 +1291,8 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       total: rModif._total,
       attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
-      opposanttokenId: tokenOpponentID,
+      opposanttokenId: opponentTokenId,
+
       opposant: opposant,
       consideropponentprotection: considerOpponentProtection,
 

@@ -1282,7 +1282,6 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
     const d_successes  = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     // Smart Message
-    // Smart Message
     let opponentActorId = "";
     let opponentTokenId = "";
     const optNone = game.i18n.localize("DEVASTRA.opt.none");
@@ -1291,13 +1290,14 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       console.log("opponentActor = ", opponentActor);
       opponentActorId = opponentActor._id;
       opponentTokenId = myTargetedToken.document._id;
+
+      opposant = opponentActor.name;
     };
     let smartTemplate = 'systems/devastra/templates/form/dice-result-dice.html';
     if (jetLibel == "defnc") {
       smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
     };
 
-    
     let myDefence = rModif._total;
 
     let myShakti = 0;
@@ -1308,6 +1308,7 @@ export class DEVASTRAPNJSheet extends DEVASTRAActorSheet {
       attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
       opposanttokenId: opponentTokenId,
+      
       opposant: opposant,
       consideropponentprotection: considerOpponentProtection,
 

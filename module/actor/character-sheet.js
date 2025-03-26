@@ -3155,6 +3155,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       attaquantficheId: myActor._id,
       opposantficheId: opponentActorId,
       opposanttokenId: opponentTokenId,
+      
       opposant: opposant,
       consideropponentprotection: considerOpponentProtection,
 
