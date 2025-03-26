@@ -1266,7 +1266,7 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
     const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAuto); // On ajoute les succès automatiques
 
     // Smart Message
-    let opponentActorId = "";
+    let opponentActorId = "0";
     let opponentTokenId = "";
     const optNone = game.i18n.localize("DEVASTRA.opt.none");
     let opposant = optNone;

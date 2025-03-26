@@ -3125,7 +3125,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const d_successes = parseInt(n.myReussite) + parseInt(mySuccesAutoSupplem); // On ajoute les succès automatiques
 
     // Smart Message
-    let opponentActorId = "";
+    let opponentActorId = "0";
     let opponentTokenId = "";
     const optNone = game.i18n.localize("DEVASTRA.opt.none");
     let opposant = optNone;

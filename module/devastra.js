@@ -401,7 +401,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       */
       let myActorId = "";
       let myActor = null;
-      if (opposantficheId == "0" && opposantficheId == "") {
+      if (opposantficheId == "" || opposantficheId == "0") {
         myActorId = attaquantficheId;
         myActor = game.actors.get(myActorId);
       } else {
@@ -584,7 +584,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       let myActorId = "";
       let myActor = null;
-      if (opposantficheId == "0" || opposantficheId == "") {
+      if (opposantficheId == "" || opposantficheId == "0") {
         myActorId = attaquantficheId;
         myActor = game.actors.get(myActorId);
       } else {
@@ -672,15 +672,15 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
 
       let myActorId = "";
-      let myActor = null          ;
-      if (opposantficheId == "0" || opposantficheId == "") {
+      let myActor = null;
+      if (opposantficheId == "" || opposantficheId == "0") {
         myActorId = attaquantficheId;
         myActor = game.actors.get(myActorId);
       } else {
+        myActorId = opposantficheId;
         let myToken;
         let thatToken;
         let thisTokens;
-        myActorId = opposantficheId;
         thisTokens = game.actors.get(myActorId).getActiveTokens(false, false);
         for (let theToken in thisTokens) {
           thatToken = thisTokens[theToken];
@@ -1248,7 +1248,7 @@ async function _showCalculateDamageInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+            pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
         }
@@ -1280,7 +1280,7 @@ async function _showCalculateDamageInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
+            pdc += await _computeDomain2Val(theActor, myDevastraDamageTab[theDevastraDamage]);
           }
 
         }
@@ -1316,7 +1316,7 @@ async function _showCalculateDamageInChat (
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(myPowerDamageTab[thePowerDamage]);
+          pdc += await _computeDomain2Val(theActor, myPowerDamageTab[thePowerDamage]);
         }
     
       }
@@ -1352,7 +1352,7 @@ async function _showCalculateDamageInChat (
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(myMagicDamageTab[theMagicDamage]);
+          pdc += await _computeDomain2Val(theActor, myMagicDamageTab[theMagicDamage]);
         }
 
       }
@@ -1620,7 +1620,7 @@ async function _showCalculateShaktiInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+            pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
     
@@ -1655,7 +1655,7 @@ async function _showCalculateShaktiInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
+            pdc += await _computeDomain2Val(theActor, myDevastraDamageTab[theDevastraDamage]);
           }
     
         }
@@ -1693,7 +1693,7 @@ async function _showCalculateShaktiInChat (
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(myPowerDamageTab[thePowerDamage]);
+          pdc += await _computeDomain2Val(theActor, myPowerDamageTab[thePowerDamage]);
         }
     
       }
@@ -1729,7 +1729,7 @@ async function _showCalculateShaktiInChat (
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(myMagicDamageTab[theMagicDamage]);
+          pdc += await _computeDomain2Val(theActor, myMagicDamageTab[theMagicDamage]);
         }
 
       }
@@ -1762,7 +1762,7 @@ async function _showCalculateShaktiInChat (
     // console.log("myWeaponDamage = ", myWeaponDamage);
   }
 
-  async function _computeDomain2Val (myActor, myDamage) {
+  async function _computeDomain2Val (theActor, myDamage) {
     let domainValue = 0;
     const theDamage = myDamage;
     switch (theDamage) {
@@ -1919,19 +1919,26 @@ async function _showCalculateAttacksInChat (
   const myAttackant = game.actors.get(attaquantficheId);
 
 
-  let myActorId = opposantficheId;
-  let myToken;
-  let thatToken;
-  let thisTokens;
-  thisTokens = game.actors.get(myActorId).getActiveTokens(false, false);
-  for (let theToken in thisTokens) {
-    thatToken = thisTokens[theToken];
-    if (thatToken.document.id === opposanttokenId) {
-      myToken = thatToken;     
-    };
-  }; 
-  const myOpponent = myToken.actor;
+  let myActorId = "";
+  let theActor = null;
 
+  if (opposantficheId == "" || opposantficheId == "0") {
+    myActorId = attaquantficheId;
+    theActor = game.actors.get(myActorId);
+  } else {
+    myActorId = opposantficheId;
+    let myToken;
+    let thatToken;
+    let thisTokens;
+    thisTokens = game.actors.get(myActorId).getActiveTokens(false, false);
+    for (let theToken in thisTokens) {
+      thatToken = thisTokens[theToken];
+      if (thatToken.document.id === opposanttokenId) {
+        myToken = thatToken;     
+      };
+    }; 
+    const myOpponent = myToken.actor;
+  } 
   //// const myOpponent = game.actors.get(opposantficheId);
 
   const optNone = game.i18n.localize("DEVASTRA.opt.none");
@@ -2012,7 +2019,7 @@ async function _showCalculateAttacksInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+            pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
   
@@ -2044,7 +2051,7 @@ async function _showCalculateAttacksInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
+            pdc += await _computeDomain2Val(theActor, myDevastraDamageTab[theDevastraDamage]);
           }
 
         }
@@ -2078,7 +2085,7 @@ async function _showCalculateAttacksInChat (
           myPowerDamageTab = myNewPowerDamage.split("+");
 
           for (let thePowerDamage in myPowerDamageTab) {
-            pdc += await _computeDomain2Val(myPowerDamageTab[thePowerDamage]);
+            pdc += await _computeDomain2Val(theActor, myPowerDamageTab[thePowerDamage]);
           }
 
         }
@@ -2114,7 +2121,7 @@ async function _showCalculateAttacksInChat (
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(myMagicDamageTab[theMagicDamage]);
+          pdc += await _computeDomain2Val(theActor, myMagicDamageTab[theMagicDamage]);
         }
 
       }
@@ -2140,31 +2147,31 @@ async function _showCalculateAttacksInChat (
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+      pdc += await _computeDomain2Val(myAttackant, myWeaponDamageTab[theWeaponDamage]);
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     // console.log("myWeaponDamage = ", myWeaponDamage);
   }
 
-  async function _computeDomain2Val (myDamage) {
+  async function _computeDomain2Val (theActor, myDamage) {
     let domainValue = 0;
     const theDamage = myDamage;
     switch (theDamage) {
       case "@domains.dph":
-        domainValue = parseInt(myAttackant.system.domains.dph.value);
+        domainValue = parseInt(theActor.system.domains.dph.value);
       break;
       case "@domains.dma":
-        domainValue = parseInt(myAttackant.system.domains.dma.value);
+        domainValue = parseInt(theActor.system.domains.dma.value);
       break;
       case "@domains.din":
-        domainValue = parseInt(myAttackant.system.domains.din.value);
+        domainValue = parseInt(theActor.system.domains.din.value);
       break;
       case "@domains.dso":
-        domainValue = parseInt(myAttackant.system.domains.dso.value);
+        domainValue = parseInt(theActor.system.domains.dso.value);
       break;
       case "@domains.dmy":
-        domainValue = parseInt(myAttackant.system.domains.dmy.value);
+        domainValue = parseInt(theActor.system.domains.dmy.value);
       break;
       default: domainValue = 0;
     }
@@ -4811,20 +4818,28 @@ async function _showAppliedDamageInChat(
   if (shakti != "") { myShakti = parseInt(shakti); };
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
-  const myAttackant = game.actors.get(attaquantficheId);
+  let myActorId = "";
+  let theActor = null;
 
-  let myActorId = opposantficheId;
-  let myToken;
-  let thatToken;
-  let thisTokens;
-  thisTokens = game.actors.get(myActorId).getActiveTokens(false, false);
-  for (let theToken in thisTokens) {
-    thatToken = thisTokens[theToken];
-    if (thatToken.document.id === opposanttokenId) {
-      myToken = thatToken;     
-    };
-  }; 
-  const myOpponent = myToken.actor;
+  if (opposantficheId == "" || opposantficheId == "0") {
+    myActorId = attaquantficheId;
+    theActor = game.actors.get(myActorId);
+  } else {
+    myActorId = opposantficheId;
+    let myToken;
+    let thatToken;
+    let thisTokens;
+    thisTokens = game.actors.get(myActorId).getActiveTokens(false, false);
+    for (let theToken in thisTokens) {
+      thatToken = thisTokens[theToken];
+      if (thatToken.document.id === opposanttokenId) {
+        myToken = thatToken;     
+      };
+    }; 
+    const myOpponent = myToken.actor;
+  }
+  
+  const myAttackant = game.actors.get(attaquantficheId);
 
   //// const myOpponent = game.actors.get(opposantficheId);
 
@@ -4905,7 +4920,7 @@ async function _showAppliedDamageInChat(
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+            pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
   
@@ -4938,7 +4953,7 @@ async function _showAppliedDamageInChat(
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(myDevastraDamageTab[theDevastraDamage]);
+            pdc += await _computeDomain2Val(theActor, myDevastraDamageTab[theDevastraDamage]);
           }
 
         }
@@ -4973,7 +4988,7 @@ async function _showAppliedDamageInChat(
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(myPowerDamageTab[thePowerDamage]);
+          pdc += await _computeDomain2Val(theActor, myPowerDamageTab[thePowerDamage]);
         }
 
       }
@@ -5011,7 +5026,7 @@ async function _showAppliedDamageInChat(
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(myMagicDamageTab[theMagicDamage]);
+          pdc += await _computeDomain2Val(theActor, myMagicDamageTab[theMagicDamage]);
         }
 
       }
@@ -5037,7 +5052,7 @@ async function _showAppliedDamageInChat(
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(myWeaponDamageTab[theWeaponDamage]);
+      pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
