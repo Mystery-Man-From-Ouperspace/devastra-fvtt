@@ -4819,7 +4819,6 @@ async function _showAppliedDamageInChat(
   const youwin = ((myTotal - (myDefence + myShakti)) <= 0);
 
   let myActorId = "";
-  let theActor = null;
 
   if (opposantficheId == "" || opposantficheId == "0") {
     myActorId = attaquantficheId;
@@ -4920,7 +4919,7 @@ async function _showAppliedDamageInChat(
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
+            pdc += await _computeDomain2Val(myAttackant, myWeaponDamageTab[theWeaponDamage]);
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
   
@@ -4953,7 +4952,7 @@ async function _showAppliedDamageInChat(
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(theActor, myDevastraDamageTab[theDevastraDamage]);
+            pdc += await _computeDomain2Val(myAttackant, myDevastraDamageTab[theDevastraDamage]);
           }
 
         }
@@ -4988,7 +4987,7 @@ async function _showAppliedDamageInChat(
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(theActor, myPowerDamageTab[thePowerDamage]);
+          pdc += await _computeDomain2Val(myAttackant, myPowerDamageTab[thePowerDamage]);
         }
 
       }
@@ -5026,7 +5025,7 @@ async function _showAppliedDamageInChat(
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(theActor, myMagicDamageTab[theMagicDamage]);
+          pdc += await _computeDomain2Val(myAttackant, myMagicDamageTab[theMagicDamage]);
         }
 
       }
@@ -5052,7 +5051,7 @@ async function _showAppliedDamageInChat(
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(theActor, myWeaponDamageTab[theWeaponDamage]);
+      pdc += await _computeDomain2Val(myOpponent, myWeaponDamageTab[theWeaponDamage]);
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
