@@ -381,7 +381,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on calcule les dommages infligés
@@ -557,7 +557,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on calcule les dommages encaissés
@@ -645,7 +645,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       // Ici on fait remplir les paramètres de shakti par le défenseur
 
@@ -748,7 +748,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on fait remplir les paramètres de lancer de dés pour le défenseur
@@ -863,7 +863,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on calcule les blessures évitées
@@ -967,7 +967,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
 
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on calcule les blessures reçues
@@ -1056,7 +1056,7 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       const shakti = html[0].querySelector("span[class='shakti']").textContent;
 
 
-      console.log("opposanttokenId = ", opposanttokenId);
+      // console.log("opposanttokenId = ", opposanttokenId);
 
       /*
       Ici on calcule les blessures infligées
@@ -1104,9 +1104,11 @@ Hooks.on("renderChatMessage", (app, html, data,) => {
       };
 
       let theDefence = "0";
+      if (defence != "") theDefence = defence;
       let theShakti = "0";
+      if (shakti != "") theShakti = shakti;
 
-      if (opposantficheId != "0" && opposantficheId != "") {
+      if (tokenFlag) {
 
         _showCalculateShaktiInChat(
           theActiveActor, nd, total, attaquantficheId, opposantficheId, opposanttokenId,
@@ -1523,7 +1525,7 @@ async function _showCalculateShaktiInChat (
   selectedinventorypower, selectedinventorymagic, damage, damagetype, defence, shakti
   ) {
 
-  console.log("opposanttokenId = ", opposanttokenId);
+  // console.log("opposanttokenId = ", opposanttokenId);
 
   var myTotal = 0;
   if (total != "") { myTotal = parseInt(total); };
@@ -1805,15 +1807,18 @@ async function _showCalculateShaktiInChat (
   };
 
   // console.log("pdc = ", pdc);
-
-  if (youwin) {
-    sentence1 = game.i18n.localize("DEVASTRA.YouWin");
-    sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
-    sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+  if (tokenFlag) {
+    if (youwin) {
+      sentence1 = game.i18n.localize("DEVASTRA.YouWin");
+      sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouArentWounded");
+    } else {
+      sentence1 = game.i18n.localize("DEVASTRA.YouLose");
+      sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
+      sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    }
   } else {
-    sentence1 = game.i18n.localize("DEVASTRA.YouLose");
-    sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
-    sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
+    
   }
 
   let totalresist = myDefence + myShakti;
@@ -2199,7 +2204,7 @@ async function _showCalculateAttacksInChat (
 
   // console.log("pdc = ", pdc);
 
-  if (opposantficheId != "0" && opposantficheId != "") {
+  if (tokenFlag) {
     if (youwin) {
       sentence1 = game.i18n.localize("DEVASTRA.YouWin");
       sentence2 = game.i18n.localize("DEVASTRA.YouArentHit").replace("^0", game.actors.get(attaquantficheId).name);
@@ -2209,6 +2214,8 @@ async function _showCalculateAttacksInChat (
       sentence2 = game.i18n.localize("DEVASTRA.YouReHit").replace("^0", game.actors.get(attaquantficheId).name);
       sentence3 = game.i18n.localize("DEVASTRA.YouReWounded").replace("^0", pdc);
     }
+  } else {
+
   }
   
   const smartTemplate = 'systems/devastra/templates/form/result-attacks.html';

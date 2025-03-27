@@ -2741,7 +2741,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
           if (targetedtoken.id == myTarget.selectedtarget) {
             opponentActor = targetedtoken.actor;
             myTargetedToken = targetedtoken;
-            console.log("targetedtoken =", targetedtoken);
+            // console.log("targetedtoken =", targetedtoken);
           };
         };
       };
@@ -3130,7 +3130,7 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
     const optNone = game.i18n.localize("DEVASTRA.opt.none");
     let opposant = optNone;
     if (opponentActor) {
-      console.log("opponentActor = ", opponentActor);
+      // console.log("opponentActor = ", opponentActor);
       opponentActorId = opponentActor._id;
       opponentTokenId = myTargetedToken.document._id;
 
