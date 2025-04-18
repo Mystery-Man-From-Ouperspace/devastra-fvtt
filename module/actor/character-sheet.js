@@ -3142,8 +3142,10 @@ if (!(myActor.system.mandala.six.nbrjetonbonus)) {
       smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
     };
 
-    let myDefence = rModif._total;
-
+    let myDefence = 0;
+    if (jetLibel == "defnc") {
+      myDefence = rModif._total;
+    }
     let myShakti = 0;
 
     // console.log("myActor = ", myActor);

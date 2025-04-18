@@ -1264,12 +1264,12 @@ async function _showCalculateDamageInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
         }
       }
-      pdc += myWeaponDamageBase;
+      pdc += parseInt(myWeaponDamageBase);
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       // console.log("myWeaponDamage = ", myWeaponDamage);
       sentence2 = game.i18n.localize("DEVASTRA.SentenceIsInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
@@ -1301,7 +1301,7 @@ async function _showCalculateDamageInChat (
 
         }
       }
-      pdc += myDevastraDamageBase;
+      pdc += parseInt(myDevastraDamageBase);
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       // console.log("myDevastraDamage = ", myDevastraDamage);
       sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
@@ -1337,7 +1337,7 @@ async function _showCalculateDamageInChat (
     
       }
     }
-    pdc += myPowerDamageBase;
+    pdc += parseInt(myPowerDamageBase);
 
 
   // console.log("myPowerDamageBase = ", myPowerDamageBase);
@@ -1373,7 +1373,7 @@ async function _showCalculateDamageInChat (
 
       }
     }
-    pdc += myMagicDamageBase;
+    pdc += parseInt(myMagicDamageBase);
 
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
@@ -1394,7 +1394,7 @@ async function _showCalculateDamageInChat (
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+      pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -1438,7 +1438,7 @@ async function _showCalculateDamageInChat (
     };
     // console.log("totalArmor = ", totalArmor);
     if ((pdc - totalArmor) > 0) {
-      pdcMinusArmor = pdc - totalArmor;
+      pdcMinusArmor = pdc - parseInt(totalArmor);
     } else {
       pdcMinusArmor = 0;
     };
@@ -1482,6 +1482,9 @@ async function _showCalculateDamageInChat (
 
     shakti: myShakti,
 
+    pdc: pdc,
+    pdcminusarmor: pdcMinusArmor,
+
     sentence1: sentence1,
     sentence2: sentence2,
     sentence3: sentence3,
@@ -1491,8 +1494,6 @@ async function _showCalculateDamageInChat (
     sentence7: sentence7,
 
     totalresist: totalresist,
-    pdc: pdc,
-    pdcminusarmor: pdcMinusArmor,
 
     youwin: youwin
   };
@@ -1646,7 +1647,7 @@ async function _showCalculateShaktiInChat (
     
         }
       }
-      pdc += myWeaponDamageBase;
+      pdc += parseInt(myWeaponDamageBase);
 
 
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -1680,7 +1681,7 @@ async function _showCalculateShaktiInChat (
     
         }
       }
-      pdc += myDevastraDamageBase;
+      pdc += parseInt(myDevastraDamageBase);
 
 
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
@@ -1718,7 +1719,7 @@ async function _showCalculateShaktiInChat (
     
       }
     }
-    pdc += myPowerDamageBase;
+    pdc += parseInt(myPowerDamageBase);
 
 
   // console.log("myPowerDamageBase = ", myPowerDamageBase);
@@ -1754,7 +1755,7 @@ async function _showCalculateShaktiInChat (
 
       }
     }
-    pdc += myMagicDamageBase;
+    pdc += parseInt(myMagicDamageBase);
 
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
@@ -1775,7 +1776,7 @@ async function _showCalculateShaktiInChat (
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+      pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -1821,6 +1822,8 @@ async function _showCalculateShaktiInChat (
     
   }
 
+  pdcMinusArmor = pdc - 0;
+
   let totalresist = myDefence + myShakti;
 
   const smartTemplate = 'systems/devastra/templates/form/result-shakti.html';
@@ -1853,6 +1856,9 @@ async function _showCalculateShaktiInChat (
     defence: myDefence,
 
     shakti: myShakti,
+
+    pdc: pdc,
+    pdcminusarmor: pdcMinusArmor,
 
     sentence1: sentence1,
     sentence2: sentence2,
@@ -2043,13 +2049,13 @@ async function _showCalculateAttacksInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
   
         }
       }
-      pdc += myWeaponDamageBase;
+      pdc += parseInt(myWeaponDamageBase);
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       // console.log("myWeaponDamage = ", myWeaponDamage);
     } else {
@@ -2080,7 +2086,7 @@ async function _showCalculateAttacksInChat (
 
         }
       }
-      pdc += myDevastraDamageBase;
+      pdc += parseInt(myDevastraDamageBase);
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       // console.log("myDevastraDamage = ", myDevastraDamage);
     }
@@ -2114,7 +2120,7 @@ async function _showCalculateAttacksInChat (
 
         }
       }
-      pdc += myPowerDamageBase;
+      pdc += parseInt(myPowerDamageBase);
     }
   
   // console.log("myPowerDamageBase = ", myPowerDamageBase);
@@ -2150,7 +2156,7 @@ async function _showCalculateAttacksInChat (
 
       }
     }
-    pdc += myMagicDamageBase;
+    pdc += parseInt(myMagicDamageBase);
 
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
@@ -2171,7 +2177,7 @@ async function _showCalculateAttacksInChat (
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+      pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -2203,6 +2209,8 @@ async function _showCalculateAttacksInChat (
   };
 
   // console.log("pdc = ", pdc);
+
+  pdcMinusArmor = pdc - 0;
 
   if (tokenFlag) {
     if (youwin) {
@@ -2245,7 +2253,9 @@ async function _showCalculateAttacksInChat (
     
     defence: myDefence,
     shakti: myShakti,
+
     pdc: pdc,
+    pdcminusarmor: pdcMinusArmor,
 
     sentence1: sentence1,
     sentence2: sentence2,
@@ -4949,13 +4959,13 @@ async function _showAppliedDamageInChat(
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
   
         }
       }
-      pdc += myWeaponDamageBase;
+      pdc += parseInt(myWeaponDamageBase);
       // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
       // console.log("myWeaponDamage = ", myWeaponDamage);
       sentence2 = game.i18n.localize("DEVASTRA.SentenceIsInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
@@ -4987,7 +4997,7 @@ async function _showAppliedDamageInChat(
 
         }
       }
-      pdc += myDevastraDamageBase;
+      pdc += parseInt(myDevastraDamageBase);
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       // console.log("myDevastraDamage = ", myDevastraDamage);
     }
@@ -5022,7 +5032,7 @@ async function _showAppliedDamageInChat(
 
       }
     }
-    pdc += myPowerDamageBase;
+    pdc += parseInt(myPowerDamageBase);
 
 
   // console.log("myPowerDamageBase = ", myPowerDamageBase);
@@ -5060,7 +5070,7 @@ async function _showAppliedDamageInChat(
 
       }
     }
-    pdc += myMagicDamageBase;
+    pdc += parseInt(myMagicDamageBase);
 
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
@@ -5081,7 +5091,7 @@ async function _showAppliedDamageInChat(
     pdc += myWeaponDamageBase;
 
     for (let theWeaponDamage in myWeaponDamageTab) {
-      pdc += await _computeDomain2Val(theOpponentActor, myWeaponDamageTab[theWeaponDamage]);
+      pdc += parseInt(await _computeDomain2Val(theOpponentActor, myWeaponDamageTab[theWeaponDamage]));
     }
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
@@ -5147,11 +5157,11 @@ async function _showAppliedDamageInChat(
 
     consideropponentprotection: consideropponentprotection,
 
-    sentence1: sentence1,
-    sentence2: sentence2,
-
+    pdc: pdc,
     pdcminusarmor: pdcMinusArmor,
 
+    sentence1: sentence1,
+    sentence2: sentence2,
   };
   // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);

@@ -1282,8 +1282,9 @@ export class DEVASTRAMonsterSheet extends DEVASTRAActorSheet {
       smartTemplate = 'systems/devastra/templates/form/dice-result-defence.html';
     };
 
-    let myDefence = rModif._total;
+    // let myDefence = rModif._total;
 
+    let myDefence = 0;
     let myShakti = 0;
 
     const smartData = {
