@@ -1296,7 +1296,7 @@ async function _showCalculateDamageInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]));
           }
 
         }
@@ -1332,7 +1332,7 @@ async function _showCalculateDamageInChat (
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]));
         }
     
       }
@@ -1363,14 +1363,14 @@ async function _showCalculateDamageInChat (
       }
       if (myItem != undefined) {
         myMagicDamageBase = parseInt(myItem.system.damage_base);
-        myMagicDamage = parseInt(myItem.system.damage);
+        myMagicDamage = myItem.system.damage;
         
         let myNewMagicDamage = myMagicDamage.replaceAll(" ", "");
 
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]));
         }
 
       }
@@ -1395,7 +1395,7 @@ async function _showCalculateDamageInChat (
 
     myWeaponDamageTab = myNewWeaponDamage.split("+");
 
-    pdc += myWeaponDamageBase;
+    pdc += parseInt(myWeaponDamageBase);
 
     for (let theWeaponDamage in myWeaponDamageTab) {
       pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
