@@ -1304,7 +1304,7 @@ async function _showCalculateDamageInChat (
       pdc += parseInt(myDevastraDamageBase);
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       // console.log("myDevastraDamage = ", myDevastraDamage);
-      sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
+      sentence2 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
     }
 
   }
@@ -1340,8 +1340,10 @@ async function _showCalculateDamageInChat (
     pdc += parseInt(myPowerDamageBase);
 
 
-  // console.log("myPowerDamageBase = ", myPowerDamageBase);
+    // console.log("myPowerDamageBase = ", myPowerDamageBase);
     // console.log("myPowerDamage = ", myPowerDamage);
+    sentence3 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
+
   }
 
   // console.log("magic = ", magic);
@@ -1378,6 +1380,8 @@ async function _showCalculateDamageInChat (
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
     // console.log("myMagicDamage = ", myMagicDamage);
+    sentence4 = game.i18n.localize("DEVASTRA.SentenceIsMagic").replace("^0", myMagicDamageBase).replace("^1", myMagicDamage);
+
   }
 
 
@@ -1399,6 +1403,8 @@ async function _showCalculateDamageInChat (
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     // console.log("myWeaponDamage = ", myWeaponDamage);
+    sentence2 = game.i18n.localize("DEVASTRA.SentenceIsNoInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
+
   }
 
   async function _computeDomain2Val (theActor, myDamage) {
@@ -4903,6 +4909,8 @@ async function _showAppliedDamageInChat(
 
   var sentence1 = "";
   var sentence2 = "";
+  var sentence3 = "";
+  var sentence4 = "";
 
   // var pdc = 0; // J'avais oublié de calculer ça ! :
   var pdc = myTotal - (myDefence + myShakti);
@@ -4910,7 +4918,7 @@ async function _showAppliedDamageInChat(
 
 
   sentence1 = game.i18n.localize("DEVASTRA.TotalDamageArmorIn");
-  sentence2 = game.i18n.localize("DEVASTRA.ArmorOff");
+  // sentence2 = game.i18n.localize("DEVASTRA.ArmorOff");
 
 
   // Ici on calcul le total des dommages (hors résistance armure du défenseur) de l'attaquant    
@@ -4992,7 +5000,7 @@ async function _showAppliedDamageInChat(
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]));
           }
 
         }
@@ -5000,6 +5008,8 @@ async function _showAppliedDamageInChat(
       pdc += parseInt(myDevastraDamageBase);
       // console.log("myDevastraDamageBase = ", myDevastraDamageBase);
       // console.log("myDevastraDamage = ", myDevastraDamage);
+      sentence2 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
+
     }
 
   }
@@ -5027,7 +5037,7 @@ async function _showAppliedDamageInChat(
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]));
         }
 
       }
@@ -5035,9 +5045,9 @@ async function _showAppliedDamageInChat(
     pdc += parseInt(myPowerDamageBase);
 
 
-  // console.log("myPowerDamageBase = ", myPowerDamageBase);
+    // console.log("myPowerDamageBase = ", myPowerDamageBase);
     // console.log("myPowerDamage = ", myPowerDamage);
-    sentence3 = game.i18n.localize("DEVASTRA.SentenceIsDevastra").replace("^0", myDevastraDamageBase).replace("^1", myDevastraDamage);
+    sentence3 = game.i18n.localize("DEVASTRA.SentenceIsPower").replace("^0", myPowerDamageBase).replace("^1", myPowerDamage);
   }
 
   // console.log("magic = ", magic);
@@ -5058,14 +5068,14 @@ async function _showAppliedDamageInChat(
       }
       if (myItem != undefined) {
         myMagicDamageBase = parseInt(myItem.system.damage_base);
-        myMagicDamage = parseInt(myItem.system.damage);
+        myMagicDamage = myItem.system.damage;
         
         let myNewMagicDamage = myMagicDamage.replaceAll(" ", "");
 
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]));
         }
 
       }
@@ -5075,6 +5085,8 @@ async function _showAppliedDamageInChat(
 
     // console.log("myMagicDamageBase = ", myMagicDamageBase);
     // console.log("myMagicDamage = ", myMagicDamage);
+    sentence4 = game.i18n.localize("DEVASTRA.SentenceIsMagic").replace("^0", myMagicDamageBase).replace("^1", myMagicDamage);
+
   }
 
 
@@ -5096,6 +5108,8 @@ async function _showAppliedDamageInChat(
 
     // console.log("myWeaponDamageBase = ", myWeaponDamageBase);
     // console.log("myWeaponDamage = ", myWeaponDamage);
+    sentence2 = game.i18n.localize("DEVASTRA.SentenceIsNoInventory").replace("^0", myWeaponDamageBase).replace("^1", myWeaponDamage);
+
   }
 
   async function _computeDomain2Val (theActor, myDamage) {
@@ -5162,6 +5176,9 @@ async function _showAppliedDamageInChat(
 
     sentence1: sentence1,
     sentence2: sentence2,
+    sentence3: sentence3,
+    sentence4: sentence4,
+
   };
   // console.log("smartData avant retour func = ", smartData);
   const smartHtml = await renderTemplate(smartTemplate, smartData);
