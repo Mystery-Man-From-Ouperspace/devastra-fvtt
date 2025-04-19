@@ -1647,7 +1647,7 @@ async function _showCalculateShaktiInChat (
 
           for (let theWeaponDamage in myWeaponDamageTab) {
             // console.log("theWeaponDamage = ", theWeaponDamage);
-            pdc += await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
             // console.log("myWeaponDamageTab[theWeaponDamage] = ", myWeaponDamageTab[theWeaponDamage]);
           }
     
@@ -1682,7 +1682,7 @@ async function _showCalculateShaktiInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]));
           }
     
         }
@@ -1720,7 +1720,7 @@ async function _showCalculateShaktiInChat (
         myPowerDamageTab = myNewPowerDamage.split("+");
 
         for (let thePowerDamage in myPowerDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]));
         }
     
       }
@@ -1756,7 +1756,7 @@ async function _showCalculateShaktiInChat (
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]));
         }
 
       }
@@ -1779,7 +1779,7 @@ async function _showCalculateShaktiInChat (
 
     myWeaponDamageTab = myNewWeaponDamage.split("+");
 
-    pdc += myWeaponDamageBase;
+    pdc += parseInt(myWeaponDamageBase);
 
     for (let theWeaponDamage in myWeaponDamageTab) {
       pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
@@ -2087,7 +2087,7 @@ async function _showCalculateAttacksInChat (
           myDevastraDamageTab = myNewDevastraDamage.split("+");
 
           for (let theDevastraDamage in myDevastraDamageTab) {
-            pdc += await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myDevastraDamageTab[theDevastraDamage]));
           }
 
         }
@@ -2121,7 +2121,7 @@ async function _showCalculateAttacksInChat (
           myPowerDamageTab = myNewPowerDamage.split("+");
 
           for (let thePowerDamage in myPowerDamageTab) {
-            pdc += await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]);
+            pdc += parseInt(await _computeDomain2Val(theAttackantActor, myPowerDamageTab[thePowerDamage]));
           }
 
         }
@@ -2157,7 +2157,7 @@ async function _showCalculateAttacksInChat (
         myMagicDamageTab = myNewMagicDamage.split("+");
 
         for (let theMagicDamage in myMagicDamageTab) {
-          pdc += await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]);
+          pdc += parseInt(await _computeDomain2Val(theAttackantActor, myMagicDamageTab[theMagicDamage]));
         }
 
       }
@@ -2180,7 +2180,7 @@ async function _showCalculateAttacksInChat (
 
     myWeaponDamageTab = myNewWeaponDamage.split("+");
 
-    pdc += myWeaponDamageBase;
+    pdc += parseInt(myWeaponDamageBase);
 
     for (let theWeaponDamage in myWeaponDamageTab) {
       pdc += parseInt(await _computeDomain2Val(theAttackantActor, myWeaponDamageTab[theWeaponDamage]));
@@ -5100,7 +5100,7 @@ async function _showAppliedDamageInChat(
 
     myWeaponDamageTab = myNewWeaponDamage.split("+");
 
-    pdc += myWeaponDamageBase;
+    pdc += parseInt(myWeaponDamageBase);
 
     for (let theWeaponDamage in myWeaponDamageTab) {
       pdc += parseInt(await _computeDomain2Val(theOpponentActor, myWeaponDamageTab[theWeaponDamage]));
